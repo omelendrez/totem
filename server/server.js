@@ -3,6 +3,7 @@ var express = require('express'),
 
 var app = express();
 
+app.get('/products/:id/category', products.findByCategory);
 app.get('/products/:id', products.findById);
 app.get('/products', products.findAll);
 
