@@ -1,6 +1,6 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var con = mysql.createConnection({
+const con = mysql.createConnection({
   host: 'localhost',
   user: 'escng_totem',
   password: 'M1a4$1t4E8r0',
@@ -9,45 +9,40 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) {throw err;}
-  console.log('Connected!');
+  console.log('Connected to database');
 });
 
 exports.findById = function(req, res) {
-    console.log(req.params);
-    var id = parseInt(req.params.id);
+    let id = parseInt(req.params.id);
     console.log('findById: ' + id);
-    var sql = 'select * from products where id = ' + id;
+    let sql = 'select * from products where id = ' + id;
     con.query(sql, function (err, result) {
-        var item = result;
-        console.log(item);
+        let item = result;
         res.json(item);
     });
 };
 
 exports.findByCategory = function(req, res) {
-    var id = parseInt(req.params.id);
+    let id = parseInt(req.params.id);
     console.log('findByCategory: ' + id);
-    var sql = 'select * from products where categoryId = ' + id;
+    let sql = 'select * from products where categoryId = ' + id;
     con.query(sql, function (err, result) {
-        var item = result;
-        console.log(item);
+        let item = result;
         res.json(item);
     });
 };
 
 exports.findAll = function(req, res) {
-    var name = req.query.name;
-    var sql = '';
+    let name = req.query.name || '';
+    console.log('findAll: ' + name);
+    let sql = 'select * from products';
     if (name) {
-        sql = 'select * from products where name like concat(%,' + name + ',%)';
-    } else {
-        sql = 'select * from products';
+        sql = sql + ' where name like concat(\'%\',\'' + name + '\',\'%\')';
     }
     con.query(sql, function (err, result) {
         if(err){
             console.log(err);
         }
-        console.log(result);
         res.json(result);
     });
 };
@@ -55,10 +50,10 @@ exports.findAll = function(req, res) {
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
 // You'd typically not find this code in a real-life app, since the database would already exist.
-var populateDB = function() {
+const populateDB = function() {
 
     console.log('Populating product database...');
-    var products = [
+    let products = [
         {'id': 1, 'code': 'James', 'name': 'King', 'fullName': 'James King', 'categoryId': 0, 'categoryName': '', 'title': 'President and CEO', 'department': 'Corporate', 'cellPhone': '617-000-0001', 'officePhone': '781-000-0001', 'email': 'jking@fakemail.com', 'city': 'Boston, MA', 'pic': 'james_king.jpg', 'twitterId': '@fakejking', 'blog': 'http://coenraets.org'},
         {'id': 2, 'code': 'Julie', 'name': 'Taylor', 'fullName': 'Julie Taylor', 'categoryId': 1, 'categoryName': 'James King', 'title': 'VP of Marketing', 'department': 'Marketing', 'cellPhone': '617-000-0002', 'officePhone': '781-000-0002', 'email': 'jtaylor@fakemail.com', 'city': 'Boston, MA', 'pic': 'julie_taylor.jpg', 'twitterId': '@fakejtaylor', 'blog': 'http://coenraets.org'},
         {'id': 3, 'code': 'Eugene', 'name': 'Lee', 'fullName': 'Eugene Lee', 'categoryId': 1, 'categoryName': 'James King', 'title': 'CFO', 'department': 'Accounting', 'cellPhone': '617-000-0003', 'officePhone': '781-000-0003', 'email': 'elee@fakemail.com', 'city': 'Boston, MA', 'pic': 'eugene_lee.jpg', 'twitterId': '@fakeelee', 'blog': 'http://coenraets.org'},
