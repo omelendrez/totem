@@ -1,0 +1,23 @@
+{
+    "development": {
+        "username": "escng_totem",
+        "password": "M1a4$1t4E8r0",
+        "database": "escng_totem",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": "escng_totem",
+        "password": "M1a4$1t4E8r0",
+        "database": "escng_totem",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "escng_totem",
+        "password": "M1a4$1t4E8r0",
+        "database": "escng_totem",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    }
+}

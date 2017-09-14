@@ -1,0 +1,23 @@
+{
+  "name": "server-api",
+  "description": "Server API",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "better-js-class": "*",
+    "cps": "*",
+    "express": "3.x",
+    "mysql": ">=2.5.0",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.8.3",
+    "underscore": "*"
+  },
+  "scripts": {
+    "test": "jasmine",
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "Omar Melendrez",
+  "license": "ISC"
+}
