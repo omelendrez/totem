@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
         productName: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        CategoryId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 
