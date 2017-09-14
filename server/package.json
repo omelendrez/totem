@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "jasmine",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack"
   },
   "main": "server.js",
   "devDependencies": {
