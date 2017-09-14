@@ -15,7 +15,9 @@
     "start": "node server.js"
   },
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^3.5.6"
+  },
   "author": "Omar Melendrez",
   "license": "ISC",
   "repository": {
