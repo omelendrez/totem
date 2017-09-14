@@ -1,6 +1,7 @@
 const express = require('express'),
     products = require('./routes/product'),
     categories = require('./routes/category'),
+    users = require('./routes/user'),
     models = require('./models'),
     bodyParser = require('body-parser');
 
@@ -20,8 +21,12 @@ app.post('/products', products.create);
 app.get('/categories', categories.findAll);
 app.post('/categories', categories.create);
 
+app.get('/users', users.findAll);
+app.post('/users', users.create);
+
+
 models.sequelize.sync({
-    force: false
+    force: true
 });
 
 const port = 3000;

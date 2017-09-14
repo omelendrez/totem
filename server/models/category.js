@@ -4,6 +4,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         }
+    }, {
+        indexes: [{
+            unique: true,
+            fields: ["categoryName"]
+        }]
     });
 
     return Category;
