@@ -1,21 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
-    const Basket = sequelize.define("Basket", {
-        productId: {
+    const Basket = sequelize.define("basket", {
+        product_id: {
             type: DataTypes.INTEGER
         },
         quantity: {
             type: DataTypes.INTEGER
         },
-        unitPrice: {
+        unit_price: {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0
         },
-        totalPrice: {
+        total_price: {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0
         }
     }, {
-        freezeTableName: true
+        underscored: true,
+        freezeTableName: true,
+        tableName: "basket"
     });
 
     return Basket;

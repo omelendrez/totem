@@ -1,19 +1,22 @@
 module.exports = function(sequelize, DataTypes) {
-    const Discount = sequelize.define("Discount", {
-        discountName: {
+    const Discount = sequelize.define("discount", {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        discountDescription: {
+        description: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        discountPercentage: {
+        percent: {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0
         }
     }, {
-        freezeTableName: true
+        underscored: true,
+        paranoid: true,
+        freezeTableName: true,
+        tableName: "discount"
     });
 
     return Discount;

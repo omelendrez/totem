@@ -38,7 +38,7 @@ app.get("*", function(req, res){
 });
 
 models.sequelize.sync({
-    force: false
+    force: true
 });
 
 const port = 3000;

@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(sequelize, DataTypes) {
-    const User = sequelize.define("User", {
-        userName: {
+    const User = sequelize.define("user", {
+        user_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -10,37 +10,40 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1, 50]
             }
         },
-        userPassword: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        userFullName: {
+        full_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        userPhoto: {
+        photo: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        userStatus: {
+        status: {
             type: DataTypes.INTEGER,
             defaultValue: 1
         },
     }, {
         indexes: [{
             unique: true,
-            fields: ["userName"]
+            fields: ["user_name"]
         }],
+        underscored: true,
+        paranoid: true,
         individualHooks: true,
         freezeTableName: true,
+        tableName: "user",
         hooks: {
             beforeCreate: user => {
                 const salt = bcrypt.genSaltSync();
-                user.userPassword = bcrypt.hashSync(user.userPassword, salt);
+                user.password = bcrypt.hashSync(user.password, salt);
             },
             beforeUpdate: user => {
                 const salt = bcrypt.genSaltSync();
-                user.userPassword = bcrypt.hashSync(user.userPassword, salt);
+                user.password = bcrypt.hashSync(user.password, salt);
             }
         }
     });

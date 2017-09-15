@@ -1,33 +1,41 @@
 module.exports = function(sequelize, DataTypes) {
-    const Order = sequelize.define("Order", {
-        orderNumber: {
-            type: DataTypes.STRING
-        },
-        productId: {
-            type: DataTypes.INTEGER
-        },
-        quantity: {
-            type: DataTypes.INTEGER
-        },
-        unitPrice: {
-            type: DataTypes.DECIMAL(10,2),
-            defaultValue: 0
-        },
-        totalPrice: {
-            type: DataTypes.DECIMAL(10,2),
-            defaultValue: 0
-        },
-        totalDiscount: {
-            type: DataTypes.DECIMAL(10,2),
-            defaultValue: 0
-        },
-        netPrice: {
-            type: DataTypes.DECIMAL(10,2),
-            defaultValue: 0
-        }
-    }, {
-        freezeTableName: true
-    });
+	const Order = sequelize.define("order", {
+		order_number: {
+			type: DataTypes.STRING
+		},
+		product_id: {
+			type: DataTypes.INTEGER
+		},
+		quantity: {
+			type: DataTypes.INTEGER
+		},
+		unit_price: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		},
+		total_price: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		},
+		discount: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		},
+		net_price: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		}
+	}, {
+		indexes: [{
+			unique: true,
+			fields: ["order_number"]
+		}]
+	}, {
+        underscored: true,
+		paranoid: true,
+		freezeTableName: true,
+        tableName: "order"
+	});
 
-    return Order;
+	return Order;
 };
