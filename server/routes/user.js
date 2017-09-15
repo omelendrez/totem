@@ -4,10 +4,10 @@ module.exports = {
     create(req, res) {
         return User
             .create({
-                userName: req.body.userName,
-                userPassword: req.body.userPassword,
-                userFullName: req.body.userFullName,
-                userPhoto: req.body.userPhoto
+                user_uame: req.body.user_uame,
+                password: req.body.password,
+                full_name: req.body.full_name,
+                photo: req.body.photo
             })
             .then(user => res.status(201).send(user))
             .catch(error => res.status(400).send(error));

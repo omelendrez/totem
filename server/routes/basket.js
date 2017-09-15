@@ -5,10 +5,10 @@ module.exports = {
     create(req, res) {
         return Basket
             .create({
-                productId: req.body.productId,
+                product_id: req.body.product_id,
                 quantity: req.body.quantity,
-                unitPrice: req.body.unitPrice,
-                totalPrice: req.body.totalPrice
+                unit_price: req.body.unit_price,
+                total_price: req.body.total_price
             })
             .then(basket => res.status(201).send(basket))
             .catch(error => res.status(400).send(error));

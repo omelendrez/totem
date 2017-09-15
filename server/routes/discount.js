@@ -5,9 +5,9 @@ module.exports = {
     create(req, res) {
         return Discount
             .create({
-                discountName: req.body.discountName,
-                discountDescription: req.body.discountDescription,
-                discountPercentage: req.body.discountPercentage
+                name: req.body.name,
+                description: req.body.description,
+                percent: req.body.percent
             })
             .then(discount => res.status(201).send(discount))
             .catch(error => res.status(400).send(error));

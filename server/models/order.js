@@ -29,12 +29,8 @@ module.exports = function(sequelize, DataTypes) {
 		indexes: [{
 			unique: true,
 			fields: ["order_number"]
-		}]
-	}, {
-        underscored: true,
-		paranoid: true,
-		freezeTableName: true,
-        tableName: "order"
+		}],
+		paranoid: true
 	});
 
 	return Order;

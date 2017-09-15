@@ -4,10 +4,10 @@ module.exports = {
     create(req, res) {
         return Product
             .create({
-                productCode: req.body.productCode,
-                productName: req.body.productName,
-                CategoryId: req.body.CategoryId,
-                productPrice: req.body.productPrice
+                code: req.body.code,
+                name: req.body.name,
+                category_id: req.body.category_id,
+                price: req.body.price
             })
             .then(product => res.status(201).send(product))
             .catch(error => res.status(400).send(error));

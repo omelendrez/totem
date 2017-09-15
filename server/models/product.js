@@ -21,10 +21,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             fields: ["code"]
         }],
-        underscored: true,
-        paranoid: true,
-        freezeTableName: true,
-        tableName: "product"
+        paranoid: true
     });
 
     return Product;
