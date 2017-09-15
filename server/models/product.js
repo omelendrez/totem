@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
         CategoryId: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        productPrice: {
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
         }
     }, {
         indexes: [{

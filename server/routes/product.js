@@ -6,7 +6,8 @@ module.exports = {
             .create({
                 productCode: req.body.productCode,
                 productName: req.body.productName,
-                CategoryId: req.body.CategoryId
+                CategoryId: req.body.CategoryId,
+                productPrice: req.body.productPrice
             })
             .then(product => res.status(201).send(product))
             .catch(error => res.status(400).send(error));
@@ -29,7 +30,7 @@ module.exports = {
             .then(product => res.json(product))
             .catch(error => res.status(400).send(error));
     },
-    
+
     findByCategory(req, res) {
         return Product
             .findOne({

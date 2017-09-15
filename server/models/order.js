@@ -10,16 +10,20 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         },
         unitPrice: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
         },
         totalPrice: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
         },
         totalDiscount: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
         },
         netPrice: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
         }
     }, {
         freezeTableName: true

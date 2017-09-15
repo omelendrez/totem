@@ -3,6 +3,7 @@ const express = require("express"),
     category = require("./routes/category"),
     user = require("./routes/user"),
     basket = require("./routes/basket"),
+    discount = require("./routes/discount"),
     models = require("./models"),
     bodyParser = require("body-parser");
 
@@ -28,6 +29,9 @@ app.post("/users", user.create);
 
 app.get("/basket", basket.findAll);
 app.post("/basket", basket.create);
+
+app.get("/discounts", discount.findAll);
+app.post("/discounts", discount.create);
 
 app.get("*", function(req, res){
     res.send(400);
