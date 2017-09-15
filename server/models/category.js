@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-    var Category = sequelize.define("Category", {
-        categoryName:{
+    const Category = sequelize.define("Category", {
+        categoryName: {
             type: DataTypes.STRING,
             allowNull: false
         }
@@ -9,6 +9,8 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             fields: ["categoryName"]
         }]
+    }, {
+        freezeTableName: true
     });
 
     return Category;
