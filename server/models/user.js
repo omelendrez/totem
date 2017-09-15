@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		photo: {
 			type: DataTypes.STRING,
-			allowNull: false
+			defaultValue: ""
 		},
 		status: {
 			type: DataTypes.INTEGER,

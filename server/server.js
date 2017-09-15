@@ -23,6 +23,7 @@ app.post("/products", product.create);
 app.get("/categories/:id", category.findById);
 app.get("/categories", category.findAll);
 app.post("/categories", category.create);
+app.delete("/categories/:id", category.delete);
 
 app.get("/users/:id", user.findById);
 app.get("/users", user.findAll);

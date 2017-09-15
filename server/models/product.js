@@ -15,6 +15,10 @@ module.exports = function(sequelize, DataTypes) {
         price: {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0
+        },
+        photo: {
+            type: DataTypes.STRING,
+            defaultValue: ""
         }
     }, {
         indexes: [{

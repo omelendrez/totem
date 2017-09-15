@@ -29,6 +29,22 @@ module.exports = {
             })
             .then(user => res.json(user))
             .catch(error => res.status(400).send(error));
+    },
+    
+    delete(req, res) {
+        return User
+            .findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(user => user.destroy()
+                .then(result => {
+                    if (result) {
+                        return res.json(result);
+                    }
+                }))
+            .catch(error => res.status(400).send(error));
     }
 
 };
