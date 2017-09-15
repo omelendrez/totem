@@ -4,6 +4,7 @@ const express = require("express"),
     user = require("./routes/user"),
     basket = require("./routes/basket"),
     discount = require("./routes/discount"),
+    order = require("./routes/order"),
     models = require("./models"),
     bodyParser = require("body-parser");
 
@@ -32,6 +33,9 @@ app.post("/basket", basket.create);
 
 app.get("/discounts", discount.findAll);
 app.post("/discounts", discount.create);
+
+app.get("/orders", order.findAll);
+app.post("/orders", order.create);
 
 app.get("*", function(req, res){
     res.send(400);

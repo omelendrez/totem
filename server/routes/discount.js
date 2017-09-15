@@ -1,4 +1,4 @@
-const Discount = require("../models").Discount;
+const Discount = require("../models").discount;
 
 module.exports = {
 

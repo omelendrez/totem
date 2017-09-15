@@ -1,23 +1,23 @@
-const Basket = require("../models").basket;
+const Order = require("../models").order;
 
 module.exports = {
 
     create(req, res) {
-        return Basket
+        return Order
             .create({
                 product_id: req.body.product_id,
                 quantity: req.body.quantity,
                 unit_price: req.body.unit_price,
                 total_price: req.body.total_price
             })
-            .then(basket => res.status(201).send(basket))
+            .then(order => res.status(201).send(order))
             .catch(error => res.status(400).send(error));
     },
 
     findAll(req, res) {
-        return Basket
+        return Order
             .findAll()
-            .then(basket => res.json(basket))
+            .then(order => res.json(order))
             .catch(error => res.status(400).send(error));
     }
 };
