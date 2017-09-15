@@ -21,6 +21,17 @@ module.exports = {
 			.catch(error => res.status(400).send(error));
 	},
 
+	findById(req, res) {
+		return Order
+			.findOne({
+				where: {
+					id: req.params.id
+				}
+			})
+			.then(order => res.json(order))
+			.catch(error => res.status(400).send(error));
+	},
+
 	delete(req, res) {
 		return Order
 			.findOne({

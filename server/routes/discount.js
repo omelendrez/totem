@@ -20,6 +20,17 @@ module.exports = {
 			.catch(error => res.status(400).send(error));
 	},
 
+	findById(req, res) {
+		return Discount
+			.findOne({
+				where: {
+					id: req.params.id
+				}
+			})
+			.then(discount => res.json(discount))
+			.catch(error => res.status(400).send(error));
+	},
+
 	delete(req, res) {
 		return Discount
 			.findOne({

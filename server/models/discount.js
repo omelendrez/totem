@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
 		percent: {
 			type: DataTypes.DECIMAL(10, 2),
 			defaultValue: 0
+		},
+		status: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0
 		}
 	}, {
 		paranoid: true

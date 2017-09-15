@@ -24,13 +24,17 @@ module.exports = function(sequelize, DataTypes) {
 		net_price: {
 			type: DataTypes.DECIMAL(10, 2),
 			defaultValue: 0
+		},
+		status: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0
 		}
 	}, {
+		paranoid: true,
 		indexes: [{
 			unique: true,
 			fields: ["order_number"]
-		}],
-		paranoid: true
+		}]
 	});
 
 	return Order;

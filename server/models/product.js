@@ -19,13 +19,16 @@ module.exports = function(sequelize, DataTypes) {
         photo: {
             type: DataTypes.STRING,
             defaultValue: ""
-        }
+        },
+		status: {
+			type: DataTypes.INTEGER,
+			defaultValue: 1
+		}
     }, {
         indexes: [{
             unique: true,
             fields: ["code"]
-        }],
-        paranoid: true
+        }]
     });
 
     return Product;
