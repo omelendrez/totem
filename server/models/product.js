@@ -1,13 +1,34 @@
 module.exports = function(sequelize, DataTypes) {
-    var Product = sequelize.define("Product", {
-        productName: {
+    const Product = sequelize.define("product", {
+        code: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        CategoryId: {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        category_id: {
             type: DataTypes.INTEGER,
             allowNull: false
-        }
+        },
+        price: {
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0
+        },
+        photo: {
+            type: DataTypes.STRING,
+            defaultValue: ""
+        },
+		status: {
+			type: DataTypes.INTEGER,
+			defaultValue: 1
+		}
+    }, {
+        indexes: [{
+            unique: true,
+            fields: ["code"]
+        }]
     });
 
     return Product;

@@ -1,41 +1,44 @@
-const Category = require("../models").category;
+const Discount = require("../models").discount;
 
 module.exports = {
+
 	create(req, res) {
-		return Category
+		return Discount
 			.create({
 				name: req.body.name,
+				description: req.body.description,
+				percent: req.body.percent
 			})
-			.then(category => res.status(201).send(category))
+			.then(discount => res.status(201).send(discount))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
-		return Category
+		return Discount
 			.findAll()
-			.then(categories => res.json(categories))
+			.then(discounts => res.json(discounts))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
-		return Category
+		return Discount
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(category => category ? res.json(category) : res.send(404))
+			.then(discount => discount ? res.json(discount) : res.send(404))
 			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
-		return Category
+		return Discount
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(category => category.destroy()
+			.then(discount => discount.destroy()
 				.then(result => {
 					res.json(result);
 				}))

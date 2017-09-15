@@ -1,10 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
-    var Category = sequelize.define("Category", {
-        categoryName:{
-            type: DataTypes.STRING,
-            allowNull: false
-        }
-    });
+	const Category = sequelize.define("category", {
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false
+		}
+	}, {
+		indexes: [{
+			unique: true,
+			fields: ["name"]
+		}]
+	});
 
-    return Category;
+	return Category;
 };

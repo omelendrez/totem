@@ -1,41 +1,44 @@
-const Category = require("../models").category;
+const User = require("../models").user;
 
 module.exports = {
 	create(req, res) {
-		return Category
+		return User
 			.create({
-				name: req.body.name,
+				user_name: req.body.user_name,
+				password: req.body.password,
+				full_name: req.body.full_name,
+				photo: req.body.photo
 			})
-			.then(category => res.status(201).send(category))
+			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
-		return Category
+		return User
 			.findAll()
-			.then(categories => res.json(categories))
+			.then(users => res.json(users))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
-		return Category
+		return User
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(category => category ? res.json(category) : res.send(404))
+			.then(user => user ? res.json(user) : res.send(404))
 			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
-		return Category
+		return User
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(category => category.destroy()
+			.then(user => user.destroy()
 				.then(result => {
 					res.json(result);
 				}))
