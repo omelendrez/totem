@@ -24,7 +24,7 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(category => res.json(category))
+			.then(category => category ? res.json(category) : res.send(404))
 			.catch(error => res.status(400).send(error));
 	},
 

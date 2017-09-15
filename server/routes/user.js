@@ -27,7 +27,7 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(user => res.json(user))
+			.then(user => user ? res.json(user) : res.send(404))
 			.catch(error => res.status(400).send(error));
 	},
 

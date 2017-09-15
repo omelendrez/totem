@@ -28,7 +28,7 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(order => res.json(order))
+			.then(order => order ? res.json(order) : res.send(404))
 			.catch(error => res.status(400).send(error));
 	},
 
