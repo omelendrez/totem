@@ -16,7 +16,7 @@ module.exports = {
     findAll(req, res) {
         return Discount
             .findAll()
-            .then(discount => res.json(discount))
+            .then(discounts => res.json(discounts))
             .catch(error => res.status(400).send(error));
     }
 };

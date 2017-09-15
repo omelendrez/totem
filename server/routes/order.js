@@ -17,7 +17,7 @@ module.exports = {
     findAll(req, res) {
         return Order
             .findAll()
-            .then(order => res.json(order))
+            .then(orders => res.json(orders))
             .catch(error => res.status(400).send(error));
     }
 };
