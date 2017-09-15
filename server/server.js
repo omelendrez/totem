@@ -29,6 +29,10 @@ app.post("/users", user.create);
 app.get("/basket", basket.findAll);
 app.post("/basket", basket.create);
 
+app.get("*", function(req, res){
+    res.send(400);
+});
+
 models.sequelize.sync({
     force: false
 });
