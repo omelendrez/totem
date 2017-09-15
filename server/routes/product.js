@@ -35,7 +35,7 @@ module.exports = {
 		return Product
 			.findOne({
 				where: {
-					CategoryId: req.params.id
+					category_id: req.params.id
 				}
 			})
 			.then(product => res.json(product))
