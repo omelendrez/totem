@@ -1,11 +1,11 @@
 const express = require("express"),
-    product = require("./routes/product"),
-    category = require("./routes/category"),
-    user = require("./routes/user"),
-    basket = require("./routes/basket"),
-    discount = require("./routes/discount"),
-    order = require("./routes/order"),
-    models = require("./models"),
+    product = require("./api/v1/routes/product"),
+    category = require("./api/v1/routes/category"),
+    user = require("./api/v1/routes/user"),
+    basket = require("./api/v1/routes/basket"),
+    discount = require("./api/v1/routes/discount"),
+    order = require("./api/v1/routes/order"),
+    models = require("./api/v1/models"),
     bodyParser = require("body-parser");
 
 const app = express();
@@ -55,7 +55,7 @@ app.get("*", function(req, res){
 });
 
 models.sequelize.sync({
-    force: false
+    force: true
 });
 
 const port = 3000;
