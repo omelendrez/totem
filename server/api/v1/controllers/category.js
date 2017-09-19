@@ -6,15 +6,15 @@ module.exports = {
 			.create({
 				name: req.body.name,
 			})
-			.then(category => res.status(201).send(category))
-			.catch(error => res.status(400).send(error));
+			.then(category => res.sendStatus(201).send(category))
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	findAll(req, res) {
 		return Category
 			.findAll()
 			.then(categories => res.json(categories))
-			.catch(error => res.status(400).send(error));
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	findById(req, res) {
@@ -24,8 +24,8 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(category => category ? res.json(category) : res.send(404))
-			.catch(error => res.status(400).send(error));
+			.then(category => category ? res.json(category) : res.sendStatus(404))
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	delete(req, res) {
@@ -39,7 +39,7 @@ module.exports = {
 				.then(result => {
 					res.json(result);
 				}))
-			.catch(error => res.status(400).send(error));
+			.catch(error => res.sendStatus(400).send(error));
 	}
 
 };

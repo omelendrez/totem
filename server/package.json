@@ -6,7 +6,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
-    "express": "3.x",
+    "express": "^4.15.3",
     "mysql2": "^1.4.2",
     "sequelize": "^4.8.3"
   },

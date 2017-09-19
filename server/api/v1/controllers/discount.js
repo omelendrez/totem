@@ -9,15 +9,15 @@ module.exports = {
 				description: req.body.description,
 				percent: req.body.percent
 			})
-			.then(discount => res.status(201).send(discount))
-			.catch(error => res.status(400).send(error));
+			.then(discount => res.sendStatus(201).send(discount))
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	findAll(req, res) {
 		return Discount
 			.findAll()
 			.then(discounts => res.json(discounts))
-			.catch(error => res.status(400).send(error));
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	findById(req, res) {
@@ -27,8 +27,8 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(discount => discount ? res.json(discount) : res.send(404))
-			.catch(error => res.status(400).send(error));
+			.then(discount => discount ? res.json(discount) : res.sendStatus(404))
+			.catch(error => res.sendStatus(400).send(error));
 	},
 
 	delete(req, res) {
@@ -42,7 +42,7 @@ module.exports = {
 				.then(result => {
 					res.json(result);
 				}))
-			.catch(error => res.status(400).send(error));
+			.catch(error => res.sendStatus(400).send(error));
 	}
 
 };

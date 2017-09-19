@@ -10,14 +10,14 @@ module.exports = {
                 unit_price: req.body.unit_price,
                 total_price: req.body.total_price
             })
-            .then(basket => res.status(201).send(basket))
-            .catch(error => res.status(400).send(error));
+            .then(basket => res.sendStatus(201).send(basket))
+            .catch(error => res.sendStatus(400).send(error));
     },
 
     findAll(req, res) {
         return Basket
             .findAll()
             .then(basket => res.json(basket))
-            .catch(error => res.status(400).send(error));
+            .catch(error => res.sendStatus(400).send(error));
     }
 };
