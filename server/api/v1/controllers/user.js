@@ -9,15 +9,15 @@ module.exports = {
 				full_name: req.body.full_name,
 				photo: req.body.photo
 			})
-			.then(user => res.sendStatus(201).send(user))
-			.catch(error => res.sendStatus(400).send(error));
+			.then(user => res.status(201).send(user))
+			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
 		return User
 			.findAll()
 			.then(users => res.json(users))
-			.catch(error => res.sendStatus(400).send(error));
+			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
@@ -27,8 +27,8 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(user => user ? res.json(user) : res.sendStatus(404))
-			.catch(error => res.sendStatus(400).send(error));
+			.then(user => user ? res.json(user) : res.status(404).json({"error": "Not found"}))
+			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
@@ -42,7 +42,7 @@ module.exports = {
 				.then(result => {
 					res.json(result);
 				}))
-			.catch(error => res.sendStatus(400).send(error));
+			.catch(error => res.status(400).send(error));
 	}
 
 };

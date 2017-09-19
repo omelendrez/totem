@@ -10,15 +10,15 @@ module.exports = {
 				unit_price: req.body.unit_price,
 				total_price: req.body.total_price
 			})
-			.then(order => res.sendStatus(201).send(order))
-			.catch(error => res.sendStatus(400).send(error));
+			.then(order => res.status(201).send(order))
+			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
 		return Order
 			.findAll()
 			.then(orders => res.json(orders))
-			.catch(error => res.sendStatus(400).send(error));
+			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
@@ -28,8 +28,11 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(order => order ? res.json(order) : res.sendStatus(404))
-			.catch(error => res.sendStatus(400).send(error));
+			
+			.then(order => order ? res.json(order) : res.status(404).json({
+				"error": "Not found"
+			}))
+			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
@@ -43,7 +46,7 @@ module.exports = {
 				.then(result => {
 					res.json(result);
 				}))
-			.catch(error => res.sendStatus(400).send(error));
+			.catch(error => res.status(400).send(error));
 	}
 
 };
