@@ -28,7 +28,6 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			
 			.then(order => order ? res.json(order) : res.status(404).json({
 				"error": "Not found"
 			}))
