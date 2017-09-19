@@ -1,44 +1,44 @@
-const Discount = require("../models").discount;
+const User = require("../models").user;
 
 module.exports = {
-
 	create(req, res) {
-		return Discount
+		return User
 			.create({
-				name: req.body.name,
-				description: req.body.description,
-				percent: req.body.percent
+				user_name: req.body.user_name,
+				password: req.body.password,
+				full_name: req.body.full_name,
+				photo: req.body.photo
 			})
-			.then(discount => res.status(201).send(discount))
+			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
-		return Discount
+		return User
 			.findAll()
-			.then(discounts => res.json(discounts))
+			.then(users => res.json(users))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
-		return Discount
+		return User
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(discount => discount ? res.json(discount) : res.send(404))
+			.then(user => user ? res.json(user) : res.status(404).json({"error": "Not found"}))
 			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
-		return Discount
+		return User
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(discount => discount.destroy()
+			.then(user => user.destroy()
 				.then(result => {
 					res.json(result);
 				}))

@@ -27,7 +27,9 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(product => product ? res.json(product) : res.send(404))
+			.then(product => product ? res.json(product) : res.status(404).json({
+				"error": "Not found"
+			}))
 			.catch(error => res.status(400).send(error));
 	},
 
@@ -35,10 +37,12 @@ module.exports = {
 		return Product
 			.findOne({
 				where: {
-					CategoryId: req.params.id
+					category_id: req.params.id
 				}
 			})
-			.then(product => res.json(product))
+			.then(product => product ? res.json(product) : res.status(404).json({
+				"error": "Not found"
+			}))
 			.catch(error => res.status(400).send(error));
 	},
 

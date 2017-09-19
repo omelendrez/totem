@@ -1,45 +1,43 @@
-const Order = require("../models").order;
+const Category = require("../models").category;
 
 module.exports = {
-
 	create(req, res) {
-		return Order
+		return Category
 			.create({
-				product_id: req.body.product_id,
-				quantity: req.body.quantity,
-				unit_price: req.body.unit_price,
-				total_price: req.body.total_price
+				name: req.body.name,
 			})
-			.then(order => res.status(201).send(order))
+			.then(category => res.status(201).json(category))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findAll(req, res) {
-		return Order
+		return Category
 			.findAll()
-			.then(orders => res.json(orders))
+			.then(categories => res.json(categories))
 			.catch(error => res.status(400).send(error));
 	},
 
 	findById(req, res) {
-		return Order
+		return Category
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(order => order ? res.json(order) : res.send(404))
+			.then(category => category ? res.json(category) : res.status(404).json({
+				"error": "Not found"
+			}))
 			.catch(error => res.status(400).send(error));
 	},
 
 	delete(req, res) {
-		return Order
+		return Category
 			.findOne({
 				where: {
 					id: req.params.id
 				}
 			})
-			.then(order => order.destroy()
+			.then(category => category.destroy()
 				.then(result => {
 					res.json(result);
 				}))
