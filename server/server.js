@@ -10,12 +10,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(logger("combined"));
 
-app.use("/basket", require("./api/v1/basket"));
-app.use("/categories", require("./api/v1/category"));
-app.use("/discounts", require("./api/v1/discount"));
-app.use("/orders", require("./api/v1/order"));
-app.use("/products", require("./api/v1/product"));
-app.use("/users", require("./api/v1/user"));
+app.use("/basket", require("./api/v1/routes/basket"));
+app.use("/categories", require("./api/v1/routes/category"));
+app.use("/discounts", require("./api/v1/routes/discount"));
+app.use("/orders", require("./api/v1/routes/order"));
+app.use("/products", require("./api/v1/routes/product"));
+app.use("/users", require("./api/v1/routes/user"));
 
 const port = 3000;
 

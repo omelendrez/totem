@@ -1,4 +1,4 @@
-const discount = require("./controllers/discount");
+const user = require("../controllers/user");
 const express = require("express");
 const router = express.Router();
 
@@ -6,9 +6,9 @@ router.use(function(req, res, next) {
 	console.log("%s %s %s", req.method, req.url, req.path);
 	next();
 });
-router.get("/:id", discount.findById);
-router.get("/", discount.findAll);
-router.post("/", discount.create);
-router.delete("/:id", discount.delete);
+router.get("/:id", user.findById);
+router.get("/", user.findAll);
+router.post("/", user.create);
+router.delete("/:id", user.delete);
 
 module.exports = router;
