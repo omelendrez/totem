@@ -1,6 +1,7 @@
 const express = require("express"),
     bodyParser = require("body-parser"),
-    logger = require("morgan");
+    logger = require("morgan"),
+    models = require("./api/v1/models");
 
 const app = express();
 
@@ -9,6 +10,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(logger("combined"));
+
+models.sequelize.sync({
+    force: true
+});
 
 app.use("/basket", require("./api/v1/routes/basket"));
 app.use("/categories", require("./api/v1/routes/category"));

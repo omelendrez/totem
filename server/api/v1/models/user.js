@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 			unique: true,
 			fields: ["user_name"]
 		}],
-		paranoid: true,
+		//paranoid: true,
 		hooks: {
 			beforeCreate: user => {
 				const salt = bcrypt.genSaltSync();

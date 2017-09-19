@@ -9,7 +9,7 @@ module.exports = {
 				full_name: req.body.full_name,
 				photo: req.body.photo
 			})
-			.then(user => res.status(201).send(user))
+			.then(user => res.status(201).json(user))
 			.catch(error => res.status(400).send(error));
 	},
 
@@ -17,7 +17,7 @@ module.exports = {
 		return User
 			.findAll()
 			.then(users => res.json(users))
-			.catch(error => res.status(400).send(error));
+			.catch(error => res.status(400).json(error));
 	},
 
 	findById(req, res) {
@@ -27,7 +27,9 @@ module.exports = {
 					id: req.params.id
 				}
 			})
-			.then(user => user ? res.json(user) : res.status(404).json({"error": "Not found"}))
+			.then(user => user ? res.json(user) : res.status(404).json({
+				"error": "Not found"
+			}))
 			.catch(error => res.status(400).send(error));
 	},
 
