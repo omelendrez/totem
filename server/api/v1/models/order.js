@@ -30,9 +30,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: 0
 		}
 	}, {
-		paranoid: true,
 		indexes: [{
-			unique: true,
 			fields: ["order_number"]
 		}]
 	});
