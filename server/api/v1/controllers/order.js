@@ -6,10 +6,7 @@ module.exports = {
     create(req, res) {
         var last_order = 0;
         Order.max("order_number").then( max => {
-            last_order = Number(max)+1;
-            last_order = last_order.toString();
-            last_order = "00000" + last_order;
-            last_order = last_order.slice(-5);
+            last_order = ("00000" + (Number(max)+1).toString()).slice(-5);
         });
         Basket
             .findAll()
