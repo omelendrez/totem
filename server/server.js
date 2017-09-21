@@ -1,7 +1,9 @@
+const apiPath = "./api/v1";
+
 const express = require("express"),
     bodyParser = require("body-parser"),
     logger = require("morgan"),
-    models = require("./api/v1/models");
+    models = require(apiPath + "/models");
 
 const app = express();
 
@@ -15,12 +17,13 @@ models.sequelize.sync({
     force: true
 });
 
-app.use("/basket", require("./api/v1/routes/basket"));
-app.use("/categories", require("./api/v1/routes/category"));
-app.use("/discounts", require("./api/v1/routes/discount"));
-app.use("/orders", require("./api/v1/routes/order"));
-app.use("/products", require("./api/v1/routes/product"));
-app.use("/users", require("./api/v1/routes/user"));
+app.use("/basket", require(apiPath + "/routes/basket"));
+app.use("/categories", require(apiPath + "/routes/category"));
+app.use("/discounts", require(apiPath + "/routes/discount"));
+app.use("/orders", require(apiPath + "/routes/order"));
+app.use("/products", require(apiPath + "/routes/product"));
+app.use("/users", require(apiPath + "/routes/user"));
+app.use("/product_discount", require(apiPath + "/routes/product_discount"));
 
 const port = 3000;
 
