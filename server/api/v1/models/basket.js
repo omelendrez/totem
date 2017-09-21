@@ -13,7 +13,15 @@ module.exports = function(sequelize, DataTypes) {
         total_price: {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0
-        }
+        },
+		discount: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		},
+		net_price: {
+			type: DataTypes.DECIMAL(10, 2),
+			defaultValue: 0
+		}
     });
 
     return Basket;

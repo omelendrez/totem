@@ -1,12 +1,13 @@
 const Order = require("../models").order;
 const Basket = require("../models").basket;
 
+var new_order_number = 0;
+
 module.exports = {
 
     create(req, res) {
-        var last_order = 0;
-        Order.max("order_number").then( max => {
-            last_order = ("0".repeat(5) + (Number(max)+1).toString()).slice(-5);
+        Order.max("order_number").then(max => {
+            new_order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(-5);
         });
         Basket
             .findAll()
@@ -17,32 +18,33 @@ module.exports = {
                     });
                     Order
                         .create({
-                            order_number: last_order,
+                            order_number: new_order_number,
                             product_id: record.product_id,
                             quantity: record.quantity,
                             unit_price: record.unit_price,
                             total_price: record.total_price,
-                            discount: 0,
-                            net_price: record.total_price
+                            discount: record.discount,
+                            net_price: record.net_price
                         });
-                });
+                }); // End forEach
             })
             .then(() => {
                 Basket.destroy({
                     where: {},
                     truncate: true
                 });
-                res.send(201);
+                res.json(201, {
+                    order_number: new_order_number
+                });
             })
             .catch(error => res.status(400).json(error));
-        return;
 
     },
 
     findAll(req, res) {
         return Order
             .findAll()
-            .then(orders => res.json(orders))
+            .then(orders => res.json(200, orders))
             .catch(error => res.status(400).send(error));
     },
 
@@ -53,11 +55,24 @@ module.exports = {
                     id: req.params.id
                 }
             })
-            .then(order => order ? res.json(order) : res.status(404).json({
-                "error": "Not found"
+            .then(order => order ? res.json(200, order) : res.status(404).json({
+                error: "Not found"
             }))
             .catch(error => res.status(400).send(error));
     },
+
+	findByNumber(req, res) {
+		return Order
+			.findOne({
+				where: {
+					order_number: req.params.id
+				}
+			})
+			.then(order => order ? res.json(200, order) : res.status(404).json({
+				error: "Not found"
+			}))
+			.catch(error => res.status(400).send(error));
+	},
 
     delete(req, res) {
         return Order

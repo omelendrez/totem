@@ -6,6 +6,7 @@ router.use(function(req, res, next) {
 	console.log("%s %s %s", req.method, req.url, req.path);
 	next();
 });
+router.get("/:id/number", order.findByNumber);
 router.get("/:id", order.findById);
 router.get("/", order.findAll);
 router.post("/", order.create);
