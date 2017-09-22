@@ -1,3 +1,4 @@
+"use strict";
 const Basket = require("../models").basket;
 
 module.exports = {

@@ -1,8 +1,8 @@
+"use strict";
 const Order = require("../models").order;
 const Basket = require("../models").basket;
 
 var new_order_number = 0;
-
 module.exports = {
 
     create(req, res) {
@@ -61,18 +61,18 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-	findByNumber(req, res) {
-		return Order
-			.findOne({
-				where: {
-					order_number: req.params.id
-				}
-			})
-			.then(order => order ? res.json(200, order) : res.status(404).json({
-				error: "Not found"
-			}))
-			.catch(error => res.status(400).send(error));
-	},
+    findByNumber(req, res) {
+        return Order
+            .findOne({
+                where: {
+                    order_number: req.params.id
+                }
+            })
+            .then(order => order ? res.json(200, order) : res.status(404).json({
+                error: "Not found"
+            }))
+            .catch(error => res.status(400).send(error));
+    },
 
     delete(req, res) {
         return Order
