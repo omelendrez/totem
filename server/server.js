@@ -1,3 +1,5 @@
+"use strict";
+
 const apiPath = "./api/v1";
 
 const express = require("express"),
