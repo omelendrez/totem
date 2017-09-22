@@ -25,7 +25,7 @@
   "plusplus"      : false,     // Prohibit use of `++` & `--`.
   "quotmark"      : true,     // Force consistency of quotemarks
   "undef"         : true,     // Require all non-global variables be declared before they are used.
-  "strict"        : false,     // Require `use strict` pragma in every file.
+  "strict"        : true,     // Require `use strict` pragma in every file.
   "trailing"      : true,     // Prohibit trailing whitespaces.
   "unused"        : true,     // Warn when you define and never use your variables
 
@@ -73,7 +73,7 @@
   "mootools"      : false,    // Enable globals exposed by MooTools JavaScript framework.
   "node"          : true,    // Enable globals available when code is running inside of the NodeJS runtime environment.
   "nonstandard"   : false,    // Define non-standard but widely adopted globals such as escape and unescape.
-  "phantom"       : true,     // Enable globbals exposed by PhantomJS
+  "phantom"       : false,     // Enable globbals exposed by PhantomJS
   "prototypejs"   : false,    // Enable globals exposed by Prototype JavaScript framework.
   "rhino"         : false,    // Enable globals available when your code is running inside of the Rhino runtime environment.
   "wsh"           : false,    // Enable globals available when your code is running as a script for the Windows Script Host.
