@@ -1,62 +1,63 @@
 "use strict";
-const Product = require("../models").product;
+const ProductDiscount = require("../models").product_discount;
 
 module.exports = {
+
     create(req, res) {
-        return Product
+        return ProductDiscount
             .create({
-                code: req.body.code,
-                name: req.body.name,
-                category_id: req.body.category_id,
-                price: req.body.price
+                product_id: req.body.product_id,
+                discount_id: req.body.discount_id
             })
-            .then(product => res.status(201).send(product))
+            .then(productDiscount => res.status(201).json(productDiscount))
             .catch(error => res.status(400).send(error));
     },
 
     findAll(req, res) {
-        return Product
+        return ProductDiscount
             .findAll()
-            .then(products => res.json(products))
-            .catch(error => res.status(400).send(error));
-    },
-
-    findById(req, res) {
-        return Product
-            .findOne({
-                where: {
-                    id: req.params.id
-                }
-            })
-            .then(product => product ? res.json(product) : res.status(404).json({
+            .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
                 "error": "Not found"
             }))
             .catch(error => res.status(400).send(error));
     },
 
-    findByCategory(req, res) {
-        return Product
+    findById(req, res) {
+        return ProductDiscount
             .findOne({
                 where: {
-                    category_id: req.params.id
+                    id: req.params.id
                 }
             })
-            .then(product => product ? res.json(product) : res.status(404).json({
+            .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
+                "error": "Not found"
+            }))
+            .catch(error => res.status(400).send(error));
+    },
+
+    findByProductId(req, res) {
+        return ProductDiscount
+            .findOne({
+                where: {
+                    product_id: req.params.id
+                }
+            })
+            .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
                 "error": "Not found"
             }))
             .catch(error => res.status(400).send(error));
     },
 
     delete(req, res) {
-        return Product
+        return ProductDiscount
             .findOne({
                 where: {
                     id: req.params.id
                 }
             })
-            .then(product => product.destroy()
+            .then(productDiscount => productDiscount.destroy()
                 .then(result => {
-                    res.json(result);
+                    res.status(204).json(result);
                 }))
             .catch(error => res.status(400).send(error));
     }

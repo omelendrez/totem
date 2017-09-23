@@ -1,3 +1,4 @@
+"use strict";
 module.exports = function(sequelize, DataTypes) {
     const Product = sequelize.define("product", {
         code: {
@@ -13,17 +14,17 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         price: {
-            type: DataTypes.DECIMAL(10,2),
+            type: DataTypes.DECIMAL(10, 2),
             defaultValue: 0
         },
         photo: {
             type: DataTypes.STRING,
             defaultValue: ""
         },
-		status: {
-			type: DataTypes.INTEGER,
-			defaultValue: 1
-		}
+        status: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1
+        }
     }, {
         indexes: [{
             unique: true,
