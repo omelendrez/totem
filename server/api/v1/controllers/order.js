@@ -9,6 +9,8 @@ module.exports = {
         Order.max("order_number").then(max => {
             new_order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(-5);
         });
+        let total_order = 0;
+        let items = 0;
         Basket
             .findAll()
             .then(basket => {
@@ -26,6 +28,8 @@ module.exports = {
                             discount: record.discount,
                             net_price: record.net_price
                         });
+                    total_order = total_order + parseFloat(record.net_price);
+                    items++;
                 }); // End forEach
             })
             .then(() => {
@@ -34,7 +38,9 @@ module.exports = {
                     truncate: true
                 });
                 res.json(201, {
-                    order_number: new_order_number
+                    order_number: new_order_number,
+                    total_order: total_order,
+                    items: items
                 });
             })
             .catch(error => res.status(400).json(error));
@@ -63,7 +69,7 @@ module.exports = {
 
     findByNumber(req, res) {
         return Order
-            .findOne({
+            .findAll({
                 where: {
                     order_number: req.params.id
                 }
