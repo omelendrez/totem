@@ -4,7 +4,7 @@ const Basket = require("../models").basket;
 
 var new_order_number = 0;
 module.exports = {
- 
+
     create(req, res) {
         Order.max("order_number").then(max => {
             new_order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(-5);
