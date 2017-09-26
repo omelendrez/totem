@@ -39,6 +39,7 @@ module.exports = {
                         } else {
                             discount_id = 0;
                         }
+                        
                         Discount
                             .findOne({
                                 where: {
