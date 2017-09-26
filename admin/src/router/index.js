@@ -5,6 +5,7 @@ import Hello from '@/components/Hello';
 import Test from '@/components/Test';
 
 Vue.use(Router);
+Vue.use(Resource);
 
 export default new Router({
   routes: [
