@@ -25,7 +25,7 @@ module.exports = {
     // add your custom rules here
     'rules': {
         // we work on windows environment
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": ["off", "windows"],
         // don't require .vue extension when importing
         'import/extensions': ['error', 'always', {
             'js': 'never',
