@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Resource from 'vue-resource';
 import Hello from '@/components/Hello';
 import Test from '@/components/Test';
 
