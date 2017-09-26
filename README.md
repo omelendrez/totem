@@ -10,4 +10,10 @@ customers to buy food from a totem
 - MySQL
 
 
-### Front-end
+### Front-end for Admin
+- Vue.js
+- Vue Material
+
+### Front-end for Totem
+
+
