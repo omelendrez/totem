@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <md-toolbar>
+      <h1 class="md-title">My Title</h1>
+    </md-toolbar>
+    <router-view class="main-content"></router-view>
   </div>
 </template>
 
