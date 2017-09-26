@@ -1,11 +1,9 @@
 "use strict";
-
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
 const apiPath = "./api/v1";
-
-const express = require("express"),
-    bodyParser = require("body-parser"),
-    logger = require("morgan"),
-    models = require(apiPath + "/models");
+const models = require(apiPath + "/models");
 
 const app = express();
 
