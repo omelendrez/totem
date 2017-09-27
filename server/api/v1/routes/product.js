@@ -11,6 +11,7 @@ router.get("/:id/category", product.findByCategory);
 router.get("/:id", product.findById);
 router.get("/", product.findAll);
 router.post("/", product.create);
+router.put("/:id", product.update);
 router.delete("/:id", product.delete);
 
 module.exports = router;
