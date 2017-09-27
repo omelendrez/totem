@@ -65,7 +65,8 @@ export default {
         const newProduct = {
           code: this.product.code,
           name: this.product.name,
-          price: this.product.price
+          price: this.product.price,
+          category_id: 1
         };
 
         this.$http.post('http://localhost:3000/products', newProduct)

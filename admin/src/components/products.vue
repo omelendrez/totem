@@ -38,12 +38,20 @@
             <md-table-cell>{{row.category_id}}</md-table-cell>
             <md-table-cell>{{row.status}}</md-table-cell>
             <md-table-cell>
+              <md-switch id="'status_'+row.id" name="'status_'+row.id"></md-switch>
+            </md-table-cell>
+            <md-table-cell>
+              <md-button class="md-icon-button md-default md-raised">
+                <md-icon>find_in_page</md-icon>
+              </md-button>
+            </md-table-cell>
+            <md-table-cell>
               <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
                 <md-icon>edit</md-icon>
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="deleteProduct(row.id)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -80,11 +88,23 @@ export default {
       this.$router.push({ name: 'ProductAdd' });
     },
     editProduct(id) {
-      // this.$router.push({ name: 'ProductEdit' });
+      this.$router.push({ name: 'ProductEdit' }, id);
       console.log(id);
+    },
+    deleteProduct(id) {
+      this.$http.delete(`http://localhost:3000/products/${id}`)
+        .then((res) => {
+          console.log(res.body);
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
     }
   },
   created() {
+    this.fetchProducts();
+  },
+  updated() {
     this.fetchProducts();
   }
 };
