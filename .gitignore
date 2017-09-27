@@ -32,3 +32,4 @@ __MACOSX/
 Thumbs.db
 
 **/webapp*
+admin/package-lock.json
