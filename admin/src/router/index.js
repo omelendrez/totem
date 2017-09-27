@@ -1,23 +1,31 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Resource from 'vue-resource';
-import Hello from '@/components/Hello';
-import Test from '@/components/Test';
+
+import Home from '@/components/home';
+import Categorias from '@/components/categorias';
+import Productos from '@/components/productos';
 
 Vue.use(Router);
 Vue.use(Resource);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello,
+      name: 'Home',
+      component: Home,
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test,
+      path: '/categorias',
+      name: 'Categorias',
+      component: Categorias,
+    },
+    {
+      path: '/productos',
+      name: 'Productos',
+      component: Productos,
     },
   ],
 });
