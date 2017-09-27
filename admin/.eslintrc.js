@@ -24,6 +24,8 @@ module.exports = {
     },
     // add your custom rules here
     'rules': {
+        // we need console
+        'no-console': 0,
         // we work on windows environment
         "linebreak-style": ["off", "windows"],
         // don't require .vue extension when importing
@@ -36,6 +38,14 @@ module.exports = {
             'optionalDependencies': ['test/unit/index.js']
         }],
         // allow debugger during development
-        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        // or
+        "comma-dangle": ["error", {
+            "arrays": "never",
+            "objects": "never",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }]
     }
 }
