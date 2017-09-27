@@ -17,6 +17,14 @@ models.sequelize.sync({
     force: false
 });
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 app.use("/basket", require(apiPath + "/routes/basket"));
 app.use("/categories", require(apiPath + "/routes/category"));
 app.use("/discounts", require(apiPath + "/routes/discount"));
