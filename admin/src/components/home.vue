@@ -5,8 +5,8 @@
       <h1 class="md-title">Home</h1>
     </md-toolbar>
 
-    <router-link tag="md-button" :to="{ name: 'Categorias' }" class="md-raised md-accent">Categorías</router-link>
-    <router-link tag="md-button" :to="{ name: 'Productos' }" class="md-raised md-accent">Productos</router-link>
+    <router-link tag="md-button" :to="{ name: 'Categories' }" class="md-raised md-accent">Categorías</router-link>
+    <router-link tag="md-button" :to="{ name: 'Products' }" class="md-raised md-accent">Productos</router-link>
   
     <md-whiteframe md-elevation="2" class="whiteframe">
       <md-boards :md-auto="true" :md-infinite="true" :md-duration="5000" :md-swipeable="true">
@@ -23,14 +23,11 @@
         </md-board>
       </md-boards>
     </md-whiteframe>
-    <!--
+
       <md-bottom-bar md-shift class="bottom_bar">
-        <md-bottom-bar-item md-icon="ondemand_video">Movies</md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="music_note">Music</md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="books" md-active>Books</md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="photo">Pictures</md-bottom-bar-item>
+        <md-bottom-bar-item md-icon="books" md-active>Manual</md-bottom-bar-item>
       </md-bottom-bar>
-  -->
+
   </div>
 </template>
 
@@ -39,9 +36,8 @@ export default {
   name: 'home',
   data() {
     return {
-      msg: '',
     };
-  },
+  }
 };
 </script>
 

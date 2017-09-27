@@ -3,8 +3,9 @@ import Router from 'vue-router';
 import Resource from 'vue-resource';
 
 import Home from '@/components/home';
-import Categorias from '@/components/categorias';
-import Products from '@/components/productos';
+import Categories from '@/components/categories';
+import Products from '@/components/products';
+import ProductAdd from '@/components/productAdd';
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -19,14 +20,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/categorias',
-      name: 'Categorias',
-      component: Categorias
+      path: '/categories',
+      name: 'Categories',
+      component: Categories
     },
     {
-      path: '/productos',
-      name: 'Productos',
+      path: '/products',
+      name: 'Products',
       component: Products
+    },
+    {
+      path: '/productAdd',
+      name: 'ProductAdd',
+      component: ProductAdd
     }
   ]
 });

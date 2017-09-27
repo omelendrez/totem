@@ -1,5 +1,5 @@
 <template>
-  <div class="productos">
+  <div class="products">
     <md-toolbar class="md-primary">
       <h1 class="md-title">Administrar Productos</h1>
       <router-link tag="md-button" :to="{ name: 'Home' }" class="md-raised md-default">Home</router-link>
@@ -8,40 +8,53 @@
     <md-table-card>
       <md-toolbar>
         <h1 class="md-title">Productos</h1>
-        <md-button class="md-icon-button">
-          <md-icon>filter_list</md-icon>
-        </md-button>
 
         <md-button class="md-icon-button">
           <md-icon>search</md-icon>
         </md-button>
+
       </md-toolbar>
 
-      <md-table md-sort="code" md-sort-type="asc" @select="onSelect" @sort="onSort">
+      <md-table>
         <md-table-header>
           <md-table-row>
+            <md-table-head></md-table-head>
             <md-table-head md-sort-by="code">Código</md-table-head>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
             <md-table-head md-numeric>Precio</md-table-head>
             <md-table-head>Categoría</md-table-head>
             <md-table-head>Status</md-table-head>
-            <md-table-head></md-table-head>
           </md-table-row>
         </md-table-header>
 
         <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row" md-auto-select md-selection>
+          <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
+            <md-avatar class="md-medium">
+              <img src="../assets/logo.png">
+            </md-avatar>
             <md-table-cell>{{row.code}}</md-table-cell>
             <md-table-cell>{{row.name}}</md-table-cell>
             <md-table-cell md-numeric>{{row.price}}</md-table-cell>
             <md-table-cell>{{row.category_id}}</md-table-cell>
             <md-table-cell>{{row.status}}</md-table-cell>
+            <md-table-cell>
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
+                <md-icon>edit</md-icon>
+              </md-button>
+            </md-table-cell>
+            <md-table-cell>
+              <md-button class="md-icon-button md-default md-raised">
+                <md-icon>delete</md-icon>
+              </md-button>
+            </md-table-cell>
           </md-table-row>
         </md-table-body>
       </md-table>
-
-      <md-table-pagination md-size="5" md-total="10" md-page="1" md-label="Rows" md-separator="of" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
     </md-table-card>
+
+    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addProduct()">
+      <md-icon>add</md-icon>
+    </md-button>
   </div>
 </template>
 
@@ -62,6 +75,13 @@ export default {
         .catch((err) => {
           console.log(err.data);
         });
+    },
+    addProduct() {
+      this.$router.push({ name: 'ProductAdd' });
+    },
+    editProduct(id) {
+      // this.$router.push({ name: 'ProductEdit' });
+      console.log(id);
     }
   },
   created() {

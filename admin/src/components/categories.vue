@@ -1,5 +1,5 @@
 <template>
-  <div class="categorias">
+  <div class="categories">
     <md-toolbar class="md-primary">
       <h1 class="md-title">Categorías</h1>
       <router-link tag="md-button" :to="{ name: 'Home' }" class="md-raised md-default">Home</router-link>
@@ -9,12 +9,11 @@
 
 <script>
 export default {
-  name: 'Categorias',
+  name: 'categories',
   data() {
     return {
-      msg: '',
     };
-  },
+  }
 };
 </script>
 
