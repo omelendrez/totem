@@ -38,7 +38,7 @@
             <md-table-cell>{{row.category_id}}</md-table-cell>
             <md-table-cell>{{row.status}}</md-table-cell>
             <md-table-cell>
-              <md-switch id="'status_'+row.id" name="'status_'+row.id"></md-switch>
+              <md-switch class="md-primary" v-model="row.status" id="'status_'+row.id" name="'status_'+row.id"></md-switch>
             </md-table-cell>
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised">
@@ -88,13 +88,13 @@ export default {
       this.$router.push({ name: 'ProductAdd' });
     },
     editProduct(id) {
-      this.$router.push({ name: 'ProductEdit' }, id);
-      console.log(id);
+      this.$router.push({ name: 'ProductEdit', params: { id } });
     },
     deleteProduct(id) {
       this.$http.delete(`http://localhost:3000/products/${id}`)
         .then((res) => {
           console.log(res.body);
+          this.fetchProducts();
         })
         .catch((err) => {
           console.log(err.data);
@@ -102,9 +102,6 @@ export default {
     }
   },
   created() {
-    this.fetchProducts();
-  },
-  updated() {
     this.fetchProducts();
   }
 };

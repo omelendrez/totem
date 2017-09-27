@@ -6,6 +6,7 @@ import Home from '@/components/home';
 import Categories from '@/components/categories';
 import Products from '@/components/products';
 import ProductAdd from '@/components/productAdd';
+import ProductEdit from '@/components/productEdit';
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -33,6 +34,11 @@ export default new Router({
       path: '/productAdd',
       name: 'ProductAdd',
       component: ProductAdd
+    },
+    {
+      path: '/productEdit/:id',
+      name: 'ProductEdit',
+      component: ProductEdit
     }
   ]
 });
