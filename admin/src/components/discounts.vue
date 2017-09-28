@@ -33,7 +33,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="deleteDiscount(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -45,6 +45,10 @@
     <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addDiscount()">
       <md-icon>add</md-icon>
     </md-button>
+
+    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
+    </md-dialog-confirm>
+
   </div>
 </template>
 
@@ -53,7 +57,13 @@ export default {
   name: 'discounts',
   data() {
     return {
-      discounts: []
+      discounts: [],
+      confirm: {
+        title: 'Borrar descuento?',
+        content: 'Realmente desea eliminar el descuento seleccionado?',
+        ok: 'Si',
+        cancel: 'No'
+      }
     };
   },
   methods: {
@@ -81,6 +91,15 @@ export default {
         .catch((err) => {
           console.log(err.data);
         });
+    },
+    openDialog(ref, id) {
+      this.$refs[ref].open();
+      this.record_id = id;
+    },
+    onClose(type) {
+      if (type === 'ok') {
+        this.deleteDiscount(this.record_id);
+      }
     }
   },
   created() {

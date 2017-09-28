@@ -3,34 +3,34 @@
 
     <md-toolbar class="md-primary">
       <h1 class="md-title">Editando Producto</h1>
-      <router-link tag="md-button" :to="{ name: 'Products' }" class="md-raised md-default">Productos</router-link>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Código</label>
           <md-input v-model="product.code"></md-input>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Nombre</label>
           <md-input v-model="product.name"></md-input>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Descripción</label>
-          <md-input v-model="product.description"></md-input>
+          <md-textarea v-model="product.description"></md-textarea>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Precio</label>
           <md-icon>attach_money</md-icon>
           <md-input type="number" v-model="product.price"></md-input>
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
     </md-whiteframe>
@@ -104,6 +104,9 @@ export default {
     },
     closeErrorMsg(ref) {
       this.$refs[ref].close();
+    },
+    back() {
+      this.$router.push({ name: 'Products' });
     }
   },
   created() {
@@ -117,6 +120,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 600px;
+  width: 50%;
 }
 </style>

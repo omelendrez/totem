@@ -3,18 +3,18 @@
 
     <md-toolbar class="md-primary">
       <h1 class="md-title">Editando Categoría</h1>
-      <router-link tag="md-button" :to="{ name: 'Categories' }" class="md-raised md-default">Categorías</router-link>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Nombre</label>
           <md-input v-model="category.name"></md-input>
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
     </md-whiteframe>
@@ -84,6 +84,9 @@ export default {
     },
     closeErrorMsg(ref) {
       this.$refs[ref].close();
+    },
+    back() {
+      this.$router.push({ name: 'Categories' });
     }
   },
   created() {
@@ -97,6 +100,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 600px;
+  width: 50%;
 }
 </style>

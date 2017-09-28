@@ -48,7 +48,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="deleteProduct(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -60,6 +60,10 @@
     <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addProduct()">
       <md-icon>add</md-icon>
     </md-button>
+
+    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
+    </md-dialog-confirm>
+
   </div>
 </template>
 
@@ -68,7 +72,13 @@ export default {
   name: 'products',
   data() {
     return {
-      products: []
+      products: [],
+      confirm: {
+        title: 'Borrar producto?',
+        content: 'Realmente desea eliminar el producto seleccionado?',
+        ok: 'Si',
+        cancel: 'No'
+      }
     };
   },
   methods: {
@@ -96,6 +106,15 @@ export default {
         .catch((err) => {
           console.log(err.data);
         });
+    },
+    openDialog(ref, id) {
+      this.$refs[ref].open();
+      this.record_id = id;
+    },
+    onClose(type) {
+      if (type === 'ok') {
+        this.deleteProduct(this.record_id);
+      }
     }
   },
   created() {

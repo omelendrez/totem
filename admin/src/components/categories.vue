@@ -33,7 +33,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('dialog5', row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -46,7 +46,7 @@
       <md-icon>add</md-icon>
     </md-button>
 
-    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="dialog5">
+    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
     </md-dialog-confirm>
   </div>
 </template>

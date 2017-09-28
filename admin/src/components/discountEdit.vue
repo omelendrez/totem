@@ -3,23 +3,22 @@
 
     <md-toolbar class="md-primary">
       <h1 class="md-title">Editando Descuento</h1>
-      <router-link tag="md-button" :to="{ name: 'Discounts' }" class="md-raised md-default">Descuentos</router-link>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Nombre</label>
           <md-input v-model="discount.name"></md-input>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Descripción</label>
-          <md-input v-model="discount.description"></md-input>
+          <md-textarea v-model="discount.description"></md-textarea>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-clearable>
           <label>Porcentaje</label>
           <md-input type="number" v-model="discount.percent"></md-input>
         </md-input-container>
@@ -30,6 +29,7 @@
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
     </md-whiteframe>
@@ -102,6 +102,9 @@ export default {
     },
     closeErrorMsg(ref) {
       this.$refs[ref].close();
+    },
+    back() {
+      this.$router.push({ name: 'Discounts' });
     }
   },
   created() {
@@ -115,6 +118,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 600px;
+  width: 50%;
 }
 </style>

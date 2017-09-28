@@ -1,18 +1,22 @@
 <template>
   <div class="home">
 
+    <md-toolbar class="md-primary">
+      <h1 class="md-title">Administrador del Tótem</h1>
+    </md-toolbar>
+
     <md-whiteframe md-elevation="2" class="whiteframe">
       <md-boards :md-auto="true" :md-infinite="true" :md-duration="5000" :md-swipeable="true">
         <md-board id="slide1">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.</p>
+          <p>Recuerde verificar la lista de productos y desactivar aquellos productos que no deben mostrarse en el tótem</p>
         </md-board>
 
         <md-board id="slide2">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.</p>
+          <p>Mantenga en secreto sus credenciales y no se las dé a nadie. Recuerde que las modificaciones introducidas en la data con sus credenciales son grabadas</p>
         </md-board>
 
         <md-board id="slide3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.</p>
+          <p>Si detecta que el tótem no está funcionando correctamente puede desabilitarlo desde esta aplicación.</p>
         </md-board>
       </md-boards>
     </md-whiteframe>
