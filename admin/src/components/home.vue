@@ -8,7 +8,18 @@
     <md-whiteframe md-elevation="2" class="whiteframe">
       <md-boards :md-auto="true" :md-infinite="true" :md-duration="5000" :md-swipeable="true">
         <md-board id="slide1">
-          <p>Recuerde verificar la lista de productos y desactivar aquellos productos que no deben mostrarse en el tótem</p>
+          <md-card>
+            <md-card-media>
+              <img src="assets/slider01.jpg">
+            </md-card-media>
+
+            <md-card-header>
+              <div class="md-title">Productos en el tótem</div>
+              <div class="md-subhead">Estar atentos</div>
+            </md-card-header>
+
+            <md-card-content>Recuerde verificar la lista de productos y desactivar aquellos productos que no deben mostrarse en el tótem</md-card-content>
+          </md-card>
         </md-board>
 
         <md-board id="slide2">
@@ -21,9 +32,9 @@
       </md-boards>
     </md-whiteframe>
 
-      <md-bottom-bar md-shift class="bottom_bar">
-        <md-bottom-bar-item md-icon="books" md-active>Manual</md-bottom-bar-item>
-      </md-bottom-bar>
+    <md-bottom-bar md-shift class="bottom_bar">
+      <md-bottom-bar-item md-icon="books" md-active>Manual</md-bottom-bar-item>
+    </md-bottom-bar>
 
   </div>
 </template>
