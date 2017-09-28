@@ -20,9 +20,14 @@
         </md-input-container>
 
         <md-input-container>
+          <label>Descripción</label>
+          <md-input v-model="product.description"></md-input>
+        </md-input-container>
+
+        <md-input-container>
           <label>Precio</label>
-          <md-input type="number" v-model="product.price"></md-input>
           <md-icon>attach_money</md-icon>
+          <md-input type="number" v-model="product.price"></md-input>
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
@@ -55,7 +60,6 @@ export default {
   },
   methods: {
     fetchProduct(id) {
-      console.log('id', id);
       this.$http.get(`http://localhost:3000/products/${id}`)
         .then((res) => {
           this.product = res.body;
@@ -73,14 +77,14 @@ export default {
         this.showErrorMsg('dialog1');
       } else {
         const editProduct = {
-          id: this.product.id,
           code: this.product.code,
           name: this.product.name,
+          description: this.product.description,
           price: this.product.price,
           category_id: 1
         };
-        const id = this.product.id;
 
+        const id = this.product.id;
         this.$http.put(`http://localhost:3000/products/${id}`, editProduct)
           .then(() => {
             this.$router.push({ name: 'Products' });

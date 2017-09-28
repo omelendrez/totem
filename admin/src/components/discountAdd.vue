@@ -1,36 +1,35 @@
 <template>
-  <div class="productAdd">
+  <div class="discountAdd">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Crear Producto</h1>
-      <router-link tag="md-button" :to="{ name: 'Products' }" class="md-raised md-default">Productos</router-link>
+      <h1 class="md-title">Crear Categoría</h1>
+      <router-link tag="md-button" :to="{ name: 'Discounts' }" class="md-raised md-default">Descuentos</router-link>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container>
-          <label>Código</label>
-          <md-input v-model="product.code"></md-input>
-        </md-input-container>
-
-        <md-input-container>
           <label>Nombre</label>
-          <md-input v-model="product.name"></md-input>
+          <md-input v-model="discount.name"></md-input>
         </md-input-container>
 
         <md-input-container>
           <label>Descripción</label>
-          <md-input v-model="product.description"></md-input>
+          <md-input v-model="discount.description"></md-input>
         </md-input-container>
 
         <md-input-container>
-          <label>Precio</label>
-          <md-icon>attach_money</md-icon>
-          <md-input type="number" v-model="product.price"></md-input>
+          <label>Porcentaje</label>
+          <md-input type="number" v-model="discount.percent"></md-input>
         </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+        <md-input-container>
+          <label>Status</label>
+          <md-input v-model="discount.status"></md-input>
+        </md-input-container>
+
+        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
 
       </form>
     </md-whiteframe>
@@ -48,41 +47,40 @@
 
 <script>
 export default {
-  name: 'productAdd',
+  name: 'discountAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      product: {}
+      discount: {}
     };
   },
   methods: {
-    saveProduct() {
-      if (!this.product.code || !this.product.name || !this.product.price) {
+    saveDiscount() {
+      if (!this.discount.name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const newProduct = {
-          code: this.product.code,
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          category_id: 1
+        const newDiscount = {
+          name: this.discount.name,
+          description: this.discount.description,
+          percent: this.discount.percent,
+          status: this.discount.status
         };
 
-        this.$http.post('http://localhost:3000/products', newProduct)
+        this.$http.post('http://localhost:3000/discounts', newDiscount)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.$router.push({ name: 'Discounts' });
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: 'Error al guardar el Categoría',
+              content: 'Ha ocurrido un error al intentar guardar la categoría'
             };
             this.showErrorMsg('dialog1');
             console.log(error.data.errors);

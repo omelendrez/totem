@@ -43,6 +43,21 @@ module.exports = {
                     res.json(result);
                 }))
             .catch(error => res.status(400).send(error));
-    }
+    },
 
+    update(req, res) {
+        return Category
+            .findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(category => category.update({
+                name: req.body.name
+            })
+                .then(result => {
+                    res.json(result);
+                }))
+            .catch(error => res.status(400).send(error));
+    }
 };

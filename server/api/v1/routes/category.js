@@ -10,6 +10,7 @@ router.use(function(req, res, next) {
 router.get("/:id", category.findById);
 router.get("/", category.findAll);
 router.post("/", category.create);
+router.put("/:id", category.update);
 router.delete("/:id", category.delete);
 
 module.exports = router;

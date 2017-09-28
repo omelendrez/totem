@@ -1,13 +1,6 @@
 <template>
   <div class="home">
 
-    <md-toolbar>
-      <h1 class="md-title">Home</h1>
-    </md-toolbar>
-
-    <router-link tag="md-button" :to="{ name: 'Categories' }" class="md-raised md-accent">Categorías</router-link>
-    <router-link tag="md-button" :to="{ name: 'Products' }" class="md-raised md-accent">Productos</router-link>
-  
     <md-whiteframe md-elevation="2" class="whiteframe">
       <md-boards :md-auto="true" :md-infinite="true" :md-duration="5000" :md-swipeable="true">
         <md-board id="slide1">

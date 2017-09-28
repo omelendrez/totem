@@ -7,6 +7,7 @@ module.exports = {
       .create({
         code: req.body.code,
         name: req.body.name,
+        description: req.body.description,
         category_id: req.body.category_id,
         price: req.body.price
       })
@@ -71,6 +72,7 @@ module.exports = {
       .then(product => product.update({
         code: req.body.code,
         name: req.body.name,
+        description: req.body.description,
         category_id: req.body.category_id,
         price: req.body.price
       })
