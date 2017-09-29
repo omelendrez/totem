@@ -111,6 +111,10 @@ export default {
   },
   created() {
     this.fetchProduct(this.$route.params.id);
+    this.$root.$data.home = 'md-accent';
+    this.$root.$data.categories = 'md-accent';
+    this.$root.$data.products = 'md-primary';
+    this.$root.$data.discounts = 'md-accent';
   }
 };
 </script>

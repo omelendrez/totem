@@ -96,6 +96,12 @@ export default {
     back() {
       this.$router.push({ name: 'Discounts' });
     }
+  },
+  created() {
+    this.$root.$data.home = 'md-accent';
+    this.$root.$data.categories = 'md-accent';
+    this.$root.$data.products = 'md-accent';
+    this.$root.$data.discounts = 'md-primary';
   }
 };
 </script>

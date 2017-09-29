@@ -98,6 +98,12 @@ export default {
     back() {
       this.$router.push({ name: 'Products' });
     }
+  },
+  created() {
+    this.$root.$data.home = 'md-accent';
+    this.$root.$data.categories = 'md-accent';
+    this.$root.$data.products = 'md-primary';
+    this.$root.$data.discounts = 'md-accent';
   }
 };
 </script>

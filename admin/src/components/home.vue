@@ -6,7 +6,7 @@
 
     <md-layout md-gutter md-align="center">
       <md-layout md-flex="30">
-        <md-boards :md-auto="true" :md-infinite="true" :md-duration="20000" :md-swipeable="true" class="card-wall">
+        <md-boards :md-auto="true" :md-infinite="true" :md-duration="10000" :md-swipeable="true" class="card-wall">
           <md-board id="slide1">
             <md-card md-with-hover>
 
@@ -66,14 +66,11 @@
 
 <script>
 export default {
-  name: 'home',
-  data() {
-    return {
-    };
-  }
+  name: 'home'
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

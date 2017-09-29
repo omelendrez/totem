@@ -91,6 +91,10 @@ export default {
   },
   created() {
     this.fetchCategory(this.$route.params.id);
+    this.$root.$data.home = 'md-accent';
+    this.$root.$data.categories = 'md-primary';
+    this.$root.$data.products = 'md-accent';
+    this.$root.$data.discounts = 'md-accent';
   }
 };
 </script>

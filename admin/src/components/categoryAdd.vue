@@ -77,6 +77,12 @@ export default {
     },
     back() {
       this.$router.push({ name: 'Categories' });
+    },
+    created() {
+      this.$root.$data.home = 'md-accent';
+      this.$root.$data.categories = 'md-primary';
+      this.$root.$data.products = 'md-accent';
+      this.$root.$data.discounts = 'md-accent';
     }
   }
 };
