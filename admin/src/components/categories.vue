@@ -1,12 +1,12 @@
 <template>
   <div class="categories">
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Administrar Categorías</h1>
+      <h1 class="md-title">Categorías</h1>
     </md-toolbar>
 
     <md-table-card>
       <md-toolbar>
-        <h1 class="md-title">Categorías</h1>
+        <h1 class="md-title">Lista de Categorías</h1>
       </md-toolbar>
 
       <md-table>
@@ -33,7 +33,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -58,7 +58,7 @@ export default {
     return {
       categories: [],
       confirm: {
-        title: 'Borrar categoría?',
+        title: '',
         content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
@@ -91,7 +91,8 @@ export default {
           console.log(err.data);
         });
     },
-    openDialog(ref, id) {
+    openDialog(ref, id, name) {
+      this.confirm.title = name;
       this.$refs[ref].open();
       this.record_id = id;
     },

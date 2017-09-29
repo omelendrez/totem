@@ -1,12 +1,12 @@
 <template>
   <div class="products">
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Administrar Productos</h1>
+      <h1 class="md-title">Productos</h1>
     </md-toolbar>
 
     <md-table-card>
       <md-toolbar>
-        <h1 class="md-title">Productos</h1>
+        <h1 class="md-title">Lista de Productos</h1>
 
         <md-button class="md-icon-button">
           <md-icon>search</md-icon>
@@ -48,7 +48,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -74,7 +74,7 @@ export default {
     return {
       products: [],
       confirm: {
-        title: 'Borrar producto?',
+        title: '',
         content: 'Realmente desea eliminar el producto seleccionado?',
         ok: 'Si',
         cancel: 'No'
@@ -107,7 +107,8 @@ export default {
           console.log(err.data);
         });
     },
-    openDialog(ref, id) {
+    openDialog(ref, id, name) {
+      this.confirm.title = name;
       this.$refs[ref].open();
       this.record_id = id;
     },

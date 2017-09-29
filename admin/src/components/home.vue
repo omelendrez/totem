@@ -1,41 +1,66 @@
 <template>
   <div class="home">
 
-    <md-toolbar class="md-primary">
-      <h1 class="md-title">Administrador del Tótem</h1>
+    <md-toolbar>
     </md-toolbar>
 
-    <md-whiteframe md-elevation="2" class="whiteframe">
-      <md-boards :md-auto="true" :md-infinite="true" :md-duration="5000" :md-swipeable="true">
-        <md-board id="slide1">
-          <md-card>
-            <md-card-media>
-              <img src="assets/slider01.jpg">
-            </md-card-media>
+    <md-layout md-gutter md-align="center">
+      <md-layout md-flex="30">
+        <md-boards :md-auto="true" :md-infinite="true" :md-duration="20000" :md-swipeable="true" class="card-wall">
+          <md-board id="slide1">
+            <md-card md-with-hover>
 
-            <md-card-header>
-              <div class="md-title">Productos en el tótem</div>
-              <div class="md-subhead">Estar atentos</div>
-            </md-card-header>
+              <md-card-media>
+                <img src="/static/slider01.jpg">
+              </md-card-media>
 
-            <md-card-content>Recuerde verificar la lista de productos y desactivar aquellos productos que no deben mostrarse en el tótem</md-card-content>
-          </md-card>
-        </md-board>
+              <md-card-header>
+                <div class="md-title">Productos en el tótem</div>
+                <div class="md-subhead">Desactivar</div>
+              </md-card-header>
 
-        <md-board id="slide2">
-          <p>Mantenga en secreto sus credenciales y no se las dé a nadie. Recuerde que las modificaciones introducidas en la data con sus credenciales son grabadas</p>
-        </md-board>
+              <md-card-content>Recuerde verificar la lista de productos y desactivar aquellos productos que no deben mostrarse en el tótem</md-card-content>
 
-        <md-board id="slide3">
-          <p>Si detecta que el tótem no está funcionando correctamente puede desabilitarlo desde esta aplicación.</p>
-        </md-board>
-      </md-boards>
-    </md-whiteframe>
+            </md-card>
+          </md-board>
 
-    <md-bottom-bar md-shift class="bottom_bar">
-      <md-bottom-bar-item md-icon="books" md-active>Manual</md-bottom-bar-item>
-    </md-bottom-bar>
+          <md-board id="slide2">
+            <md-card md-with-hover>
 
+              <md-card-media>
+                <img src="/static/slider02.jpg">
+              </md-card-media>
+
+              <md-card-header>
+                <div class="md-title">Seguridad</div>
+                <div class="md-subhead">Credenciales</div>
+              </md-card-header>
+
+              <md-card-content>Mantenga en secreto sus credenciales y no se las dé a nadie. Recuerde que las modificaciones introducidas en la data con sus credenciales son grabadas</md-card-content>
+
+            </md-card>
+          </md-board>
+
+          <md-board id="slide3">
+            <md-card md-with-hover>
+
+              <md-card-media>
+                <img src="/static/slider03.jpg">
+              </md-card-media>
+
+              <md-card-header>
+                <div class="md-title">Problemas</div>
+                <div class="md-subhead">Asistencia</div>
+              </md-card-header>
+
+              <md-card-content>Si detecta que el tótem no está funcionando correctamente puede desabilitarlo desde esta aplicación</md-card-content>
+
+            </md-card>
+          </md-board>
+
+        </md-boards>
+      </md-layout>
+    </md-layout>
   </div>
 </template>
 
@@ -51,15 +76,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.whiteframe {
-  margin-top: 60px;
-  margin-left: 120px;
-  margin-right: 120px;
-  padding: 20px;
-}
-
-.bottom_bar {
-  position: absolute;
-  bottom: 0;
-}
 </style>
