@@ -1,35 +1,34 @@
 <template>
-  <div class="productAdd">
+  <div class="discountAdd">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Crear Producto</h1>
+      <h1 class="md-title">Crear Categoría</h1>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container>
-          <label>Código</label>
-          <md-input v-model="product.code"></md-input>
-        </md-input-container>
-
-        <md-input-container>
           <label>Nombre</label>
-          <md-input v-model="product.name"></md-input>
+          <md-input v-model="discount.name"></md-input>
         </md-input-container>
 
         <md-input-container>
           <label>Descripción</label>
-          <md-input v-model="product.description"></md-input>
+          <md-input v-model="discount.description"></md-input>
         </md-input-container>
 
         <md-input-container>
-          <label>Precio</label>
-          <md-input type="number" v-model="product.price"></md-input>
-          <md-icon>attach_money</md-icon>
+          <label>Porcentaje</label>
+          <md-input type="number" v-model="discount.percent"></md-input>
         </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+        <md-input-container>
+          <label>Status</label>
+          <md-input v-model="discount.status"></md-input>
+        </md-input-container>
+
+        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
@@ -48,41 +47,40 @@
 
 <script>
 export default {
-  name: 'productAdd',
+  name: 'discountAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      product: {}
+      discount: {}
     };
   },
   methods: {
-    saveProduct() {
-      if (!this.product.code || !this.product.name || !this.product.price) {
+    saveDiscount() {
+      if (!this.discount.name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const newProduct = {
-          code: this.product.code,
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          category_id: 1
+        const newDiscount = {
+          name: this.discount.name,
+          description: this.discount.description,
+          percent: this.discount.percent,
+          status: this.discount.status
         };
 
-        this.$http.post('http://localhost:3000/products', newProduct)
+        this.$http.post('http://localhost:3000/discounts', newDiscount)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.$router.push({ name: 'Discounts' });
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: 'Error al guardar el Categoría',
+              content: 'Ha ocurrido un error al intentar guardar la categoría'
             };
             this.showErrorMsg('dialog1');
             console.log(error.data.errors);
@@ -96,14 +94,14 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      this.$router.push({ name: 'Discounts' });
     }
   },
   created() {
     this.$root.$data.home = 'md-accent';
     this.$root.$data.categories = 'md-accent';
-    this.$root.$data.products = 'md-primary';
-    this.$root.$data.discounts = 'md-accent';
+    this.$root.$data.products = 'md-accent';
+    this.$root.$data.discounts = 'md-primary';
   }
 };
 </script>

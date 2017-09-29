@@ -1,13 +1,12 @@
 <template>
   <div class="products">
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Administrar Productos</h1>
-      <router-link tag="md-button" :to="{ name: 'Home' }" class="md-raised md-default">Home</router-link>
+      <h1 class="md-title">Productos</h1>
     </md-toolbar>
 
     <md-table-card>
       <md-toolbar>
-        <h1 class="md-title">Productos</h1>
+        <h1 class="md-title">Lista de Productos</h1>
 
         <md-button class="md-icon-button">
           <md-icon>search</md-icon>
@@ -18,28 +17,26 @@
       <md-table>
         <md-table-header>
           <md-table-row>
-            <md-table-head></md-table-head>
             <md-table-head md-sort-by="code">Código</md-table-head>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
+            <md-table-head>Descripción</md-table-head>
             <md-table-head md-numeric>Precio</md-table-head>
             <md-table-head>Categoría</md-table-head>
             <md-table-head>Status</md-table-head>
+            <md-table-head class="button_header">Ver</md-table-head>
+            <md-table-head class="button_header">Editar</md-table-head>
+            <md-table-head class="button_header">Borrar</md-table-head>
           </md-table-row>
         </md-table-header>
 
         <md-table-body>
           <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
-            <md-avatar class="md-medium">
-              <img src="../assets/logo.png">
-            </md-avatar>
             <md-table-cell>{{row.code}}</md-table-cell>
             <md-table-cell>{{row.name}}</md-table-cell>
+            <md-table-cell>{{row.description}}</md-table-cell>
             <md-table-cell md-numeric>{{row.price}}</md-table-cell>
             <md-table-cell>{{row.category_id}}</md-table-cell>
             <md-table-cell>{{row.status}}</md-table-cell>
-            <md-table-cell>
-              <md-switch class="md-primary" v-model="row.status" id="'status_'+row.id" name="'status_'+row.id"></md-switch>
-            </md-table-cell>
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised">
                 <md-icon>find_in_page</md-icon>
@@ -51,7 +48,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="deleteProduct(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -63,6 +60,10 @@
     <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addProduct()">
       <md-icon>add</md-icon>
     </md-button>
+
+    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
+    </md-dialog-confirm>
+
   </div>
 </template>
 
@@ -71,7 +72,13 @@ export default {
   name: 'products',
   data() {
     return {
-      products: []
+      products: [],
+      confirm: {
+        title: '',
+        content: 'Realmente desea eliminar el producto seleccionado?',
+        ok: 'Si',
+        cancel: 'No'
+      }
     };
   },
   methods: {
@@ -99,6 +106,16 @@ export default {
         .catch((err) => {
           console.log(err.data);
         });
+    },
+    openDialog(ref, id, name) {
+      this.confirm.title = name;
+      this.$refs[ref].open();
+      this.record_id = id;
+    },
+    onClose(type) {
+      if (type === 'ok') {
+        this.deleteProduct(this.record_id);
+      }
     }
   },
   created() {
@@ -109,5 +126,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.button_header {
+  width: 20px;
+}
 </style>

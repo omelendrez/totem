@@ -1,35 +1,19 @@
 <template>
-  <div class="productEdit">
+  <div class="categoryEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Producto</h1>
+      <h1 class="md-title">Editando Categoría</h1>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container md-clearable>
-          <label>Código</label>
-          <md-input v-model="product.code"></md-input>
-        </md-input-container>
-
-        <md-input-container md-clearable>
           <label>Nombre</label>
-          <md-input v-model="product.name"></md-input>
+          <md-input v-model="category.name"></md-input>
         </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Descripción</label>
-          <md-textarea v-model="product.description"></md-textarea>
-        </md-input-container>
-
-        <md-input-container md-clearable>
-          <label>Precio</label>
-          <md-icon>attach_money</md-icon>
-          <md-input type="number" v-model="product.price"></md-input>
-        </md-input-container>
-
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+        <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
@@ -48,51 +32,47 @@
 
 <script>
 export default {
-  name: 'productAdd',
+  name: 'categoryAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      product: {}
+      category: {}
     };
   },
   methods: {
-    fetchProduct(id) {
-      this.$http.get(`http://localhost:3000/products/${id}`)
+    fetchCategory(id) {
+      this.$http.get(`http://localhost:3000/categories/${id}`)
         .then((res) => {
-          this.product = res.body;
+          this.category = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    saveProduct() {
-      if (!this.product.code || !this.product.name || !this.product.price) {
+    saveCategory() {
+      if (!this.category.name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const editProduct = {
-          code: this.product.code,
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          category_id: 1
+        const editCategory = {
+          name: this.category.name
         };
 
-        const id = this.product.id;
-        this.$http.put(`http://localhost:3000/products/${id}`, editProduct)
+        const id = this.category.id;
+        this.$http.put(`http://localhost:3000/categories/${id}`, editCategory)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.$router.push({ name: 'Categories' });
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: 'Error al guardar el Categoría',
+              content: 'Ha ocurrido un error al intentar guardar el Categoría'
             };
             this.showErrorMsg('dialog1');
             console.log(error);
@@ -106,14 +86,14 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      this.$router.push({ name: 'Categories' });
     }
   },
   created() {
-    this.fetchProduct(this.$route.params.id);
+    this.fetchCategory(this.$route.params.id);
     this.$root.$data.home = 'md-accent';
-    this.$root.$data.categories = 'md-accent';
-    this.$root.$data.products = 'md-primary';
+    this.$root.$data.categories = 'md-primary';
+    this.$root.$data.products = 'md-accent';
     this.$root.$data.discounts = 'md-accent';
   }
 };

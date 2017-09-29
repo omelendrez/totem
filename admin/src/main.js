@@ -11,5 +11,11 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  data() {
+    return {
+      username: null,
+      logged: false
+    };
+  },
   render: h => h(App)
 });

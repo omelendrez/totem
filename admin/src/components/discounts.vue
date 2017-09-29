@@ -1,12 +1,12 @@
 <template>
-  <div class="categories">
+  <div class="discounts">
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Categorías</h1>
+      <h1 class="md-title">Descuentos</h1>
     </md-toolbar>
 
     <md-table-card>
       <md-toolbar>
-        <h1 class="md-title">Lista de Categorías</h1>
+        <h1 class="md-title">Lista de Descuentos</h1>
       </md-toolbar>
 
       <md-table>
@@ -20,7 +20,7 @@
         </md-table-header>
 
         <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in categories" :key="rowIndex" :md-item="row">
+          <md-table-row v-for="(row, rowIndex) in discounts" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.name}}</md-table-cell>
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised">
@@ -28,7 +28,7 @@
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editCategory(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editDiscount(row.id)">
                 <md-icon>edit</md-icon>
               </md-button>
             </md-table-cell>
@@ -42,50 +42,51 @@
       </md-table>
     </md-table-card>
 
-    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addCategory()">
+    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addDiscount()">
       <md-icon>add</md-icon>
     </md-button>
 
     <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
     </md-dialog-confirm>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'categories',
+  name: 'discounts',
   data() {
     return {
-      categories: [],
+      discounts: [],
       confirm: {
         title: '',
-        content: 'Realmente desea eliminar la categoría seleccionada?',
+        content: 'Realmente desea eliminar el descuento seleccionado?',
         ok: 'Si',
         cancel: 'No'
       }
     };
   },
   methods: {
-    fetchCategories() {
-      this.$http.get('http://localhost:3000/categories')
+    fetchDiscounts() {
+      this.$http.get('http://localhost:3000/discounts')
         .then((res) => {
-          this.categories = res.body;
+          this.discounts = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    addCategory() {
-      this.$router.push({ name: 'CategoryAdd' });
+    addDiscount() {
+      this.$router.push({ name: 'DiscountAdd' });
     },
-    editCategory(id) {
-      this.$router.push({ name: 'CategoryEdit', params: { id } });
+    editDiscount(id) {
+      this.$router.push({ name: 'DiscountEdit', params: { id } });
     },
-    deleteCategory(id) {
-      this.$http.delete(`http://localhost:3000/categories/${id}`)
+    deleteDiscount(id) {
+      this.$http.delete(`http://localhost:3000/discounts/${id}`)
         .then((res) => {
           console.log(res.body);
-          this.fetchCategories();
+          this.fetchDiscounts();
         })
         .catch((err) => {
           console.log(err.data);
@@ -98,12 +99,12 @@ export default {
     },
     onClose(type) {
       if (type === 'ok') {
-        this.deleteCategory(this.record_id);
+        this.deleteDiscount(this.record_id);
       }
     }
   },
   created() {
-    this.fetchCategories();
+    this.fetchDiscounts();
   }
 };
 </script>

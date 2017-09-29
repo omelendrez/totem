@@ -1,35 +1,34 @@
 <template>
-  <div class="productEdit">
+  <div class="discountEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Producto</h1>
+      <h1 class="md-title">Editando Descuento</h1>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container md-clearable>
-          <label>Código</label>
-          <md-input v-model="product.code"></md-input>
-        </md-input-container>
-
-        <md-input-container md-clearable>
           <label>Nombre</label>
-          <md-input v-model="product.name"></md-input>
+          <md-input v-model="discount.name"></md-input>
         </md-input-container>
 
         <md-input-container md-clearable>
           <label>Descripción</label>
-          <md-textarea v-model="product.description"></md-textarea>
+          <md-textarea v-model="discount.description"></md-textarea>
         </md-input-container>
 
         <md-input-container md-clearable>
-          <label>Precio</label>
-          <md-icon>attach_money</md-icon>
-          <md-input type="number" v-model="product.price"></md-input>
+          <label>Porcentaje</label>
+          <md-input type="number" v-model="discount.percent"></md-input>
         </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+        <md-input-container>
+          <label>Status</label>
+          <md-input v-model="discount.status"></md-input>
+        </md-input-container>
+
+        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
 
       </form>
@@ -48,51 +47,50 @@
 
 <script>
 export default {
-  name: 'productAdd',
+  name: 'discountAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      product: {}
+      discount: {}
     };
   },
   methods: {
-    fetchProduct(id) {
-      this.$http.get(`http://localhost:3000/products/${id}`)
+    fetchDiscount(id) {
+      this.$http.get(`http://localhost:3000/discounts/${id}`)
         .then((res) => {
-          this.product = res.body;
+          this.discount = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    saveProduct() {
-      if (!this.product.code || !this.product.name || !this.product.price) {
+    saveDiscount() {
+      if (!this.discount.name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const editProduct = {
-          code: this.product.code,
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          category_id: 1
+        const editDiscount = {
+          name: this.discount.name,
+          description: this.discount.description,
+          percent: this.discount.percent,
+          status: this.discount.status
         };
 
-        const id = this.product.id;
-        this.$http.put(`http://localhost:3000/products/${id}`, editProduct)
+        const id = this.discount.id;
+        this.$http.put(`http://localhost:3000/discounts/${id}`, editDiscount)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.$router.push({ name: 'Discounts' });
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: 'Error al guardar el Descuento',
+              content: 'Ha ocurrido un error al intentar guardar el Descuento'
             };
             this.showErrorMsg('dialog1');
             console.log(error);
@@ -106,15 +104,15 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      this.$router.push({ name: 'Discounts' });
     }
   },
   created() {
-    this.fetchProduct(this.$route.params.id);
+    this.fetchDiscount(this.$route.params.id);
     this.$root.$data.home = 'md-accent';
     this.$root.$data.categories = 'md-accent';
-    this.$root.$data.products = 'md-primary';
-    this.$root.$data.discounts = 'md-accent';
+    this.$root.$data.products = 'md-accent';
+    this.$root.$data.discounts = 'md-primary';
   }
 };
 </script>

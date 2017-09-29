@@ -46,6 +46,25 @@ module.exports = {
                     res.json(result);
                 }))
             .catch(error => res.status(400).send(error));
+    },
+
+    update(req, res) {
+        return Discount
+            .findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(discount => discount.update({
+                name: req.body.name,
+                description: req.body.description,
+                percent: req.body.percent,
+                status: req.body.status
+            })
+                .then(result => {
+                    res.json(result);
+                }))
+            .catch(error => res.status(400).send(error));
     }
 
 };
