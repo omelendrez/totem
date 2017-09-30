@@ -38,7 +38,7 @@
             <md-table-cell>{{row.category_id}}</md-table-cell>
             <md-table-cell>{{row.status}}</md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
                 <md-icon>find_in_page</md-icon>
               </md-button>
             </md-table-cell>
@@ -97,6 +97,9 @@ export default {
     editProduct(id) {
       this.$router.push({ name: 'ProductEdit', params: { id } });
     },
+    viewProduct(id) {
+      this.$router.push({ name: 'ProductView', params: { id } });
+    },
     deleteProduct(id) {
       this.$http.delete(`http://localhost:3000/products/${id}`)
         .then((res) => {
@@ -120,6 +123,7 @@ export default {
   },
   created() {
     this.fetchProducts();
+    this.$root.$data.last_call = 'products';
   }
 };
 </script>

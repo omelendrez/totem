@@ -1,34 +1,24 @@
 <template>
-  <div class="discountAdd">
+  <div class="userAdd">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Crear Categoría</h1>
+      <h1 class="md-title">Crear Usuario</h1>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container>
+          <label>Usuario</label>
+          <md-input v-model="user.user_name"></md-input>
+        </md-input-container>
+
+        <md-input-container>
           <label>Nombre</label>
-          <md-input v-model="discount.name"></md-input>
+          <md-input v-model="user.full_name"></md-input>
         </md-input-container>
 
-        <md-input-container>
-          <label>Descripción</label>
-          <md-input v-model="discount.description"></md-input>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Porcentaje</label>
-          <md-input type="number" v-model="discount.percent"></md-input>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Status</label>
-          <md-input v-model="discount.status"></md-input>
-        </md-input-container>
-
-        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
+        <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
       </form>
@@ -47,40 +37,40 @@
 
 <script>
 export default {
-  name: 'discountAdd',
+  name: 'userAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      discount: {}
+      user: {}
     };
   },
   methods: {
-    saveDiscount() {
-      if (!this.discount.name) {
+    saveUser() {
+      if (!this.user.user_name || !this.user.full_name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const newDiscount = {
-          name: this.discount.name,
-          description: this.discount.description,
-          percent: this.discount.percent,
-          status: this.discount.status
+        const newUser = {
+          user_name: this.user.user_name,
+          full_name: this.user.full_name,
+          password: 'Big Six',
+          status: 1
         };
 
-        this.$http.post('http://localhost:3000/discounts', newDiscount)
+        this.$http.post('http://localhost:3000/users', newUser)
           .then(() => {
-            this.$router.push({ name: 'Discounts' });
+            this.$router.push({ name: 'Users' });
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Categoría',
-              content: 'Ha ocurrido un error al intentar guardar la categoría'
+              title: 'Error al guardar el Usuario',
+              content: 'Ha ocurrido un error al intentar guardar el usuario'
             };
             this.showErrorMsg('dialog1');
             console.log(error.data.errors);
@@ -94,7 +84,7 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Discounts' });
+      this.$router.push({ name: 'Users' });
     }
   },
   created() {

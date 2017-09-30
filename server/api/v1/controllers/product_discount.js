@@ -15,7 +15,7 @@ module.exports = {
 
     findAll(req, res) {
         return ProductDiscount
-            .findAll()
+            .findAll({ raw: true })
             .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
                 "error": "Not found"
             }))

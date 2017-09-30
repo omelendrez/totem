@@ -13,7 +13,7 @@
         <md-table-header>
           <md-table-row>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head class="button_header">Ver</md-table-head>
+
             <md-table-head class="button_header">Editar</md-table-head>
             <md-table-head class="button_header">Borrar</md-table-head>
           </md-table-row>
@@ -22,16 +22,13 @@
         <md-table-body>
           <md-table-row v-for="(row, rowIndex) in categories" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised">
-                <md-icon>find_in_page</md-icon>
-              </md-button>
-            </md-table-cell>
+
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised" v-on:click.native="editCategory(row.id)">
                 <md-icon>edit</md-icon>
               </md-button>
             </md-table-cell>
+
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
                 <md-icon>delete</md-icon>

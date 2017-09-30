@@ -2,6 +2,7 @@
   <div class="home">
 
     <md-toolbar>
+      <h1 class="md-title">Administración de Tótems</h1>
     </md-toolbar>
 
     <md-layout md-gutter md-align="center">

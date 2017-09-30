@@ -39,7 +39,7 @@ module.exports = {
                         } else {
                             discount_id = 0;
                         }
-                        
+
                         Discount
                             .findOne({
                                 where: {
@@ -78,7 +78,7 @@ module.exports = {
 
     findAll(req, res) {
         return Basket
-            .findAll()
+            .findAll({ raw: true })
             .then(basket => res.json(basket))
             .catch(error => res.status(400).send(error));
     }

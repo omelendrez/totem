@@ -7,8 +7,7 @@ module.exports = {
             .create({
                 user_name: req.body.user_name,
                 password: req.body.password,
-                full_name: req.body.full_name,
-                photo: req.body.photo
+                full_name: req.body.full_name
             })
             .then(user => res.status(201).json(user))
             .catch(error => res.status(400).send(error));
@@ -16,7 +15,7 @@ module.exports = {
 
     findAll(req, res) {
         return User
-            .findAll()
+            .findAll({ raw: true })
             .then(users => res.json(users))
             .catch(error => res.status(400).json(error));
     },
@@ -46,6 +45,23 @@ module.exports = {
                     res.json(result);
                 }))
             .catch(error => res.status(400).send(error));
-    }
+    },
 
+    update(req, res) {
+        return User
+            .findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(user => user.update({
+                user_name: req.body.user_name,
+                full_name: req.body.full_name,
+                status: req.body.status
+            })
+                .then(result => {
+                    res.json(result);
+                }))
+            .catch(error => res.status(400).send(error));
+    }
 };

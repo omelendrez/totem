@@ -17,7 +17,7 @@ module.exports = {
 
   findAll(req, res) {
     return Product
-      .findAll()
+      .findAll({ raw: true })
       .then(products => res.json(products))
       .catch(error => res.status(400).send(error));
   },
@@ -39,7 +39,8 @@ module.exports = {
     return Product
       .findOne({
         where: {
-          category_id: req.params.id
+          category_id: req.params.id,
+          raw: true
         }
       })
       .then(product => product ? res.json(product) : res.status(404).json({

@@ -49,7 +49,7 @@ module.exports = {
 
     findAll(req, res) {
         return Order
-            .findAll()
+            .findAll({ raw: true })
             .then(orders => res.json(200, orders))
             .catch(error => res.status(400).send(error));
     },

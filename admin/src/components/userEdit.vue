@@ -1,34 +1,24 @@
 <template>
-  <div class="discountEdit">
+  <div class="userEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Descuento</h1>
+      <h1 class="md-title">Editando Usero</h1>
     </md-toolbar>
 
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
         <md-input-container md-clearable>
+          <label>Usuario</label>
+          <md-input v-model="user.user_name"></md-input>
+        </md-input-container>
+
+        <md-input-container md-clearable>
           <label>Nombre</label>
-          <md-input v-model="discount.name"></md-input>
+          <md-input v-model="user.full_name"></md-input>
         </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Descripción</label>
-          <md-textarea v-model="discount.description"></md-textarea>
-        </md-input-container>
-
-        <md-input-container md-clearable>
-          <label>Porcentaje</label>
-          <md-input type="number" v-model="discount.percent"></md-input>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Status</label>
-          <md-input v-model="discount.status"></md-input>
-        </md-input-container>
-
-        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
+        <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
       </form>
@@ -47,50 +37,49 @@
 
 <script>
 export default {
-  name: 'discountAdd',
+  name: 'userAdd',
   data() {
     return {
       errorMsg: {
         title: '',
         content: ''
       },
-      discount: {}
+      user: {}
     };
   },
   methods: {
-    fetchDiscount(id) {
-      this.$http.get(`http://localhost:3000/discounts/${id}`)
+    fetchUser(id) {
+      this.$http.get(`http://localhost:3000/users/${id}`)
         .then((res) => {
-          this.discount = res.body;
+          this.user = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    saveDiscount() {
-      if (!this.discount.name) {
+    saveUser() {
+      if (!this.user.user_name || !this.user.full_name) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
         };
         this.showErrorMsg('dialog1');
       } else {
-        const editDiscount = {
-          name: this.discount.name,
-          description: this.discount.description,
-          percent: this.discount.percent,
-          status: this.discount.status
+        const editUser = {
+          user_name: this.user.user_name,
+          full_name: this.user.full_name,
+          status: 1
         };
 
-        const id = this.discount.id;
-        this.$http.put(`http://localhost:3000/discounts/${id}`, editDiscount)
+        const id = this.user.id;
+        this.$http.put(`http://localhost:3000/users/${id}`, editUser)
           .then(() => {
             this.back();
           })
           .catch((error) => {
             this.errorMsg = {
-              title: 'Error al guardar el Descuento',
-              content: 'Ha ocurrido un error al intentar guardar el Descuento'
+              title: 'Error al guardar el Usero',
+              content: 'Ha ocurrido un error al intentar guardar el usero'
             };
             this.showErrorMsg('dialog1');
             console.log(error);
@@ -104,15 +93,15 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      if (this.$root.$data.last_call === 'discountView') {
-        this.$router.push({ name: 'DiscountView' });
+      if (this.$root.$data.last_call === 'userView') {
+        this.$router.push({ name: 'UserView' });
       } else {
-        this.$router.push({ name: 'Discounts' });
+        this.$router.push({ name: 'Users' });
       }
     }
   },
   created() {
-    this.fetchDiscount(this.$route.params.id);
+    this.fetchUser(this.$route.params.id);
   }
 };
 </script>
