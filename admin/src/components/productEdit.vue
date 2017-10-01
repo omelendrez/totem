@@ -119,7 +119,8 @@ export default {
           name: this.product.name,
           description: this.product.description,
           price: this.product.price,
-          category_id: this.product.category_id
+          category_id: this.product.category_id,
+          status_id: this.product.status_id
         };
 
         const id = this.product.id;

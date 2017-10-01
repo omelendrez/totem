@@ -7,6 +7,7 @@ router.use(function(req, res, next) {
   console.log("%s %s %s", req.method, req.url, req.path);
   next();
 });
-router.get("/", user.findAll);
+router.get("/", status.findAll);
+router.post("/", status.create);
 
 module.exports = router;

@@ -10,6 +10,7 @@ module.exports = {
         name: req.body.name,
         description: req.body.description,
         category_id: req.body.category_id,
+        status_id: req.body.status_id,
         price: req.body.price
       })
       .then(product => res.status(201).send(product))
@@ -108,12 +109,13 @@ module.exports = {
         }
       })
       .then(product => product.update({
-          code: req.body.code,
-          name: req.body.name,
-          description: req.body.description,
-          category_id: req.body.category_id,
-          price: req.body.price
-        })
+        code: req.body.code,
+        name: req.body.name,
+        description: req.body.description,
+        category_id: req.body.category_id,
+        status_id: req.body.status_id,
+        price: req.body.price
+      })
         .then(result => {
           res.json(result);
         }))
