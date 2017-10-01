@@ -38,6 +38,15 @@
           <md-input type="number" v-model="product.price"></md-input>
         </md-input-container>
 
+        <md-input-container>
+          <label>Status</label>
+          <md-select v-model="product.status_id">
+            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+              {{status.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
         <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
@@ -65,7 +74,8 @@ export default {
         content: ''
       },
       product: {},
-      categories: []
+      categories: [],
+      statuses: []
     };
   },
   methods: {
@@ -73,6 +83,15 @@ export default {
       this.$http.get('http://localhost:3000/categories')
         .then((res) => {
           this.categories = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
         })
         .catch((err) => {
           console.log(err.data);
@@ -134,6 +153,7 @@ export default {
   },
   created() {
     this.fetchCategories();
+    this.fetchStatus();
     this.fetchProduct(this.$route.params.id);
   }
 };

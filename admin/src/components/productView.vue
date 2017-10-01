@@ -8,6 +8,9 @@
         </md-card-media>
 
         <md-card-header>
+          <div class="md-subhead">
+            {{product.category.name}}
+          </div>
           <div class="md-title">
             {{product.name}}
           </div>
@@ -20,7 +23,10 @@
           {{product.description}}
           <h4>Precio: {{product.price}}</h4>
           <div class="md-subhead">
-            Tracking
+            Info
+          </div>
+          <div>
+            Status: {{product.status.name}}
           </div>
           <div>
             Creado: {{product.created_at}}

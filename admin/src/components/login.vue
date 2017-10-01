@@ -43,6 +43,12 @@ export default {
       this.$root.$data.logged = true;
       this.$router.push({ name: 'Home' });
     }
+  },
+  created() {
+    this.$root.$data.logged = false;
+  },
+  updated() {
+    this.$root.$data.logged = false;
   }
 };
 </script>

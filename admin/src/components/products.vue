@@ -19,7 +19,6 @@
           <md-table-row>
             <md-table-head md-sort-by="code">Código</md-table-head>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head>Descripción</md-table-head>
             <md-table-head md-numeric>Precio</md-table-head>
             <md-table-head>Categoría</md-table-head>
             <md-table-head>Status</md-table-head>
@@ -33,10 +32,9 @@
           <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.code}}</md-table-cell>
             <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell>{{row.description}}</md-table-cell>
             <md-table-cell md-numeric>{{row.price}}</md-table-cell>
-            <md-table-cell>{{row.category_id}}</md-table-cell>
-            <md-table-cell>{{row.status}}</md-table-cell>
+            <md-table-cell>{{row.category.name}}</md-table-cell>
+            <md-table-cell>{{row.status.name}}</md-table-cell>
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
                 <md-icon>find_in_page</md-icon>
@@ -57,7 +55,7 @@
       </md-table>
     </md-table-card>
 
-    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addProduct()">
+    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addProduct()">
       <md-icon>add</md-icon>
     </md-button>
 
@@ -132,5 +130,8 @@ export default {
 <style scoped>
 .button_header {
   width: 20px;
+}
+.description {
+  max-length: 100px !important;
 }
 </style>

@@ -39,7 +39,7 @@
       </md-table>
     </md-table-card>
 
-    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addCategory()">
+    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addCategory()">
       <md-icon>add</md-icon>
     </md-button>
 

@@ -1,5 +1,6 @@
 "use strict";
 const Product = require("../models").product;
+const Sequelize = require("sequelize");
 
 module.exports = {
   create(req, res) {
@@ -16,18 +17,54 @@ module.exports = {
   },
 
   findAll(req, res) {
+    const Category = require("../models").category;
+    const Status = require("../models").status;
+
+    Product.belongsTo(Category);
+    Product.belongsTo(Status);
+
     return Product
-      .findAll({ raw: true })
+      .findAll({
+        include: [{
+          model: Category,
+          where: {
+            id: Sequelize.col('product.category_id')
+          }
+        }, {
+          model: Status,
+          where: {
+            id: Sequelize.col('product.status_id')
+          }
+        }]
+      })
       .then(products => res.json(products))
       .catch(error => res.status(400).send(error));
   },
 
   findById(req, res) {
+    const Category = require("../models").category;
+    const Status = require("../models").status;
+
+    Product.belongsTo(Category);
+    Product.belongsTo(Status);
+
     return Product
       .findOne({
         where: {
           id: req.params.id
-        }
+        },
+        include: [{
+          model: Category,
+          where: {
+            id: Sequelize.col('product.category_id')
+          }
+        }, {
+          model: Status,
+          where: {
+            id: Sequelize.col('product.status_id')
+          }
+        }]
+
       })
       .then(product => product ? res.json(product) : res.status(404).json({
         "error": "Not found"
@@ -71,12 +108,12 @@ module.exports = {
         }
       })
       .then(product => product.update({
-        code: req.body.code,
-        name: req.body.name,
-        description: req.body.description,
-        category_id: req.body.category_id,
-        price: req.body.price
-      })
+          code: req.body.code,
+          name: req.body.name,
+          description: req.body.description,
+          category_id: req.body.category_id,
+          price: req.body.price
+        })
         .then(result => {
           res.json(result);
         }))
