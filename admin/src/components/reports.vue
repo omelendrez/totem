@@ -12,7 +12,12 @@
 
 <script>
 export default {
-  name: 'reports'
+  name: 'reports',
+  created() {
+    if (!this.$root.$data.logged) {
+      this.$router.push({ name: 'Login' });
+    }
+  }
 };
 </script>
 

@@ -13,6 +13,15 @@
           <md-input v-model="category.name"></md-input>
         </md-input-container>
 
+        <md-input-container>
+          <label>Status</label>
+          <md-select v-model="category.status_id">
+            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+              {{status.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
         <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
@@ -39,7 +48,8 @@ export default {
         title: '',
         content: ''
       },
-      category: {}
+      category: {},
+      statuses: []
     };
   },
   methods: {
@@ -47,6 +57,15 @@ export default {
       this.$http.get(`http://localhost:3000/categories/${id}`)
         .then((res) => {
           this.category = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
         })
         .catch((err) => {
           console.log(err.data);
@@ -61,7 +80,8 @@ export default {
         this.showErrorMsg('dialog1');
       } else {
         const editCategory = {
-          name: this.category.name
+          name: this.category.name,
+          status_id: this.category.status_id
         };
 
         const id = this.category.id;
@@ -94,6 +114,7 @@ export default {
     }
   },
   created() {
+    this.fetchStatus();
     this.fetchCategory(this.$route.params.id);
   }
 };

@@ -11,13 +11,13 @@
           <md-input-container>
             <md-icon>person</md-icon>
             <label>Usuario</label>
-            <md-input username required v-model="username" />
+            <md-input username required v-model="user.user_name" />
           </md-input-container>
 
           <md-input-container md-has-password>
             <md-icon>lock</md-icon>
             <label>Password</label>
-            <md-input type="password" required v-model="password" />
+            <md-input type="password" required v-model="user.password" />
           </md-input-container>
         </md-card-content>
 
@@ -27,21 +27,66 @@
 
       </md-layout>
     </md-layout>
+
+    <md-dialog ref="dialog1">
+      <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
+      <md-dialog-content>{{errorMsg.content}}</md-dialog-content>
+      <md-dialog-actions>
+        <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
   </div>
 </template>
 
 <script>
 export default {
+  name: 'login',
   data() {
     return {
-      username: '',
-      password: ''
+      user: {
+        user_name: '',
+        password: ''
+      },
+      errorMsg: {
+        title: '',
+        content: ''
+      }
     };
   },
   methods: {
     login() {
-      this.$root.$data.logged = true;
-      this.$router.push({ name: 'Home' });
+      if (!this.user.user_name || !this.user.password) {
+        return;
+      }
+      const params = {
+        user_name: this.user.user_name,
+        password: this.user.password
+      };
+      this.$http.get('http://localhost:3000/login', { params })
+        .then((res) => {
+          this.user = res.body;
+          setTimeout(() => {
+            this.$root.$data.logged = true;
+            setTimeout(() => {
+              this.$router.push({ name: 'Home' });
+            }, 10);
+          }, 10);
+        })
+        .catch((err) => {
+          console.log(err.data);
+          this.errorMsg = {
+            title: 'Error',
+            content: 'Por favor verifique usuario y password y vuelva a intentar'
+          };
+          this.showErrorMsg('dialog1');
+        });
+    },
+    showErrorMsg(ref) {
+      this.$refs[ref].open();
+    },
+    closeErrorMsg(ref) {
+      this.$refs[ref].close();
     }
   },
   created() {

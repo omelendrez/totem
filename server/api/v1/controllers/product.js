@@ -1,6 +1,6 @@
 "use strict";
 const Product = require("../models").product;
-const Sequelize = require("sequelize");
+const sequelize = require("sequelize");
 
 module.exports = {
   create(req, res) {
@@ -29,14 +29,21 @@ module.exports = {
         include: [{
           model: Category,
           where: {
-            id: Sequelize.col('product.category_id')
+            id: sequelize.col('product.category_id')
           }
         }, {
           model: Status,
           where: {
-            id: Sequelize.col('product.status_id')
+            id: sequelize.col('product.status_id')
           }
-        }]
+        }],
+        attributes: [
+          'id',
+          'code',
+          'name',
+          'description',
+          'price'
+        ]
       })
       .then(products => res.json(products))
       .catch(error => res.status(400).send(error));
@@ -57,15 +64,24 @@ module.exports = {
         include: [{
           model: Category,
           where: {
-            id: Sequelize.col('product.category_id')
+            id: sequelize.col('product.category_id')
           }
         }, {
           model: Status,
           where: {
-            id: Sequelize.col('product.status_id')
+            id: sequelize.col('product.status_id')
           }
-        }]
-
+        }],
+        attributes: [
+          'id',
+          'code',
+          'name',
+          'description',
+          'price',
+          'category_id',
+          'status_id', [sequelize.fn('date_format', sequelize.col('product.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
+          [sequelize.fn('date_format', sequelize.col('product.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
+        ]
       })
       .then(product => product ? res.json(product) : res.status(404).json({
         "error": "Not found"
@@ -77,8 +93,7 @@ module.exports = {
     return Product
       .findOne({
         where: {
-          category_id: req.params.id,
-          raw: true
+          category_id: req.params.id
         }
       })
       .then(product => product ? res.json(product) : res.status(404).json({

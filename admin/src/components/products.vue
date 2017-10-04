@@ -19,7 +19,7 @@
           <md-table-row>
             <md-table-head md-sort-by="code">Código</md-table-head>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head md-numeric>Precio</md-table-head>
+            <md-table-head>Precio</md-table-head>
             <md-table-head>Categoría</md-table-head>
             <md-table-head>Status</md-table-head>
             <md-table-head class="button_header">Ver</md-table-head>
@@ -32,7 +32,7 @@
           <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.code}}</md-table-cell>
             <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell md-numeric>{{row.price}}</md-table-cell>
+            <md-table-cell>{{row.price}}</md-table-cell>
             <md-table-cell>{{row.category.name}}</md-table-cell>
             <md-table-cell>{{row.status.name}}</md-table-cell>
             <md-table-cell>
@@ -120,6 +120,10 @@ export default {
     }
   },
   created() {
+    if (!this.$root.$data.logged) {
+      this.$router.push({ name: 'Login' });
+    }
+
     this.fetchProducts();
     this.$root.$data.last_call = 'products';
   }
@@ -131,6 +135,7 @@ export default {
 .button_header {
   width: 20px;
 }
+
 .description {
   max-length: 100px !important;
 }

@@ -31,17 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     indexes: [{
       unique: true,
       fields: ["user_name"]
-    }],
-    hooks: {
-      beforeCreate: user => {
-        const salt = bcrypt.genSaltSync();
-        user.password = bcrypt.hashSync(user.password, salt);
-      },
-      beforeUpdate: user => {
-        const salt = bcrypt.genSaltSync();
-        user.password = bcrypt.hashSync(user.password, salt);
-      }
-    }
+    }]
   });
 
   return User;

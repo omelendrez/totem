@@ -23,11 +23,6 @@
           <md-input type="number" v-model="discount.percent"></md-input>
         </md-input-container>
 
-        <md-input-container>
-          <label>Status</label>
-          <md-input v-model="discount.status"></md-input>
-        </md-input-container>
-
         <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
         <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
@@ -70,7 +65,7 @@ export default {
           name: this.discount.name,
           description: this.discount.description,
           percent: this.discount.percent,
-          status: this.discount.status
+          status_id: 2
         };
 
         this.$http.post('http://localhost:3000/discounts', newDiscount)

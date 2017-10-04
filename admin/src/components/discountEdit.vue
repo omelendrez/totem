@@ -25,7 +25,11 @@
 
         <md-input-container>
           <label>Status</label>
-          <md-input v-model="discount.status"></md-input>
+          <md-select v-model="discount.status_id">
+            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+              {{status.name}}
+            </md-option>
+          </md-select>
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
@@ -54,7 +58,8 @@ export default {
         title: '',
         content: ''
       },
-      discount: {}
+      discount: {},
+      statuses: []
     };
   },
   methods: {
@@ -62,6 +67,15 @@ export default {
       this.$http.get(`http://localhost:3000/discounts/${id}`)
         .then((res) => {
           this.discount = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
         })
         .catch((err) => {
           console.log(err.data);
@@ -79,7 +93,7 @@ export default {
           name: this.discount.name,
           description: this.discount.description,
           percent: this.discount.percent,
-          status: this.discount.status
+          status_id: this.discount.status_id
         };
 
         const id = this.discount.id;
@@ -112,6 +126,7 @@ export default {
     }
   },
   created() {
+    this.fetchStatus();
     this.fetchDiscount(this.$route.params.id);
   }
 };

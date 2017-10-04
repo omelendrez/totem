@@ -15,10 +15,15 @@
 
         <md-card-content>
           <div>
-            Porcentaje: {{discount.percent}}%
+            Porcentaje: {{discount.percent}} %
           </div>
 
-          <h4>Tracking</h4>
+          <div class="md-subhead">
+            Info
+          </div>
+          <div>
+            Status: {{discount.status.name}}
+          </div>
           <div>
             Creado: {{discount.created_at}}
           </div>

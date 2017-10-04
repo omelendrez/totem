@@ -30,7 +30,7 @@
           <md-table-row v-for="(row, rowIndex) in users" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.user_name}}</md-table-cell>
             <md-table-cell>{{row.full_name}}</md-table-cell>
-            <md-table-cell>{{row.status}}</md-table-cell>
+            <md-table-cell>{{row.status.name}}</md-table-cell>
             <md-table-cell>
               <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewUser(row.id)">
                 <md-icon>find_in_page</md-icon>
@@ -116,6 +116,10 @@ export default {
     }
   },
   created() {
+    if (!this.$root.$data.logged) {
+      this.$router.push({ name: 'Login' });
+    }
+
     this.fetchUsers();
     this.$root.$data.last_call = 'users';
   }
