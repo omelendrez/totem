@@ -12,6 +12,13 @@
         "sourceType": "module"
     },
     "rules": {
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
         "no-undef": "warn",

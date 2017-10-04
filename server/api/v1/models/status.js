@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
-  const Category = sequelize.define("category", {
+  const Status = sequelize.define("status", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -12,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
     }]
   });
 
-  return Category;
+  return Status;
 };

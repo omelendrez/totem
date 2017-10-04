@@ -8,6 +8,15 @@
     <md-whiteframe class="whiteframe">
       <form novalidate @submit.stop.prevent="submit">
 
+        <md-input-container>
+          <label>Categoría</label>
+          <md-select v-model="product.category_id">
+            <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
+              {{category.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
         <md-input-container md-clearable>
           <label>Código</label>
           <md-input v-model="product.code"></md-input>
@@ -29,8 +38,17 @@
           <md-input type="number" v-model="product.price"></md-input>
         </md-input-container>
 
+        <md-input-container>
+          <label>Status</label>
+          <md-select v-model="product.status_id">
+            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+              {{status.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
         <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
       </form>
     </md-whiteframe>
@@ -55,10 +73,30 @@ export default {
         title: '',
         content: ''
       },
-      product: {}
+      product: {},
+      categories: [],
+      statuses: []
     };
   },
   methods: {
+    fetchCategories() {
+      this.$http.get('http://localhost:3000/categories')
+        .then((res) => {
+          this.categories = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
     fetchProduct(id) {
       this.$http.get(`http://localhost:3000/products/${id}`)
         .then((res) => {
@@ -81,13 +119,13 @@ export default {
           name: this.product.name,
           description: this.product.description,
           price: this.product.price,
-          category_id: 1
+          category_id: this.product.category_id
         };
 
         const id = this.product.id;
         this.$http.put(`http://localhost:3000/products/${id}`, editProduct)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.back();
           })
           .catch((error) => {
             this.errorMsg = {
@@ -106,15 +144,17 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      if (this.$root.$data.last_call === 'productView') {
+        this.$router.push({ name: 'ProductView' });
+      } else {
+        this.$router.push({ name: 'Products' });
+      }
     }
   },
   created() {
+    this.fetchCategories();
+    this.fetchStatus();
     this.fetchProduct(this.$route.params.id);
-    this.$root.$data.home = 'md-accent';
-    this.$root.$data.categories = 'md-accent';
-    this.$root.$data.products = 'md-primary';
-    this.$root.$data.discounts = 'md-accent';
   }
 };
 </script>

@@ -14,7 +14,7 @@
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
       </form>
     </md-whiteframe>
@@ -79,10 +79,6 @@ export default {
       this.$router.push({ name: 'Categories' });
     },
     created() {
-      this.$root.$data.home = 'md-accent';
-      this.$root.$data.categories = 'md-primary';
-      this.$root.$data.products = 'md-accent';
-      this.$root.$data.discounts = 'md-accent';
     }
   }
 };

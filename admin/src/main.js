@@ -13,8 +13,8 @@ new Vue({
   router,
   data() {
     return {
-      username: null,
-      logged: false
+      logged: false,
+      last_call: ''
     };
   },
   render: h => h(App)

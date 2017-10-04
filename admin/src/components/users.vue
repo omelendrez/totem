@@ -1,12 +1,12 @@
 <template>
-  <div class="products">
+  <div class="users">
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Productos</h1>
+      <h1 class="md-title">Usuarios</h1>
     </md-toolbar>
 
     <md-table-card>
       <md-toolbar>
-        <h1 class="md-title">Lista de Productos</h1>
+        <h1 class="md-title">Lista de Usuarios</h1>
 
         <md-button class="md-icon-button">
           <md-icon>search</md-icon>
@@ -17,10 +17,8 @@
       <md-table>
         <md-table-header>
           <md-table-row>
-            <md-table-head md-sort-by="code">Código</md-table-head>
+            <md-table-head md-sort-by="code">Usuario</md-table-head>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head md-numeric>Precio</md-table-head>
-            <md-table-head>Categoría</md-table-head>
             <md-table-head>Status</md-table-head>
             <md-table-head class="button_header">Ver</md-table-head>
             <md-table-head class="button_header">Editar</md-table-head>
@@ -29,24 +27,22 @@
         </md-table-header>
 
         <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
-            <md-table-cell>{{row.code}}</md-table-cell>
-            <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell md-numeric>{{row.price}}</md-table-cell>
-            <md-table-cell>{{row.category.name}}</md-table-cell>
-            <md-table-cell>{{row.status.name}}</md-table-cell>
+          <md-table-row v-for="(row, rowIndex) in users" :key="rowIndex" :md-item="row">
+            <md-table-cell>{{row.user_name}}</md-table-cell>
+            <md-table-cell>{{row.full_name}}</md-table-cell>
+            <md-table-cell>{{row.status}}</md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewUser(row.id)">
                 <md-icon>find_in_page</md-icon>
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editUser(row.id)">
                 <md-icon>edit</md-icon>
               </md-button>
             </md-table-cell>
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.user_name)">
                 <md-icon>delete</md-icon>
               </md-button>
             </md-table-cell>
@@ -55,7 +51,7 @@
       </md-table>
     </md-table-card>
 
-    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addProduct()">
+    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addUser()">
       <md-icon>add</md-icon>
     </md-button>
 
@@ -67,42 +63,42 @@
 
 <script>
 export default {
-  name: 'products',
+  name: 'users',
   data() {
     return {
-      products: [],
+      users: [],
       confirm: {
         title: '',
-        content: 'Realmente desea eliminar el producto seleccionado?',
+        content: 'Realmente desea eliminar el usuario seleccionado?',
         ok: 'Si',
         cancel: 'No'
       }
     };
   },
   methods: {
-    fetchProducts() {
-      this.$http.get('http://localhost:3000/products')
+    fetchUsers() {
+      this.$http.get('http://localhost:3000/users')
         .then((res) => {
-          this.products = res.body;
+          this.users = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    addProduct() {
-      this.$router.push({ name: 'ProductAdd' });
+    addUser() {
+      this.$router.push({ name: 'UserAdd' });
     },
-    editProduct(id) {
-      this.$router.push({ name: 'ProductEdit', params: { id } });
+    editUser(id) {
+      this.$router.push({ name: 'UserEdit', params: { id } });
     },
-    viewProduct(id) {
-      this.$router.push({ name: 'ProductView', params: { id } });
+    viewUser(id) {
+      this.$router.push({ name: 'UserView', params: { id } });
     },
-    deleteProduct(id) {
-      this.$http.delete(`http://localhost:3000/products/${id}`)
+    deleteUser(id) {
+      this.$http.delete(`http://localhost:3000/users/${id}`)
         .then((res) => {
           console.log(res.body);
-          this.fetchProducts();
+          this.fetchUsers();
         })
         .catch((err) => {
           console.log(err.data);
@@ -115,13 +111,13 @@ export default {
     },
     onClose(type) {
       if (type === 'ok') {
-        this.deleteProduct(this.record_id);
+        this.deleteUser(this.record_id);
       }
     }
   },
   created() {
-    this.fetchProducts();
-    this.$root.$data.last_call = 'products';
+    this.fetchUsers();
+    this.$root.$data.last_call = 'users';
   }
 };
 </script>
@@ -130,8 +126,5 @@ export default {
 <style scoped>
 .button_header {
   width: 20px;
-}
-.description {
-  max-length: 100px !important;
 }
 </style>

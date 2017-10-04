@@ -14,7 +14,7 @@
         </md-input-container>
 
         <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Salir</md-button>
+        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
       </form>
     </md-whiteframe>
@@ -67,7 +67,7 @@ export default {
         const id = this.category.id;
         this.$http.put(`http://localhost:3000/categories/${id}`, editCategory)
           .then(() => {
-            this.$router.push({ name: 'Categories' });
+            this.back();
           })
           .catch((error) => {
             this.errorMsg = {
@@ -86,15 +86,15 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Categories' });
+      if (this.$root.$data.last_call === 'categoryView') {
+        this.$router.push({ name: 'CategoryView' });
+      } else {
+        this.$router.push({ name: 'Categories' });
+      }
     }
   },
   created() {
     this.fetchCategory(this.$route.params.id);
-    this.$root.$data.home = 'md-accent';
-    this.$root.$data.categories = 'md-primary';
-    this.$root.$data.products = 'md-accent';
-    this.$root.$data.discounts = 'md-accent';
   }
 };
 </script>

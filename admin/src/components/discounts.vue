@@ -13,6 +13,9 @@
         <md-table-header>
           <md-table-row>
             <md-table-head md-sort-by="name">Nombre</md-table-head>
+            <md-table-head>Descripción</md-table-head>
+            <md-table-head md-numeric>Porcentaje</md-table-head>
+
             <md-table-head class="button_header">Ver</md-table-head>
             <md-table-head class="button_header">Editar</md-table-head>
             <md-table-head class="button_header">Borrar</md-table-head>
@@ -22,8 +25,11 @@
         <md-table-body>
           <md-table-row v-for="(row, rowIndex) in discounts" :key="rowIndex" :md-item="row">
             <md-table-cell>{{row.name}}</md-table-cell>
+            <md-table-cell>{{row.description}}</md-table-cell>
+            <md-table-cell md-numeric>{{row.percent}}</md-table-cell>
+
             <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised">
+              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewDiscount(row.id)">
                 <md-icon>find_in_page</md-icon>
               </md-button>
             </md-table-cell>
@@ -42,7 +48,7 @@
       </md-table>
     </md-table-card>
 
-    <md-button class="md-fab md-icon-button md-fab-bottom-right" v-on:click.native="addDiscount()">
+    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addDiscount()">
       <md-icon>add</md-icon>
     </md-button>
 
@@ -82,6 +88,9 @@ export default {
     editDiscount(id) {
       this.$router.push({ name: 'DiscountEdit', params: { id } });
     },
+    viewDiscount(id) {
+      this.$router.push({ name: 'DiscountView', params: { id } });
+    },
     deleteDiscount(id) {
       this.$http.delete(`http://localhost:3000/discounts/${id}`)
         .then((res) => {
@@ -105,6 +114,7 @@ export default {
   },
   created() {
     this.fetchDiscounts();
+    this.$root.$data.last_call = 'discounts';
   }
 };
 </script>
