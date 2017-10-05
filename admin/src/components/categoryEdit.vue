@@ -5,36 +5,40 @@
       <h1 class="md-title">Editando Categoría</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="category.name"></md-input>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container>
-          <label>Status</label>
-          <md-select v-model="category.status_id">
-            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
-              {{status.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="category.name"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="category.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 
-    <md-dialog ref="dialog1">
-      <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
-      <md-dialog-content>{{errorMsg.content}}</md-dialog-content>
-      <md-dialog-actions>
-        <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
-      </md-dialog-actions>
-    </md-dialog>
+        </form>
+      </md-whiteframe>
+
+      <md-dialog ref="dialog1">
+        <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
+        <md-dialog-content>{{errorMsg.content}}</md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+
+    </md-layout>
 
   </div>
 </template>
@@ -125,6 +129,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

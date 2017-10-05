@@ -5,38 +5,41 @@
       <h1 class="md-title">Editando Descuento</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="discount.name"></md-input>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container md-clearable>
-          <label>Descripción</label>
-          <md-textarea v-model="discount.description"></md-textarea>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="discount.name"></md-input>
+          </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Porcentaje</label>
-          <md-input type="number" v-model="discount.percent"></md-input>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Descripción</label>
+            <md-textarea v-model="discount.description"></md-textarea>
+          </md-input-container>
 
-        <md-input-container>
-          <label>Status</label>
-          <md-select v-model="discount.status_id">
-            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
-              {{status.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Porcentaje</label>
+            <md-input type="number" v-model="discount.percent"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="discount.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-button class="md-raised md-accent" v-on:click.native="saveDiscount()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+    </md-layout>
 
     <md-dialog ref="dialog1">
       <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
@@ -137,6 +140,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

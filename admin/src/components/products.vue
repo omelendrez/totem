@@ -1,60 +1,65 @@
 <template>
   <div class="products">
+
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Productos</h1>
+      <span class="md-title">Productos</span>
     </md-toolbar>
 
-    <md-table-card>
-      <md-toolbar>
-        <h1 class="md-title">Lista de Productos</h1>
+    <md-layout md-align="center">
 
-        <md-button class="md-icon-button">
-          <md-icon>search</md-icon>
-        </md-button>
+      <md-table-card>
+        <md-toolbar>
+          <h1 class="md-title">Lista de Productos</h1>
 
-      </md-toolbar>
+          <md-button class="md-icon-button">
+            <md-icon>search</md-icon>
+          </md-button>
 
-      <md-table>
-        <md-table-header>
-          <md-table-row>
-            <md-table-head md-sort-by="code">Código</md-table-head>
-            <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head>Precio</md-table-head>
-            <md-table-head>Categoría</md-table-head>
-            <md-table-head>Status</md-table-head>
-            <md-table-head class="button_header">Ver</md-table-head>
-            <md-table-head class="button_header">Editar</md-table-head>
-            <md-table-head class="button_header">Borrar</md-table-head>
-          </md-table-row>
-        </md-table-header>
+        </md-toolbar>
 
-        <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
-            <md-table-cell>{{row.code}}</md-table-cell>
-            <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell>{{row.price}}</md-table-cell>
-            <md-table-cell>{{row.category.name}}</md-table-cell>
-            <md-table-cell>{{row.status.name}}</md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
-                <md-icon>find_in_page</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
-                <md-icon>edit</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
-                <md-icon>delete</md-icon>
-              </md-button>
-            </md-table-cell>
-          </md-table-row>
-        </md-table-body>
-      </md-table>
-    </md-table-card>
+        <md-table>
+          <md-table-header>
+            <md-table-row>
+              <md-table-head md-sort-by="code">Código</md-table-head>
+              <md-table-head md-sort-by="name">Nombre</md-table-head>
+              <md-table-head>
+                <md-icon>attach_money</md-icon>
+              </md-table-head>
+              <md-table-head>Categoría</md-table-head>
+              <md-table-head>Status</md-table-head>
+              <md-table-head class="button_header">Ver</md-table-head>
+              <md-table-head class="button_header">Editar</md-table-head>
+              <md-table-head class="button_header">Borrar</md-table-head>
+            </md-table-row>
+          </md-table-header>
 
+          <md-table-body>
+            <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
+              <md-table-cell>{{row.code}}</md-table-cell>
+              <md-table-cell>{{row.name}}</md-table-cell>
+              <md-table-cell>{{row.price}}</md-table-cell>
+              <md-table-cell>{{row.category.name}}</md-table-cell>
+              <md-table-cell>{{row.status.name}}</md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
+                  <md-icon>find_in_page</md-icon>
+                </md-button>
+              </md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
+                  <md-icon>edit</md-icon>
+                </md-button>
+              </md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
+                  <md-icon>delete</md-icon>
+                </md-button>
+              </md-table-cell>
+            </md-table-row>
+          </md-table-body>
+        </md-table>
+      </md-table-card>
+    </md-layout>
     <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addProduct()">
       <md-icon>add</md-icon>
     </md-button>
@@ -136,7 +141,7 @@ export default {
   width: 20px;
 }
 
-.description {
-  max-length: 100px !important;
+.md-table-card {
+  margin-top: 18px;
 }
 </style>

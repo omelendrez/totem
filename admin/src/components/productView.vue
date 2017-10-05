@@ -1,50 +1,59 @@
 <template>
-  <div class="productEdit">
+  <div class="productView">
 
-    <md-card class="card-example">
-      <md-card-area md-inset>
-        <md-card-media md-ratio="16:9">
-          <md-image :md-src="src"></md-image>
-        </md-card-media>
+    <md-toolbar class="md-primary">
+      <span class="md-title">Vista De Producto</span>
+    </md-toolbar>
 
-        <md-card-header>
-          <div class="md-subhead">
-            {{product.category.name}}
-          </div>
-          <div class="md-title">
-            {{product.name}}
-          </div>
-          <div class="md-subhead">
-            Código: {{product.code}}
-          </div>
-        </md-card-header>
+    <md-layout md-align="center">
 
-        <md-card-content>
-          {{product.description}}
-          <h4>Precio: {{product.price}}</h4>
-          <div class="md-subhead">
-            Info
-          </div>
-          <div>
-            Status: {{product.status.name}}
-          </div>
-          <div>
-            Creado: {{product.created_at}}
-          </div>
-          <div>
-            Modificado: {{product.updated_at}}
-          </div>
-        </md-card-content>
+      <md-card class="product-card">
+        <md-card-area md-inset>
+          <md-card-media>
+            <md-image :md-src="src"></md-image>
+          </md-card-media>
 
-      </md-card-area>
+          <md-card-header>
+            <div class="md-subhead">
+              {{product.category.name}}
+            </div>
+            <div class="md-title">
+              {{product.name}}
+            </div>
+            <div class="md-subhead">
+              Código: {{product.code}}
+            </div>
+          </md-card-header>
 
-      <md-card-actions>
-        <md-button class="md-accent md-raised" v-on:click.native="editProduct(product.id)">Modificar</md-button>
-        <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
-      </md-card-actions>
+          <md-card-content>
+            {{product.description}}
+            <h2>Precio:
+              <md-icon>attach_money</md-icon>
+              {{product.price}}</h2>
+            <div class="md-subhead">
+              Info
+            </div>
+            <div>
+              Status: {{product.status.name}}
+            </div>
+            <div>
+              Creado: {{product.created_at}}
+            </div>
+            <div>
+              Modificado: {{product.updated_at}}
+            </div>
+          </md-card-content>
 
-    </md-card>
+        </md-card-area>
 
+        <md-card-actions>
+          <md-button class="md-accent md-raised" v-on:click.native="editProduct(product.id)">Modificar</md-button>
+          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
+        </md-card-actions>
+
+      </md-card>
+
+    </md-layout>
   </div>
 </template>
 
@@ -54,6 +63,7 @@ export default {
   data() {
     return {
       product: {},
+      discounts: {},
       src: '/static/hamburger.png'
     };
   },
@@ -83,7 +93,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card-example {
+.product-card {
   margin: 20px;
   padding: 20px;
   width: 30%;

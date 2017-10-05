@@ -4,52 +4,56 @@
       <h1 class="md-title">Usuarios</h1>
     </md-toolbar>
 
-    <md-table-card>
-      <md-toolbar>
-        <h1 class="md-title">Lista de Usuarios</h1>
+    <md-layout md-align="center">
 
-        <md-button class="md-icon-button">
-          <md-icon>search</md-icon>
-        </md-button>
+      <md-table-card>
+        <md-toolbar>
+          <h1 class="md-title">Lista de Usuarios</h1>
 
-      </md-toolbar>
+          <md-button class="md-icon-button">
+            <md-icon>search</md-icon>
+          </md-button>
 
-      <md-table>
-        <md-table-header>
-          <md-table-row>
-            <md-table-head md-sort-by="code">Usuario</md-table-head>
-            <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head>Status</md-table-head>
-            <md-table-head class="button_header">Ver</md-table-head>
-            <md-table-head class="button_header">Editar</md-table-head>
-            <md-table-head class="button_header">Borrar</md-table-head>
-          </md-table-row>
-        </md-table-header>
+        </md-toolbar>
 
-        <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in users" :key="rowIndex" :md-item="row">
-            <md-table-cell>{{row.user_name}}</md-table-cell>
-            <md-table-cell>{{row.full_name}}</md-table-cell>
-            <md-table-cell>{{row.status.name}}</md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewUser(row.id)">
-                <md-icon>find_in_page</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editUser(row.id)">
-                <md-icon>edit</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.user_name)">
-                <md-icon>delete</md-icon>
-              </md-button>
-            </md-table-cell>
-          </md-table-row>
-        </md-table-body>
-      </md-table>
-    </md-table-card>
+        <md-table>
+          <md-table-header>
+            <md-table-row>
+              <md-table-head md-sort-by="code">Usuario</md-table-head>
+              <md-table-head md-sort-by="name">Nombre</md-table-head>
+              <md-table-head>Status</md-table-head>
+              <md-table-head class="button_header">Ver</md-table-head>
+              <md-table-head class="button_header">Editar</md-table-head>
+              <md-table-head class="button_header">Borrar</md-table-head>
+            </md-table-row>
+          </md-table-header>
+
+          <md-table-body>
+            <md-table-row v-for="(row, rowIndex) in users" :key="rowIndex" :md-item="row">
+              <md-table-cell>{{row.user_name}}</md-table-cell>
+              <md-table-cell>{{row.full_name}}</md-table-cell>
+              <md-table-cell>{{row.status.name}}</md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewUser(row.id)">
+                  <md-icon>find_in_page</md-icon>
+                </md-button>
+              </md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editUser(row.id)">
+                  <md-icon>edit</md-icon>
+                </md-button>
+              </md-table-cell>
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.user_name)">
+                  <md-icon>delete</md-icon>
+                </md-button>
+              </md-table-cell>
+            </md-table-row>
+          </md-table-body>
+        </md-table>
+      </md-table-card>
+
+    </md-layout>
 
     <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addUser()">
       <md-icon>add</md-icon>
@@ -130,5 +134,9 @@ export default {
 <style scoped>
 .button_header {
   width: 20px;
+}
+
+.md-table-card {
+  margin-top: 18px;
 }
 </style>

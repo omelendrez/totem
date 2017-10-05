@@ -2,36 +2,40 @@
   <div class="userEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Usero</h1>
+      <h1 class="md-title">Editando Usuario</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container md-clearable>
-          <label>Usuario</label>
-          <md-input v-model="user.user_name"></md-input>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="user.full_name"></md-input>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Usuario</label>
+            <md-input v-model="user.user_name"></md-input>
+          </md-input-container>
 
-        <md-input-container>
-          <label>Status</label>
-          <md-select v-model="user.status_id">
-            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
-              {{status.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="user.full_name"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="user.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+
+    </md-layout>
 
     <md-dialog ref="dialog1">
       <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
@@ -131,6 +135,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

@@ -1,46 +1,52 @@
 <template>
-  <div class="discountEdit">
+  <div class="discounView">
 
-    <md-card class="card-example">
-      <md-card-area md-inset>
+    <md-toolbar class="md-primary">
+      <span class="md-title">Vista De Descuento</span>
+    </md-toolbar>
 
-        <md-card-header>
-          <div class="md-title">
-            {{discount.name}}
-          </div>
-          <div class="md-subheading">
-            {{discount.description}}
-          </div>
-        </md-card-header>
+    <md-layout md-align="center">
 
-        <md-card-content>
-          <div>
-            Porcentaje: {{discount.percent}} %
-          </div>
+      <md-card class="discount-card">
+        <md-card-area md-inset>
 
-          <div class="md-subhead">
-            Info
-          </div>
-          <div>
-            Status: {{discount.status.name}}
-          </div>
-          <div>
-            Creado: {{discount.created_at}}
-          </div>
-          <div>
-            Modificado: {{discount.updated_at}}
-          </div>
-        </md-card-content>
+          <md-card-header>
+            <div class="md-title">
+              {{discount.name}}
+            </div>
+            <div class="md-subheading">
+              {{discount.description}}
+            </div>
+          </md-card-header>
 
-      </md-card-area>
+          <md-card-content>
+            <div>
+              Porcentaje: {{discount.percent}} %
+            </div>
 
-      <md-card-actions>
-        <md-button class="md-accent md-raised" v-on:click.native="editDiscount(discount.id)">Modificar</md-button>
-        <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
-      </md-card-actions>
+            <div class="md-subhead">
+              Info
+            </div>
+            <div>
+              Status: {{discount.status.name}}
+            </div>
+            <div>
+              Creado: {{discount.created_at}}
+            </div>
+            <div>
+              Modificado: {{discount.updated_at}}
+            </div>
+          </md-card-content>
 
-    </md-card>
+        </md-card-area>
 
+        <md-card-actions>
+          <md-button class="md-accent md-raised" v-on:click.native="editDiscount(discount.id)">Modificar</md-button>
+          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
+        </md-card-actions>
+
+      </md-card>
+    </md-layout>
   </div>
 </template>
 
@@ -78,9 +84,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card-example {
+.discount-card {
   margin: 20px;
   padding: 20px;
-  width: 30%;
+  width: 40%;
 }
 </style>

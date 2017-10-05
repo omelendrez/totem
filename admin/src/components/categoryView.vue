@@ -1,39 +1,45 @@
 <template>
   <div class="categoryView">
 
-    <md-card class="card-example">
-      <md-card-area md-inset>
+    <md-toolbar class="md-primary">
+      <span class="md-title">Vista De Categoría</span>
+    </md-toolbar>
 
-        <md-card-header>
-          <div class="md-title">
-            {{category.name}}
-          </div>
-        </md-card-header>
+    <md-layout md-align="center">
 
-        <md-card-content>
-          <div class="md-subhead">
-            Info
-          </div>
-          <div>
-            Status: {{category.status.name}}
-          </div>
-          <div>
-            Creado: {{category.created_at}}
-          </div>
-          <div>
-            Modificado: {{category.updated_at}}
-          </div>
-        </md-card-content>
+      <md-card class="category-card">
+        <md-card-area md-inset>
 
-      </md-card-area>
+          <md-card-header>
+            <div class="md-title">
+              {{category.name}}
+            </div>
+          </md-card-header>
 
-      <md-card-actions>
-        <md-button class="md-accent md-raised" v-on:click.native="editCategory(category.id)">Modificar</md-button>
-        <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
-      </md-card-actions>
+          <md-card-content>
+            <div class="md-subhead">
+              Info
+            </div>
+            <div>
+              Status: {{category.status.name}}
+            </div>
+            <div>
+              Creado: {{category.created_at}}
+            </div>
+            <div>
+              Modificado: {{category.updated_at}}
+            </div>
+          </md-card-content>
 
-    </md-card>
+        </md-card-area>
 
+        <md-card-actions>
+          <md-button class="md-accent md-raised" v-on:click.native="editCategory(category.id)">Modificar</md-button>
+          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
+        </md-card-actions>
+
+      </md-card>
+    </md-layout>
   </div>
 </template>
 
@@ -71,9 +77,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card-example {
+.category-card {
   margin: 20px;
   padding: 20px;
-  width: 30%;
+  width: 40%;
 }
 </style>
