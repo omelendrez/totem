@@ -52,7 +52,8 @@ module.exports = {
         attributes: [
           'id',
           'name',
-          'status_id', [sequelize.fn('date_format', sequelize.col('category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
+          'status_id', 
+          [sequelize.fn('date_format', sequelize.col('category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('category.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
         ]
       })
