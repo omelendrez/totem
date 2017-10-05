@@ -9,6 +9,7 @@ import Reports from '@/components/reports';
 import Categories from '@/components/categories';
 import CategoryAdd from '@/components/categoryAdd';
 import CategoryEdit from '@/components/categoryEdit';
+import CategoryView from '@/components/categoryView';
 
 import Products from '@/components/products';
 import ProductAdd from '@/components/productAdd';
@@ -61,6 +62,11 @@ export default new Router({
       path: '/categoryEdit/:id',
       name: 'CategoryEdit',
       component: CategoryEdit
+    },
+    {
+      path: '/categoryView/:id',
+      name: 'CategoryView',
+      component: CategoryView
     },
     {
       path: '/products',

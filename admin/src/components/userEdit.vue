@@ -2,27 +2,40 @@
   <div class="userEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Usero</h1>
+      <h1 class="md-title">Editando Usuario</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container md-clearable>
-          <label>Usuario</label>
-          <md-input v-model="user.user_name"></md-input>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="user.full_name"></md-input>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Usuario</label>
+            <md-input v-model="user.user_name"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="user.full_name"></md-input>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="user.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+
+    </md-layout>
 
     <md-dialog ref="dialog1">
       <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
@@ -44,7 +57,8 @@ export default {
         title: '',
         content: ''
       },
-      user: {}
+      user: {},
+      statuses: []
     };
   },
   methods: {
@@ -52,6 +66,15 @@ export default {
       this.$http.get(`http://localhost:3000/users/${id}`)
         .then((res) => {
           this.user = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
         })
         .catch((err) => {
           console.log(err.data);
@@ -68,7 +91,7 @@ export default {
         const editUser = {
           user_name: this.user.user_name,
           full_name: this.user.full_name,
-          status: 1
+          status_id: this.user.status_id
         };
 
         const id = this.user.id;
@@ -101,6 +124,7 @@ export default {
     }
   },
   created() {
+    this.fetchStatus();
     this.fetchUser(this.$route.params.id);
   }
 };
@@ -111,6 +135,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

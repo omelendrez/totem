@@ -5,44 +5,48 @@
       <h1 class="md-title">Crear Producto</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container>
-          <label>Categoría</label>
-          <md-select v-model="product.category_id">
-            <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
-              {{category.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container>
-          <label>Código</label>
-          <md-input required v-model="product.code"></md-input>
-        </md-input-container>
+          <md-input-container>
+            <label>Categoría</label>
+            <md-select v-model="product.category_id">
+              <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
+                {{category.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <md-input-container>
-          <label>Nombre</label>
-          <md-input required v-model="product.name"></md-input>
-        </md-input-container>
+          <md-input-container>
+            <label>Código</label>
+            <md-input required v-model="product.code"></md-input>
+          </md-input-container>
 
-        <md-input-container>
-          <label>Descripción</label>
-          <md-input v-model="product.description"></md-input>
-        </md-input-container>
+          <md-input-container>
+            <label>Nombre</label>
+            <md-input required v-model="product.name"></md-input>
+          </md-input-container>
 
-        <md-input-container>
-          <md-icon>attach_money</md-icon>
-          <label>Precio</label>
-          <md-input type="number" v-model="product.price"></md-input>
-        </md-input-container>
+          <md-input-container>
+            <label>Descripción</label>
+            <md-input v-model="product.description"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container>
+            <md-icon>attach_money</md-icon>
+            <label>Precio</label>
+            <md-input type="number" v-model="product.price"></md-input>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+
+    </md-layout>
 
     <md-dialog ref="dialog1">
       <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
@@ -129,6 +133,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

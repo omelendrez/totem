@@ -5,27 +5,40 @@
       <h1 class="md-title">Editando Categoría</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="category.name"></md-input>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="category.name"></md-input>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="category.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-    <md-dialog ref="dialog1">
-      <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
-      <md-dialog-content>{{errorMsg.content}}</md-dialog-content>
-      <md-dialog-actions>
-        <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
-      </md-dialog-actions>
-    </md-dialog>
+          <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+
+      <md-dialog ref="dialog1">
+        <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
+        <md-dialog-content>{{errorMsg.content}}</md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+
+    </md-layout>
 
   </div>
 </template>
@@ -39,7 +52,8 @@ export default {
         title: '',
         content: ''
       },
-      category: {}
+      category: {},
+      statuses: []
     };
   },
   methods: {
@@ -47,6 +61,15 @@ export default {
       this.$http.get(`http://localhost:3000/categories/${id}`)
         .then((res) => {
           this.category = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
+    fetchStatus() {
+      this.$http.get('http://localhost:3000/status')
+        .then((res) => {
+          this.statuses = res.body;
         })
         .catch((err) => {
           console.log(err.data);
@@ -61,7 +84,8 @@ export default {
         this.showErrorMsg('dialog1');
       } else {
         const editCategory = {
-          name: this.category.name
+          name: this.category.name,
+          status_id: this.category.status_id
         };
 
         const id = this.category.id;
@@ -94,6 +118,7 @@ export default {
     }
   },
   created() {
+    this.fetchStatus();
     this.fetchCategory(this.$route.params.id);
   }
 };
@@ -104,6 +129,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 40%;
 }
 </style>

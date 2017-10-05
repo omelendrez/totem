@@ -1,41 +1,44 @@
 {
-    "development": {
-        "username": "escng_totem",
-        "password": "M1a4$1t4E8r0",
-        "database": "escng_totem",
-        "host": "127.0.0.1",
-        "dialect": "mysql",
-        "define": {
-            "charset": "utf8",
-            "collate": "utf8_general_ci",
-            "freezeTableName": true,
-            "underscored": true
-        }
+  "development": {
+    "username": "escng_totem",
+    "password": "M1a4$1t4E8r0",
+    "database": "escng_totem",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci",
+      "freezeTableName": true,
+      "underscored": true
     },
-    "test": {
-        "username": "escng_totem",
-        "password": "M1a4$1t4E8r0",
-        "database": "escng_totem",
-        "host": "127.0.0.1",
-        "dialect": "mysql",
-        "define": {
-            "charset": "utf8",
-            "collate": "utf8_general_ci",
-            "freezeTableName": true,
-            "underscored": true
-        }
+    "timezone": "-03:00"
+  },
+  "test": {
+    "username": "escng_totem",
+    "password": "M1a4$1t4E8r0",
+    "database": "escng_totem",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci",
+      "freezeTableName": true,
+      "underscored": true
     },
-    "production": {
-        "username": "escng_totem",
-        "password": "M1a4$1t4E8r0",
-        "database": "escng_totem",
-        "host": "127.0.0.1",
-        "dialect": "mysql",
-        "define": {
-            "charset": "utf8",
-            "collate": "utf8_general_ci",
-            "freezeTableName": true,
-            "underscored": true
-        }
-    }
+    "timezone": "-03:00"
+  },
+  "production": {
+    "username": "escng_totem",
+    "password": "M1a4$1t4E8r0",
+    "database": "escng_totem",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8",
+      "collate": "utf8_general_ci",
+      "freezeTableName": true,
+      "underscored": true
+    },
+    "timezone": "-03:00"
+  }
 }

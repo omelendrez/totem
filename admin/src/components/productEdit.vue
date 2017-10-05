@@ -5,53 +5,56 @@
       <h1 class="md-title">Editando Producto</h1>
     </md-toolbar>
 
-    <md-whiteframe class="whiteframe">
-      <form novalidate @submit.stop.prevent="submit">
+    <md-layout md-align="center">
 
-        <md-input-container>
-          <label>Categoría</label>
-          <md-select v-model="product.category_id">
-            <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
-              {{category.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+      <md-whiteframe class="whiteframe">
+        <form novalidate @submit.stop.prevent="submit">
 
-        <md-input-container md-clearable>
-          <label>Código</label>
-          <md-input v-model="product.code"></md-input>
-        </md-input-container>
+          <md-input-container>
+            <label>Categoría</label>
+            <md-select v-model="product.category_id">
+              <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
+                {{category.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Nombre</label>
-          <md-input v-model="product.name"></md-input>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Código</label>
+            <md-input v-model="product.code"></md-input>
+          </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Descripción</label>
-          <md-textarea v-model="product.description"></md-textarea>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="product.name"></md-input>
+          </md-input-container>
 
-        <md-input-container md-clearable>
-          <label>Precio</label>
-          <md-icon>attach_money</md-icon>
-          <md-input type="number" v-model="product.price"></md-input>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Descripción</label>
+            <md-textarea v-model="product.description"></md-textarea>
+          </md-input-container>
 
-        <md-input-container>
-          <label>Status</label>
-          <md-select v-model="product.status_id">
-            <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
-              {{status.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container md-clearable>
+            <label>Precio</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.price"></md-input>
+          </md-input-container>
 
-        <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
-        <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+          <md-input-container>
+            <label>Status</label>
+            <md-select v-model="product.status_id">
+              <md-option v-for="status in statuses" v-bind:value="status.id" :key="status.id">
+                {{status.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-      </form>
-    </md-whiteframe>
+          <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
+          <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
+
+        </form>
+      </md-whiteframe>
+    </md-layout>
 
     <md-dialog ref="dialog1">
       <md-dialog-title>{{errorMsg.title}}</md-dialog-title>
@@ -119,7 +122,8 @@ export default {
           name: this.product.name,
           description: this.product.description,
           price: this.product.price,
-          category_id: this.product.category_id
+          category_id: this.product.category_id,
+          status_id: this.product.status_id
         };
 
         const id = this.product.id;
@@ -164,6 +168,6 @@ export default {
 .whiteframe {
   margin: 20px;
   padding: 20px;
-  width: 50%;
+  width: 30%;
 }
 </style>

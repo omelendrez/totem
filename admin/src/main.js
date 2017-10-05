@@ -14,7 +14,8 @@ new Vue({
   data() {
     return {
       logged: false,
-      last_call: ''
+      last_call: '',
+      user_id: 0
     };
   },
   render: h => h(App)

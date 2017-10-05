@@ -4,49 +4,56 @@
       <h1 class="md-title">Descuentos</h1>
     </md-toolbar>
 
-    <md-table-card>
-      <md-toolbar>
-        <h1 class="md-title">Lista de Descuentos</h1>
-      </md-toolbar>
+    <md-layout md-align="center">
 
-      <md-table>
-        <md-table-header>
-          <md-table-row>
-            <md-table-head md-sort-by="name">Nombre</md-table-head>
-            <md-table-head>Descripción</md-table-head>
-            <md-table-head md-numeric>Porcentaje</md-table-head>
+      <md-table-card>
+        <md-toolbar>
+          <h1 class="md-title">Lista de Descuentos</h1>
+        </md-toolbar>
 
-            <md-table-head class="button_header">Ver</md-table-head>
-            <md-table-head class="button_header">Editar</md-table-head>
-            <md-table-head class="button_header">Borrar</md-table-head>
-          </md-table-row>
-        </md-table-header>
+        <md-table>
+          <md-table-header>
+            <md-table-row>
+              <md-table-head md-sort-by="name">Nombre</md-table-head>
+              <md-table-head>Porcentaje</md-table-head>
+              <md-table-head>Status</md-table-head>
 
-        <md-table-body>
-          <md-table-row v-for="(row, rowIndex) in discounts" :key="rowIndex" :md-item="row">
-            <md-table-cell>{{row.name}}</md-table-cell>
-            <md-table-cell>{{row.description}}</md-table-cell>
-            <md-table-cell md-numeric>{{row.percent}}</md-table-cell>
+              <md-table-head class="button_header">Ver</md-table-head>
+              <md-table-head class="button_header">Editar</md-table-head>
+              <md-table-head class="button_header">Borrar</md-table-head>
+            </md-table-row>
+          </md-table-header>
 
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewDiscount(row.id)">
-                <md-icon>find_in_page</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="editDiscount(row.id)">
-                <md-icon>edit</md-icon>
-              </md-button>
-            </md-table-cell>
-            <md-table-cell>
-              <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
-                <md-icon>delete</md-icon>
-              </md-button>
-            </md-table-cell>
-          </md-table-row>
-        </md-table-body>
-      </md-table>
-    </md-table-card>
+          <md-table-body>
+            <md-table-row v-for="(row, rowIndex) in discounts" :key="rowIndex" :md-item="row">
+              <md-table-cell>{{row.name}}</md-table-cell>
+              <md-table-cell>{{row.percent}} %</md-table-cell>
+              <md-table-cell>{{row.status.name}}</md-table-cell>
+
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewDiscount(row.id)">
+                  <md-icon>find_in_page</md-icon>
+                </md-button>
+              </md-table-cell>
+
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editDiscount(row.id)">
+                  <md-icon>edit</md-icon>
+                </md-button>
+              </md-table-cell>
+
+              <md-table-cell>
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
+                  <md-icon>delete</md-icon>
+                </md-button>
+              </md-table-cell>
+
+            </md-table-row>
+          </md-table-body>
+        </md-table>
+      </md-table-card>
+
+    </md-layout>
 
     <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addDiscount()">
       <md-icon>add</md-icon>
@@ -113,6 +120,10 @@ export default {
     }
   },
   created() {
+    if (!this.$root.$data.logged) {
+      this.$router.push({ name: 'Login' });
+    }
+
     this.fetchDiscounts();
     this.$root.$data.last_call = 'discounts';
   }
@@ -123,5 +134,9 @@ export default {
 <style scoped>
 .button_header {
   width: 20px;
+}
+
+.md-table-card {
+  margin-top: 18px;
 }
 </style>

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     status_id: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 2
     }
   });
 
