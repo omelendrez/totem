@@ -51,7 +51,8 @@ export default {
       errorMsg: {
         title: '',
         content: ''
-      }
+      },
+      api_url: null
     };
   },
   methods: {
@@ -63,7 +64,7 @@ export default {
         user_name: this.user.user_name,
         password: this.user.password
       };
-      this.$http.get('http://localhost:3000/login', { params })
+      this.$http.get(`${this.api_url}login`, { params })
         .then((res) => {
           this.user = res.body;
           setTimeout(() => {
@@ -90,6 +91,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.$root.$data.logged = false;
   },
   updated() {

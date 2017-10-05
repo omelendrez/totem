@@ -48,7 +48,8 @@ export default {
         title: '',
         content: ''
       },
-      user: {}
+      user: {},
+      api_url: null
     };
   },
   methods: {
@@ -67,7 +68,7 @@ export default {
           status: 1
         };
 
-        this.$http.post('http://localhost:3000/users', newUser)
+        this.$http.post(`${this.api_url}users`, newUser)
           .then(() => {
             this.$router.push({ name: 'Users' });
           })
@@ -92,6 +93,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
   }
 };
 </script>

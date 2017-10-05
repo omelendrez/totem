@@ -53,7 +53,8 @@ export default {
         title: '',
         content: ''
       },
-      discount: {}
+      discount: {},
+      api_url: null
     };
   },
   methods: {
@@ -72,7 +73,7 @@ export default {
           status_id: 2
         };
 
-        this.$http.post('http://localhost:3000/discounts', newDiscount)
+        this.$http.post(`${this.api_url}discounts`, newDiscount)
           .then(() => {
             this.$router.push({ name: 'Discounts' });
           })
@@ -97,6 +98,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
   }
 };
 </script>

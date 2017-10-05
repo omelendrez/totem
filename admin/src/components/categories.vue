@@ -73,12 +73,13 @@ export default {
         content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      api_url: null
     };
   },
   methods: {
     fetchCategories() {
-      this.$http.get('http://localhost:3000/categories')
+      this.$http.get(`${this.api_url}categories`)
         .then((res) => {
           this.categories = res.body;
         })
@@ -96,7 +97,7 @@ export default {
       this.$router.push({ name: 'CategoryView', params: { id } });
     },
     deleteCategory(id) {
-      this.$http.delete(`http://localhost:3000/categories/${id}`)
+      this.$http.delete(`${this.api_url}categories/${id}`)
         .then((res) => {
           console.log(res.body);
           this.fetchCategories();
@@ -120,6 +121,7 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
+    this.api_url = this.$root.$data.api_url;
     this.$root.$data.last_call = 'categories';
     this.fetchCategories();
   }

@@ -27,7 +27,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div>
+            <div v-if="this.discount.status">
               Status: {{discount.status.name}}
             </div>
             <div>
@@ -55,12 +55,13 @@ export default {
   name: 'discountView',
   data() {
     return {
-      discount: {}
+      discount: {},
+      api_url: null
     };
   },
   methods: {
     fetchDiscount(id) {
-      this.$http.get(`http://localhost:3000/discounts/${id}`)
+      this.$http.get(`${this.api_url}discounts/${id}`)
         .then((res) => {
           this.discount = res.body;
         })
@@ -76,6 +77,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchDiscount(this.$route.params.id);
     this.$root.$data.last_call = 'discountView';
   }

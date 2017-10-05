@@ -76,12 +76,13 @@ export default {
         content: 'Realmente desea eliminar el usuario seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      api_url: null
     };
   },
   methods: {
     fetchUsers() {
-      this.$http.get('http://localhost:3000/users')
+      this.$http.get(`${this.api_url}users`)
         .then((res) => {
           this.users = res.body;
         })
@@ -99,7 +100,7 @@ export default {
       this.$router.push({ name: 'UserView', params: { id } });
     },
     deleteUser(id) {
-      this.$http.delete(`http://localhost:3000/users/${id}`)
+      this.$http.delete(`${this.api_url}users/${id}`)
         .then((res) => {
           console.log(res.body);
           this.fetchUsers();
@@ -123,7 +124,7 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
-
+    this.api_url = this.$root.$data.api_url;
     this.fetchUsers();
     this.$root.$data.last_call = 'users';
   }

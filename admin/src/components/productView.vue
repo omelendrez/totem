@@ -14,7 +14,7 @@
           </md-card-media>
 
           <md-card-header>
-            <div class="md-subhead">
+            <div class="md-subhead" v-if="this.product.category">
               {{product.category.name}}
             </div>
             <div class="md-title">
@@ -33,7 +33,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div>
+            <div v-if="this.product.status">
               Status: {{product.status.name}}
             </div>
             <div>
@@ -64,12 +64,13 @@ export default {
     return {
       product: {},
       discounts: {},
-      src: '/static/hamburger.png'
+      src: '/static/hamburger.png',
+      api_url: null
     };
   },
   methods: {
     fetchProduct(id) {
-      this.$http.get(`http://localhost:3000/products/${id}`)
+      this.$http.get(`${this.api_url}products/${id}`)
         .then((res) => {
           this.product = res.body;
         })
@@ -85,6 +86,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchProduct(this.$route.params.id);
     this.$root.$data.last_call = 'productView';
   }
@@ -97,5 +99,9 @@ export default {
   margin: 20px;
   padding: 20px;
   width: 30%;
+}
+
+.md-image {
+  width: 50% !important;
 }
 </style>

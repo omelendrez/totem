@@ -26,7 +26,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div>
+            <div v-if="this.user.status">
               Status: {{user.status.name}}
             </div>
             <div>
@@ -57,12 +57,13 @@ export default {
   data() {
     return {
       user: {},
-      src: null
+      src: null,
+      api_url: null
     };
   },
   methods: {
     fetchProduct(id) {
-      this.$http.get(`http://localhost:3000/users/${id}`)
+      this.$http.get(`${this.api_url}users/${id}`)
         .then((res) => {
           this.user = res.body;
         })
@@ -78,6 +79,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchProduct(this.$route.params.id);
     this.$root.$data.last_call = 'userView';
   }

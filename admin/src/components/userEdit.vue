@@ -58,12 +58,13 @@ export default {
         content: ''
       },
       user: {},
-      statuses: []
+      statuses: [],
+      api_url: null
     };
   },
   methods: {
     fetchUser(id) {
-      this.$http.get(`http://localhost:3000/users/${id}`)
+      this.$http.get(`${this.api_url}users/${id}`)
         .then((res) => {
           this.user = res.body;
         })
@@ -72,7 +73,7 @@ export default {
         });
     },
     fetchStatus() {
-      this.$http.get('http://localhost:3000/status')
+      this.$http.get(`${this.api_url}status`)
         .then((res) => {
           this.statuses = res.body;
         })
@@ -95,7 +96,7 @@ export default {
         };
 
         const id = this.user.id;
-        this.$http.put(`http://localhost:3000/users/${id}`, editUser)
+        this.$http.put(`${this.api_url}users/${id}`, editUser)
           .then(() => {
             this.back();
           })
@@ -124,6 +125,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchStatus();
     this.fetchUser(this.$route.params.id);
   }

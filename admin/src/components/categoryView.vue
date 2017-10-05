@@ -20,7 +20,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div>
+            <div v-if="this.category.status">
               Status: {{category.status.name}}
             </div>
             <div>
@@ -48,12 +48,13 @@ export default {
   name: 'categoryView',
   data() {
     return {
-      category: {}
+      category: {},
+      api_url: null
     };
   },
   methods: {
     fetchCategory(id) {
-      this.$http.get(`http://localhost:3000/categories/${id}`)
+      this.$http.get(`${this.api_url}categories/${id}`)
         .then((res) => {
           this.category = res.body;
         })
@@ -69,6 +70,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchCategory(this.$route.params.id);
     this.$root.$data.last_call = 'categoryView';
   }
