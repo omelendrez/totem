@@ -2,7 +2,7 @@
   <div class="discountEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Descuento</h1>
+      <h1 class="md-title">{{discount.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">

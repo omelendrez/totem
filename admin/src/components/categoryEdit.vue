@@ -2,7 +2,7 @@
   <div class="categoryEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Categoría</h1>
+      <h1 class="md-title">{{category.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">

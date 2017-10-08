@@ -2,7 +2,7 @@
   <div class="productView">
 
     <md-toolbar class="md-primary">
-      <span class="md-title">Vista De Producto</span>
+      <span class="md-title">{{product.name}}</span>
     </md-toolbar>
 
     <md-layout md-align="center">
@@ -47,7 +47,7 @@
         </md-card-area>
 
         <md-card-actions>
-          <md-button class="md-accent md-raised" v-on:click.native="editProduct(product.id)">Modificar</md-button>
+          <md-button class="md-accent md-raised" v-on:click.native="editProduct(product.id)">Editar</md-button>
           <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
         </md-card-actions>
 

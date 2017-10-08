@@ -2,55 +2,68 @@
   <div class="discounView">
 
     <md-toolbar class="md-primary">
-      <span class="md-title">Vista De Descuento</span>
+      <span class="md-title">{{discount.name}}</span>
     </md-toolbar>
 
     <md-layout md-align="center">
+      <md-tabs>
+        <md-tab id="discocunt" md-label="Descuento">
+          <md-layout md-align="center">
 
-      <md-card class="discount-card">
-        <md-card-area md-inset>
+            <md-card class="discount-card">
+              <md-card-area md-inset>
 
-          <md-card-header>
-            <div class="md-title">
-              {{discount.name}}
-            </div>
-            <div class="md-subheading">
-              {{discount.description}}
-            </div>
-          </md-card-header>
+                <md-card-header>
+                  <div class="md-title">
+                    {{discount.name}}
+                  </div>
+                  <div class="md-subheading">
+                    {{discount.description}}
+                  </div>
+                </md-card-header>
 
-          <md-card-content>
-            <div>
-              Porcentaje: {{discount.percent}} %
-            </div>
+                <md-card-content>
+                  <div>
+                    Porcentaje: {{discount.percent}} %
+                  </div>
 
-            <div class="md-subhead">
-              Info
-            </div>
-            <div v-if="this.discount.status">
-              Status: {{discount.status.name}}
-            </div>
-            <div>
-              Creado: {{discount.created_at}}
-            </div>
-            <div>
-              Modificado: {{discount.updated_at}}
-            </div>
-          </md-card-content>
+                  <div class="md-subhead">
+                    Info
+                  </div>
+                  <div v-if="this.discount.status">
+                    Status: {{discount.status.name}}
+                  </div>
+                  <div>
+                    Creado: {{discount.created_at}}
+                  </div>
+                  <div>
+                    Modificado: {{discount.updated_at}}
+                  </div>
+                </md-card-content>
 
-        </md-card-area>
+              </md-card-area>
 
-        <md-card-actions>
-          <md-button class="md-accent md-raised" v-on:click.native="editDiscount(discount.id)">Modificar</md-button>
-          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
-        </md-card-actions>
+              <md-card-actions>
+                <md-button class="md-accent md-raised" v-on:click.native="editDiscount(discount.id)">Editar</md-button>
+                <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
+              </md-card-actions>
 
-      </md-card>
+            </md-card>
+          </md-layout>
+        </md-tab>
+        <md-tab id="products" md-label="Productos">
+          <DiscountProduct/>
+        </md-tab>
+      </md-tabs>
+
     </md-layout>
   </div>
 </template>
 
 <script>
+
+import DiscountProduct from './discountProduct';
+
 export default {
   name: 'discountView',
   data() {
@@ -80,6 +93,9 @@ export default {
     this.api_url = this.$root.$data.api_url;
     this.fetchDiscount(this.$route.params.id);
     this.$root.$data.last_call = 'discountView';
+  },
+  components: {
+    DiscountProduct
   }
 };
 </script>

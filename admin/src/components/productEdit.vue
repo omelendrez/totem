@@ -2,7 +2,7 @@
   <div class="productEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Producto</h1>
+      <h1 class="md-title">{{product.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">

@@ -1,5 +1,7 @@
 "use strict";
 const ProductDiscount = require("../models").product_discount;
+var sequelize = require('sequelize');
+
 
 module.exports = {
 
@@ -13,41 +15,30 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
-  findAll(req, res) {
-    return ProductDiscount
-      .findAll({
-        raw: true
-      })
-      .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
-        "error": "Not found"
-      }))
-      .catch(error => res.status(400).send(error));
-  },
+  findByDiscountId(req, res) {
+    const filter = req.query.filter;
 
-  findById(req, res) {
-    return ProductDiscount
-      .findOne({
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
-        "error": "Not found"
-      }))
-      .catch(error => res.status(400).send(error));
-  },
+    if(filter === 'active') {
+      var query = 'select pd.id,c.name as "category", true as "assigned", p.code,p.name from product_discount pd inner join product p on p.id = pd.product_id inner join category c on c.id = p.category_id and p.status_id = 1 and pd.discount_id = ' + req.params.id;
+    } else {
+      var query = 'select p.id,c.name as "category", false as "assigned", p.code,p.name from product p inner join category c on c.id = p.category_id and p.status_id = 1 and p.id not in (select product_id from product_discount where discount_id = ' + req.params.id + ')';      
+    }
 
-  findByProductId(req, res) {
-    return ProductDiscount
-      .findOne({
-        where: {
-          product_id: req.params.id
-        }
+    const mysql = require('mysql2');
+    
+    const con = mysql.createConnection({
+      host: "127.0.0.1",
+      user: "escng_totem",
+      password: "M1a4$1t4E8r0",
+      database: "escng_totem"
+    });
+    
+    con.connect(function(err) {
+      con.query(query,  (err, result, fields) => {
+        res.json(result)
       })
-      .then(productDiscount => productDiscount ? res.json(productDiscount) : res.send(404).json({
-        "error": "Not found"
-      }))
-      .catch(error => res.status(400).send(error));
+    });
+
   },
 
   delete(req, res) {

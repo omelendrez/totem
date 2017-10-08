@@ -2,7 +2,7 @@
   <div class="userView">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Vista de Usuario</h1>
+      <h1 class="md-title">{{user.full_name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">

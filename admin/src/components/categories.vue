@@ -63,6 +63,9 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'categories',
   data() {
@@ -77,6 +80,9 @@ export default {
       api_url: null
     };
   },
+  computed: mapGetters({
+    logged: 'logged'
+  }),
   methods: {
     fetchCategories() {
       this.$http.get(`${this.api_url}categories`)
@@ -118,6 +124,7 @@ export default {
     }
   },
   created() {
+    console.log(this.logged.id);
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
@@ -136,5 +143,13 @@ export default {
 
 .md-table-card {
   margin-top: 18px;
+}
+
+.md-table-card .md-toolbar {
+  background-color: #E1E0B8;
+}
+
+.md-table-card .md-table-head {
+  background-color: #F6F5D7;
 }
 </style>

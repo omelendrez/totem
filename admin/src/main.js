@@ -3,6 +3,8 @@ import VueMaterial from 'vue-material';
 import App from './App';
 import router from './router';
 
+import store from './store';
+
 Vue.use(VueMaterial);
 
 Vue.config.productionTip = false;
@@ -10,12 +12,13 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   data() {
     return {
       logged: false,
       last_call: '',
       user_id: 0,
-      api_url: 'http://192.168.0.17:3000/'
+      api_url: 'http://192.168.0.2:3000/'
     };
   },
   render: h => h(App)

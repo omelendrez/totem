@@ -2,7 +2,7 @@
   <div class="userEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Usuario</h1>
+      <h1 class="md-title">{{user.full_name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">

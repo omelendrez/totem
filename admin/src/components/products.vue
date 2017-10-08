@@ -145,4 +145,12 @@ export default {
 .md-table-card {
   margin-top: 18px;
 }
+
+.md-table-card .md-toolbar {
+  background-color: #E1E0B8;
+}
+
+.md-table-card .md-table-head {
+  background-color: #F6F5D7;
+}
 </style>
