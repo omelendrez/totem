@@ -2,7 +2,7 @@
   <div class="categoryEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Categoría</h1>
+      <h1 class="md-title">{{category.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
@@ -53,12 +53,13 @@ export default {
         content: ''
       },
       category: {},
-      statuses: []
+      statuses: [],
+      api_url: null
     };
   },
   methods: {
     fetchCategory(id) {
-      this.$http.get(`http://localhost:3000/categories/${id}`)
+      this.$http.get(`${this.api_url}categories/${id}`)
         .then((res) => {
           this.category = res.body;
         })
@@ -67,7 +68,7 @@ export default {
         });
     },
     fetchStatus() {
-      this.$http.get('http://localhost:3000/status')
+      this.$http.get(`${this.api_url}status`)
         .then((res) => {
           this.statuses = res.body;
         })
@@ -89,7 +90,7 @@ export default {
         };
 
         const id = this.category.id;
-        this.$http.put(`http://localhost:3000/categories/${id}`, editCategory)
+        this.$http.put(`${this.api_url}categories/${id}`, editCategory)
           .then(() => {
             this.back();
           })
@@ -118,6 +119,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchStatus();
     this.fetchCategory(this.$route.params.id);
   }

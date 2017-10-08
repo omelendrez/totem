@@ -2,7 +2,7 @@
   <div class="categoryView">
 
     <md-toolbar class="md-primary">
-      <span class="md-title">Vista De Categoría</span>
+      <span class="md-title">{{category.name}}</span>
     </md-toolbar>
 
     <md-layout md-align="center">
@@ -20,7 +20,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div>
+            <div v-if="this.category.status">
               Status: {{category.status.name}}
             </div>
             <div>
@@ -34,26 +34,29 @@
         </md-card-area>
 
         <md-card-actions>
-          <md-button class="md-accent md-raised" v-on:click.native="editCategory(category.id)">Modificar</md-button>
+          <md-button class="md-accent md-raised" v-on:click.native="editCategory(category.id)">Editar</md-button>
           <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
         </md-card-actions>
 
       </md-card>
+
     </md-layout>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'categoryView',
   data() {
     return {
-      category: {}
+      category: {},
+      api_url: null
     };
   },
   methods: {
     fetchCategory(id) {
-      this.$http.get(`http://localhost:3000/categories/${id}`)
+      this.$http.get(`${this.api_url}categories/${id}`)
         .then((res) => {
           this.category = res.body;
         })
@@ -69,6 +72,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchCategory(this.$route.params.id);
     this.$root.$data.last_call = 'categoryView';
   }

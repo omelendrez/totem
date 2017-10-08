@@ -63,6 +63,9 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'categories',
   data() {
@@ -73,12 +76,16 @@ export default {
         content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      api_url: null
     };
   },
+  computed: mapGetters({
+    logged: 'logged'
+  }),
   methods: {
     fetchCategories() {
-      this.$http.get('http://localhost:3000/categories')
+      this.$http.get(`${this.api_url}categories`)
         .then((res) => {
           this.categories = res.body;
         })
@@ -96,7 +103,7 @@ export default {
       this.$router.push({ name: 'CategoryView', params: { id } });
     },
     deleteCategory(id) {
-      this.$http.delete(`http://localhost:3000/categories/${id}`)
+      this.$http.delete(`${this.api_url}categories/${id}`)
         .then((res) => {
           console.log(res.body);
           this.fetchCategories();
@@ -117,9 +124,11 @@ export default {
     }
   },
   created() {
+    console.log(this.logged.id);
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
+    this.api_url = this.$root.$data.api_url;
     this.$root.$data.last_call = 'categories';
     this.fetchCategories();
   }
@@ -134,5 +143,13 @@ export default {
 
 .md-table-card {
   margin-top: 18px;
+}
+
+.md-table-card .md-toolbar {
+  background-color: #E1E0B8;
+}
+
+.md-table-card .md-table-head {
+  background-color: #F6F5D7;
 }
 </style>

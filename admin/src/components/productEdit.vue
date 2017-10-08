@@ -2,7 +2,7 @@
   <div class="productEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Producto</h1>
+      <h1 class="md-title">{{product.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
@@ -78,12 +78,13 @@ export default {
       },
       product: {},
       categories: [],
-      statuses: []
+      statuses: [],
+      api_url: null
     };
   },
   methods: {
     fetchCategories() {
-      this.$http.get('http://localhost:3000/categories')
+      this.$http.get(`${this.api_url}categories`)
         .then((res) => {
           this.categories = res.body;
         })
@@ -92,7 +93,7 @@ export default {
         });
     },
     fetchStatus() {
-      this.$http.get('http://localhost:3000/status')
+      this.$http.get(`${this.api_url}status`)
         .then((res) => {
           this.statuses = res.body;
         })
@@ -101,7 +102,7 @@ export default {
         });
     },
     fetchProduct(id) {
-      this.$http.get(`http://localhost:3000/products/${id}`)
+      this.$http.get(`${this.api_url}products/${id}`)
         .then((res) => {
           this.product = res.body;
         })
@@ -156,6 +157,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchCategories();
     this.fetchStatus();
     this.fetchProduct(this.$route.params.id);

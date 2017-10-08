@@ -76,12 +76,13 @@ export default {
         content: 'Realmente desea eliminar el descuento seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      api_url: null
     };
   },
   methods: {
     fetchDiscounts() {
-      this.$http.get('http://localhost:3000/discounts')
+      this.$http.get(`${this.api_url}discounts`)
         .then((res) => {
           this.discounts = res.body;
         })
@@ -99,7 +100,7 @@ export default {
       this.$router.push({ name: 'DiscountView', params: { id } });
     },
     deleteDiscount(id) {
-      this.$http.delete(`http://localhost:3000/discounts/${id}`)
+      this.$http.delete(`${this.api_url}discounts/${id}`)
         .then((res) => {
           console.log(res.body);
           this.fetchDiscounts();
@@ -123,7 +124,7 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
-
+    this.api_url = this.$root.$data.api_url;
     this.fetchDiscounts();
     this.$root.$data.last_call = 'discounts';
   }
@@ -138,5 +139,13 @@ export default {
 
 .md-table-card {
   margin-top: 18px;
+}
+
+.md-table-card .md-toolbar {
+  background-color: #E1E0B8;
+}
+
+.md-table-card .md-table-head {
+  background-color: #F6F5D7;
 }
 </style>

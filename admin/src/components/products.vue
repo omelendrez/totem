@@ -81,12 +81,13 @@ export default {
         content: 'Realmente desea eliminar el producto seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      api_url: null
     };
   },
   methods: {
     fetchProducts() {
-      this.$http.get('http://localhost:3000/products')
+      this.$http.get(`${this.api_url}products`)
         .then((res) => {
           this.products = res.body;
         })
@@ -104,7 +105,7 @@ export default {
       this.$router.push({ name: 'ProductView', params: { id } });
     },
     deleteProduct(id) {
-      this.$http.delete(`http://localhost:3000/products/${id}`)
+      this.$http.delete(`${this.api_url}products/${id}`)
         .then((res) => {
           console.log(res.body);
           this.fetchProducts();
@@ -128,7 +129,7 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
-
+    this.api_url = this.$root.$data.api_url;
     this.fetchProducts();
     this.$root.$data.last_call = 'products';
   }
@@ -143,5 +144,13 @@ export default {
 
 .md-table-card {
   margin-top: 18px;
+}
+
+.md-table-card .md-toolbar {
+  background-color: #E1E0B8;
+}
+
+.md-table-card .md-table-head {
+  background-color: #F6F5D7;
 }
 </style>

@@ -43,7 +43,8 @@ export default {
         title: '',
         content: ''
       },
-      category: {}
+      category: {},
+      api_url: null
     };
   },
   methods: {
@@ -59,7 +60,7 @@ export default {
           name: this.category.name
         };
 
-        this.$http.post('http://localhost:3000/categories', newCategory)
+        this.$http.post(`${this.api_url}categories`, newCategory)
           .then(() => {
             this.$router.push({ name: 'Categories' });
           })
@@ -81,9 +82,10 @@ export default {
     },
     back() {
       this.$router.push({ name: 'Categories' });
-    },
-    created() {
     }
+  },
+  created() {
+    this.api_url = this.$root.$data.api_url;
   }
 };
 </script>

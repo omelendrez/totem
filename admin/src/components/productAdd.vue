@@ -69,12 +69,13 @@ export default {
         content: ''
       },
       product: {},
-      categories: []
+      categories: [],
+      api_url: null
     };
   },
   methods: {
     fetchCategories() {
-      this.$http.get('http://localhost:3000/categories')
+      this.$http.get(`${this.api_url}categories`)
         .then((res) => {
           this.categories = res.body;
         })
@@ -98,7 +99,7 @@ export default {
           category_id: this.product.category_id
         };
 
-        this.$http.post('http://localhost:3000/products', newProduct)
+        this.$http.post(`${this.api_url}products`, newProduct)
           .then(() => {
             this.$router.push({ name: 'Products' });
           })
@@ -123,6 +124,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchCategories();
   }
 };

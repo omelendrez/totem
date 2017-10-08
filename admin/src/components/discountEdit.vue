@@ -2,7 +2,7 @@
   <div class="discountEdit">
 
     <md-toolbar class="md-primary">
-      <h1 class="md-title">Editando Descuento</h1>
+      <h1 class="md-title">{{discount.name}}</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
@@ -62,12 +62,13 @@ export default {
         content: ''
       },
       discount: {},
-      statuses: []
+      statuses: [],
+      api_url: null
     };
   },
   methods: {
     fetchDiscount(id) {
-      this.$http.get(`http://localhost:3000/discounts/${id}`)
+      this.$http.get(`${this.api_url}discounts/${id}`)
         .then((res) => {
           this.discount = res.body;
         })
@@ -76,7 +77,7 @@ export default {
         });
     },
     fetchStatus() {
-      this.$http.get('http://localhost:3000/status')
+      this.$http.get(`${this.api_url}status`)
         .then((res) => {
           this.statuses = res.body;
         })
@@ -100,7 +101,7 @@ export default {
         };
 
         const id = this.discount.id;
-        this.$http.put(`http://localhost:3000/discounts/${id}`, editDiscount)
+        this.$http.put(`${this.api_url}discounts/${id}`, editDiscount)
           .then(() => {
             this.back();
           })
@@ -129,6 +130,7 @@ export default {
     }
   },
   created() {
+    this.api_url = this.$root.$data.api_url;
     this.fetchStatus();
     this.fetchDiscount(this.$route.params.id);
   }
