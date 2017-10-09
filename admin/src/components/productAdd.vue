@@ -20,8 +20,12 @@
           </md-input-container>
 
           <md-input-container>
-            <label>Código</label>
-            <md-input required v-model="product.code"></md-input>
+            <label>Sub-Categoría</label>
+            <md-select v-model="product.sub_category_id">
+              <md-option v-for="subCategory in subCategories" v-bind:value="subCategory.id" :key="subCategory.id">
+                {{subCategory.name}}
+              </md-option>
+            </md-select>
           </md-input-container>
 
           <md-input-container>
@@ -70,6 +74,7 @@ export default {
       },
       product: {},
       categories: [],
+      subCategories: [],
       api_url: null
     };
   },
@@ -83,8 +88,17 @@ export default {
           console.log(err.data);
         });
     },
+    fetchSubCategories() {
+      this.$http.get(`${this.api_url}sub_categories`)
+        .then((res) => {
+          this.subCategories = res.body;
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    },
     saveProduct() {
-      if (!this.product.code || !this.product.name || !this.product.price) {
+      if (!this.product.name || !this.product.price) {
         this.errorMsg = {
           title: 'Error en datos ingresados',
           content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
@@ -92,11 +106,11 @@ export default {
         this.showErrorMsg('dialog1');
       } else {
         const newProduct = {
-          code: this.product.code,
           name: this.product.name,
           description: this.product.description,
           price: this.product.price,
-          category_id: this.product.category_id
+          category_id: this.product.category_id,
+          sub_category_id: this.product.sub_category_id
         };
 
         this.$http.post(`${this.api_url}products`, newProduct)
@@ -126,6 +140,7 @@ export default {
   created() {
     this.api_url = this.$root.$data.api_url;
     this.fetchCategories();
+    this.fetchSubCategories();
   }
 };
 </script>

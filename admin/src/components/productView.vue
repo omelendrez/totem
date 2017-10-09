@@ -17,6 +17,9 @@
             <div class="md-subhead" v-if="this.product.category">
               {{product.category.name}}
             </div>
+            <div class="md-subhead" v-if="this.product.category">
+              {{product.sub_category.name}}
+            </div>
             <div class="md-title">
               {{product.name}}
             </div>

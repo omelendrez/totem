@@ -13,6 +13,7 @@
                 <md-table-header>
                   <md-table-row>
                     <md-table-head>Categoría</md-table-head>
+                    <md-table-head>Sub-Categoría</md-table-head>
                     <md-table-head md-sort-by="code">Código</md-table-head>
                     <md-table-head md-sort-by="name">Nombre</md-table-head>
                     <md-table-head>Asignado</md-table-head>
@@ -22,6 +23,7 @@
                 <md-table-body>
                   <md-table-row v-for="(row, rowIndex) in assignedProducts" :key="rowIndex" :md-item="row">
                     <md-table-cell>{{row.category}}</md-table-cell>
+                    <md-table-cell>{{row.sub_category}}</md-table-cell>
                     <md-table-cell>{{row.code}}</md-table-cell>
                     <md-table-cell>{{row.name}}</md-table-cell>
                     <md-table-cell>
@@ -30,6 +32,7 @@
                   </md-table-row>
                   <md-table-row v-for="(row, rowIndex) in unassignedProducts" :key="rowIndex" :md-item="row">
                     <md-table-cell>{{row.category}}</md-table-cell>
+                    <md-table-cell>{{row.sub_category}}</md-table-cell>
                     <md-table-cell>{{row.code}}</md-table-cell>
                     <md-table-cell>{{row.name}}</md-table-cell>
                     <md-table-cell>
@@ -97,7 +100,6 @@ export default {
         });
     },
     assignProduct(id) {
-      console.log(id);
       const newProduct = {
         product_id: id,
         discount_id: this.discountId

@@ -17,6 +17,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    sub_category_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     price: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0
