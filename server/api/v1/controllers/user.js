@@ -55,8 +55,7 @@ module.exports = {
           'id',
           'user_name',
           'full_name',
-          'status_id', 
-          [sequelize.fn('date_format', sequelize.col('user.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
+          'status_id', [sequelize.fn('date_format', sequelize.col('user.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('user.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
         ]
       })
@@ -71,7 +70,8 @@ module.exports = {
       .findOne({
         where: {
           user_name: req.query.user_name,
-          password: req.query.password
+          password: req.query.password,
+          status_id: 1
         }
       })
       .then(user => user ? res.json(user) : res.status(404).json({

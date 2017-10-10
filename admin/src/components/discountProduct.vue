@@ -74,9 +74,6 @@ export default {
       api_url: null,
       assignedProducts: [],
       unassignedProducts: [],
-      assigned: true,
-      unAssigned: false,
-      discountProductList: [],
       discountId: null
     };
   },
@@ -84,7 +81,8 @@ export default {
     fetchAssingedProducts() {
       this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=active`)
         .then((res) => {
-          this.assignedProducts = res.body;
+          const result = res.body.map(this.toBoolean);
+          this.assignedProducts = result;
         })
         .catch((err) => {
           console.log(err.data);
@@ -93,18 +91,22 @@ export default {
     fetchUnassingedProducts() {
       this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=inactive`)
         .then((res) => {
-          this.unassignedProducts = res.body;
+          this.unassignedProducts = res.body.map(this.toBoolean);
         })
         .catch((err) => {
           console.log(err.data);
         });
+    },
+    toBoolean(item) {
+      const curItem = item;
+      curItem.assigned = item.assigned === 1;
+      return curItem;
     },
     assignProduct(id) {
       const newProduct = {
         product_id: id,
         discount_id: this.discountId
       };
-      console.log(newProduct);
       this.$http.post(`${this.api_url}product_discount`, newProduct)
         .then(() => {
           this.fetchAssingedProducts();
