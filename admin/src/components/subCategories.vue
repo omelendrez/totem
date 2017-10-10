@@ -1,33 +1,22 @@
 <template>
-  <div class="products">
-
+  <div class="subCategories">
     <md-toolbar class="md-primary">
-      <span class="md-title">Productos</span>
+      <h1 class="md-title">Sub-Categorías</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
 
       <md-table-card>
         <md-toolbar>
-          <h1 class="md-title">Lista de Productos</h1>
-
-          <md-button class="md-icon-button">
-            <md-icon>search</md-icon>
-          </md-button>
-
+          <h1 class="md-title">Lista de Sub-Categorías</h1>
         </md-toolbar>
 
         <md-table>
           <md-table-header>
             <md-table-row>
-              <md-table-head md-sort-by="code">Código</md-table-head>
               <md-table-head md-sort-by="name">Nombre</md-table-head>
-              <md-table-head>
-                <md-icon>attach_money</md-icon>
-              </md-table-head>
-              <md-table-head>Categoría</md-table-head>
-              <md-table-head>Sub-Categoría</md-table-head>
               <md-table-head>Status</md-table-head>
+
               <md-table-head class="button_header">Ver</md-table-head>
               <md-table-head class="button_header">Editar</md-table-head>
               <md-table-head class="button_header">Borrar</md-table-head>
@@ -35,52 +24,54 @@
           </md-table-header>
 
           <md-table-body>
-            <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
-              <md-table-cell>{{row.code}}</md-table-cell>
+            <md-table-row v-for="(row, rowIndex) in subCategories" :key="rowIndex" :md-item="row">
               <md-table-cell>{{row.name}}</md-table-cell>
-              <md-table-cell>{{row.price}}</md-table-cell>
-              <md-table-cell>{{row.category.name}}</md-table-cell>
-              <md-table-cell>{{row.sub_category.name}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
+
               <md-table-cell>
-                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewSubCategory(row.id)">
                   <md-icon>find_in_page</md-icon>
                 </md-button>
               </md-table-cell>
+
               <md-table-cell>
-                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editProduct(row.id)">
+                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editSubCategory(row.id)">
                   <md-icon>edit</md-icon>
                 </md-button>
               </md-table-cell>
+
               <md-table-cell>
                 <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
                   <md-icon>delete</md-icon>
                 </md-button>
               </md-table-cell>
+
             </md-table-row>
           </md-table-body>
         </md-table>
       </md-table-card>
+
     </md-layout>
-    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addProduct()">
+
+    <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addSubCategory()">
       <md-icon>add</md-icon>
     </md-button>
 
     <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
     </md-dialog-confirm>
-
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'products',
+  name: 'subCategories',
   data() {
     return {
-      products: [],
+      subCategories: [],
       confirm: {
         title: '',
-        content: 'Realmente desea eliminar el producto seleccionado?',
+        content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
       },
@@ -88,29 +79,29 @@ export default {
     };
   },
   methods: {
-    fetchProducts() {
-      this.$http.get(`${this.api_url}products`)
+    fetchSubCategories() {
+      this.$http.get(`${this.api_url}sub_categories`)
         .then((res) => {
-          this.products = res.body;
+          this.subCategories = res.body;
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
-    addProduct() {
-      this.$router.push({ name: 'ProductAdd' });
+    addSubCategory() {
+      this.$router.push({ name: 'SubCategoryAdd' });
     },
-    editProduct(id) {
-      this.$router.push({ name: 'ProductEdit', params: { id } });
+    editSubCategory(id) {
+      this.$router.push({ name: 'SubCategoryEdit', params: { id } });
     },
-    viewProduct(id) {
-      this.$router.push({ name: 'ProductView', params: { id } });
+    viewSubCategory(id) {
+      this.$router.push({ name: 'SubCategoryView', params: { id } });
     },
-    deleteProduct(id) {
-      this.$http.delete(`${this.api_url}products/${id}`)
+    deleteSubCategory(id) {
+      this.$http.delete(`${this.api_url}sub_categories/${id}`)
         .then((res) => {
           console.log(res.body);
-          this.fetchProducts();
+          this.fetchSubCategories();
         })
         .catch((err) => {
           console.log(err.data);
@@ -123,7 +114,7 @@ export default {
     },
     onClose(type) {
       if (type === 'ok') {
-        this.deleteProduct(this.record_id);
+        this.deleteSubCategory(this.record_id);
       }
     }
   },
@@ -132,8 +123,8 @@ export default {
       this.$router.push({ name: 'Login' });
     }
     this.api_url = this.$root.$data.api_url;
-    this.fetchProducts();
-    this.$root.$data.last_call = 'products';
+    this.$root.$data.last_call = 'subCategories';
+    this.fetchSubCategories();
   }
 };
 </script>

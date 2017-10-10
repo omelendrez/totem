@@ -27,6 +27,7 @@ app.use(function(req, res, next) {
 
 app.use("/basket", require(apiPath + "/routes/basket"));
 app.use("/categories", require(apiPath + "/routes/category"));
+app.use("/sub_categories", require(apiPath + "/routes/sub_category"));
 app.use("/discounts", require(apiPath + "/routes/discount"));
 app.use("/orders", require(apiPath + "/routes/order"));
 app.use("/products", require(apiPath + "/routes/product"));

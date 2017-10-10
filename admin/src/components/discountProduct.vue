@@ -13,6 +13,7 @@
                 <md-table-header>
                   <md-table-row>
                     <md-table-head>Categoría</md-table-head>
+                    <md-table-head>Sub-Categoría</md-table-head>
                     <md-table-head md-sort-by="code">Código</md-table-head>
                     <md-table-head md-sort-by="name">Nombre</md-table-head>
                     <md-table-head>Asignado</md-table-head>
@@ -22,6 +23,7 @@
                 <md-table-body>
                   <md-table-row v-for="(row, rowIndex) in assignedProducts" :key="rowIndex" :md-item="row">
                     <md-table-cell>{{row.category}}</md-table-cell>
+                    <md-table-cell>{{row.sub_category}}</md-table-cell>
                     <md-table-cell>{{row.code}}</md-table-cell>
                     <md-table-cell>{{row.name}}</md-table-cell>
                     <md-table-cell>
@@ -30,6 +32,7 @@
                   </md-table-row>
                   <md-table-row v-for="(row, rowIndex) in unassignedProducts" :key="rowIndex" :md-item="row">
                     <md-table-cell>{{row.category}}</md-table-cell>
+                    <md-table-cell>{{row.sub_category}}</md-table-cell>
                     <md-table-cell>{{row.code}}</md-table-cell>
                     <md-table-cell>{{row.name}}</md-table-cell>
                     <md-table-cell>
@@ -71,9 +74,6 @@ export default {
       api_url: null,
       assignedProducts: [],
       unassignedProducts: [],
-      assigned: true,
-      unAssigned: false,
-      discountProductList: [],
       discountId: null
     };
   },
@@ -81,7 +81,8 @@ export default {
     fetchAssingedProducts() {
       this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=active`)
         .then((res) => {
-          this.assignedProducts = res.body;
+          const result = res.body.map(this.toBoolean);
+          this.assignedProducts = result;
         })
         .catch((err) => {
           console.log(err.data);
@@ -90,19 +91,22 @@ export default {
     fetchUnassingedProducts() {
       this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=inactive`)
         .then((res) => {
-          this.unassignedProducts = res.body;
+          this.unassignedProducts = res.body.map(this.toBoolean);
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
+    toBoolean(item) {
+      const curItem = item;
+      curItem.assigned = item.assigned === 1;
+      return curItem;
+    },
     assignProduct(id) {
-      console.log(id);
       const newProduct = {
         product_id: id,
         discount_id: this.discountId
       };
-      console.log(newProduct);
       this.$http.post(`${this.api_url}product_discount`, newProduct)
         .then(() => {
           this.fetchAssingedProducts();

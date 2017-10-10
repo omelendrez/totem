@@ -11,6 +11,11 @@ import CategoryAdd from '@/components/categoryAdd';
 import CategoryEdit from '@/components/categoryEdit';
 import CategoryView from '@/components/categoryView';
 
+import SubCategories from '@/components/subCategories';
+import SubCategoryAdd from '@/components/subCategoryAdd';
+import SubCategoryEdit from '@/components/subCategoryEdit';
+import SubCategoryView from '@/components/subCategoryView';
+
 import Products from '@/components/products';
 import ProductAdd from '@/components/productAdd';
 import ProductEdit from '@/components/productEdit';
@@ -67,6 +72,26 @@ export default new Router({
       path: '/categoryView/:id',
       name: 'CategoryView',
       component: CategoryView
+    },
+    {
+      path: '/subCategories',
+      name: 'SubCategories',
+      component: SubCategories
+    },
+    {
+      path: '/subCategoryAdd',
+      name: 'SubCategoryAdd',
+      component: SubCategoryAdd
+    },
+    {
+      path: '/subCategoryEdit/:id',
+      name: 'SubCategoryEdit',
+      component: SubCategoryEdit
+    },
+    {
+      path: '/subCategoryView/:id',
+      name: 'SubCategoryView',
+      component: SubCategoryView
     },
     {
       path: '/products',
