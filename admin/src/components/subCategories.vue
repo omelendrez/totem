@@ -64,6 +64,8 @@
 
 <script>
 
+import HTTP from './http-common';
+
 export default {
   name: 'subCategories',
   data() {
@@ -74,18 +76,17 @@ export default {
         content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
-      },
-      api_url: null
+      }
     };
   },
   methods: {
     fetchSubCategories() {
-      this.$http.get(`${this.api_url}sub_categories`)
+      HTTP.get('sub_categories')
         .then((res) => {
-          this.subCategories = res.body;
+          this.subCategories = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     addSubCategory() {
@@ -98,13 +99,13 @@ export default {
       this.$router.push({ name: 'SubCategoryView', params: { id } });
     },
     deleteSubCategory(id) {
-      this.$http.delete(`${this.api_url}sub_categories/${id}`)
+      HTTP.delete(`sub_categories/${id}`)
         .then((res) => {
-          console.log(res.body);
+          console.log(res.data);
           this.fetchSubCategories();
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     openDialog(ref, id, name) {

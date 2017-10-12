@@ -77,6 +77,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'productAdd',
   data() {
@@ -88,45 +91,44 @@ export default {
       product: {},
       categories: [],
       subCategories: [],
-      statuses: [],
-      api_url: null
+      statuses: []
     };
   },
   methods: {
     fetchCategories() {
-      this.$http.get(`${this.api_url}categories`)
+      HTTP.get('categories')
         .then((res) => {
-          this.categories = res.body;
+          this.categories = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchSubCategories() {
-      this.$http.get(`${this.api_url}sub_categories`)
+      HTTP.get('sub_categories')
         .then((res) => {
-          this.subCategories = res.body;
+          this.subCategories = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchStatus() {
-      this.$http.get(`${this.api_url}status`)
+      HTTP.get('status')
         .then((res) => {
-          this.statuses = res.body;
+          this.statuses = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchProduct(id) {
-      this.$http.get(`${this.api_url}products/${id}`)
+      HTTP.get(`products/${id}`)
         .then((res) => {
-          this.product = res.body;
+          this.product = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveProduct() {
@@ -148,17 +150,17 @@ export default {
         };
 
         const id = this.product.id;
-        this.$http.put(`http://localhost:3000/products/${id}`, editProduct)
+        HTTP.put(`products/${id}`, editProduct)
           .then(() => {
             this.back();
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
               title: 'Error al guardar el Producto',
               content: 'Ha ocurrido un error al intentar guardar el producto'
             };
             this.showErrorMsg('dialog1');
-            console.log(error);
+            console.log(err);
           });
       }
     },

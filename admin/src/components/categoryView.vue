@@ -46,22 +46,23 @@
 
 <script>
 
+import HTTP from './http-common';
+
 export default {
   name: 'categoryView',
   data() {
     return {
-      category: {},
-      api_url: null
+      category: {}
     };
   },
   methods: {
     fetchCategory(id) {
-      this.$http.get(`${this.api_url}categories/${id}`)
+      HTTP.get(`categories/${id}`)
         .then((res) => {
-          this.category = res.body;
+          this.category = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     editCategory(id) {

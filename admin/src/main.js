@@ -15,7 +15,7 @@ new Vue({
       logged: false,
       last_call: '',
       user_id: 0,
-      api_url: 'http://192.168.0.7:3000/'
+      api_url: 'http://localhost:3000' // 'http://192.168.0.7:3000/'
     };
   },
   render: h => h(App)

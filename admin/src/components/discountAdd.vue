@@ -45,6 +45,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'discountAdd',
   data() {
@@ -53,8 +56,7 @@ export default {
         title: '',
         content: ''
       },
-      discount: {},
-      api_url: null
+      discount: {}
     };
   },
   methods: {
@@ -73,7 +75,7 @@ export default {
           status_id: 2
         };
 
-        this.$http.post(`${this.api_url}discounts`, newDiscount)
+        HTTP.post('discounts', newDiscount)
           .then(() => {
             this.$router.push({ name: 'Discounts' });
           })

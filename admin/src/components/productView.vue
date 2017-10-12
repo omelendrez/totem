@@ -61,24 +61,26 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'productView',
   data() {
     return {
       product: {},
       discounts: {},
-      src: '/static/hamburger.png',
-      api_url: null
+      src: '/static/hamburger.png'
     };
   },
   methods: {
     fetchProduct(id) {
-      this.$http.get(`${this.api_url}products/${id}`)
+      HTTP.get(`products/${id}`)
         .then((res) => {
-          this.product = res.body;
+          this.product = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     editProduct(id) {

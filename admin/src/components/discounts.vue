@@ -66,6 +66,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'discounts',
   data() {
@@ -76,18 +79,17 @@ export default {
         content: 'Realmente desea eliminar el descuento seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      },
-      api_url: null
+      }
     };
   },
   methods: {
     fetchDiscounts() {
-      this.$http.get(`${this.api_url}discounts`)
+      HTTP.get('discounts')
         .then((res) => {
-          this.discounts = res.body;
+          this.discounts = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     addDiscount() {
@@ -100,13 +102,12 @@ export default {
       this.$router.push({ name: 'DiscountView', params: { id } });
     },
     deleteDiscount(id) {
-      this.$http.delete(`${this.api_url}discounts/${id}`)
-        .then((res) => {
-          console.log(res.body);
+      HTTP.delete(`discounts/${id}`)
+        .then(() => {
           this.fetchDiscounts();
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     openDialog(ref, id, name) {

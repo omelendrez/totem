@@ -53,6 +53,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'discountAdd',
   data() {
@@ -62,27 +65,26 @@ export default {
         content: ''
       },
       discount: {},
-      statuses: [],
-      api_url: null
+      statuses: []
     };
   },
   methods: {
     fetchDiscount(id) {
-      this.$http.get(`${this.api_url}discounts/${id}`)
+      HTTP.get(`discounts/${id}`)
         .then((res) => {
-          this.discount = res.body;
+          this.discount = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchStatus() {
-      this.$http.get(`${this.api_url}status`)
+      HTTP.get('status')
         .then((res) => {
-          this.statuses = res.body;
+          this.statuses = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveDiscount() {
@@ -101,7 +103,7 @@ export default {
         };
 
         const id = this.discount.id;
-        this.$http.put(`${this.api_url}discounts/${id}`, editDiscount)
+        HTTP.put(`discounts/${id}`, editDiscount)
           .then(() => {
             this.back();
           })

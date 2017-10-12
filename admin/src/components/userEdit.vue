@@ -49,6 +49,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'userAdd',
   data() {
@@ -58,27 +61,26 @@ export default {
         content: ''
       },
       user: {},
-      statuses: [],
-      api_url: null
+      statuses: []
     };
   },
   methods: {
     fetchUser(id) {
-      this.$http.get(`${this.api_url}users/${id}`)
+      HTTP.get(`users/${id}`)
         .then((res) => {
-          this.user = res.body;
+          this.user = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchStatus() {
-      this.$http.get(`${this.api_url}status`)
+      HTTP.get('status')
         .then((res) => {
-          this.statuses = res.body;
+          this.statuses = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveUser() {
@@ -96,17 +98,17 @@ export default {
         };
 
         const id = this.user.id;
-        this.$http.put(`${this.api_url}users/${id}`, editUser)
+        HTTP.put(`users/${id}`, editUser)
           .then(() => {
             this.back();
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
               title: 'Error al guardar el Usero',
               content: 'Ha ocurrido un error al intentar guardar el usero'
             };
             this.showErrorMsg('dialog1');
-            console.log(error);
+            console.log(err);
           });
       }
     },

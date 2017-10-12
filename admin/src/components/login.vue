@@ -40,6 +40,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'login',
   data() {
@@ -51,8 +54,7 @@ export default {
       errorMsg: {
         title: '',
         content: ''
-      },
-      api_url: null
+      }
     };
   },
   methods: {
@@ -64,9 +66,9 @@ export default {
         user_name: this.user.user_name,
         password: this.user.password
       };
-      this.$http.get(`${this.api_url}login`, { params })
+      HTTP.get('login', { params })
         .then((res) => {
-          this.user = res.body;
+          this.user = res.data;
           setTimeout(() => {
             this.$root.$data.logged = true;
             setTimeout(() => {
