@@ -35,6 +35,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'categoryAdd',
   data() {
@@ -43,8 +46,7 @@ export default {
         title: '',
         content: ''
       },
-      category: {},
-      api_url: null
+      category: {}
     };
   },
   methods: {
@@ -60,7 +62,7 @@ export default {
           name: this.category.name
         };
 
-        this.$http.post(`${this.api_url}categories`, newCategory)
+        HTTP.post('categories', newCategory)
           .then(() => {
             this.$router.push({ name: 'Categories' });
           })

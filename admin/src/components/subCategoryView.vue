@@ -46,22 +46,23 @@
 
 <script>
 
+import HTTP from './http-common';
+
 export default {
   name: 'subCategoryView',
   data() {
     return {
-      subCategory: {},
-      api_url: null
+      subCategory: {}
     };
   },
   methods: {
     fetchSubCategory(id) {
-      this.$http.get(`${this.api_url}sub_categories/${id}`)
+      HTTP.get(`sub_categories/${id}`)
         .then((res) => {
-          this.subCategory = res.body;
+          this.subCategory = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     editSubCategory(id) {

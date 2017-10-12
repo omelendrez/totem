@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Resource from 'vue-resource';
 
 import Login from '@/components/login';
 import Home from '@/components/home';
@@ -32,7 +31,6 @@ import UserEdit from '@/components/userEdit';
 import UserView from '@/components/userView';
 
 Vue.use(Router);
-Vue.use(Resource);
 
 export default new Router({
   mode: 'history',

@@ -63,6 +63,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'discountProduct',
   data() {
@@ -71,7 +74,6 @@ export default {
         title: '',
         content: ''
       },
-      api_url: null,
       assignedProducts: [],
       unassignedProducts: [],
       discountId: null
@@ -79,22 +81,22 @@ export default {
   },
   methods: {
     fetchAssingedProducts() {
-      this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=active`)
+      HTTP.get(`product_discount/${this.discountId}/discount?filter=active`)
         .then((res) => {
-          const result = res.body.map(this.toBoolean);
+          const result = res.data.map(this.toBoolean);
           this.assignedProducts = result;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchUnassingedProducts() {
-      this.$http.get(`${this.api_url}product_discount/${this.discountId}/discount?filter=inactive`)
+      HTTP.get(`product_discount/${this.discountId}/discount?filter=inactive`)
         .then((res) => {
-          this.unassignedProducts = res.body.map(this.toBoolean);
+          this.unassignedProducts = res.data.map(this.toBoolean);
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     toBoolean(item) {
@@ -107,7 +109,7 @@ export default {
         product_id: id,
         discount_id: this.discountId
       };
-      this.$http.post(`${this.api_url}product_discount`, newProduct)
+      HTTP.post('product_discount', newProduct)
         .then(() => {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
@@ -122,7 +124,7 @@ export default {
         });
     },
     unassignProduct(id) {
-      this.$http.delete(`${this.api_url}product_discount/${id}`)
+      HTTP.delete(`product_discount/${id}`)
         .then(() => {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();

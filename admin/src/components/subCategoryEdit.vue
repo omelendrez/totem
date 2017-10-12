@@ -44,6 +44,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'subCategoryAdd',
   data() {
@@ -53,27 +56,26 @@ export default {
         content: ''
       },
       subCategory: {},
-      statuses: [],
-      api_url: null
+      statuses: []
     };
   },
   methods: {
     fetchSubCategory(id) {
-      this.$http.get(`${this.api_url}sub_categories/${id}`)
+      HTTP.get(`sub_categories/${id}`)
         .then((res) => {
-          this.subCategory = res.body;
+          this.subCategory = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchStatus() {
-      this.$http.get(`${this.api_url}status`)
+      HTTP.get('status')
         .then((res) => {
-          this.statuses = res.body;
+          this.statuses = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveSubCategory() {
@@ -90,17 +92,17 @@ export default {
         };
 
         const id = this.subCategory.id;
-        this.$http.put(`${this.api_url}sub_categories/${id}`, editSubCategory)
+        HTTP.put(`sub_categories/${id}`, editSubCategory)
           .then(() => {
             this.back();
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
               title: 'Error al guardar la Sub-Categoría',
               content: 'Ha ocurrido un error al intentar guardar el Sub-Categoría'
             };
             this.showErrorMsg('dialog1');
-            console.log(error);
+            console.log(err);
           });
       }
     },

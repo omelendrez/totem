@@ -64,6 +64,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'productAdd',
   data() {
@@ -74,27 +77,26 @@ export default {
       },
       product: {},
       categories: [],
-      subCategories: [],
-      api_url: null
+      subCategories: []
     };
   },
   methods: {
     fetchCategories() {
-      this.$http.get(`${this.api_url}categories`)
+      HTTP.get('categories')
         .then((res) => {
-          this.categories = res.body;
+          this.categories = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchSubCategories() {
-      this.$http.get(`${this.api_url}sub_categories`)
+      HTTP.get('sub_categories')
         .then((res) => {
-          this.subCategories = res.body;
+          this.subCategories = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveProduct() {
@@ -113,7 +115,7 @@ export default {
           sub_category_id: this.product.sub_category_id
         };
 
-        this.$http.post(`${this.api_url}products`, newProduct)
+        HTTP.post('products', newProduct)
           .then(() => {
             this.$router.push({ name: 'Products' });
           })
@@ -123,7 +125,7 @@ export default {
               content: 'Ha ocurrido un error al intentar guardar el producto'
             };
             this.showErrorMsg('dialog1');
-            console.log(error.data.errors);
+            console.log(error);
           });
       }
     },

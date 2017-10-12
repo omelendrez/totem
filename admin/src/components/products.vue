@@ -73,6 +73,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'products',
   data() {
@@ -83,18 +86,17 @@ export default {
         content: 'Realmente desea eliminar el producto seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      },
-      api_url: null
+      }
     };
   },
   methods: {
     fetchProducts() {
-      this.$http.get(`${this.api_url}products`)
+      HTTP.get('products')
         .then((res) => {
-          this.products = res.body;
+          this.products = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     addProduct() {
@@ -107,13 +109,13 @@ export default {
       this.$router.push({ name: 'ProductView', params: { id } });
     },
     deleteProduct(id) {
-      this.$http.delete(`${this.api_url}products/${id}`)
+      HTTP.delete(`products/${id}`)
         .then((res) => {
-          console.log(res.body);
+          console.log(res.data);
           this.fetchProducts();
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     openDialog(ref, id, name) {

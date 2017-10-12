@@ -63,23 +63,23 @@
 <script>
 
 import DiscountProduct from './discountProduct';
+import HTTP from './http-common';
 
 export default {
   name: 'discountView',
   data() {
     return {
-      discount: {},
-      api_url: null
+      discount: {}
     };
   },
   methods: {
     fetchDiscount(id) {
-      this.$http.get(`${this.api_url}discounts/${id}`)
+      HTTP.get(`discounts/${id}`)
         .then((res) => {
-          this.discount = res.body;
+          this.discount = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     editDiscount(id) {

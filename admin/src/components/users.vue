@@ -66,6 +66,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'users',
   data() {
@@ -76,18 +79,17 @@ export default {
         content: 'Realmente desea eliminar el usuario seleccionado?',
         ok: 'Si',
         cancel: 'No'
-      },
-      api_url: null
+      }
     };
   },
   methods: {
     fetchUsers() {
-      this.$http.get(`${this.api_url}users`)
+      HTTP.get('users')
         .then((res) => {
-          this.users = res.body;
+          this.users = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     addUser() {
@@ -100,13 +102,12 @@ export default {
       this.$router.push({ name: 'UserView', params: { id } });
     },
     deleteUser(id) {
-      this.$http.delete(`${this.api_url}users/${id}`)
-        .then((res) => {
-          console.log(res.body);
+      HTTP.delete(`users/${id}`)
+        .then(() => {
           this.fetchUsers();
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     openDialog(ref, id, name) {

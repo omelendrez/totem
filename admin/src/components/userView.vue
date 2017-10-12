@@ -52,23 +52,25 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'userView',
   data() {
     return {
       user: {},
-      src: null,
-      api_url: null
+      src: null
     };
   },
   methods: {
     fetchProduct(id) {
-      this.$http.get(`${this.api_url}users/${id}`)
+      HTTP.get(`users/${id}`)
         .then((res) => {
-          this.user = res.body;
+          this.user = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     editUser(id) {

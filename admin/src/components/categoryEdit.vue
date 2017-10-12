@@ -44,6 +44,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'categoryAdd',
   data() {
@@ -53,27 +56,26 @@ export default {
         content: ''
       },
       category: {},
-      statuses: [],
-      api_url: null
+      statuses: []
     };
   },
   methods: {
     fetchCategory(id) {
-      this.$http.get(`${this.api_url}categories/${id}`)
+      HTTP.get(`categories/${id}`)
         .then((res) => {
-          this.category = res.body;
+          this.category = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     fetchStatus() {
-      this.$http.get(`${this.api_url}status`)
+      HTTP.get('status')
         .then((res) => {
-          this.statuses = res.body;
+          this.statuses = res.data;
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err);
         });
     },
     saveCategory() {
@@ -90,7 +92,7 @@ export default {
         };
 
         const id = this.category.id;
-        this.$http.put(`${this.api_url}categories/${id}`, editCategory)
+        HTTP.put(`categories/${id}`, editCategory)
           .then(() => {
             this.back();
           })

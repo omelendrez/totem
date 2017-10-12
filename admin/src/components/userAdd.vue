@@ -40,6 +40,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'userAdd',
   data() {
@@ -48,8 +51,7 @@ export default {
         title: '',
         content: ''
       },
-      user: {},
-      api_url: null
+      user: {}
     };
   },
   methods: {
@@ -68,17 +70,17 @@ export default {
           status: 1
         };
 
-        this.$http.post(`${this.api_url}users`, newUser)
+        HTTP.post('users', newUser)
           .then(() => {
             this.$router.push({ name: 'Users' });
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
               title: 'Error al guardar el Usuario',
               content: 'Ha ocurrido un error al intentar guardar el usuario'
             };
             this.showErrorMsg('dialog1');
-            console.log(error.data.errors);
+            console.log(err);
           });
       }
     },

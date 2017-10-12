@@ -35,6 +35,9 @@
 </template>
 
 <script>
+
+import HTTP from './http-common';
+
 export default {
   name: 'subCategoryAdd',
   data() {
@@ -43,8 +46,7 @@ export default {
         title: '',
         content: ''
       },
-      subCategory: {},
-      api_url: null
+      subCategory: {}
     };
   },
   methods: {
@@ -60,17 +62,17 @@ export default {
           name: this.subCategory.name
         };
 
-        this.$http.post(`${this.api_url}sub_categories`, newSubCategory)
+        HTTP.post('sub_categories', newSubCategory)
           .then(() => {
             this.$router.push({ name: 'SubCategories' });
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
               title: 'Error al guardar la Sub-Categoría',
               content: 'Ha ocurrido un error al intentar guardar la sub-categoría'
             };
             this.showErrorMsg('dialog1');
-            console.log(error.data.errors);
+            console.log(err);
           });
       }
     },
