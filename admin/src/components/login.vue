@@ -93,7 +93,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.$root.$data.logged = false;
   },
   updated() {

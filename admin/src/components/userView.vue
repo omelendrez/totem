@@ -81,7 +81,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.fetchProduct(this.$route.params.id);
     this.$root.$data.last_call = 'userView';
   }

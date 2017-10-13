@@ -179,7 +179,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.fetchCategories();
     this.fetchSubCategories();
     this.fetchStatus();

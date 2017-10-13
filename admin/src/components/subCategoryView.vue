@@ -73,7 +73,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.fetchSubCategory(this.$route.params.id);
     this.$root.$data.last_call = 'subCategoryView';
   }
