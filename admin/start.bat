@@ -1,3 +1,3 @@
 cd C:\webserver\totem\admin
-nodemon
+npm run dev
 

@@ -1,38 +1,37 @@
 # totem
-### A web app for totems
+### A web app for kiosks/totems
 It is a requirement from a fast food owner to allow
-customers to buy food from a totem
+customers to buy food from a kiosk/totem
 
 The application is compossed of 3 apps:
 - ***Server*** for the backend
 - ***Admin*** for front-end general features management
-- ***Totem*** for customer purchase of products that will run on the kiosc
+- ***Client*** for customer purchase of products that will run on the kiosk/totem
 
-### Back-end
+### RestFULL Back-end | Server app
 - Node
 - Express
 - Sequelize
 - MySQL
 
 
-### Front-end for Admin
+### Front-end for app Administration | Admin app
 - Vue.js
 - Vuex
+- axios
 - Vue Material
 - Webpack
 
-### Front-end for Totem
-- React
-- Redux
-- Bootstrap
+### Front-end for the Kiosk | Client app
+- Vue.js
+- Vuex
+- axios
+- Vue Material
 - Webpack
-- ...I don't know yet ;-)
 
-
-
-## Instructions to run the app
+## Instructions to run the system
 - Clone this repo into your computer
-- You will get the following sub-folders: **server**, **admin** and **totem**
+- You will get the following sub-folders: **server**, **admin** and **client**
 
   - Inside **server** folder run:
 
@@ -52,10 +51,11 @@ The application is compossed of 3 apps:
 
     Admin app will run at port 8080 and your browser will open automatically
 
-  - Inside **totem** run:
+  - Inside **client** run:
 
     `npm install`
 
-    ...to be continued
+    `npm run dev`
 
+    Client app will run at port 8090 and your browser will open automatically
 
