@@ -121,7 +121,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.fetchStatus();
     this.fetchCategory(this.$route.params.id);
   }

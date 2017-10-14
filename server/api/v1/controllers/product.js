@@ -1,13 +1,12 @@
 "use strict";
 const Product = require("../models").product;
 const sequelize = require("sequelize");
-
 module.exports = {
   create(req, res) {
     let last_id = 0;
     Product.max("id").then(max => {
       last_id = max;
-      if (isNaN(last_id) ) {
+      if (isNaN(last_id)) {
         last_id = 0;
       }
       last_id = ("0".repeat(3) + (Number(last_id.toString()) + 1).toString()).slice(-3);
@@ -163,5 +162,18 @@ module.exports = {
           res.json(result);
         }))
       .catch(error => res.status(400).send(error));
+  },
+
+  upload(req, res) {
+    if (!req.files) {
+      return res.status(400).send('No files were uploaded.');
+    }
+    const imageFile = req.files.imageFile;
+    imageFile.mv('/somewhere/on/your/server/filename.jpg', (err) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.status(201);
+    });
   }
 };

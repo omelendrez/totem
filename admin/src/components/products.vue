@@ -133,7 +133,6 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: 'Login' });
     }
-    this.api_url = this.$root.$data.api_url;
     this.fetchProducts();
     this.$root.$data.last_call = 'products';
   }

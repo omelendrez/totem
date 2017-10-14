@@ -146,7 +146,6 @@ export default {
     }
   },
   created() {
-    this.api_url = this.$root.$data.api_url;
     this.discountId = this.$route.params.id;
     this.fetchAssingedProducts();
     this.fetchUnassingedProducts();
