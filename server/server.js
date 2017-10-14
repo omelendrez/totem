@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
+const fileUpload  = require('express-fileupload');
 const apiPath = "./api/v1";
 const models = require(apiPath + "/models");
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(logger("combined"));
+app.use(fileUpload());
 
 models.sequelize.sync({
   force: false
