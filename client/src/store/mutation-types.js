@@ -1,0 +1,6 @@
+export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const LOAD_BASKET = 'LOAD_BASKET';
+export const SET_BASKET = 'SET_BASKET';
