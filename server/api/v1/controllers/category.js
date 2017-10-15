@@ -27,7 +27,8 @@ module.exports = {
         }],
         attributes: [
           'id',
-          'name'
+          'name',
+          'image'
         ]
       })
       .then(categories => res.json(categories))
