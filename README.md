@@ -17,7 +17,6 @@ The application is compossed of 3 apps:
 
 ### Front-end for app Administration | Admin app
 - Vue.js
-- Vuex
 - axios
 - Vue Material
 - Webpack
