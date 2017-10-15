@@ -60,6 +60,7 @@ module.exports = {
           'code',
           'name',
           'description',
+          'image',
           'price'
         ]
       })

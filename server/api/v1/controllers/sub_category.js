@@ -27,7 +27,8 @@ module.exports = {
         }],
         attributes: [
           'id',
-          'name'
+          'name',
+          'image'
         ]
       })
       .then(categories => res.json(categories))
@@ -52,6 +53,7 @@ module.exports = {
         attributes: [
           'id',
           'name',
+          'image',
           'status_id', 
           [sequelize.fn('date_format', sequelize.col('sub_category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('sub_category.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
