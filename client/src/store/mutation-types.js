@@ -6,3 +6,4 @@ export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
 export const SET_CATEGORY_ID = 'SET_CATEGORY_ID';
 export const LOAD_BASKET = 'LOAD_BASKET';
 export const SET_BASKET = 'SET_BASKET';
+export const RESET_VIEW = 'RESET_VIEW';

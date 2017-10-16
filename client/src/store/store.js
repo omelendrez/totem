@@ -9,6 +9,7 @@ import {
   SET_PRODUCTS,
   FILTER_BY_CATEGORY,
   SET_CATEGORY_ID,
+  RESET_VIEW,
   LOAD_BASKET,
   SET_BASKET
 } from '../store/mutation-types';
@@ -51,7 +52,12 @@ export default new Vuex.Store({
     [FILTER_BY_CATEGORY]: ({
       commit
     }, payload) => {
-        commit('SET_CATEGORY_ID', payload);
+      commit('SET_CATEGORY_ID', payload);
+    },
+    [RESET_VIEW]: ({
+      commit
+    }) => {
+      commit('SET_CATEGORY_ID', null);
     },
     [LOAD_BASKET]: ({
       commit
@@ -64,7 +70,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     }
-
   },
   mutations: {
     [SET_CATEGORIES]: (state, {
@@ -75,15 +80,17 @@ export default new Vuex.Store({
     [SET_PRODUCTS]: (state, {
       payload
     }) => {
+      const products = payload.map((product) => {
+        return product.image = product.image !== '' ? product.image : product.category.image
+      });
       state.productsAll = payload;
       state.products = payload;
     },
-    [SET_CATEGORY_ID]: (state, 
+    [SET_CATEGORY_ID]: (state,
       payload
     ) => {
       state.selectedCategoryId = payload;
-      state.products = state.productsAll.filter((products) =>{
-        console.log(products);
+      state.products = state.productsAll.filter((products) => {
         return products.category_id === state.selectedCategoryId || state.selectedCategoryId === null;
       });
     },
