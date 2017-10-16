@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0
     },
-    photo: {
+    image: {
       type: DataTypes.STRING,
       defaultValue: ""
     },

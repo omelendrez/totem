@@ -61,7 +61,9 @@ module.exports = {
           'name',
           'description',
           'image',
-          'price'
+          'price',
+          'category_id',
+          'sub_category_id'
         ]
       })
       .then(products => res.json(products))

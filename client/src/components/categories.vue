@@ -3,7 +3,7 @@
 
     <md-layout md-align="center" md-column>
 
-      <md-layout v-for="category in categories" :key="category.id" :md-item="category">
+      <md-layout v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
         <div class="category">
           <md-image :md-src="category.image"></md-image>
           <div class="text">
@@ -29,6 +29,11 @@ export default {
   },
   created() {
     Store.dispatch('LOAD_CATEGORIES');
+  },
+  methods: {
+    setCategory(id) {
+      Store.dispatch('FILTER_BY_CATEGORY', id);
+    }
   }
 }
 
