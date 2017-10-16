@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import HTTP from '../components/http-common';
+
 import {
   LOAD_CATEGORIES,
   SET_CATEGORIES,
@@ -8,7 +10,6 @@ import {
   LOAD_BASKET,
   SET_BASKET
 } from '../store/mutation-types';
-import HTTP from '../components/http-common';
 
 Vue.use(Vuex);
 

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- Fixed columns number divided (maybe 12 or something by default) -->
     <div class="categories">
       <Categories />
     </div>
@@ -15,7 +14,6 @@
 
 <script>
 
-import { HTTP } from './http-common';
 import Categories from './categories'
 import Products from './products'
 import Basket from './basket'
