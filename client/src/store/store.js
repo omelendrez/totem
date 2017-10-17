@@ -10,8 +10,10 @@ import {
   FILTER_BY_CATEGORY,
   SET_CATEGORY_ID,
   RESET_VIEW,
-  LOAD_BASKET,
-  SET_BASKET
+  ADD_ITEM,
+  SEND_ITEM_TO_BASKET,
+  REMOVE_ITEM,
+  REMOVE_ITEM_FROM_BASKET
 } from '../store/mutation-types';
 
 Vue.use(Vuex);
@@ -59,16 +61,15 @@ export default new Vuex.Store({
     }) => {
       commit('SET_CATEGORY_ID', null);
     },
-    [LOAD_BASKET]: ({
+    [ADD_ITEM]: ({
       commit
-    }) => {
-      HTTP.get('basket').then((res) => {
-        commit('SET_BASKET', {
-          payload: res.data
-        })
-      }, (err) => {
-        console.log(err)
-      })
+    }, payload) => {
+      commit('SEND_ITEM_TO_BASKET', payload);
+    },
+    [REMOVE_ITEM]: ({
+      commit
+    }, payload) => {
+      commit('REMOVE_ITEM_FROM_BASKET', payload);
     }
   },
   mutations: {
@@ -94,10 +95,16 @@ export default new Vuex.Store({
         return products.category_id === state.selectedCategoryId || state.selectedCategoryId === null;
       });
     },
-    [SET_BASKET]: (state, {
+    [SEND_ITEM_TO_BASKET]: (state,
       payload
-    }) => {
-      state.basket = payload
+    ) => {
+      state.basket.push(payload)
+    },
+    [REMOVE_ITEM_FROM_BASKET]: (state,
+      payload
+    ) => {
+      const index =  state.basket.indexOf(payload);
+      state.basket.splice(index, 1);
     }
   }
 });

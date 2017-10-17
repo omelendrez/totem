@@ -57,6 +57,7 @@ export default {
     },
     goInactive() {
       Store.dispatch('RESET_VIEW');
+      Store.dispatch('LOAD_CATEGORIES');
       Store.dispatch('LOAD_PRODUCTS');
     }
   }
@@ -76,22 +77,11 @@ export default {
   width: 40%;
 }
 
-html {
-  overflow: auto;
-}
-
-body {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  bottom: 20px;
-  right: 20px;
-  padding: 30px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
 ::-webkit-scrollbar {
   width: 0px;
+}
+
+.category .text {
+  font-size: 14px;
 }
 </style>
