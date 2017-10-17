@@ -17,17 +17,17 @@
 
         </md-toolbar>
 
-        <md-table>
+        <md-table @sort="onSort" md-sort="code">
           <md-table-header>
             <md-table-row>
               <md-table-head md-sort-by="code">Código</md-table-head>
               <md-table-head md-sort-by="name">Nombre</md-table-head>
-              <md-table-head>
+              <md-table-head md-sort-by="price">
                 <md-icon>attach_money</md-icon>
               </md-table-head>
               <md-table-head>Categoría</md-table-head>
               <md-table-head>Sub-Categoría</md-table-head>
-              <md-table-head>Status</md-table-head>
+              <md-table-head md-sort-by="status_id">Status</md-table-head>
               <md-table-head class="button_header">Ver</md-table-head>
               <md-table-head class="button_header">Editar</md-table-head>
               <md-table-head class="button_header">Borrar</md-table-head>
@@ -60,6 +60,7 @@
             </md-table-row>
           </md-table-body>
         </md-table>
+        <md-table-pagination md-size="5" md-total="12" md-page="1" md-label="Registros" md-separator="de" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
       </md-table-card>
     </md-layout>
     <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addProduct()">
@@ -86,12 +87,20 @@ export default {
         content: 'Realmente desea eliminar el producto seleccionado?',
         ok: 'Si',
         cancel: 'No'
+      },
+      sort: {
+        name: 'code',
+        type: 'asc'
+      },
+      pag: {
+        size: 5,
+        page: 1
       }
     };
   },
   methods: {
     fetchProducts() {
-      HTTP.get('products')
+      HTTP.get(`products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
         .then((res) => {
           this.products = res.data;
         })
@@ -127,6 +136,14 @@ export default {
       if (type === 'ok') {
         this.deleteProduct(this.record_id);
       }
+    },
+    onPagination(pag) {
+      this.pag = pag;
+      this.fetchProducts();
+    },
+    onSort(sort) {
+      this.sort = sort;
+      this.fetchProducts();
     }
   },
   created() {
