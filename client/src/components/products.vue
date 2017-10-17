@@ -3,7 +3,7 @@
 
     <md-layout id="container">
 
-      <md-layout md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
+      <md-layout v-on:click.native="addBasket(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
           <div class="text">
@@ -31,6 +31,11 @@ export default {
   },
   created() {
     Store.dispatch('LOAD_PRODUCTS');
+  },
+  methods: {
+    addBasket(item) {
+      Store.dispatch('ADD_ITEM', item);
+    }
   }
 }
 
@@ -44,21 +49,6 @@ export default {
 
 .product {
   text-align: center;
-}
-
-html {
-  overflow: auto;
-}
-
-body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  padding: 30px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 #container>.md-layout {

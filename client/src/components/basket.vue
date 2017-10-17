@@ -3,10 +3,10 @@
 
     <md-layout id="container">
 
-      <md-layout md-flex-large="10" v-for="basket in basketItems" :key="basket.id" :md-item="basket">
-        <div class="item">
+      <md-layout v-on:click.native="removeBasket(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket ">
+        <div class="item ">
           <md-card-media>
-            <md-image :md-src="basket.image"></md-image>
+            <md-image :md-src="basket.image "></md-image>
           </md-card-media>
         </div>
       </md-layout>
@@ -26,9 +26,12 @@ export default {
       return Store.state.basket;
     }
   },
-    created() {
-    Store.dispatch('LOAD_BASKET');
+  methods: {
+    removeBasket(item) {
+      Store.dispatch('REMOVE_ITEM', item);
+    }
   }
+
 }
 
 </script>
