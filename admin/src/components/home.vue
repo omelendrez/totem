@@ -12,7 +12,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="/static/slider01.jpg">
+                <img src="./../assets/img/slider01.jpg">
               </md-card-media>
 
               <md-card-header>
@@ -29,7 +29,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="/static/slider02.jpg">
+                <img src="./../assets/img/slider02.jpg">
               </md-card-media>
 
               <md-card-header>
@@ -37,7 +37,7 @@
                 <div class="md-subhead">Credenciales</div>
               </md-card-header>
 
-              <md-card-content>Mantenga en secreto sus credenciales y no se las dé a nadie. Recuerde que las modificaciones introducidas en la data con sus credenciales son grabadas</md-card-content>
+              <md-card-content>Mantenga en secreto sus credenciales y no se las dé a nadie. Recuerde que las modificaciones introducidas en la data con sus credenciales son monitoreadas</md-card-content>
 
             </md-card>
           </md-board>
@@ -46,7 +46,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="/static/slider03.jpg">
+                <img src="./../assets/img/slider03.jpg">
               </md-card-media>
 
               <md-card-header>

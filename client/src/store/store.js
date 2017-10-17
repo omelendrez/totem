@@ -103,7 +103,7 @@ export default new Vuex.Store({
     [REMOVE_ITEM_FROM_BASKET]: (state,
       payload
     ) => {
-      const index =  state.basket.indexOf(payload);
+      const index = state.basket.indexOf(payload);
       state.basket.splice(index, 1);
     }
   }

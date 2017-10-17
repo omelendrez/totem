@@ -7,6 +7,8 @@ import router from './router';
 Vue.use(Vuex);
 Vue.use(VueMaterial);
 
+require('./assets/css/vue-material.css');
+
 Vue.config.productionTip = true;
 
 import store from './store/store';
