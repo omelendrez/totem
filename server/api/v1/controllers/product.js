@@ -37,8 +37,16 @@ module.exports = {
     Product.belongsTo(SubCategory);
     Product.belongsTo(Status);
 
+    const page = parseInt(req.query.page);
+    const size = parseInt(req.query.size);
+    const sort = req.query.sort;
+    const type = req.query.type;
+    
     return Product
       .findAll({
+        order: [[sort, type]],
+        offset: page,
+        limit: size,
         include: [{
           model: Category,
           where: {
