@@ -11,8 +11,8 @@
         <md-toolbar>
           <h1 class="md-title">Lista de Productos</h1>
 
-          <input class="md-input" id="search_field" @keyup.enter="search">
-          <md-button class="md-icon-button" v-on:click.native="search">
+          <input class="md-input" v-model="filter" id="search_field" @keyup="search">
+          <md-button class="md-icon-button">
             <md-icon>search</md-icon>
           </md-button>
 
@@ -113,7 +113,7 @@ export default {
         });
     },
     search() {
-      this.filter = document.getElementById('search_field').value;
+      // this.filter = document.getElementById('search_field').value;
       this.fetchProducts();
     },
     addProduct() {
