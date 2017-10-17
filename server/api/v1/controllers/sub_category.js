@@ -17,8 +17,24 @@ module.exports = {
     const Status = require("../models").status;
     SubCategory.belongsTo(Status);
 
+    const page = parseInt(req.query.page ? req.query.page : 0);
+    const size = parseInt(req.query.size ? req.query.size : 1000);
+    const sort = req.query.sort ? req.query.sort : 'name';
+    const type = req.query.type ? req.query.type : 'asc';
+    const filter = req.query.filter ? req.query.filter : '';
+
     return SubCategory
       .findAll({
+        where: {
+          name: {
+            $like: '%' + filter + '%'
+          }
+        },
+        order: [
+          [sort, type]
+        ],
+        offset: page,
+        limit: size,
         include: [{
           model: Status,
           where: {
@@ -54,7 +70,7 @@ module.exports = {
           'id',
           'name',
           'image',
-          'status_id', 
+          'status_id',
           [sequelize.fn('date_format', sequelize.col('sub_category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('sub_category.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
         ]

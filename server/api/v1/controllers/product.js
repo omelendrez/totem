@@ -5,6 +5,7 @@ module.exports = {
   create(req, res) {
     let last_id = 0;
     Product.max("id").then(max => {
+
       last_id = max;
       if (isNaN(last_id)) {
         last_id = 0;
@@ -13,6 +14,7 @@ module.exports = {
       const cat = ("0".repeat(2) + (Number(req.body.category_id)).toString()).slice(-2);
       const sub_cat = ("0".repeat(2) + (Number(req.body.sub_category_id)).toString()).slice(-2);
       const code = cat + '-' + sub_cat + '-' + last_id;
+
       return Product
         .create({
           code: code,
@@ -37,13 +39,19 @@ module.exports = {
     Product.belongsTo(SubCategory);
     Product.belongsTo(Status);
 
-    const page = parseInt(req.query.page ? req.query.page : 1);
+    const page = parseInt(req.query.page ? req.query.page : 0);
     const size = parseInt(req.query.size ? req.query.size : 1000);
     const sort = req.query.sort ? req.query.sort : 'name';
     const type = req.query.type ? req.query.type : 'asc';
+    const filter = req.query.filter ? req.query.filter : '';
 
     return Product
       .findAll({
+        where: {
+          name: {
+            $like: '%' + filter + '%'
+          }
+        },
         order: [
           [sort, type]
         ],
@@ -164,14 +172,14 @@ module.exports = {
         }
       })
       .then(product => product.update({
-          code: req.body.code,
-          name: req.body.name,
-          description: req.body.description,
-          category_id: req.body.category_id,
-          sub_category_id: req.body.sub_category_id,
-          status_id: req.body.status_id,
-          price: req.body.price
-        })
+        code: req.body.code,
+        name: req.body.name,
+        description: req.body.description,
+        category_id: req.body.category_id,
+        sub_category_id: req.body.sub_category_id,
+        status_id: req.body.status_id,
+        price: req.body.price
+      })
         .then(result => {
           res.json(result);
         }))
