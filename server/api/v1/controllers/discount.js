@@ -27,7 +27,7 @@ module.exports = {
     const filter = req.query.filter ? req.query.filter : '';
 
     return Discount
-      .findAll({
+      .findAndCountAll({
         where: {
           name: {
             $like: '%' + filter + '%'
@@ -36,7 +36,7 @@ module.exports = {
         order: [
           [sort, type]
         ],
-        offset: page,
+        offset: (page - 1) * size,
         limit: size,
         include: [{
           model: Status,

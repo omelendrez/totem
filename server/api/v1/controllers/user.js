@@ -20,21 +20,21 @@ module.exports = {
 
     const page = parseInt(req.query.page ? req.query.page : 0);
     const size = parseInt(req.query.size ? req.query.size : 1000);
-    const sort = req.query.sort ? req.query.sort : 'name';
+    const sort = req.query.sort ? req.query.sort : 'full_name';
     const type = req.query.type ? req.query.type : 'asc';
     const filter = req.query.filter ? req.query.filter : '';
 
     return User
-      .findAll({
+      .findAndCountAll({
         where: {
-          name: {
+          full_name: {
             $like: '%' + filter + '%'
           }
         },
         order: [
           [sort, type]
         ],
-        offset: page,
+        offset: (page - 1) * size,
         limit: size,
         include: [{
           model: Status,
@@ -118,10 +118,10 @@ module.exports = {
         }
       })
       .then(user => user.update({
-        user_name: req.body.user_name,
-        full_name: req.body.full_name,
-        status_id: req.body.status_id
-      })
+          user_name: req.body.user_name,
+          full_name: req.body.full_name,
+          status_id: req.body.status_id
+        })
         .then(result => {
           res.json(result);
         }))
