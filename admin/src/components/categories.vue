@@ -11,7 +11,7 @@
           <h1 class="md-title">Lista de Categorías</h1>
         </md-toolbar>
 
-        <md-table>
+        <md-table @sort="onSort" md-sort="name">
           <md-table-header>
             <md-table-row>
               <md-table-head md-sort-by="name">Nombre</md-table-head>
@@ -49,6 +49,7 @@
             </md-table-row>
           </md-table-body>
         </md-table>
+        <md-table-pagination md-size="5" md-total="12" md-page="1" md-label="Registros" md-separator="de" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
       </md-table-card>
 
     </md-layout>
@@ -76,12 +77,20 @@ export default {
         content: 'Realmente desea eliminar la categoría seleccionada?',
         ok: 'Si',
         cancel: 'No'
-      }
+      },
+      sort: {
+        name: 'name',
+        type: 'asc'
+      },
+      pag: {
+        size: 5,
+        page: 1
+      }      
     };
   },
   methods: {
     fetchCategories() {
-      HTTP.get('categories')
+      HTTP.get(`categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
         .then((res) => {
           this.categories = res.data;
         })
@@ -116,6 +125,14 @@ export default {
       if (type === 'ok') {
         this.deleteCategory(this.record_id);
       }
+    },
+    onPagination(pag) {
+      this.pag = pag;
+      this.fetchCategories();
+    },
+    onSort(sort) {
+      this.sort = sort;
+      this.fetchCategories();
     }
   },
   created() {
