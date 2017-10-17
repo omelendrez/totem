@@ -51,7 +51,7 @@
             </md-table-row>
           </md-table-body>
         </md-table>
-        <md-table-pagination md-size="5" md-total="12" md-page="1" md-label="Registros" md-separator="de" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
+        <md-table-pagination v-if="showPagination" md-size="5" v-bind:md-total="totalRows" md-page="1" md-label="Registros" md-separator="de" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
       </md-table-card>
 
     </md-layout>
@@ -82,20 +82,26 @@ export default {
         cancel: 'No'
       },
       sort: {
-        name: 'name',
+        name: 'full_name',
         type: 'asc'
       },
       pag: {
         size: 5,
         page: 1
-      }      
+      },
+      totalRows: 0
     };
   },
   methods: {
+    showPagination() {
+      return this.totalRows > 0;
+    },
     fetchUsers() {
       HTTP.get(`users?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
         .then((res) => {
-          this.users = res.data;
+          this.users = res.data.rows;
+          this.totalRows = res.data.count;
+          this.showPagination();
         })
         .catch((err) => {
           console.log(err);
@@ -127,7 +133,8 @@ export default {
     onClose(type) {
       if (type === 'ok') {
         this.deleteUser(this.record_id);
-      },
+      }
+    },
     onPagination(pag) {
       this.pag = pag;
       this.fetchCategories();
@@ -135,7 +142,6 @@ export default {
     onSort(sort) {
       this.sort = sort;
       this.fetchCategories();
-    }
     }
   },
   created() {

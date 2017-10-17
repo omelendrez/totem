@@ -46,7 +46,7 @@ module.exports = {
     const filter = req.query.filter ? req.query.filter : '';
 
     return Product
-      .findAll({
+      .findAndCountAll({
         where: {
           name: {
             $like: '%' + filter + '%'
@@ -55,7 +55,7 @@ module.exports = {
         order: [
           [sort, type]
         ],
-        offset: page,
+        offset: (page - 1) * size,
         limit: size,
         include: [{
           model: Category,
@@ -172,14 +172,14 @@ module.exports = {
         }
       })
       .then(product => product.update({
-        code: req.body.code,
-        name: req.body.name,
-        description: req.body.description,
-        category_id: req.body.category_id,
-        sub_category_id: req.body.sub_category_id,
-        status_id: req.body.status_id,
-        price: req.body.price
-      })
+          code: req.body.code,
+          name: req.body.name,
+          description: req.body.description,
+          category_id: req.body.category_id,
+          sub_category_id: req.body.sub_category_id,
+          status_id: req.body.status_id,
+          price: req.body.price
+        })
         .then(result => {
           res.json(result);
         }))

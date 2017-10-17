@@ -24,7 +24,7 @@ module.exports = {
     const filter = req.query.filter ? req.query.filter : '';
 
     return SubCategory
-      .findAll({
+      .findAndCountAll({
         where: {
           name: {
             $like: '%' + filter + '%'
@@ -33,7 +33,7 @@ module.exports = {
         order: [
           [sort, type]
         ],
-        offset: page,
+        offset: (page - 1) * size,
         limit: size,
         include: [{
           model: Status,
@@ -70,8 +70,7 @@ module.exports = {
           'id',
           'name',
           'image',
-          'status_id',
-          [sequelize.fn('date_format', sequelize.col('sub_category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
+          'status_id', [sequelize.fn('date_format', sequelize.col('sub_category.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('sub_category.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
         ]
       })
@@ -103,9 +102,9 @@ module.exports = {
         }
       })
       .then(sub_category => sub_category.update({
-        name: req.body.name,
-        status_id: req.body.status_id
-      })
+          name: req.body.name,
+          status_id: req.body.status_id
+        })
         .then(result => {
           res.json(result);
         }))
