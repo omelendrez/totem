@@ -37,14 +37,16 @@ module.exports = {
     Product.belongsTo(SubCategory);
     Product.belongsTo(Status);
 
-    const page = parseInt(req.query.page);
-    const size = parseInt(req.query.size);
-    const sort = req.query.sort;
-    const type = req.query.type;
-    
+    const page = parseInt(req.query.page ? req.query.page : 1);
+    const size = parseInt(req.query.size ? req.query.size : 1000);
+    const sort = req.query.sort ? req.query.sort : 'name';
+    const type = req.query.type ? req.query.type : 'asc';
+
     return Product
       .findAll({
-        order: [[sort, type]],
+        order: [
+          [sort, type]
+        ],
         offset: page,
         limit: size,
         include: [{
@@ -162,14 +164,14 @@ module.exports = {
         }
       })
       .then(product => product.update({
-        code: req.body.code,
-        name: req.body.name,
-        description: req.body.description,
-        category_id: req.body.category_id,
-        sub_category_id: req.body.sub_category_id,
-        status_id: req.body.status_id,
-        price: req.body.price
-      })
+          code: req.body.code,
+          name: req.body.name,
+          description: req.body.description,
+          category_id: req.body.category_id,
+          sub_category_id: req.body.sub_category_id,
+          status_id: req.body.status_id,
+          price: req.body.price
+        })
         .then(result => {
           res.json(result);
         }))
