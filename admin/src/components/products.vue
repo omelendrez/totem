@@ -11,7 +11,8 @@
         <md-toolbar>
           <h1 class="md-title">Lista de Productos</h1>
 
-          <md-button class="md-icon-button">
+          <input class="md-input" id="search_field" @keyup.enter="search">
+          <md-button class="md-icon-button" v-on:click.native="search">
             <md-icon>search</md-icon>
           </md-button>
 
@@ -96,12 +97,13 @@ export default {
         size: 5,
         page: 1
       },
-      totalRows: 0
+      totalRows: 0,
+      filter: ''
     };
   },
   methods: {
     fetchProducts() {
-      HTTP.get(`products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
+      HTTP.get(`products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`)
         .then((res) => {
           this.products = res.data.rows;
           this.totalRows = res.data.count;
@@ -109,6 +111,10 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    search() {
+      this.filter = document.getElementById('search_field').value;
+      this.fetchProducts();
     },
     addProduct() {
       this.$router.push({ name: 'ProductAdd' });

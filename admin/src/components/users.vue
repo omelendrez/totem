@@ -10,10 +10,6 @@
         <md-toolbar>
           <h1 class="md-title">Lista de Usuarios</h1>
 
-          <md-button class="md-icon-button">
-            <md-icon>search</md-icon>
-          </md-button>
-
         </md-toolbar>
 
         <md-table md-sort-by="full_name">
