@@ -13,7 +13,11 @@ import {
   ADD_ITEM,
   SEND_ITEM_TO_BASKET,
   REMOVE_ITEM,
-  REMOVE_ITEM_FROM_BASKET
+  REMOVE_ITEM_FROM_BASKET,
+  SET_ITEM,
+  SET_ITEM_FOR_VIEW,
+  UNSET_ITEM,
+  UNSET_ITEM_FROM_VIEW
 } from '../store/mutation-types';
 
 Vue.use(Vuex);
@@ -23,7 +27,10 @@ const state = {
   products: [],
   productsAll: [],
   basket: [],
-  selectedCategoryId: null
+  product: {},
+  selectedCategoryId: null,
+  itemSet: false,
+  totalBasket: 0
 };
 
 export default new Vuex.Store({
@@ -34,7 +41,7 @@ export default new Vuex.Store({
     }) => {
       HTTP.get('categories').then((res) => {
         commit('SET_CATEGORIES', {
-          payload: res.data
+          payload: res.data.rows
         })
       }, (err) => {
         console.log(err)
@@ -45,7 +52,7 @@ export default new Vuex.Store({
     }) => {
       HTTP.get('products').then((res) => {
         commit('SET_PRODUCTS', {
-          payload: res.data
+          payload: res.data.rows
         })
       }, (err) => {
         console.log(err)
@@ -64,12 +71,22 @@ export default new Vuex.Store({
     [ADD_ITEM]: ({
       commit
     }, payload) => {
-      commit('SEND_ITEM_TO_BASKET', payload);
+      commit('SEND_ITEM_TO_BASKET');
     },
     [REMOVE_ITEM]: ({
       commit
+    }) => {
+      commit('REMOVE_ITEM_FROM_BASKET');
+    },
+    [SET_ITEM]: ({
+      commit
     }, payload) => {
-      commit('REMOVE_ITEM_FROM_BASKET', payload);
+      commit('SET_ITEM_FOR_VIEW', payload);
+    },
+    [UNSET_ITEM]: ({
+      commit
+    }) => {
+      commit('UNSET_ITEM_FROM_VIEW');
     }
   },
   mutations: {
@@ -95,16 +112,29 @@ export default new Vuex.Store({
         return products.category_id === state.selectedCategoryId || state.selectedCategoryId === null;
       });
     },
-    [SEND_ITEM_TO_BASKET]: (state,
-      payload
-    ) => {
-      state.basket.push(payload)
+    [SEND_ITEM_TO_BASKET]: (state) => {
+      state.basket.push(state.product)
+      state.totalBasket = parseFloat(state.totalBasket) + parseFloat(state.product.price);
+      state.itemSet = false
+      state.product = {}
     },
-    [REMOVE_ITEM_FROM_BASKET]: (state,
+    [REMOVE_ITEM_FROM_BASKET]: (state) => {
+      const index = state.basket.indexOf(state.product);
+      state.totalBasket = parseFloat(state.totalBasket) - parseFloat(state.product.price);
+      state.basket.splice(index, 1);
+      state.itemSet = false
+      state.product = {}
+    },
+    [SET_ITEM_FOR_VIEW]: (state,
       payload
     ) => {
-      const index = state.basket.indexOf(payload);
-      state.basket.splice(index, 1);
+      state.product = payload
+      state.itemSet = true
+      console.log(payload)
+    },
+    [UNSET_ITEM_FROM_VIEW]: (state) => {
+      state.product = {}
+      state.itemSet = false
     }
   }
 });

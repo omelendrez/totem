@@ -36,7 +36,7 @@ module.exports = {
         order: [
           [sort, type]
         ],
-        offset: (page - 1) * size,
+        offset: size !== 1000 ? (page - 1) * size : 0,
         limit: size,
         include: [{
           model: Status,
@@ -75,8 +75,7 @@ module.exports = {
           'name',
           'description',
           'percent',
-          'status_id',
-          [sequelize.fn('date_format', sequelize.col('discount.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
+          'status_id', [sequelize.fn('date_format', sequelize.col('discount.created_at'), '%d-%b-%y %H:%i'), 'created_at'],
           [sequelize.fn('date_format', sequelize.col('discount.updated_at'), '%d-%b-%y %H:%i'), 'updated_at']
         ]
       })
@@ -108,11 +107,11 @@ module.exports = {
         }
       })
       .then(discount => discount.update({
-        name: req.body.name,
-        description: req.body.description,
-        percent: req.body.percent,
-        status_id: req.body.status_id
-      })
+          name: req.body.name,
+          description: req.body.description,
+          percent: req.body.percent,
+          status_id: req.body.status_id
+        })
         .then(result => {
           res.json(result);
         }))

@@ -3,7 +3,7 @@
 
     <md-layout id="container">
 
-      <md-layout v-on:click.native="addBasket(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
+      <md-layout v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
           <div class="text">
@@ -27,14 +27,18 @@ export default {
   computed: {
     products() {
       return Store.state.products;
+    },
+    itemSet() {
+      return Store.state.itemSet;
     }
   },
   created() {
     Store.dispatch('LOAD_PRODUCTS');
   },
   methods: {
-    addBasket(item) {
-      Store.dispatch('ADD_ITEM', item);
+    openItem(item) {
+      item.from = 'products';
+      Store.dispatch('SET_ITEM', item);
     }
   }
 }

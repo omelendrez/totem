@@ -12,3 +12,8 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const SEND_ITEM_TO_BASKET = 'SEND_ITEM_TO_BASKET';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const REMOVE_ITEM_FROM_BASKET = 'REMOVE_ITEM_FROM_BASKET';
+
+export const SET_ITEM = 'SET_ITEM';
+export const SET_ITEM_FOR_VIEW = 'SET_ITEM_FOR_VIEW';
+export const UNSET_ITEM = 'UNSET_ITEM';
+export const UNSET_ITEM_FROM_VIEW = 'UNSET_ITEM_FROM_VIEW';
