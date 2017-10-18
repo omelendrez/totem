@@ -1,9 +1,9 @@
 <template>
   <div class="items">
-
+    <md-chip v-if="totalBasket" class="md-accent">${{totalBasket}}</md-chip>
     <md-layout id="container">
 
-      <md-layout v-on:click.native="removeBasket(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket ">
+      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket ">
         <div class="item ">
           <md-card-media>
             <md-image :md-src="basket.image "></md-image>
@@ -24,11 +24,18 @@ export default {
   computed: {
     basketItems() {
       return Store.state.basket;
+    },
+    itemSet() {
+      return Store.state.itemSet;
+    },
+    totalBasket() {
+      return Store.state.totalBasket;
     }
   },
   methods: {
-    removeBasket(item) {
-      Store.dispatch('REMOVE_ITEM', item);
+    openItem(item) {
+      item.from = 'basket';
+      Store.dispatch('SET_ITEM', item);
     }
   }
 
@@ -38,28 +45,16 @@ export default {
 
 <style scoped>
 .item {
-  margin-left: 16px;
-  width: 60%;
-  vertical-align: middle;
+  margin: 10px;
 }
 
 .items {
   border-top: 10px solid cadetblue;
-  vertical-align: middle;
-  height: 100%;
 }
 
-#container {
-  vertical-align: middle;
-  height: 100%;
-}
-
-.md-layout {
-  vertical-align: middle;
-  height: 100%;
-}
-
-img {
-  vertical-align: middle;
+.md-chip {
+  float: right;
+  font-size: 16px;
+  margin-top: 10px;
 }
 </style>
