@@ -34,7 +34,7 @@ export default new Vuex.Store({
     }) => {
       HTTP.get('categories').then((res) => {
         commit('SET_CATEGORIES', {
-          payload: res.data
+          payload: res.data.rows
         })
       }, (err) => {
         console.log(err)
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     }) => {
       HTTP.get('products').then((res) => {
         commit('SET_PRODUCTS', {
-          payload: res.data
+          payload: res.data.rows
         })
       }, (err) => {
         console.log(err)
