@@ -33,7 +33,7 @@ module.exports = {
         order: [
           [sort, type]
         ],
-        offset: (page - 1) * size,
+        offset: size !== 1000 ? (page - 1) * size : 0,
         limit: size,
         include: [{
           model: Status,
