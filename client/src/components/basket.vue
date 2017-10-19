@@ -1,19 +1,23 @@
 <template>
-  <div class="items">
-    <md-chip v-if="totalBasket" class="md-accent" v-on:click.native="checkout()">
+  <div class="basket-items">
+
+    <md-chip v-if="totalBasket" class="md-accent basket-checkout" v-on:click.native="checkout()">
       CHECKOUT
-      <md-icon>attach_money</md-icon>{{totalBasket}}</md-chip>
+      <md-icon>attach_money</md-icon>
+      {{totalBasket}}
+    </md-chip>
+    
     <md-layout id="container">
 
-      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket ">
-        <div class="item ">
-          <md-card-media>
-            <md-image :md-src="basket.image"></md-image>
-          </md-card-media>
+      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket">
+        <div class="basket-item" >
+        <md-image :md-src="basket.image"></md-image>
+          {{basket.name}}
         </div>
       </md-layout>
 
     </md-layout>
+
   </div>
 </template>
 
@@ -46,20 +50,22 @@ export default {
 </script>
 
 <style scoped>
-.item {
-  margin-left: 10px;
+.basket-item {
+  text-align: center;
 }
 
-.items {
+.basket-items {
   border-top: 10px solid cadetblue;
   height: 100%;
   overflow: hidden;
 }
 
-.md-chip {
+.basket-checkout {
   position: absolute;
   right: 16px;
   bottom: 16px;
   font-size: 1.2em;
+  z-index: 99999;
 }
+
 </style>
