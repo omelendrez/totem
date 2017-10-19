@@ -12,14 +12,11 @@
             <div class="md-subhead" v-if="this.product.category">
               {{product.category.name}}
             </div>
-            <div class="md-subhead" v-if="this.product.category">
+            <div class="md-subhead" v-if="this.product.sub_category">
               {{product.sub_category.name}}
             </div>
             <div class="md-title">
               {{product.name}}
-            </div>
-            <div class="md-subhead">
-              Código: {{product.code}}
             </div>
           </md-card-header>
 
@@ -75,7 +72,6 @@ export default {
       Store.dispatch('UNSET_ITEM');
     }
   }
-
 }
 
 </script>
@@ -86,7 +82,6 @@ export default {
 }
 
 .active {
-  background-color:lightgoldenrodyellow !important;
+  background-color: lightgoldenrodyellow !important;
 }
-
 </style>
