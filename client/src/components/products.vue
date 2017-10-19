@@ -6,8 +6,11 @@
       <md-layout v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
-          <div class="text">
+          <div class="md-title">
             {{product.name}}
+          </div>
+          <div class="md-subhead">
+            {{product.category.name}}
           </div>
         </div>
       </md-layout>
@@ -53,16 +56,7 @@ export default {
 
 .product {
   text-align: center;
-}
-
-#container>.md-layout {
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.md-card-header {
-  text-align: center;
+  margin-bottom: 40px;
 }
 
 ::-webkit-scrollbar {
