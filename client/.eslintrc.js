@@ -2,51 +2,60 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   parserOptions: {
-    sourceType: 'module'
+    sourceType: "module"
   },
   env: {
-    browser: true,
+    browser: true
   },
-  extends: 'airbnb-base',
+  extends: "airbnb-base",
   // required to lint *.vue files
-  plugins: [
-    'html'
-  ],
+  plugins: ["html", "prettier"],
   // check if imports actually resolve
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': 'build/webpack.base.conf.js'
+  settings: {
+    "import/resolver": {
+      webpack: {
+        config: "build/webpack.base.conf.js"
       }
     }
   },
   // add your custom rules here
-  'rules': {
+  rules: {
+    "prettier/prettier": "error",
     // we need console
-    'no-console': 0,
+    "no-console": 0,
     // we work on windows environment
     "linebreak-style": ["off", "windows"],
     // don't require .vue extension when importing
-    'import/extensions': ['error', 'always', {
-      'js': 'never',
-      'vue': 'never'
-    }],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        js: "never",
+        vue: "never"
+      }
+    ],
     // allow optionalDependencies
-    'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
-    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        optionalDependencies: ["test/unit/index.js"]
+      }
+    ],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    "no-debugger": process.env.NODE_ENV === "production" ? 2 : 0,
     // or
-    "comma-dangle": ["error", {
-      "arrays": "never",
-      "objects": "never",
-      "imports": "never",
-      "exports": "never",
-      "functions": "never"
-    }],
-    "indent": [2, 2]
+    "comma-dangle": [
+      "error",
+      {
+        arrays: "never",
+        objects: "never",
+        imports: "never",
+        exports: "never",
+        functions: "never"
+      }
+    ],
+    indent: [2, 2]
   }
-}
+};
