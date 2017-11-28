@@ -67,23 +67,22 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'discounts',
+  name: "discounts",
   data() {
     return {
       discounts: [],
       confirm: {
-        title: '',
-        content: 'Realmente desea eliminar el descuento seleccionado?',
-        ok: 'Si',
-        cancel: 'No'
+        title: "",
+        content: "Realmente desea eliminar el descuento seleccionado?",
+        ok: "Si",
+        cancel: "No"
       },
       sort: {
-        name: 'name',
-        type: 'asc'
+        name: "name",
+        type: "asc"
       },
       pag: {
         size: 5,
@@ -94,30 +93,33 @@ export default {
   },
   methods: {
     fetchDiscounts() {
-      HTTP.get(`discounts?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
-        .then((res) => {
+      HTTP.get(
+        `discounts?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
+          .name}&type=${this.sort.type}`
+      )
+        .then(res => {
           this.discounts = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     addDiscount() {
-      this.$router.push({ name: 'DiscountAdd' });
+      this.$router.push({ name: "DiscountAdd" });
     },
     editDiscount(id) {
-      this.$router.push({ name: 'DiscountEdit', params: { id } });
+      this.$router.push({ name: "DiscountEdit", params: { id } });
     },
     viewDiscount(id) {
-      this.$router.push({ name: 'DiscountView', params: { id } });
+      this.$router.push({ name: "DiscountView", params: { id } });
     },
     deleteDiscount(id) {
       HTTP.delete(`discounts/${id}`)
         .then(() => {
           this.fetchDiscounts();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -127,7 +129,7 @@ export default {
       this.record_id = id;
     },
     onClose(type) {
-      if (type === 'ok') {
+      if (type === "ok") {
         this.deleteDiscount(this.record_id);
       }
     },
@@ -142,10 +144,10 @@ export default {
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
     this.fetchDiscounts();
-    this.$root.$data.last_call = 'discounts';
+    this.$root.$data.last_call = "discounts";
   }
 };
 </script>
@@ -161,10 +163,10 @@ export default {
 }
 
 .md-table-card .md-toolbar {
-  background-color: #E1E0B8;
+  background-color: #e1e0b8;
 }
 
 .md-table-card .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>

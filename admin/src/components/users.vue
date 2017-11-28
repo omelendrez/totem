@@ -63,23 +63,22 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'users',
+  name: "users",
   data() {
     return {
       users: [],
       confirm: {
-        title: '',
-        content: 'Realmente desea eliminar el usuario seleccionado?',
-        ok: 'Si',
-        cancel: 'No'
+        title: "",
+        content: "Realmente desea eliminar el usuario seleccionado?",
+        ok: "Si",
+        cancel: "No"
       },
       sort: {
-        name: 'full_name',
-        type: 'asc'
+        name: "full_name",
+        type: "asc"
       },
       pag: {
         size: 5,
@@ -93,31 +92,34 @@ export default {
       return this.totalRows > 0;
     },
     fetchUsers() {
-      HTTP.get(`users?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
-        .then((res) => {
+      HTTP.get(
+        `users?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
+          .name}&type=${this.sort.type}`
+      )
+        .then(res => {
           this.users = res.data.rows;
           this.totalRows = res.data.count;
           this.showPagination();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     addUser() {
-      this.$router.push({ name: 'UserAdd' });
+      this.$router.push({ name: "UserAdd" });
     },
     editUser(id) {
-      this.$router.push({ name: 'UserEdit', params: { id } });
+      this.$router.push({ name: "UserEdit", params: { id } });
     },
     viewUser(id) {
-      this.$router.push({ name: 'UserView', params: { id } });
+      this.$router.push({ name: "UserView", params: { id } });
     },
     deleteUser(id) {
       HTTP.delete(`users/${id}`)
         .then(() => {
           this.fetchUsers();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -127,7 +129,7 @@ export default {
       this.record_id = id;
     },
     onClose(type) {
-      if (type === 'ok') {
+      if (type === "ok") {
         this.deleteUser(this.record_id);
       }
     },
@@ -142,10 +144,10 @@ export default {
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
     this.fetchUsers();
-    this.$root.$data.last_call = 'users';
+    this.$root.$data.last_call = "users";
   }
 };
 </script>
@@ -161,10 +163,10 @@ export default {
 }
 
 .md-table-card .md-toolbar {
-  background-color: #E1E0B8;
+  background-color: #e1e0b8;
 }
 
 .md-table-card .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>

@@ -77,16 +77,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'productAdd',
+  name: "productAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       product: {},
       categories: [],
@@ -96,48 +95,49 @@ export default {
   },
   methods: {
     fetchCategories() {
-      HTTP.get('categories')
-        .then((res) => {
+      HTTP.get("categories")
+        .then(res => {
           this.categories = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchSubCategories() {
-      HTTP.get('sub_categories')
-        .then((res) => {
+      HTTP.get("sub_categories")
+        .then(res => {
           this.subCategories = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchStatus() {
-      HTTP.get('status')
-        .then((res) => {
+      HTTP.get("status")
+        .then(res => {
           this.statuses = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchProduct(id) {
       HTTP.get(`products/${id}`)
-        .then((res) => {
+        .then(res => {
           this.product = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     saveProduct() {
       if (!this.product.code || !this.product.name || !this.product.price) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const editProduct = {
           code: this.product.code,
@@ -154,12 +154,12 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch((err) => {
+          .catch(err => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: "Error al guardar el Producto",
+              content: "Ha ocurrido un error al intentar guardar el producto"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(err);
           });
       }
@@ -171,10 +171,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      if (this.$root.$data.last_call === 'productView') {
-        this.$router.push({ name: 'ProductView' });
+      if (this.$root.$data.last_call === "productView") {
+        this.$router.push({ name: "ProductView" });
       } else {
-        this.$router.push({ name: 'Products' });
+        this.$router.push({ name: "Products" });
       }
     }
   },

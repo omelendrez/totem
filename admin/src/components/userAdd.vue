@@ -40,16 +40,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'userAdd',
+  name: "userAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       user: {}
     };
@@ -58,28 +57,29 @@ export default {
     saveUser() {
       if (!this.user.user_name || !this.user.full_name) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const newUser = {
           user_name: this.user.user_name,
           full_name: this.user.full_name,
-          password: 'Big Six',
+          password: "Big Six",
           status: 1
         };
 
-        HTTP.post('users', newUser)
+        HTTP.post("users", newUser)
           .then(() => {
-            this.$router.push({ name: 'Users' });
+            this.$router.push({ name: "Users" });
           })
-          .catch((err) => {
+          .catch(err => {
             this.errorMsg = {
-              title: 'Error al guardar el Usuario',
-              content: 'Ha ocurrido un error al intentar guardar el usuario'
+              title: "Error al guardar el Usuario",
+              content: "Ha ocurrido un error al intentar guardar el usuario"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(err);
           });
       }
@@ -91,12 +91,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Users' });
+      this.$router.push({ name: "Users" });
     }
   },
-  created() {
-
-  }
+  created() {}
 };
 </script>
 

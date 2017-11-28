@@ -75,40 +75,42 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'products',
+  name: "products",
   data() {
     return {
       products: [],
       confirm: {
-        title: '',
-        content: 'Realmente desea eliminar el producto seleccionado?',
-        ok: 'Si',
-        cancel: 'No'
+        title: "",
+        content: "Realmente desea eliminar el producto seleccionado?",
+        ok: "Si",
+        cancel: "No"
       },
       sort: {
-        name: 'code',
-        type: 'asc'
+        name: "code",
+        type: "asc"
       },
       pag: {
         size: 5,
         page: 1
       },
       totalRows: 0,
-      filter: ''
+      filter: ""
     };
   },
   methods: {
     fetchProducts() {
-      HTTP.get(`products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`)
-        .then((res) => {
+      HTTP.get(
+        `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
+          .name}&type=${this.sort.type}&filter=${this.filter}`
+      )
+        .then(res => {
           this.products = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -117,21 +119,21 @@ export default {
       this.fetchProducts();
     },
     addProduct() {
-      this.$router.push({ name: 'ProductAdd' });
+      this.$router.push({ name: "ProductAdd" });
     },
     editProduct(id) {
-      this.$router.push({ name: 'ProductEdit', params: { id } });
+      this.$router.push({ name: "ProductEdit", params: { id } });
     },
     viewProduct(id) {
-      this.$router.push({ name: 'ProductView', params: { id } });
+      this.$router.push({ name: "ProductView", params: { id } });
     },
     deleteProduct(id) {
       HTTP.delete(`products/${id}`)
-        .then((res) => {
+        .then(res => {
           console.log(res.data);
           this.fetchProducts();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -141,7 +143,7 @@ export default {
       this.record_id = id;
     },
     onClose(type) {
-      if (type === 'ok') {
+      if (type === "ok") {
         this.deleteProduct(this.record_id);
       }
     },
@@ -156,10 +158,10 @@ export default {
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
     this.fetchProducts();
-    this.$root.$data.last_call = 'products';
+    this.$root.$data.last_call = "products";
   }
 };
 </script>
@@ -175,10 +177,10 @@ export default {
 }
 
 .md-table-card .md-toolbar {
-  background-color: #E1E0B8;
+  background-color: #e1e0b8;
 }
 
 .md-table-card .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>

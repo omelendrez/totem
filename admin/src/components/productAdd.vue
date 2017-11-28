@@ -64,16 +64,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'productAdd',
+  name: "productAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       product: {},
       categories: [],
@@ -82,30 +81,31 @@ export default {
   },
   methods: {
     fetchCategories() {
-      HTTP.get('categories')
-        .then((res) => {
+      HTTP.get("categories")
+        .then(res => {
           this.categories = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchSubCategories() {
-      HTTP.get('sub_categories')
-        .then((res) => {
+      HTTP.get("sub_categories")
+        .then(res => {
           this.subCategories = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     saveProduct() {
       if (!this.product.name || !this.product.price) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const newProduct = {
           name: this.product.name,
@@ -115,16 +115,16 @@ export default {
           sub_category_id: this.product.sub_category_id
         };
 
-        HTTP.post('products', newProduct)
+        HTTP.post("products", newProduct)
           .then(() => {
-            this.$router.push({ name: 'Products' });
+            this.$router.push({ name: "Products" });
           })
-          .catch((error) => {
+          .catch(error => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: "Error al guardar el Producto",
+              content: "Ha ocurrido un error al intentar guardar el producto"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(error);
           });
       }
@@ -136,7 +136,7 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      this.$router.push({ name: "Products" });
     }
   },
   created() {

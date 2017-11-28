@@ -61,38 +61,37 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'productView',
+  name: "productView",
   data() {
     return {
       product: {},
       discounts: {},
-      src: '/static/hamburger.png'
+      src: "/static/hamburger.png"
     };
   },
   methods: {
     fetchProduct(id) {
       HTTP.get(`products/${id}`)
-        .then((res) => {
+        .then(res => {
           this.product = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     editProduct(id) {
-      this.$router.push({ name: 'ProductEdit', params: { id } });
+      this.$router.push({ name: "ProductEdit", params: { id } });
     },
     back() {
-      this.$router.push({ name: 'Products' });
+      this.$router.push({ name: "Products" });
     }
   },
   created() {
     this.fetchProduct(this.$route.params.id);
-    this.$root.$data.last_call = 'productView';
+    this.$root.$data.last_call = "productView";
   }
 };
 </script>

@@ -61,12 +61,11 @@
 </template>
 
 <script>
-
-import DiscountProduct from './discountProduct';
-import HTTP from './http-common';
+import DiscountProduct from "./discountProduct";
+import HTTP from "./http-common";
 
 export default {
-  name: 'discountView',
+  name: "discountView",
   data() {
     return {
       discount: {}
@@ -75,23 +74,23 @@ export default {
   methods: {
     fetchDiscount(id) {
       HTTP.get(`discounts/${id}`)
-        .then((res) => {
+        .then(res => {
           this.discount = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     editDiscount(id) {
-      this.$router.push({ name: 'DiscountEdit', params: { id } });
+      this.$router.push({ name: "DiscountEdit", params: { id } });
     },
     back() {
-      this.$router.push({ name: 'Discounts' });
+      this.$router.push({ name: "Discounts" });
     }
   },
   created() {
     this.fetchDiscount(this.$route.params.id);
-    this.$root.$data.last_call = 'discountView';
+    this.$root.$data.last_call = "discountView";
   },
   components: {
     DiscountProduct

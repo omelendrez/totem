@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'app'
+  name: "app"
 };
 </script>
 
@@ -31,7 +31,7 @@ export default {
 }
 
 .logout-button {
-  background-color: #E1E0B8 !important;
+  background-color: #e1e0b8 !important;
 }
 </style>
 

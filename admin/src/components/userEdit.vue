@@ -49,16 +49,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'userAdd',
+  name: "userAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       user: {},
       statuses: []
@@ -67,29 +66,30 @@ export default {
   methods: {
     fetchUser(id) {
       HTTP.get(`users/${id}`)
-        .then((res) => {
+        .then(res => {
           this.user = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchStatus() {
-      HTTP.get('status')
-        .then((res) => {
+      HTTP.get("status")
+        .then(res => {
           this.statuses = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     saveUser() {
       if (!this.user.user_name || !this.user.full_name) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const editUser = {
           user_name: this.user.user_name,
@@ -102,12 +102,12 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch((err) => {
+          .catch(err => {
             this.errorMsg = {
-              title: 'Error al guardar el Usero',
-              content: 'Ha ocurrido un error al intentar guardar el usero'
+              title: "Error al guardar el Usero",
+              content: "Ha ocurrido un error al intentar guardar el usero"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(err);
           });
       }
@@ -119,10 +119,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      if (this.$root.$data.last_call === 'userView') {
-        this.$router.push({ name: 'UserView' });
+      if (this.$root.$data.last_call === "userView") {
+        this.$router.push({ name: "UserView" });
       } else {
-        this.$router.push({ name: 'Users' });
+        this.$router.push({ name: "Users" });
       }
     }
   },

@@ -52,11 +52,10 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'userView',
+  name: "userView",
   data() {
     return {
       user: {},
@@ -66,23 +65,23 @@ export default {
   methods: {
     fetchProduct(id) {
       HTTP.get(`users/${id}`)
-        .then((res) => {
+        .then(res => {
           this.user = res.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     editUser(id) {
-      this.$router.push({ name: 'UserEdit', params: { id } });
+      this.$router.push({ name: "UserEdit", params: { id } });
     },
     back() {
-      this.$router.push({ name: 'Users' });
+      this.$router.push({ name: "Users" });
     }
   },
   created() {
     this.fetchProduct(this.$route.params.id);
-    this.$root.$data.last_call = 'userView';
+    this.$root.$data.last_call = "userView";
   }
 };
 </script>

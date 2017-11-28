@@ -64,23 +64,22 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'categories',
+  name: "categories",
   data() {
     return {
       categories: [],
       confirm: {
-        title: '',
-        content: 'Realmente desea eliminar la categoría seleccionada?',
-        ok: 'Si',
-        cancel: 'No'
+        title: "",
+        content: "Realmente desea eliminar la categoría seleccionada?",
+        ok: "Si",
+        cancel: "No"
       },
       sort: {
-        name: 'name',
-        type: 'asc'
+        name: "name",
+        type: "asc"
       },
       pag: {
         size: 5,
@@ -91,30 +90,33 @@ export default {
   },
   methods: {
     fetchCategories() {
-      HTTP.get(`categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
-        .then((res) => {
+      HTTP.get(
+        `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
+          .name}&type=${this.sort.type}`
+      )
+        .then(res => {
           this.categories = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     addCategory() {
-      this.$router.push({ name: 'CategoryAdd' });
+      this.$router.push({ name: "CategoryAdd" });
     },
     editCategory(id) {
-      this.$router.push({ name: 'CategoryEdit', params: { id } });
+      this.$router.push({ name: "CategoryEdit", params: { id } });
     },
     viewCategory(id) {
-      this.$router.push({ name: 'CategoryView', params: { id } });
+      this.$router.push({ name: "CategoryView", params: { id } });
     },
     deleteCategory(id) {
       HTTP.delete(`categories/${id}`)
         .then(() => {
           this.fetchCategories();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -124,7 +126,7 @@ export default {
       this.record_id = id;
     },
     onClose(type) {
-      if (type === 'ok') {
+      if (type === "ok") {
         this.deleteCategory(this.record_id);
       }
     },
@@ -139,9 +141,9 @@ export default {
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
-    this.$root.$data.last_call = 'categories';
+    this.$root.$data.last_call = "categories";
     this.fetchCategories();
   }
 };
@@ -158,11 +160,10 @@ export default {
 }
 
 .md-table-card .md-toolbar {
-  background-color: #E1E0B8;
+  background-color: #e1e0b8;
 }
 
 .md-table-card .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
-
 </style>

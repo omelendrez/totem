@@ -35,16 +35,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'categoryAdd',
+  name: "categoryAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       category: {}
     };
@@ -53,25 +52,26 @@ export default {
     saveCategory() {
       if (!this.category.name) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const newCategory = {
           name: this.category.name
         };
 
-        HTTP.post('categories', newCategory)
+        HTTP.post("categories", newCategory)
           .then(() => {
-            this.$router.push({ name: 'Categories' });
+            this.$router.push({ name: "Categories" });
           })
-          .catch((error) => {
+          .catch(error => {
             this.errorMsg = {
-              title: 'Error al guardar el Categoría',
-              content: 'Ha ocurrido un error al intentar guardar la categoría'
+              title: "Error al guardar el Categoría",
+              content: "Ha ocurrido un error al intentar guardar la categoría"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(error.data.errors);
           });
       }
@@ -83,12 +83,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Categories' });
+      this.$router.push({ name: "Categories" });
     }
   },
-  created() {
-
-  }
+  created() {}
 };
 </script>
 

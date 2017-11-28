@@ -63,16 +63,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'discountProduct',
+  name: "discountProduct",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       assignedProducts: [],
       unassignedProducts: [],
@@ -82,20 +81,20 @@ export default {
   methods: {
     fetchAssingedProducts() {
       HTTP.get(`product_discount/${this.discountId}/discount?filter=active`)
-        .then((res) => {
+        .then(res => {
           const result = res.data.map(this.toBoolean);
           this.assignedProducts = result;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     fetchUnassingedProducts() {
       HTTP.get(`product_discount/${this.discountId}/discount?filter=inactive`)
-        .then((res) => {
+        .then(res => {
           this.unassignedProducts = res.data.map(this.toBoolean);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -109,17 +108,17 @@ export default {
         product_id: id,
         discount_id: this.discountId
       };
-      HTTP.post('product_discount', newProduct)
+      HTTP.post("product_discount", newProduct)
         .then(() => {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch((error) => {
+        .catch(error => {
           this.errorMsg = {
-            title: 'Error al guardar agregar el Producto',
-            content: 'Ha ocurrido un error al intentar agregar el producto'
+            title: "Error al guardar agregar el Producto",
+            content: "Ha ocurrido un error al intentar agregar el producto"
           };
-          this.showErrorMsg('dialog1');
+          this.showErrorMsg("dialog1");
           console.log(error.data.errors);
         });
     },
@@ -129,12 +128,12 @@ export default {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch((error) => {
+        .catch(error => {
           this.errorMsg = {
-            title: 'Error al intentar desasignar el Producto',
-            content: 'Ha ocurrido un error al intentar desasignar el producto'
+            title: "Error al intentar desasignar el Producto",
+            content: "Ha ocurrido un error al intentar desasignar el producto"
           };
-          this.showErrorMsg('dialog1');
+          this.showErrorMsg("dialog1");
           console.log(error.data.errors);
         });
     },
@@ -164,6 +163,6 @@ export default {
 }
 
 .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>

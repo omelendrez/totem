@@ -65,23 +65,22 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'subCategories',
+  name: "subCategories",
   data() {
     return {
       subCategories: [],
       confirm: {
-        title: '',
-        content: 'Realmente desea eliminar la categoría seleccionada?',
-        ok: 'Si',
-        cancel: 'No'
+        title: "",
+        content: "Realmente desea eliminar la categoría seleccionada?",
+        ok: "Si",
+        cancel: "No"
       },
       sort: {
-        name: 'name',
-        type: 'asc'
+        name: "name",
+        type: "asc"
       },
       pag: {
         size: 5,
@@ -92,31 +91,34 @@ export default {
   },
   methods: {
     fetchSubCategories() {
-      HTTP.get(`sub_categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`)
-        .then((res) => {
+      HTTP.get(
+        `sub_categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this
+          .sort.name}&type=${this.sort.type}`
+      )
+        .then(res => {
           this.subCategories = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     addSubCategory() {
-      this.$router.push({ name: 'SubCategoryAdd' });
+      this.$router.push({ name: "SubCategoryAdd" });
     },
     editSubCategory(id) {
-      this.$router.push({ name: 'SubCategoryEdit', params: { id } });
+      this.$router.push({ name: "SubCategoryEdit", params: { id } });
     },
     viewSubCategory(id) {
-      this.$router.push({ name: 'SubCategoryView', params: { id } });
+      this.$router.push({ name: "SubCategoryView", params: { id } });
     },
     deleteSubCategory(id) {
       HTTP.delete(`sub_categories/${id}`)
-        .then((res) => {
+        .then(res => {
           console.log(res.data);
           this.fetchSubCategories();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -126,7 +128,7 @@ export default {
       this.record_id = id;
     },
     onClose(type) {
-      if (type === 'ok') {
+      if (type === "ok") {
         this.deleteSubCategory(this.record_id);
       }
     },
@@ -141,9 +143,9 @@ export default {
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
-    this.$root.$data.last_call = 'subCategories';
+    this.$root.$data.last_call = "subCategories";
     this.fetchSubCategories();
   }
 };
@@ -160,10 +162,10 @@ export default {
 }
 
 .md-table-card .md-toolbar {
-  background-color: #E1E0B8;
+  background-color: #e1e0b8;
 }
 
 .md-table-card .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>
