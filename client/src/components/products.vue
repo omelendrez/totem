@@ -21,9 +21,7 @@
 </template>
 
 <script>
-
-import Store from '../store/store';
-import { fetchProducts } from '../store/getters';
+import Store from "../store/store";
 
 export default {
   store: Store,
@@ -36,16 +34,15 @@ export default {
     }
   },
   created() {
-    Store.dispatch('LOAD_PRODUCTS');
+    Store.dispatch("LOAD_PRODUCTS");
   },
   methods: {
     openItem(item) {
-      item.from = 'products';
-      Store.dispatch('SET_ITEM', item);
+      item.from = "products";
+      Store.dispatch("SET_ITEM", item);
     }
   }
-}
-
+};
 </script>
 
 <style scoped>

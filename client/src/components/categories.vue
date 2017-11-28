@@ -17,13 +17,12 @@
 </template>
 
 <script>
-
-import Store from '../store/store'
+import Store from "../store/store";
 
 export default {
   store: Store,
   data() {
-    return { timeoutID: 0 }
+    return { timeoutID: 0 };
   },
   computed: {
     categories() {
@@ -31,7 +30,7 @@ export default {
     }
   },
   created() {
-    Store.dispatch('LOAD_CATEGORIES');
+    Store.dispatch("LOAD_CATEGORIES");
     document.addEventListener("mousemove", this.resetTimer, false);
     document.addEventListener("mousedown", this.resetTimer, false);
     document.addEventListener("keypress", this.resetTimer, false);
@@ -43,7 +42,7 @@ export default {
   },
   methods: {
     setCategory(id) {
-      Store.dispatch('FILTER_BY_CATEGORY', id);
+      Store.dispatch("FILTER_BY_CATEGORY", id);
     },
     resetTimer() {
       window.clearTimeout(this.timeoutID);
@@ -56,13 +55,12 @@ export default {
       this.startTimer();
     },
     goInactive() {
-      Store.dispatch('RESET_VIEW');
-      Store.dispatch('LOAD_CATEGORIES');
-      Store.dispatch('LOAD_PRODUCTS');
+      Store.dispatch("RESET_VIEW");
+      Store.dispatch("LOAD_CATEGORIES");
+      Store.dispatch("LOAD_PRODUCTS");
     }
   }
-}
-
+};
 </script>
 
 <style scoped>

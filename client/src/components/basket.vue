@@ -6,12 +6,12 @@
       <md-icon>attach_money</md-icon>
       {{totalBasket}}
     </md-chip>
-    
+
     <md-layout id="container">
 
       <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket">
-        <div class="basket-item" >
-        <md-image :md-src="basket.image"></md-image>
+        <div class="basket-item">
+          <md-image :md-src="basket.image"></md-image>
           {{basket.name}}
         </div>
       </md-layout>
@@ -67,5 +67,4 @@ export default {
   font-size: 1.2em;
   z-index: 99999;
 }
-
 </style>

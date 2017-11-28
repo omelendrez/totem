@@ -42,8 +42,7 @@
 </template>
 
 <script>
-
-import Store from '../store/store';
+import Store from "../store/store";
 
 export default {
   store: Store,
@@ -55,25 +54,24 @@ export default {
       return Store.state.itemSet;
     },
     fromBasket() {
-      return Store.state.product.from === 'basket';
+      return Store.state.product.from === "basket";
     },
     fromProducts() {
-      return Store.state.product.from === 'products';
+      return Store.state.product.from === "products";
     }
   },
   methods: {
     eliminar(item) {
-      Store.dispatch('REMOVE_ITEM', item);
+      Store.dispatch("REMOVE_ITEM", item);
     },
     comprar(item) {
-      Store.dispatch('ADD_ITEM', item);
+      Store.dispatch("ADD_ITEM", item);
     },
     back() {
-      Store.dispatch('UNSET_ITEM');
+      Store.dispatch("UNSET_ITEM");
     }
   }
-}
-
+};
 </script>
 
 <style scoped>

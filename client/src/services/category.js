@@ -1,7 +1,7 @@
-import HTTP from '../components/http-common';
+import HTTP from "../components/http-common";
 
 export default {
   fetchCategories() {
-    return HTTP.get('categories');
-  },
+    return HTTP.get("categories");
+  }
 };

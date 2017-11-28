@@ -12,10 +12,10 @@
     <div class="categories" v-if="!splash">
       <Categories />
     </div>
-    <div class="products"  v-if="!splash">
+    <div class="products" v-if="!splash">
       <Products />
     </div>
-    <div class="basket"  v-if="!splash">
+    <div class="basket" v-if="!splash">
       <Basket />
     </div>
     <div class="details">
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       splash: true,
-      src: '/static/img/bigsix.jpg'
+      src: "/static/img/bigsix.jpg"
     };
   },
   methods: {
@@ -138,5 +138,4 @@ export default {
   padding: 20px;
   width: 100%;
 }
-
 </style>
