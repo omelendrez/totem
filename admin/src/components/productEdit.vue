@@ -115,7 +115,7 @@ export default {
     fetchStatus() {
       HTTP.get("status")
         .then((res) => {
-          this.statuses = res.data.rows;
+          this.statuses = res.data;
         })
         .catch((err) => {
           console.log(err);
