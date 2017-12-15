@@ -15,11 +15,11 @@
     <div class="products" v-if="!splash">
       <Products />
     </div>
-    <div class="basket" v-if="!splash">
-      <Basket />
-    </div>
     <div class="details">
       <Detail />
+    </div>
+    <div class="cart" v-if="!splash">
+      <Cart />
     </div>
     <div class="overlay" v-if="itemSet"></div>
   </div>
@@ -28,8 +28,8 @@
 <script>
 import Categories from "./categories";
 import Products from "./products";
-import Basket from "./basket";
 import Detail from "./details";
+import Cart from "./cart";
 
 import Store from "../store/store";
 
@@ -56,38 +56,35 @@ export default {
   components: {
     Categories,
     Products,
-    Basket,
-    Detail
+    Detail,
+    Cart
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .categories {
   position: absolute;
   top: 32px;
   left: 0;
-  height: 90%;
-  width: 20%;
+  bottom: 0px;
+  width: 10%;
 }
 
 .products {
   position: absolute;
   top: 32px;
-  right: 0;
-  height: 90%;
-  width: 80%;
+  left: 10%;
+  bottom: 0px;
+  width: 70%;
 }
 
-.basket {
+.cart {
   position: absolute;
-  padding: 0;
-  margin: 0;
-  bottom: 0;
-  height: 10%;
-  width: 100%;
-  background-color: #fff;
+  top: 32px;
+  right: 0;
+  bottom: 0px;
+  width: 20%;
 }
 
 .details {

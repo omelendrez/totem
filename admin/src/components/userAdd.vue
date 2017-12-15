@@ -74,7 +74,7 @@ export default {
           .then(() => {
             this.$router.push({ name: "Users" });
           })
-          .catch(err => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Usuario",
               content: "Ha ocurrido un error al intentar guardar el usuario"

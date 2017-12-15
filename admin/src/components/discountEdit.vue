@@ -70,19 +70,19 @@ export default {
   methods: {
     fetchDiscount(id) {
       HTTP.get(`discounts/${id}`)
-        .then(res => {
+        .then((res) => {
           this.discount = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
       HTTP.get("status")
-        .then(res => {
+        .then((res) => {
           this.statuses = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -107,13 +107,13 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch(error => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Descuento",
               content: "Ha ocurrido un error al intentar guardar el Descuento"
             };
             this.showErrorMsg("dialog1");
-            console.log(error);
+            console.log(err);
           });
       }
     },

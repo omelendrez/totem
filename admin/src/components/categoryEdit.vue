@@ -61,19 +61,19 @@ export default {
   methods: {
     fetchCategory(id) {
       HTTP.get(`categories/${id}`)
-        .then(res => {
+        .then((res) => {
           this.category = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
       HTTP.get("status")
-        .then(res => {
+        .then((res) => {
           this.statuses = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -96,13 +96,13 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch(error => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Categoría",
               content: "Ha ocurrido un error al intentar guardar el Categoría"
             };
             this.showErrorMsg("dialog1");
-            console.log(error);
+            console.log(err);
           });
       }
     },

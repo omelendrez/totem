@@ -94,11 +94,11 @@ export default {
         `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
           .name}&type=${this.sort.type}`
       )
-        .then(res => {
+        .then((res) => {
           this.categories = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -116,7 +116,7 @@ export default {
         .then(() => {
           this.fetchCategories();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

@@ -96,37 +96,37 @@ export default {
   methods: {
     fetchCategories() {
       HTTP.get("categories")
-        .then(res => {
-          this.categories = res.data;
+        .then((res) => {
+          this.categories = res.data.rows;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchSubCategories() {
       HTTP.get("sub_categories")
-        .then(res => {
-          this.subCategories = res.data;
+        .then((res) => {
+          this.subCategories = res.data.rows;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
       HTTP.get("status")
-        .then(res => {
-          this.statuses = res.data;
+        .then((res) => {
+          this.statuses = res.data.rows;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchProduct(id) {
       HTTP.get(`products/${id}`)
-        .then(res => {
+        .then((res) => {
           this.product = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -154,7 +154,7 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch(err => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Producto",
               content: "Ha ocurrido un error al intentar guardar el producto"

@@ -66,7 +66,7 @@ export default {
         password: this.user.password
       };
       HTTP.get("login", { params })
-        .then(res => {
+        .then((res) => {
           this.user = res.data;
           setTimeout(() => {
             this.$root.$data.logged = true;
@@ -75,7 +75,7 @@ export default {
             }, 10);
           }, 10);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err.data);
           this.errorMsg = {
             title: "Error",

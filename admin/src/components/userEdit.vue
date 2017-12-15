@@ -66,19 +66,19 @@ export default {
   methods: {
     fetchUser(id) {
       HTTP.get(`users/${id}`)
-        .then(res => {
+        .then((res) => {
           this.user = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
       HTTP.get("status")
-        .then(res => {
+        .then((res) => {
           this.statuses = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -102,7 +102,7 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch(err => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Usero",
               content: "Ha ocurrido un error al intentar guardar el usero"

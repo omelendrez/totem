@@ -74,10 +74,10 @@ export default {
   methods: {
     fetchDiscount(id) {
       HTTP.get(`discounts/${id}`)
-        .then(res => {
+        .then((res) => {
           this.discount = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

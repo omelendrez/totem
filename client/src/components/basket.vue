@@ -9,7 +9,7 @@
 
     <md-layout id="container">
 
-      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket">
+      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems" :key="rowIndex" :md-item="basket">
         <div class="basket-item">
           <md-image :md-src="basket.image"></md-image>
           {{basket.name}}
@@ -44,6 +44,7 @@ export default {
     },
     checkout() {
       console.log("Checking out", Store.state.totalBasket);
+      this.$router.push({ name: "Cart" });
     }
   }
 };

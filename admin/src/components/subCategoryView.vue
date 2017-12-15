@@ -57,10 +57,10 @@ export default {
   methods: {
     fetchSubCategory(id) {
       HTTP.get(`sub_categories/${id}`)
-        .then(res => {
+        .then((res) => {
           this.subCategory = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

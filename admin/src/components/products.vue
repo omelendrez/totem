@@ -106,11 +106,11 @@ export default {
         `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
           .name}&type=${this.sort.type}&filter=${this.filter}`
       )
-        .then(res => {
+        .then((res) => {
           this.products = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -129,11 +129,11 @@ export default {
     },
     deleteProduct(id) {
       HTTP.delete(`products/${id}`)
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           this.fetchProducts();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

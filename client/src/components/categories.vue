@@ -3,7 +3,7 @@
 
     <md-layout md-align="center" md-column>
 
-      <md-layout v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
+      <md-layout md-align="center" v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
         <div class="category">
           <md-image :md-src="category.image"></md-image>
           <div class="text">
@@ -67,12 +67,12 @@ export default {
 .categories {
   overflow: auto;
   width: 100%;
+  border-right: 1px solid lavender;
 }
 
 .category {
   margin: 30px;
   text-align: center;
-  width: 40%;
 }
 
 ::-webkit-scrollbar {

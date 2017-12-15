@@ -81,20 +81,20 @@ export default {
   methods: {
     fetchAssingedProducts() {
       HTTP.get(`product_discount/${this.discountId}/discount?filter=active`)
-        .then(res => {
+        .then((res) => {
           const result = res.data.map(this.toBoolean);
           this.assignedProducts = result;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchUnassingedProducts() {
       HTTP.get(`product_discount/${this.discountId}/discount?filter=inactive`)
-        .then(res => {
+        .then((res) => {
           this.unassignedProducts = res.data.map(this.toBoolean);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -113,13 +113,13 @@ export default {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch(error => {
+        .catch((err) => {
           this.errorMsg = {
             title: "Error al guardar agregar el Producto",
             content: "Ha ocurrido un error al intentar agregar el producto"
           };
           this.showErrorMsg("dialog1");
-          console.log(error.data.errors);
+          console.log(err.data.errors);
         });
     },
     unassignProduct(id) {
@@ -128,13 +128,13 @@ export default {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch(error => {
+        .catch((err) => {
           this.errorMsg = {
             title: "Error al intentar desasignar el Producto",
             content: "Ha ocurrido un error al intentar desasignar el producto"
           };
           this.showErrorMsg("dialog1");
-          console.log(error.data.errors);
+          console.log(err.data.errors);
         });
     },
     showErrorMsg(ref) {

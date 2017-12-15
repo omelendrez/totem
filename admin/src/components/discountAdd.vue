@@ -79,13 +79,13 @@ export default {
           .then(() => {
             this.$router.push({ name: "Discounts" });
           })
-          .catch(error => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Categoría",
               content: "Ha ocurrido un error al intentar guardar la categoría"
             };
             this.showErrorMsg("dialog1");
-            console.log(error.data.errors);
+            console.log(err.data.errors);
           });
       }
     },

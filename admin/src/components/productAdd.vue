@@ -82,19 +82,19 @@ export default {
   methods: {
     fetchCategories() {
       HTTP.get("categories")
-        .then(res => {
+        .then((res) => {
           this.categories = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchSubCategories() {
       HTTP.get("sub_categories")
-        .then(res => {
+        .then((res) => {
           this.subCategories = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -119,13 +119,13 @@ export default {
           .then(() => {
             this.$router.push({ name: "Products" });
           })
-          .catch(error => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar el Producto",
               content: "Ha ocurrido un error al intentar guardar el producto"
             };
             this.showErrorMsg("dialog1");
-            console.log(error);
+            console.log(err);
           });
       }
     },

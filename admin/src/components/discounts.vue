@@ -97,11 +97,11 @@ export default {
         `discounts?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
           .name}&type=${this.sort.type}`
       )
-        .then(res => {
+        .then((res) => {
           this.discounts = res.data.rows;
           this.totalRows = res.data.count;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -119,7 +119,7 @@ export default {
         .then(() => {
           this.fetchDiscounts();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

@@ -65,10 +65,10 @@ export default {
   methods: {
     fetchProduct(id) {
       HTTP.get(`users/${id}`)
-        .then(res => {
+        .then((res) => {
           this.user = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

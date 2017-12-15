@@ -61,19 +61,19 @@ export default {
   methods: {
     fetchSubCategory(id) {
       HTTP.get(`sub_categories/${id}`)
-        .then(res => {
+        .then((res) => {
           this.subCategory = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
       HTTP.get("status")
-        .then(res => {
+        .then((res) => {
           this.statuses = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -96,7 +96,7 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch(err => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar la Sub-Categoría",
               content:

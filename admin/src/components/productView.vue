@@ -75,10 +75,10 @@ export default {
   methods: {
     fetchProduct(id) {
       HTTP.get(`products/${id}`)
-        .then(res => {
+        .then((res) => {
           this.product = res.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

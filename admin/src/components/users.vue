@@ -96,12 +96,12 @@ export default {
         `users?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
           .name}&type=${this.sort.type}`
       )
-        .then(res => {
+        .then((res) => {
           this.users = res.data.rows;
           this.totalRows = res.data.count;
           this.showPagination();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -119,7 +119,7 @@ export default {
         .then(() => {
           this.fetchUsers();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },

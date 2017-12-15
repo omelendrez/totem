@@ -66,7 +66,7 @@ export default {
           .then(() => {
             this.$router.push({ name: "SubCategories" });
           })
-          .catch(err => {
+          .catch((err) => {
             this.errorMsg = {
               title: "Error al guardar la Sub-Categoría",
               content:
