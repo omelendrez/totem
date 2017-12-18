@@ -10,7 +10,7 @@
             {{product.name}}
           </div>
           <div class="md-subhead">
-            {{product.category.name}}
+            {{product.price}}
           </div>
         </div>
       </md-layout>
@@ -55,6 +55,11 @@ export default {
 .product {
   text-align: center;
   margin-bottom: 40px;
+}
+
+.md-title,
+.md-subhead {
+  font-size: medium;
 }
 
 ::-webkit-scrollbar {

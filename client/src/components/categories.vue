@@ -79,6 +79,10 @@ export default {
   width: 0px;
 }
 
+.md-image {
+  width: 50%;
+}
+
 .category .text {
   font-size: 14px;
 }

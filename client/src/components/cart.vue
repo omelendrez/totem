@@ -7,14 +7,16 @@
         <md-icon class="cart-icon pull-right">shopping_cart</md-icon>
       </md-chip>
 
-      <md-list-item draggable="true" v-for="basketItem in basketItems" :key="basketItem.id">
+      <md-list-item v-for="basketItem in basketItems" :key="basketItem.id">
         <md-avatar>
           <md-image :md-src="basketItem.image"></md-image>
         </md-avatar>
 
         <div class="md-list-text-container">
-          <span>{{basketItem.description}}</span>
+          <span>{{basketItem.name}}</span>
+          <!--
           <span>{{basketItem.category.name}}</span>
+          -->
           <p>${{basketItem.price}}</p>
         </div>
 
@@ -90,5 +92,9 @@ table tbody tr td {
   font-size: 2em;
   font-weight: bold;
   text-align: center;
+}
+
+.md-list-text-container span {
+  font-size: medium;
 }
 </style>

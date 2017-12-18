@@ -68,15 +68,16 @@ export default {
   top: 32px;
   left: 0;
   bottom: 0px;
-  width: 10%;
+  width: 20%;
 }
 
 .products {
   position: absolute;
   top: 32px;
-  left: 10%;
+  left: 20%;
   bottom: 0px;
-  width: 70%;
+  width: 50%;
+  padding: 20px;
 }
 
 .cart {
@@ -84,7 +85,7 @@ export default {
   top: 32px;
   right: 0;
   bottom: 0px;
-  width: 20%;
+  width: 30%;
 }
 
 .details {
