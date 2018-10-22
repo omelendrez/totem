@@ -6,7 +6,8 @@ const state = {
   product: {},
   selectedCategoryId: null,
   itemSet: false,
-  totalBasket: 0
+  totalBasket: 0,
+  config: 0
 }
 
 export default state

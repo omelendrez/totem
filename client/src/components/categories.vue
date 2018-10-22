@@ -18,15 +18,27 @@
 
 <script>
 import store from "@/store";
+import { interval } from '@/utils'
 
 export default {
   store,
   data() {
-    return { timeoutID: 0 };
+    return { intervalID: 0 };
   },
   computed: {
     categories() {
+      store.dispatch("SEND_AKNOWLEDGE");
       return store.getters.categories;
+    },
+    config() {
+      return store.getters.config
+    }
+  },
+  watch: {
+    config() {
+      if(this.config.updates === 1) {
+        this.refresh()
+      }
     }
   },
   created() {
@@ -45,16 +57,19 @@ export default {
       store.dispatch("FILTER_BY_CATEGORY", id);
     },
     resetTimer() {
-      window.clearTimeout(this.timeoutID);
+      window.clearInterval(this.intervalID);
       this.goActive();
     },
     startTimer() {
-      this.timeoutID = window.setTimeout(this.goInactive, 5000);
+      this.intervalID = window.setInterval(this.checkUpdates, interval);
     },
     goActive() {
       this.startTimer();
     },
-    goInactive() {
+    checkUpdates() {
+      store.dispatch("CHECK_UPDATES");
+    },
+    refresh() {
       store.dispatch("RESET_VIEW");
       store.dispatch("LOAD_CATEGORIES");
       store.dispatch("LOAD_PRODUCTS");

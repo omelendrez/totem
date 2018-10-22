@@ -6,7 +6,8 @@ const getters = {
   product: state => state.product,
   selectedCategoryId: state => state.selectedCategoryId,
   itemSet: state => state.itemSet,
-  totalBasket: state => state.totalBasket
-}
+  totalBasket: state => state.totalBasket,
+  config: state => state.config
+};
 
-export default getters
+export default getters;

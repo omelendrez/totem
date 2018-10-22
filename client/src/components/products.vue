@@ -3,7 +3,7 @@
 
     <md-layout id="container">
 
-      <md-layout md-align="center" v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in productsList" :key="product.id" :md-item="product">
+      <md-layout md-align="center" v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
           <div class="md-title">
@@ -27,7 +27,7 @@ export default {
   store,
   data() {
     return {
-      productsList: []
+
     }
   },
   computed: {
@@ -36,11 +36,6 @@ export default {
     },
     itemSet() {
       return store.getters.itemSet;
-    }
-  },
-  watch: {
-    products() {
-      this.productsList = this.products
     }
   },
   created() {

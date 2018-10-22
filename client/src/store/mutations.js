@@ -2,7 +2,7 @@ import { types } from "./mutation-types";
 
 const mutations = {
   [types.SET_CATEGORIES]: (state, { payload }) => {
-    state.categories = payload;
+    state.categories = payload.filter(item => item.status.name === "Activo");
   },
   [types.SET_PRODUCTS]: (state, { payload }) => {
     const products = payload.map(product => {
@@ -46,6 +46,9 @@ const mutations = {
   [types.UNSET_ITEM_FROM_VIEW]: state => {
     state.product = {};
     state.itemSet = false;
+  },
+  [types.SET_UPDATES]: (state, { payload }) => {
+    state.config = payload;
   }
 };
 

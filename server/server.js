@@ -37,6 +37,7 @@ app.use("/users", require(apiPath + "/routes/user"));
 app.use("/product_discount", require(apiPath + "/routes/product_discount"));
 app.use("/status", require(apiPath + "/routes/status"));
 app.use("/login", require(apiPath + "/routes/login"));
+app.use("/config", require(apiPath + "/routes/config"));
 
 const port = 3000;
 
