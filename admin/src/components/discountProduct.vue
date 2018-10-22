@@ -63,16 +63,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'discountProduct',
+  name: "discountProduct",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       assignedProducts: [],
       unassignedProducts: [],
@@ -109,18 +108,18 @@ export default {
         product_id: id,
         discount_id: this.discountId
       };
-      HTTP.post('product_discount', newProduct)
+      HTTP.post("product_discount", newProduct)
         .then(() => {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch((error) => {
+        .catch((err) => {
           this.errorMsg = {
-            title: 'Error al guardar agregar el Producto',
-            content: 'Ha ocurrido un error al intentar agregar el producto'
+            title: "Error al guardar agregar el Producto",
+            content: "Ha ocurrido un error al intentar agregar el producto"
           };
-          this.showErrorMsg('dialog1');
-          console.log(error.data.errors);
+          this.showErrorMsg("dialog1");
+          console.log(err.data.errors);
         });
     },
     unassignProduct(id) {
@@ -129,13 +128,13 @@ export default {
           this.fetchAssingedProducts();
           this.fetchUnassingedProducts();
         })
-        .catch((error) => {
+        .catch((err) => {
           this.errorMsg = {
-            title: 'Error al intentar desasignar el Producto',
-            content: 'Ha ocurrido un error al intentar desasignar el producto'
+            title: "Error al intentar desasignar el Producto",
+            content: "Ha ocurrido un error al intentar desasignar el producto"
           };
-          this.showErrorMsg('dialog1');
-          console.log(error.data.errors);
+          this.showErrorMsg("dialog1");
+          console.log(err.data.errors);
         });
     },
     showErrorMsg(ref) {
@@ -164,6 +163,6 @@ export default {
 }
 
 .md-table-head {
-  background-color: #F6F5D7;
+  background-color: #f6f5d7;
 }
 </style>

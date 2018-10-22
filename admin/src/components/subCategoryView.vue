@@ -45,11 +45,10 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'subCategoryView',
+  name: "subCategoryView",
   data() {
     return {
       subCategory: {}
@@ -66,15 +65,15 @@ export default {
         });
     },
     editSubCategory(id) {
-      this.$router.push({ name: 'SubCategoryEdit', params: { id } });
+      this.$router.push({ name: "SubCategoryEdit", params: { id } });
     },
     back() {
-      this.$router.push({ name: 'SubCategories' });
+      this.$router.push({ name: "SubCategories" });
     }
   },
   created() {
     this.fetchSubCategory(this.$route.params.id);
-    this.$root.$data.last_call = 'subCategoryView';
+    this.$root.$data.last_call = "subCategoryView";
   }
 };
 </script>

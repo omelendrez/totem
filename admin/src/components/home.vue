@@ -67,15 +67,13 @@
 
 <script>
 export default {
-  name: 'home',
+  name: "home",
   data() {
-    return {
-
-    };
+    return {};
   },
   created() {
     if (!this.$root.$data.logged) {
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: "Login" });
     }
   }
 };

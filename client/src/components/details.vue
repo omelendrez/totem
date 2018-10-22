@@ -42,43 +42,42 @@
 </template>
 
 <script>
-
-import Store from '../store/store';
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   computed: {
     product() {
-      return Store.state.product;
+      return store.getters.product;
     },
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
     },
     fromBasket() {
-      return Store.state.product.from === 'basket';
+      return store.getters.product.from === "basket";
     },
     fromProducts() {
-      return Store.state.product.from === 'products';
+      return store.getters.product.from === "products";
     }
   },
   methods: {
     eliminar(item) {
-      Store.dispatch('REMOVE_ITEM', item);
+      store.dispatch("REMOVE_ITEM", item);
     },
     comprar(item) {
-      Store.dispatch('ADD_ITEM', item);
+      store.dispatch("ADD_ITEM", item);
     },
     back() {
-      Store.dispatch('UNSET_ITEM');
+      store.dispatch("UNSET_ITEM");
     }
   }
-}
-
+};
 </script>
 
 <style scoped>
 .product-card {
   padding: 20px;
+  width: 30%;
 }
 
 .active {

@@ -40,20 +40,19 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'login',
+  name: "login",
   data() {
     return {
       user: {
-        user_name: '',
-        password: ''
+        user_name: "",
+        password: ""
       },
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       }
     };
   },
@@ -66,23 +65,24 @@ export default {
         user_name: this.user.user_name,
         password: this.user.password
       };
-      HTTP.get('login', { params })
+      HTTP.get("login", { params })
         .then((res) => {
           this.user = res.data;
           setTimeout(() => {
             this.$root.$data.logged = true;
             setTimeout(() => {
-              this.$router.push({ name: 'Home' });
+              this.$router.push({ name: "Home" });
             }, 10);
           }, 10);
         })
         .catch((err) => {
           console.log(err.data);
           this.errorMsg = {
-            title: 'Error',
-            content: 'Por favor verifique usuario y password y vuelva a intentar'
+            title: "Error",
+            content:
+              "Por favor verifique usuario y password y vuelva a intentar"
           };
-          this.showErrorMsg('dialog1');
+          this.showErrorMsg("dialog1");
         });
     },
     showErrorMsg(ref) {

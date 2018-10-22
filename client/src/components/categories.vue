@@ -3,7 +3,7 @@
 
     <md-layout md-align="center" md-column>
 
-      <md-layout v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
+      <md-layout md-align="center" v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
         <div class="category">
           <md-image :md-src="category.image"></md-image>
           <div class="text">
@@ -17,21 +17,20 @@
 </template>
 
 <script>
-
-import Store from '../store/store'
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   data() {
-    return { timeoutID: 0 }
+    return { timeoutID: 0 };
   },
   computed: {
     categories() {
-      return Store.state.categories;
+      return store.getters.categories;
     }
   },
   created() {
-    Store.dispatch('LOAD_CATEGORIES');
+    store.dispatch("LOAD_CATEGORIES");
     document.addEventListener("mousemove", this.resetTimer, false);
     document.addEventListener("mousedown", this.resetTimer, false);
     document.addEventListener("keypress", this.resetTimer, false);
@@ -43,7 +42,7 @@ export default {
   },
   methods: {
     setCategory(id) {
-      Store.dispatch('FILTER_BY_CATEGORY', id);
+      store.dispatch("FILTER_BY_CATEGORY", id);
     },
     resetTimer() {
       window.clearTimeout(this.timeoutID);
@@ -56,29 +55,32 @@ export default {
       this.startTimer();
     },
     goInactive() {
-      Store.dispatch('RESET_VIEW');
-      Store.dispatch('LOAD_CATEGORIES');
-      Store.dispatch('LOAD_PRODUCTS');
+      store.dispatch("RESET_VIEW");
+      store.dispatch("LOAD_CATEGORIES");
+      store.dispatch("LOAD_PRODUCTS");
     }
   }
-}
-
+};
 </script>
 
 <style scoped>
 .categories {
   overflow: auto;
   width: 100%;
+  border-right: 1px solid lavender;
 }
 
 .category {
   margin: 30px;
   text-align: center;
-  width: 40%;
 }
 
 ::-webkit-scrollbar {
   width: 0px;
+}
+
+.md-image {
+  width: 50%;
 }
 
 .category .text {

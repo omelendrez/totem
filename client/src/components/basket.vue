@@ -6,12 +6,12 @@
       <md-icon>attach_money</md-icon>
       {{totalBasket}}
     </md-chip>
-    
+
     <md-layout id="container">
 
-      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems " :key="rowIndex " :md-item="basket">
-        <div class="basket-item" >
-        <md-image :md-src="basket.image"></md-image>
+      <md-layout v-on:click.native="openItem(basket)" md-flex-large="10" v-for="(basket, rowIndex) in basketItems" :key="rowIndex" :md-item="basket">
+        <div class="basket-item">
+          <md-image :md-src="basket.image"></md-image>
           {{basket.name}}
         </div>
       </md-layout>
@@ -22,28 +22,29 @@
 </template>
 
 <script>
-import Store from "../store/store";
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   computed: {
     basketItems() {
-      return Store.state.basket;
+      return store.getters.basket;
     },
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
     },
     totalBasket() {
-      return Store.state.totalBasket;
+      return store.getters.totalBasket;
     }
   },
   methods: {
     openItem(item) {
       item.from = "basket";
-      Store.dispatch("SET_ITEM", item);
+      store.dispatch("SET_ITEM", item);
     },
     checkout() {
-      console.log("Checking out", Store.state.totalBasket);
+      console.log("Checking out", store.state.totalBasket);
+      this.$router.push({ name: "Cart" });
     }
   }
 };
@@ -67,5 +68,4 @@ export default {
   font-size: 1.2em;
   z-index: 99999;
 }
-
 </style>

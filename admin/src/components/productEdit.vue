@@ -77,16 +77,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'productAdd',
+  name: "productAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       product: {},
       categories: [],
@@ -96,25 +95,25 @@ export default {
   },
   methods: {
     fetchCategories() {
-      HTTP.get('categories')
+      HTTP.get("categories")
         .then((res) => {
-          this.categories = res.data;
+          this.categories = res.data.rows;
         })
         .catch((err) => {
           console.log(err);
         });
     },
     fetchSubCategories() {
-      HTTP.get('sub_categories')
+      HTTP.get("sub_categories")
         .then((res) => {
-          this.subCategories = res.data;
+          this.subCategories = res.data.rows;
         })
         .catch((err) => {
           console.log(err);
         });
     },
     fetchStatus() {
-      HTTP.get('status')
+      HTTP.get("status")
         .then((res) => {
           this.statuses = res.data;
         })
@@ -134,10 +133,11 @@ export default {
     saveProduct() {
       if (!this.product.code || !this.product.name || !this.product.price) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const editProduct = {
           code: this.product.code,
@@ -156,10 +156,10 @@ export default {
           })
           .catch((err) => {
             this.errorMsg = {
-              title: 'Error al guardar el Producto',
-              content: 'Ha ocurrido un error al intentar guardar el producto'
+              title: "Error al guardar el Producto",
+              content: "Ha ocurrido un error al intentar guardar el producto"
             };
-            this.showErrorMsg('dialog1');
+            this.showErrorMsg("dialog1");
             console.log(err);
           });
       }
@@ -171,10 +171,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      if (this.$root.$data.last_call === 'productView') {
-        this.$router.push({ name: 'ProductView' });
+      if (this.$root.$data.last_call === "productView") {
+        this.$router.push({ name: "ProductView" });
       } else {
-        this.$router.push({ name: 'Products' });
+        this.$router.push({ name: "Products" });
       }
     }
   },

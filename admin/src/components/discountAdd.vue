@@ -45,16 +45,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'discountAdd',
+  name: "discountAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       discount: {}
     };
@@ -63,10 +62,11 @@ export default {
     saveDiscount() {
       if (!this.discount.name) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const newDiscount = {
           name: this.discount.name,
@@ -75,17 +75,17 @@ export default {
           status_id: 2
         };
 
-        HTTP.post('discounts', newDiscount)
+        HTTP.post("discounts", newDiscount)
           .then(() => {
-            this.$router.push({ name: 'Discounts' });
+            this.$router.push({ name: "Discounts" });
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
-              title: 'Error al guardar el Categoría',
-              content: 'Ha ocurrido un error al intentar guardar la categoría'
+              title: "Error al guardar el Categoría",
+              content: "Ha ocurrido un error al intentar guardar la categoría"
             };
-            this.showErrorMsg('dialog1');
-            console.log(error.data.errors);
+            this.showErrorMsg("dialog1");
+            console.log(err.data.errors);
           });
       }
     },
@@ -96,12 +96,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      this.$router.push({ name: 'Discounts' });
+      this.$router.push({ name: "Discounts" });
     }
   },
-  created() {
-
-  }
+  created() {}
 };
 </script>
 

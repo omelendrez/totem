@@ -1,6 +1,7 @@
 "use strict";
 const Product = require("../models").product;
 const sequelize = require("sequelize");
+const Op = sequelize.Op
 module.exports = {
   create(req, res) {
     let last_id = 0;
@@ -44,17 +45,21 @@ module.exports = {
     const sort = req.query.sort ? req.query.sort : 'name';
     const type = req.query.type ? req.query.type : 'asc';
     const filter = req.query.filter ? req.query.filter : '';
+    const status = req.query.status ? [req.query.status] : [1, 2];
+
+    const ord =  (parseInt(status) === 1) ? [sequelize.fn('RAND', '')] : [sort, type];
 
     return Product
       .findAndCountAll({
         where: {
           name: {
             $like: '%' + filter + '%'
+          },
+          status_id: {
+            [Op.in]: status
           }
         },
-        order: [
-          [sort, type]
-        ],
+        order: ord,
         offset: size !== 1000 ? (page - 1) * size : 0,
         limit: size,
         include: [{

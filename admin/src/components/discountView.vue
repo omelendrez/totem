@@ -61,12 +61,11 @@
 </template>
 
 <script>
-
-import DiscountProduct from './discountProduct';
-import HTTP from './http-common';
+import DiscountProduct from "./discountProduct";
+import HTTP from "./http-common";
 
 export default {
-  name: 'discountView',
+  name: "discountView",
   data() {
     return {
       discount: {}
@@ -83,15 +82,15 @@ export default {
         });
     },
     editDiscount(id) {
-      this.$router.push({ name: 'DiscountEdit', params: { id } });
+      this.$router.push({ name: "DiscountEdit", params: { id } });
     },
     back() {
-      this.$router.push({ name: 'Discounts' });
+      this.$router.push({ name: "Discounts" });
     }
   },
   created() {
     this.fetchDiscount(this.$route.params.id);
-    this.$root.$data.last_call = 'discountView';
+    this.$root.$data.last_call = "discountView";
   },
   components: {
     DiscountProduct

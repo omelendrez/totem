@@ -44,16 +44,15 @@
 </template>
 
 <script>
-
-import HTTP from './http-common';
+import HTTP from "./http-common";
 
 export default {
-  name: 'categoryAdd',
+  name: "categoryAdd",
   data() {
     return {
       errorMsg: {
-        title: '',
-        content: ''
+        title: "",
+        content: ""
       },
       category: {},
       statuses: []
@@ -70,7 +69,7 @@ export default {
         });
     },
     fetchStatus() {
-      HTTP.get('status')
+      HTTP.get("status")
         .then((res) => {
           this.statuses = res.data;
         })
@@ -81,10 +80,11 @@ export default {
     saveCategory() {
       if (!this.category.name) {
         this.errorMsg = {
-          title: 'Error en datos ingresados',
-          content: 'Por favor complete todos los datos del formulario y vuelva a intentar'
+          title: "Error en datos ingresados",
+          content:
+            "Por favor complete todos los datos del formulario y vuelva a intentar"
         };
-        this.showErrorMsg('dialog1');
+        this.showErrorMsg("dialog1");
       } else {
         const editCategory = {
           name: this.category.name,
@@ -96,13 +96,13 @@ export default {
           .then(() => {
             this.back();
           })
-          .catch((error) => {
+          .catch((err) => {
             this.errorMsg = {
-              title: 'Error al guardar el Categoría',
-              content: 'Ha ocurrido un error al intentar guardar el Categoría'
+              title: "Error al guardar el Categoría",
+              content: "Ha ocurrido un error al intentar guardar el Categoría"
             };
-            this.showErrorMsg('dialog1');
-            console.log(error);
+            this.showErrorMsg("dialog1");
+            console.log(err);
           });
       }
     },
@@ -113,10 +113,10 @@ export default {
       this.$refs[ref].close();
     },
     back() {
-      if (this.$root.$data.last_call === 'categoryView') {
-        this.$router.push({ name: 'CategoryView' });
+      if (this.$root.$data.last_call === "categoryView") {
+        this.$router.push({ name: "CategoryView" });
       } else {
-        this.$router.push({ name: 'Categories' });
+        this.$router.push({ name: "Categories" });
       }
     }
   },

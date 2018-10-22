@@ -12,14 +12,14 @@
     <div class="categories" v-if="!splash">
       <Categories />
     </div>
-    <div class="products"  v-if="!splash">
+    <div class="products" v-if="!splash">
       <Products />
-    </div>
-    <div class="basket"  v-if="!splash">
-      <Basket />
     </div>
     <div class="details">
       <Detail />
+    </div>
+    <div class="cart" v-if="!splash">
+      <Cart />
     </div>
     <div class="overlay" v-if="itemSet"></div>
   </div>
@@ -28,24 +28,24 @@
 <script>
 import Categories from "./categories";
 import Products from "./products";
-import Basket from "./basket";
 import Detail from "./details";
+import Cart from "./cart";
 
-import Store from "../store/store";
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   name: "home",
 
   computed: {
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
     }
   },
   data() {
     return {
       splash: true,
-      src: '/static/img/bigsix.jpg'
+      src: "/static/img/bigsix.jpg"
     };
   },
   methods: {
@@ -56,38 +56,36 @@ export default {
   components: {
     Categories,
     Products,
-    Basket,
-    Detail
+    Detail,
+    Cart
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .categories {
   position: absolute;
   top: 32px;
   left: 0;
-  height: 90%;
+  bottom: 0px;
   width: 20%;
 }
 
 .products {
   position: absolute;
   top: 32px;
-  right: 0;
-  height: 90%;
-  width: 80%;
+  left: 20%;
+  bottom: 0px;
+  width: 50%;
+  padding: 20px;
 }
 
-.basket {
+.cart {
   position: absolute;
-  padding: 0;
-  margin: 0;
-  bottom: 0;
-  height: 10%;
-  width: 100%;
-  background-color: #fff;
+  top: 32px;
+  right: 0;
+  bottom: 0px;
+  width: 30%;
 }
 
 .details {
@@ -138,5 +136,4 @@ export default {
   padding: 20px;
   width: 100%;
 }
-
 </style>

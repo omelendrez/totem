@@ -1,13 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const HTTP = axios.create({
-  baseURL: 'http://server:3000/',
+  baseURL: "http://localhost:3000/",
   headers: {
     // Authorization: 'Bearer {token}'
   }
 });
 
-export {
-  HTTP as
-  default
-};
+export { HTTP as default };

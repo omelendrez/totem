@@ -4,6 +4,8 @@
 **/node_modules/
 target/
 tmp/
+**/build/
+**/test/
 
 
 #---------------------------------
@@ -30,6 +32,3 @@ tmp/
 __MACOSX/
 .DS_Store
 Thumbs.db
-
-**/webapp*
-admin/package-lock.json
