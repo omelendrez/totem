@@ -32,23 +32,23 @@
 </template>
 
 <script>
-import Store from "../store/store";
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   computed: {
     basketItems() {
-      return Store.state.basket;
+      return store.getters.basket;
     },
     totalBasket() {
-      return Store.state.totalBasket;
+      return store.getters.totalBasket;
     }
   },
   methods: {
     eliminar(item) {
       item.from = "basket";
-      Store.dispatch("SET_ITEM", item);
-      Store.dispatch("REMOVE_ITEM", item);
+      store.dispatch("SET_ITEM", item);
+      store.dispatch("REMOVE_ITEM", item);
     },
     back() {
       // We will see what we will do

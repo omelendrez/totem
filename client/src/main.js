@@ -11,7 +11,7 @@ require("./assets/css/vue-material.css");
 
 Vue.config.productionTip = true;
 
-import store from "./store/store";
+import store from "@/store";
 
 /* eslint-disable no-new */
 new Vue({

@@ -31,15 +31,15 @@ import Products from "./products";
 import Detail from "./details";
 import Cart from "./cart";
 
-import Store from "../store/store";
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   name: "home",
 
   computed: {
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
     }
   },
   data() {

@@ -22,28 +22,28 @@
 </template>
 
 <script>
-import Store from "../store/store";
+import store from "@/store";
 
 export default {
-  store: Store,
+  store,
   computed: {
     basketItems() {
-      return Store.state.basket;
+      return store.getters.basket;
     },
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
     },
     totalBasket() {
-      return Store.state.totalBasket;
+      return store.getters.totalBasket;
     }
   },
   methods: {
     openItem(item) {
       item.from = "basket";
-      Store.dispatch("SET_ITEM", item);
+      store.dispatch("SET_ITEM", item);
     },
     checkout() {
-      console.log("Checking out", Store.state.totalBasket);
+      console.log("Checking out", store.state.totalBasket);
       this.$router.push({ name: "Cart" });
     }
   }

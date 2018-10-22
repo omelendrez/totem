@@ -3,7 +3,7 @@
 
     <md-layout id="container">
 
-      <md-layout md-align="center" v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
+      <md-layout md-align="center" v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in productsList" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
           <div class="md-title">
@@ -21,25 +21,38 @@
 </template>
 
 <script>
-import Store from "../store/store";
+import store from '@/store'
+
+console.log(store)
 
 export default {
-  store: Store,
+  store,
+  data() {
+    return {
+      productsList: []
+    }
+  },
   computed: {
     products() {
-      return Store.state.products;
+      return store.getters.products;
     },
     itemSet() {
-      return Store.state.itemSet;
+      return store.getters.itemSet;
+    }
+  },
+  watch: {
+    products() {
+      console.log(this.products)
+      this.productsList = this.products
     }
   },
   created() {
-    Store.dispatch("LOAD_PRODUCTS");
+    store.dispatch("LOAD_PRODUCTS");
   },
   methods: {
     openItem(item) {
       item.from = "products";
-      Store.dispatch("SET_ITEM", item);
+      store.dispatch("SET_ITEM", item);
     }
   }
 };
