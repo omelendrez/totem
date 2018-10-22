@@ -27,7 +27,7 @@ module.exports = {
         .update({
           updates: 0
         })
-        .then(res.status(200).json(result))
+        .then(result => res.status(200).json(result))
         .catch(err => console.log(err))
     );
   },
