@@ -23,8 +23,6 @@
 <script>
 import store from '@/store'
 
-console.log(store)
-
 export default {
   store,
   data() {
@@ -42,7 +40,6 @@ export default {
   },
   watch: {
     products() {
-      console.log(this.products)
       this.productsList = this.products
     }
   },

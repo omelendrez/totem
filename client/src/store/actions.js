@@ -1,7 +1,6 @@
 import Category from "@/services/category";
 import Product from "@/services/product";
 import { types } from "./mutation-types";
-console.log('types', types)
 
 const actions = {
   async [types.LOAD_CATEGORIES]({ commit }) {

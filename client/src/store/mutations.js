@@ -1,5 +1,4 @@
 import { types } from "./mutation-types";
-console.log('types', types)
 
 const mutations = {
   [types.SET_CATEGORIES]: (state, { payload }) => {
