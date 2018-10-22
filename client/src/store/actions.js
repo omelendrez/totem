@@ -1,7 +1,7 @@
 import Category from "@/services/category";
 import Product from "@/services/product";
+import Config from "@/services/config";
 import { types } from "./mutation-types";
-console.log('types', types)
 
 const actions = {
   async [types.LOAD_CATEGORIES]({ commit }) {
@@ -15,6 +15,16 @@ const actions = {
     commit(types.SET_PRODUCTS, {
       payload: product.data.rows
     });
+
+  },
+  async [types.CHECK_UPDATES]({ commit }) {
+    const config = await Config.checkUpdates();
+    commit(types.SET_UPDATES, {
+      payload: config.data
+    });
+  },
+  async [types.SEND_AKNOWLEDGE]({ commit }) {
+    const config = await Config.sendAknowledge();
   },
   [types.FILTER_BY_CATEGORY]: ({ commit }, payload) => {
     commit(types.SET_CATEGORY_ID, payload);

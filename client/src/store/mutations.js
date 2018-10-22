@@ -1,9 +1,8 @@
 import { types } from "./mutation-types";
-console.log('types', types)
 
 const mutations = {
   [types.SET_CATEGORIES]: (state, { payload }) => {
-    state.categories = payload;
+    state.categories = payload.filter(item => item.status.name === "Activo");
   },
   [types.SET_PRODUCTS]: (state, { payload }) => {
     const products = payload.map(product => {
@@ -14,7 +13,12 @@ const mutations = {
     state.productsAll = payload.filter(products => {
       return products.price > 0;
     });
-    state.products = state.productsAll;
+    state.products = state.productsAll.filter(products => {
+      return (
+        products.category_id === state.selectedCategoryId ||
+        state.selectedCategoryId === null
+      );
+    });
   },
   [types.SET_CATEGORY_ID]: (state, payload) => {
     state.selectedCategoryId = payload;
@@ -47,6 +51,9 @@ const mutations = {
   [types.UNSET_ITEM_FROM_VIEW]: state => {
     state.product = {};
     state.itemSet = false;
+  },
+  [types.SET_UPDATES]: (state, { payload }) => {
+    state.config = payload;
   }
 };
 

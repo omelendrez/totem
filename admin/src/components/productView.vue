@@ -10,7 +10,7 @@
       <md-card class="product-card">
         <md-card-area md-inset>
           <md-card-media>
-            <md-image :md-src="src"></md-image>
+            <md-image :md-src="product.image"></md-image>
           </md-card-media>
 
           <md-card-header>
@@ -68,8 +68,7 @@ export default {
   data() {
     return {
       product: {},
-      discounts: {},
-      src: "/static/hamburger.png"
+      discounts: {}
     };
   },
   methods: {
