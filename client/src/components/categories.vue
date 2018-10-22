@@ -70,7 +70,7 @@ export default {
       store.dispatch("CHECK_UPDATES");
     },
     refresh() {
-      store.dispatch("RESET_VIEW");
+      // store.dispatch("RESET_VIEW");
       store.dispatch("LOAD_CATEGORIES");
       store.dispatch("LOAD_PRODUCTS");
     }

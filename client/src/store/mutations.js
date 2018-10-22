@@ -13,7 +13,12 @@ const mutations = {
     state.productsAll = payload.filter(products => {
       return products.price > 0;
     });
-    state.products = state.productsAll;
+    state.products = state.productsAll.filter(products => {
+      return (
+        products.category_id === state.selectedCategoryId ||
+        state.selectedCategoryId === null
+      );
+    });
   },
   [types.SET_CATEGORY_ID]: (state, payload) => {
     state.selectedCategoryId = payload;

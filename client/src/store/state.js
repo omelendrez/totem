@@ -1,9 +1,9 @@
 const state = {
   categories: [],
   products: [],
+  product: {},
   productsAll: [],
   basket: [],
-  product: {},
   selectedCategoryId: null,
   itemSet: false,
   totalBasket: 0,
