@@ -2,10 +2,11 @@
 # Directories
 #---------------------------------
 **/node_modules/
-target/
+**/target/
 tmp/
 **/build/
 **/test/
+**/dist/
 
 
 #---------------------------------

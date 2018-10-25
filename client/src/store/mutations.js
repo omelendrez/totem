@@ -5,7 +5,7 @@ const mutations = {
     state.categories = payload.filter(item => item.status.name === "Activo");
   },
   [types.SET_PRODUCTS]: (state, { payload }) => {
-    const products = payload.map(product => {
+    products = payload.map(product => {
       return (product.image = product.image
         ? product.image
         : product.category.image);
