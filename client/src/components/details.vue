@@ -43,6 +43,7 @@
 
 <script>
 import store from "@/store";
+import { types } from "@/store/mutation-types";
 
 export default {
   store,
@@ -62,13 +63,13 @@ export default {
   },
   methods: {
     eliminar(item) {
-      store.dispatch("REMOVE_ITEM", item);
+      store.dispatch(types.REMOVE_ITEM, item);
     },
     comprar(item) {
-      store.dispatch("ADD_ITEM", item);
+      store.dispatch(types.ADD_ITEM, item);
     },
     back() {
-      store.dispatch("UNSET_ITEM");
+      store.dispatch(types.UNSET_ITEM);
     }
   }
 };

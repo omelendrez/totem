@@ -23,6 +23,7 @@
 
 <script>
 import store from "@/store";
+import { types } from "@/store/mutation-types";
 
 export default {
   store,
@@ -40,7 +41,7 @@ export default {
   methods: {
     openItem(item) {
       item.from = "basket";
-      store.dispatch("SET_ITEM", item);
+      store.dispatch(types.SET_ITEM, item);
     },
     checkout() {
       console.log("Checking out", store.state.totalBasket);

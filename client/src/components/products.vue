@@ -22,6 +22,7 @@
 
 <script>
 import store from '@/store'
+import { types } from "@/store/mutation-types";
 
 export default {
   store,
@@ -39,12 +40,12 @@ export default {
     }
   },
   created() {
-    store.dispatch("LOAD_PRODUCTS");
+    store.dispatch(types.LOAD_PRODUCTS);
   },
   methods: {
     openItem(item) {
       item.from = "products";
-      store.dispatch("SET_ITEM", item);
+      store.dispatch(types.SET_ITEM, item);
     }
   }
 };

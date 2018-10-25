@@ -33,6 +33,7 @@
 
 <script>
 import store from "@/store";
+import { types } from "@/store/mutation-types";
 
 export default {
   store,
@@ -47,8 +48,8 @@ export default {
   methods: {
     eliminar(item) {
       item.from = "basket";
-      store.dispatch("SET_ITEM", item);
-      store.dispatch("REMOVE_ITEM", item);
+      store.dispatch(types.SET_ITEM, item);
+      store.dispatch(types.REMOVE_ITEM, item);
     },
     back() {
       // We will see what we will do
