@@ -1,29 +1,18 @@
 <template>
   <div class="cart">
     <md-list class="md-triple-line">
-
-      <md-chip class="md-accent cart-total">
-        $ {{totalBasket}}
-        <md-icon class="cart-icon pull-right">shopping_cart</md-icon>
-      </md-chip>
-
       <md-list-item v-for="basketItem in basketItems" :key="basketItem.id">
         <md-avatar>
           <md-image :md-src="basketItem.image"></md-image>
         </md-avatar>
-
         <div class="md-list-text-container">
           <span>{{basketItem.name}}</span>
-          <!--
           <span>{{basketItem.category.name}}</span>
-          -->
           <p>${{basketItem.price}}</p>
         </div>
-
         <md-button class="md-icon-button md-raised md-accent" v-on:click.native="eliminar(basketItem)">
           <md-icon>clear</md-icon>
         </md-button>
-
         <md-divider class="md-inset"></md-divider>
       </md-list-item>
     </md-list>
@@ -40,9 +29,6 @@ export default {
   computed: {
     basketItems() {
       return store.getters.basket;
-    },
-    totalBasket() {
-      return store.getters.totalBasket;
     }
   },
   methods: {
@@ -96,6 +82,6 @@ table tbody tr td {
 }
 
 .md-list-text-container span {
-  font-size: medium;
+  font-size: small;
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+      <md-chip class="md-accent cart-total">
+        $ {{totalBasket}}
+        <md-icon class="cart-icon pull-right">shopping_cart</md-icon>
+      </md-chip>
     <md-toolbar>
       <h1 class="md-title">Big Six</h1>
     </md-toolbar>
@@ -40,6 +44,9 @@ export default {
   computed: {
     itemSet() {
       return store.getters.itemSet;
+    },
+    totalBasket() {
+      return store.getters.totalBasket;
     }
   },
   data() {
@@ -76,7 +83,7 @@ export default {
   top: 32px;
   left: 20%;
   bottom: 0px;
-  width: 50%;
+  width: 60%;
   padding: 20px;
 }
 
@@ -85,7 +92,7 @@ export default {
   top: 32px;
   right: 0;
   bottom: 0px;
-  width: 30%;
+  width: 20%;
 }
 
 .details {
@@ -135,5 +142,17 @@ export default {
   font-size: 24px;
   padding: 20px;
   width: 100%;
+}
+
+.cart-total {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  height: 60px;
+  padding: 24px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
 }
 </style>

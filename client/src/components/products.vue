@@ -1,8 +1,6 @@
 <template>
   <div class="products">
-
     <md-layout id="container">
-
       <md-layout md-align="center" v-on:click.native="openItem(product)" md-flex-large="33" v-for="product in products" :key="product.id" :md-item="product">
         <div class="product">
           <md-image :md-src="product.image"></md-image>
@@ -14,9 +12,7 @@
           </div>
         </div>
       </md-layout>
-
     </md-layout>
-
   </div>
 </template>
 
@@ -65,7 +61,7 @@ export default {
 
 .md-title,
 .md-subhead {
-  font-size: medium;
+  font-size: small;
 }
 
 ::-webkit-scrollbar {
