@@ -18,6 +18,7 @@
 
 <script>
 import store from "@/store";
+import { types } from "@/store/mutation-types";
 import { interval } from '@/utils'
 
 export default {
@@ -27,7 +28,7 @@ export default {
   },
   computed: {
     categories() {
-      store.dispatch("SEND_AKNOWLEDGE");
+      store.dispatch(types.SEND_AKNOWLEDGE);
       return store.getters.categories;
     },
     config() {
@@ -42,7 +43,7 @@ export default {
     }
   },
   created() {
-    store.dispatch("LOAD_CATEGORIES");
+    store.dispatch("CATEGORIES/LOAD");
     document.addEventListener("mousemove", this.resetTimer, false);
     document.addEventListener("mousedown", this.resetTimer, false);
     document.addEventListener("keypress", this.resetTimer, false);
@@ -54,7 +55,7 @@ export default {
   },
   methods: {
     setCategory(id) {
-      store.dispatch("FILTER_BY_CATEGORY", id);
+      store.dispatch(types.FILTER_BY_CATEGORY, id);
     },
     resetTimer() {
       window.clearInterval(this.intervalID);
@@ -67,12 +68,12 @@ export default {
       this.startTimer();
     },
     checkUpdates() {
-      store.dispatch("CHECK_UPDATES");
+      store.dispatch(types.CHECK_UPDATES);
     },
     refresh() {
       // store.dispatch("RESET_VIEW");
-      store.dispatch("LOAD_CATEGORIES");
-      store.dispatch("LOAD_PRODUCTS");
+      store.dispatch(types.LOAD_CATEGORIES);
+      store.dispatch(types.LOAD_PRODUCTS);
     }
   }
 };
