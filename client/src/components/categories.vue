@@ -1,8 +1,6 @@
 <template>
   <div class="categories">
-
     <md-layout md-align="center" md-column>
-
       <md-layout md-align="center" v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
         <div class="category">
           <md-image :md-src="category.image"></md-image>
@@ -11,7 +9,6 @@
           </div>
         </div>
       </md-layout>
-
     </md-layout>
   </div>
 </template>

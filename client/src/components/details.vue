@@ -78,7 +78,7 @@ export default {
 <style scoped>
 .product-card {
   padding: 20px;
-  width: 30%;
+  width: 40%;
 }
 
 .active {
