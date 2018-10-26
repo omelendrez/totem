@@ -21,6 +21,7 @@
         <md-table @sort="onSort" md-sort="code">
           <md-table-header>
             <md-table-row>
+              <md-table-head md-sort-by="id">ID</md-table-head>
               <md-table-head md-sort-by="code">Código</md-table-head>
               <md-table-head md-sort-by="name">Nombre</md-table-head>
               <md-table-head md-sort-by="price">
@@ -37,6 +38,7 @@
 
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
+              <md-table-cell>{{row.id}}</md-table-cell>
               <md-table-cell>{{row.code}}</md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.price}}</md-table-cell>

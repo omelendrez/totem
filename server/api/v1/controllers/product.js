@@ -60,8 +60,7 @@ module.exports = {
     const filter = req.query.filter ? req.query.filter : "";
     const status = req.query.status ? [req.query.status] : [1, 2];
 
-    const ord =
-      parseInt(status) === 1 ? [sequelize.fn("RAND", "")] : [sort, type];
+    const ord = [[sort, type]];
 
     return Product.findAndCountAll({
       where: {
