@@ -12,7 +12,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="./../assets/img/slider01.jpg">
+                <img src="@//assets/img/slider01.jpg">
               </md-card-media>
 
               <md-card-header>
@@ -29,7 +29,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="./../assets/img/slider02.jpg">
+                <img src="@/assets/img/slider02.jpg">
               </md-card-media>
 
               <md-card-header>
@@ -46,7 +46,7 @@
             <md-card md-with-hover>
 
               <md-card-media>
-                <img src="./../assets/img/slider03.jpg">
+                <img src="@/assets/img/slider03.jpg">
               </md-card-media>
 
               <md-card-header>
