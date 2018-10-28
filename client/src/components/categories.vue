@@ -34,13 +34,13 @@ export default {
   },
   watch: {
     config() {
-      if(this.config.updates === 1) {
+      if (this.config.updates === 1) {
         this.refresh()
       }
     }
   },
   created() {
-    store.dispatch("CATEGORIES/LOAD");
+    store.dispatch(types.LOAD_CATEGORIES);
     document.addEventListener("mousemove", this.resetTimer, false);
     document.addEventListener("mousedown", this.resetTimer, false);
     document.addEventListener("keypress", this.resetTimer, false);

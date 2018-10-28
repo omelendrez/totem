@@ -4,7 +4,7 @@
       <h1 class="md-title">Categorías</h1>
     </md-toolbar>
 
-    <md-layout md-align="center">
+    <md-layout md-align="center" v-if="showTable">
 
       <md-table-card>
         <md-toolbar>
@@ -70,6 +70,7 @@ export default {
   name: "categories",
   data() {
     return {
+      showTable: false,
       categories: [],
       confirm: {
         title: "",
@@ -97,6 +98,7 @@ export default {
         .then((res) => {
           this.categories = res.data.rows;
           this.totalRows = res.data.count;
+          this.showTable = true;
         })
         .catch((err) => {
           console.log(err);
