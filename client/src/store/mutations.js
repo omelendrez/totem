@@ -15,41 +15,41 @@ const mutations = {
     });
     state.products = state.productsAll.filter(products => {
       return (
-        products.category_id === state.selectedCategoryId ||
-        state.selectedCategoryId === null
+        state.selectedCategory === null
+        ||
+        products.category_id === state.selectedCategory.id
       );
     });
   },
   [types.SET_CATEGORY_ID]: (state, payload) => {
-    state.selectedCategoryId = payload;
+    state.selectedCategory = payload;
     state.products = state.productsAll.filter(products => {
       return (
-        products.category_id === state.selectedCategoryId ||
-        state.selectedCategoryId === null
+        state.selectedCategory === null
+        ||
+        products.category_id === state.selectedCategory.id
       );
     });
   },
   [types.SEND_ITEM_TO_BASKET]: state => {
-    state.basket.push(state.product);
-    state.totalBasket =
-      parseFloat(state.totalBasket) + parseFloat(state.product.price);
+    state.basket.push(state.product)
+    state.totalBasket = state.basket.reduce((total, product) => { return total + parseFloat(product.price) }, 0)
     state.itemSet = false;
-    state.product = {};
+    state.product = null;
   },
   [types.REMOVE_ITEM_FROM_BASKET]: state => {
     const index = state.basket.indexOf(state.product);
-    state.totalBasket =
-      parseFloat(state.totalBasket) - parseFloat(state.product.price);
     state.basket.splice(index, 1);
+    state.totalBasket = state.basket.reduce((total, product) => { return total + parseFloat(product.price) }, 0)
     state.itemSet = false;
-    state.product = {};
+    state.product = null;
   },
   [types.SET_ITEM_FOR_VIEW]: (state, payload) => {
     state.product = payload;
     state.itemSet = true;
   },
   [types.UNSET_ITEM_FROM_VIEW]: state => {
-    state.product = {};
+    state.product = null;
     state.itemSet = false;
   },
   [types.SET_UPDATES]: (state, { payload }) => {

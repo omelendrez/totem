@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-      <md-chip class="md-accent cart-total">
-        $ {{totalBasket}}
-        <md-icon class="cart-icon pull-right">shopping_cart</md-icon>
-      </md-chip>
     <md-toolbar>
       <h1 class="md-title">Big Six</h1>
     </md-toolbar>
@@ -44,9 +40,6 @@ export default {
   computed: {
     itemSet() {
       return store.getters.itemSet;
-    },
-    totalBasket() {
-      return store.getters.totalBasket;
     }
   },
   data() {
@@ -111,9 +104,13 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: cadetblue;
+  background-color: #455a64;
   z-index: 99999;
   overflow: hidden;
+}
+
+.md-image {
+  height: auto;
 }
 
 .main img {
@@ -139,20 +136,9 @@ export default {
   margin: 0;
   top: 30%;
   position: absolute;
-  font-size: 24px;
+  font-size: 3em;
   padding: 20px;
   width: 100%;
 }
 
-.cart-total {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 99;
-  height: 60px;
-  padding: 24px;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-}
 </style>

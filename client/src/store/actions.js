@@ -15,7 +15,6 @@ const actions = {
     commit(types.SET_PRODUCTS, {
       payload: product.data.rows
     });
-
   },
   async [types.CHECK_UPDATES]({ commit }) {
     const config = await Config.checkUpdates();

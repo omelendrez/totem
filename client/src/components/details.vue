@@ -28,11 +28,10 @@
           </md-card-content>
 
         </md-card-area>
-
         <md-card-actions>
           <md-button v-if="fromBasket" class="md-accent md-raised" v-on:click.native="eliminar(product)">Eliminar</md-button>
+          <md-button class="md-primary md-raised" v-on:click.native="back()">Cerrar</md-button>
           <md-button v-if="fromProducts" class="md-accent md-raised" v-on:click.native="comprar(product)">Comprar</md-button>
-          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
         </md-card-actions>
 
       </md-card>

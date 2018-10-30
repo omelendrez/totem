@@ -1,7 +1,9 @@
 <template>
   <div class="categories">
     <md-layout md-align="center" md-column>
-      <md-layout md-align="center" v-on:click.native="setCategory(category.id)" v-for="category in categories" :key="category.id" :md-item="category">
+      <h1>Categorías</h1>
+      <md-button v-if="selectedCategory" class="md-accent md-raised" v-on:click.native="back()">Volver</md-button>
+      <md-layout md-align="center" v-if="category === selectedCategory || !selectedCategory" v-on:click.native="setCategory(category)" v-for="category in categories" :key="category.id" :md-item="category">
         <div class="category">
           <md-image :md-src="category.image"></md-image>
           <div class="text">
@@ -28,6 +30,9 @@ export default {
       store.dispatch(types.SEND_AKNOWLEDGE);
       return store.getters.categories;
     },
+    selectedCategory() {
+      return store.getters.selectedCategory
+    },
     config() {
       return store.getters.config
     }
@@ -51,8 +56,8 @@ export default {
     this.startTimer();
   },
   methods: {
-    setCategory(id) {
-      store.dispatch(types.FILTER_BY_CATEGORY, id);
+    setCategory(category) {
+      store.dispatch(types.FILTER_BY_CATEGORY, category);
     },
     resetTimer() {
       window.clearInterval(this.intervalID);
@@ -67,8 +72,10 @@ export default {
     checkUpdates() {
       store.dispatch(types.CHECK_UPDATES);
     },
+    back() {
+      store.dispatch(types.RESET_VIEW)
+    },
     refresh() {
-      // store.dispatch("RESET_VIEW");
       store.dispatch(types.LOAD_CATEGORIES);
       store.dispatch(types.LOAD_PRODUCTS);
     }
@@ -79,21 +86,19 @@ export default {
 <style scoped>
 .categories {
   overflow: auto;
+  text-align: center;
   width: 100%;
   border-right: 1px solid lavender;
+  padding: 0;
 }
 
 .category {
-  margin: 30px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 ::-webkit-scrollbar {
   width: 0px;
-}
-
-.md-image {
-  width: 50%;
 }
 
 .category .text {
