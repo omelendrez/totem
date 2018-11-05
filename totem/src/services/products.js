@@ -2,7 +2,7 @@ import HTTP from "./api";
 
 export const getProducts = () => {
   return new Promise((resolve, reject) => {
-    HTTP.get("products")
+    HTTP.get("products?status=1")
       .then(resp => {
         resolve(resp);
       })

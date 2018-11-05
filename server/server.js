@@ -38,6 +38,7 @@ app.use("/product_discount", require(apiPath + "/routes/product_discount"));
 app.use("/status", require(apiPath + "/routes/status"));
 app.use("/login", require(apiPath + "/routes/login"));
 app.use("/config", require(apiPath + "/routes/config"));
+app.use(express.static('public'))
 
 const port = 3000;
 

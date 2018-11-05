@@ -40,7 +40,7 @@ The application is compossed of 3 apps:
 
     Server will run at port 3000
 
-    Database will be generated automatically 
+    Database will be generated automatically
 
   - Inside **admin** folder run:
 
@@ -58,3 +58,4 @@ The application is compossed of 3 apps:
 
     Client app will run at port 8090 and your browser will open automatically
 
+[![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)

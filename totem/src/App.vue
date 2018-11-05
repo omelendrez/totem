@@ -1,5 +1,9 @@
 <template>
   <v-app>
+    <v-toolbar absolute color="primary" dark>
+      <v-toolbar-title>Totem Big Six</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
     <router-view />
     <Loading />
   </v-app>
