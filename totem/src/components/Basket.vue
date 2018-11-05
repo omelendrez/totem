@@ -4,26 +4,27 @@
       <v-flex>
         <v-card>
           <v-toolbar color="info" dark>
-            <v-toolbar-title>Carrito</v-toolbar-title>
+            <v-btn icon>
+              <v-icon>shopping_cart</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
             <span class="amount">
               $ {{total}}
             </span>
-            <v-btn icon>
-              <v-icon>shopping_cart</v-icon>
-            </v-btn>
           </v-toolbar>
-          <v-list two-line>
+          <v-list>
             <template v-for="(item, index) in items">
               <v-divider :key="index"></v-divider>
               <v-subheader :key="index">
                 {{ item.name }}
               </v-subheader>
-              <v-list-tile :key="index" @click="">
+              <v-list-tile :key="index">
                 <v-img :src="`http://localhost:3000/${item.image}`" contain></v-img>
                 <v-list-tile-content>
-                  <v-list-tile-sub-title v-html="item.category.name"></v-list-tile-sub-title>
-                  <v-list-tile-title v-html="item.price"></v-list-tile-title>
+                  <h3 v-html="`$ ${item.price}`"></h3>
+                  <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
+                    <v-icon>clear</v-icon>
+                  </v-btn>
                 </v-list-tile-content>
               </v-list-tile>
             </template>
@@ -46,28 +47,26 @@ export default {
     };
   },
   computed: {
-    products() {
-      return store.getters.products;
+    basket() {
+      return store.getters.basket;
     }
   },
   watch: {
-    products() {
-      let counter = 0;
+    basket() {
       let total = 0;
-      const products = []
-      this.products.map(item => {
-        counter++;
-        if (counter < 5) {
-          products.push(item);
-          total += parseFloat(item.price);
-        }
+      const basket = [];
+      this.basket.map(item => {
+        basket.push(item);
+        total += parseFloat(item.price);
       });
-      this.items = products;
+      this.items = basket;
       this.total = total;
     }
   },
-  created() {
-    store.dispatch("loadProducts");
+  methods: {
+    remove(item) {
+      store.dispatch("remove", item);
+    }
   }
 };
 </script>
@@ -83,6 +82,6 @@ export default {
   background: rgb(255, 255, 255, 0.6) !important;
 }
 .amount {
-  font-size: 2em;
+  font-size: 1.2em;
 }
 </style>

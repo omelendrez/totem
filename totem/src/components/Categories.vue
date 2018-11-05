@@ -2,7 +2,7 @@
   <v-container fluid grid-list-lg class="categories">
     <v-layout row wrap>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
-        <v-card ripple flat>
+        <v-card ripple raised>
           <v-img :src="`http://localhost:3000/${item.image}`" height="80px" contain>
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
@@ -10,6 +10,9 @@
                   <span class="transparent" v-text="item.name"></span>
                 </v-flex>
               </v-layout>
+              <v-btn small fab absolute right color="yellow" @click="remove(item)">
+                <v-icon>arrow_forward</v-icon>
+              </v-btn>
             </v-container>
           </v-img>
         </v-card>
@@ -53,5 +56,6 @@ export default {
 }
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
+  font-size: 1.2em;
 }
 </style>

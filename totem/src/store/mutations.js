@@ -30,6 +30,14 @@ const mutations = {
   load_basket_success(state, { rows }) {
     state.status = "success";
     state.basket = rows;
+  },
+  add_item(state, { item }) {
+    state.basket.push(item);
+  },
+  remove_item(state, { item }) {
+    const basket = state.basket;
+    basket.splice(item, 1);
+    state.basket = basket;
   }
 };
 

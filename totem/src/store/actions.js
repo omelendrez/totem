@@ -40,6 +40,12 @@ const actions = {
       .catch(err => {
         commit("request_error", handleError(err));
       });
+  },
+  async add({ commit }, item) {
+    commit("add_item", { item });
+  },
+  async remove({ commit }, item) {
+    commit("remove_item", { item });
   }
 };
 

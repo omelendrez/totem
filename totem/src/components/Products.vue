@@ -1,19 +1,24 @@
 <template>
   <v-container fluid grid-list-lg class="products">
     <v-layout row wrap>
-      <v-flex mb-4 xs4 v-for="(item, index) in items" :key="index">
+      <v-flex mb-4 md4 v-for="(item, index) in items" :key="index">
         <v-card ripple raised>
-          <v-img :src="`http://localhost:3000/${item.image}`" height="200px" contain>
-            <v-container fill-height fluid pa-4>
+          <v-img :src="`http://localhost:3000/${item.image}`" height="180px" contain>
+            <v-container fill-height fluid mt-3>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
-                  <span class="transparent" v-text="item.name"></span>
+                  <div class="transparent" v-text="item.category.name"></div>
+                  <h3 class="transparent" v-text="item.name"></h3>
+                  <h2 class="transparent" v-text="`$ ${item.price}`"></h2>
                 </v-flex>
               </v-layout>
             </v-container>
           </v-img>
-          <v-card-actions>
-            <v-btn dark fab absolute bottom right color="pink">
+          <v-card-actions  class="mb-4">
+            <v-btn fab dark absolute bottom left color="success" @click="add(item)">
+              <v-icon>local_offer</v-icon>
+            </v-btn>
+            <v-btn dark fab absolute bottom right color="primary" @click="add(item)">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-actions>
@@ -41,6 +46,11 @@ export default {
   watch: {
     products() {
       this.items = this.products;
+    }
+  },
+  methods: {
+    add(item) {
+      store.dispatch("add", item);
     }
   },
   created() {

@@ -22,4 +22,9 @@ export default {
 body {
   font-family: Roboto;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 </style>

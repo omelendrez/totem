@@ -1,5 +1,5 @@
 <template>
-  <v-container class="home">
+  <v-container fluid class="home">
     <div class="categories">
       <Categories />
     </div>
@@ -54,6 +54,10 @@ export default {
   top: 32px;
   right: 0;
   bottom: 0;
-  width: 20%;
+  width: 22%;
+}
+
+.home {
+  background: cadetblue;
 }
 </style>
