@@ -1,11 +1,14 @@
 <template>
   <v-container fluid class="basket">
-    <v-layout row>
+    <v-layout row justify-center>
       <v-flex>
         <v-card>
           <v-toolbar color="info" dark>
             <v-btn icon>
               <v-icon>shopping_cart</v-icon>
+            </v-btn>
+            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=!checkout">
+              Pagar
             </v-btn>
             <v-spacer></v-spacer>
             <span class="amount">
@@ -14,15 +17,15 @@
           </v-toolbar>
           <v-list>
             <template v-for="(item, index) in items">
-              <v-divider :key="index"></v-divider>
-              <v-subheader :key="index">
+              <v-divider :key="`div${index}`"></v-divider>
+              <v-subheader :key="`sub${index}`">
                 {{ item.name }}
               </v-subheader>
-              <v-list-tile :key="index">
-                <v-img :src="`http://localhost:3000/${item.image}`" contain></v-img>
+              <v-list-tile :key="`tile${index}`">
+                <v-img :src="item.image" contain></v-img>
                 <v-list-tile-content>
                   <h3 v-html="`$ ${item.price}`"></h3>
-                  <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
+                  <v-btn dark small fab absolute center right color="pink" @click="remove(index)">
                     <v-icon>clear</v-icon>
                   </v-btn>
                 </v-list-tile-content>
@@ -32,24 +35,39 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout row justify-center fill-height>
+      <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <Checkout :items="basket" />
+      </v-dialog>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import store from "@/store";
+import Checkout from '@/components/Checkout'
 export default {
   name: "Basket",
   store,
+  components: {
+    Checkout
+  },
+  props: {
+    basket: {
+      type: Array,
+      default: null
+    },
+    remove: {
+      type: Function,
+      default: undefined
+    }
+  },
   data() {
     return {
       items: [],
-      total: 0
+      total: 0,
+      checkout: false
     };
-  },
-  computed: {
-    basket() {
-      return store.getters.basket;
-    }
   },
   watch: {
     basket() {
@@ -61,11 +79,6 @@ export default {
       });
       this.items = basket;
       this.total = total;
-    }
-  },
-  methods: {
-    remove(item) {
-      store.dispatch("remove", item);
     }
   }
 };

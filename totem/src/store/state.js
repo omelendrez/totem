@@ -3,7 +3,8 @@ const state = {
   apiError: null,
   products: [],
   categories: [],
-  basket: []
+  basket: [],
+  product: null
 };
 
 export default state;

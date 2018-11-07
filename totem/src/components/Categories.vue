@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
         <v-card ripple raised>
-          <v-img :src="`http://localhost:3000/${item.image}`" height="80px" contain>
+          <v-img :src="item.image" height="80px" contain>
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
@@ -26,23 +26,21 @@ import store from "@/store";
 export default {
   name: "Categories",
   store,
+  props: {
+    categories: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
       items: []
     };
   },
-  computed: {
-    categories() {
-      return store.getters.categories;
-    }
-  },
   watch: {
     categories() {
       this.items = this.categories;
     }
-  },
-  created() {
-    store.dispatch("loadCategories");
   }
 };
 </script>
