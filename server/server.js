@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(logger("combined"));
+app.use(logger("dev"));
 app.use(fileUpload());
 
 models.sequelize.sync({

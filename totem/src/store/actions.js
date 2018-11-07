@@ -25,7 +25,13 @@ const actions = {
     commit("load_products_request");
     getProducts()
       .then(resp => {
-        commit("load_products_success", { rows: getResults(resp) });
+        const products = getResults(resp);
+        products.map(item => {
+          const image = item.image || item.category.image;
+          item.image = image ? `http://localhost:3000/${image}` : "";
+          return item;
+        });
+        commit("load_products_success", { rows: products });
       })
       .catch(err => {
         commit("request_error", handleError(err));
