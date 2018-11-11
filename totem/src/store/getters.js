@@ -2,7 +2,8 @@ const getters = {
   products: state => state.products,
   categories: state => state.categories,
   basket: state => state.basket,
-  product: state => state.product
+  product: state => state.product,
+  selectedCategory: state => state.selectedCategory
 };
 
 export default getters;

@@ -56,6 +56,31 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
+  totemFindAll(req, res) {
+    const Product = require("../models").product;
+    Category.hasMany(Product)
+    return Category.findAndCountAll({
+      where: {
+        status_id: 1
+      },
+      attributes: ["id", "name", "image"],
+      include: [
+        {
+          model: Product,
+          where: {
+            category_id: sequelize.col("category.id"),
+            status_id: 1
+          }
+        }
+      ],
+    })
+      .then(categories => {
+        update(0);
+        res.json(categories);
+      })
+      .catch(error => res.status(400).send(error));
+  },
+
   findById(req, res) {
     const Status = require("../models").status;
     Category.belongsTo(Status);

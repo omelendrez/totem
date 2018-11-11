@@ -37,6 +37,9 @@ const mutations = {
     const basket = state.basket;
     basket.splice(item, 1);
     state.basket = basket;
+  },
+  select_category(state, { item }) {
+    state.selectedCategory = item;
   }
 };
 

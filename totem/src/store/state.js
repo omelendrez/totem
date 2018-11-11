@@ -4,7 +4,8 @@ const state = {
   products: [],
   categories: [],
   basket: [],
-  product: null
+  product: null,
+  selectedCategory: null
 };
 
 export default state;

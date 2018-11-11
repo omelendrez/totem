@@ -1,5 +1,8 @@
 <template>
   <v-container fluid grid-list-lg class="products">
+    <v-alert v-if="selectedCategory" type="info" :value="true">
+      Mostrando categoría <strong> {{selectedCategory.name}}</strong>
+    </v-alert>
     <v-layout row wrap>
       <v-flex mb-4 md4 v-for="(item, index) in items" :key="index">
         <v-card ripple raised>
@@ -9,7 +12,7 @@
                 <v-flex xs12 align-end flexbox>
                   <div class="transparent" v-text="item.category.name"></div>
                   <h3 class="transparent" v-text="item.name"></h3>
-                  <h2 class="transparent" v-text="`$ ${item.price}`"></h2>
+                  <h2 class="transparent" v-text="`$ ${item.price.replace('.00','')}`"></h2>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -52,9 +55,23 @@ export default {
       items: []
     };
   },
+  computed: {
+    selectedCategory() {
+      return store.getters.selectedCategory;
+    }
+  },
   watch: {
     products() {
       this.items = this.products;
+    },
+    selectedCategory() {
+      if (!this.selectedCategory) {
+        this.items = this.products;
+      } else {
+        this.items = this.products.filter(
+          item => item.category_id === this.selectedCategory.id
+        );
+      }
     }
   }
 };

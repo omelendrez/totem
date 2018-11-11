@@ -1,8 +1,11 @@
 <template>
   <v-container fluid grid-list-lg class="categories">
     <v-layout row wrap>
+      <v-btn v-if="selectedCategory" fab @click="resetCategory">
+        <v-icon dark>keyboard_backspace</v-icon>
+      </v-btn>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
-        <v-card ripple raised>
+        <v-card ripple raised @click.native="selectCategory(item)">
           <v-img :src="item.image" height="80px" contain>
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
@@ -10,9 +13,6 @@
                   <span class="transparent" v-text="item.name"></span>
                 </v-flex>
               </v-layout>
-              <v-btn small fab absolute right color="yellow" @click="remove(item)">
-                <v-icon>arrow_forward</v-icon>
-              </v-btn>
             </v-container>
           </v-img>
         </v-card>
@@ -37,9 +37,31 @@ export default {
       items: []
     };
   },
+  computed: {
+    selectedCategory() {
+      return store.getters.selectedCategory;
+    }
+  },
   watch: {
     categories() {
       this.items = this.categories;
+    },
+    selectedCategory() {
+      if (!this.selectedCategory) {
+        this.items = this.categories;
+      } else {
+        this.items = this.categories.filter(
+          item => item.id === this.selectedCategory.id
+        );
+      }
+    }
+  },
+  methods: {
+    selectCategory(item) {
+      store.dispatch("selectCategory", item);
+    },
+    resetCategory() {
+      store.dispatch("selectCategory", null);
     }
   }
 };

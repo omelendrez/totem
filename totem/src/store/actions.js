@@ -1,4 +1,4 @@
-import { getCategories, getProducts, getBasket } from "@/services";
+import { getCategories, getProducts } from "@/services";
 
 const handleError = err => {
   const error = {
@@ -51,6 +51,9 @@ const actions = {
   },
   async remove({ commit }, item) {
     commit("remove_item", { item });
+  },
+  async selectCategory({ commit }, item) {
+    commit("select_category", { item });
   }
 };
 

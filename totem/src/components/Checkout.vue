@@ -19,19 +19,17 @@
 
 <script>
 export default {
-name: "Checkout",
-props: {
-  items: {
-    type: Array,
-    default: null
+  name: "Checkout",
+  props: {
+    items: {
+      type: Array,
+      default: null
+    }
+  },
+  data() {
+    return {};
   }
-},
-data() {
-  return {
-
-  }
-}
-}
+};
 </script>
 <style scoped>
 .checkout {
