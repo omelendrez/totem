@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg class="products">
-    <v-alert v-if="selectedCategory" type="info" :value="true">
-      Mostrando categoría <strong> {{selectedCategory.name}}</strong>
+    <v-alert type="info" :value="true">
+      <strong> {{selectedCategory ? selectedCategory.name : 'TODOS LOS PRODUCTOS'}}</strong>
     </v-alert>
     <v-layout row wrap>
       <v-flex mb-4 md4 v-for="(item, index) in items" :key="index">
@@ -66,7 +66,7 @@ export default {
     },
     selectedCategory() {
       if (!this.selectedCategory) {
-        this.items = this.products;
+        this.items = []; // this.products;
       } else {
         this.items = this.products.filter(
           item => item.category_id === this.selectedCategory.id
