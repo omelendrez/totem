@@ -4,14 +4,14 @@
       <strong> {{selectedCategory ? selectedCategory.name : 'TODOS LOS PRODUCTOS'}}</strong>
     </v-alert>
     <v-layout row wrap>
-      <v-flex mb-4 md4 v-for="(item, index) in items" :key="index">
+      <v-flex mb-5 md4 v-for="(item, index) in items" :key="index">
         <v-card ripple raised>
           <v-img :src="item.image" height="180px" contain>
-            <v-container fill-height fluid mt-3>
+            <v-container fill-height fluid mt-5>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
                   <div class="transparent" v-text="item.category.name"></div>
-                  <h3 class="transparent" v-text="item.name"></h3>
+                  <h4 class="transparent" v-text="item.name"></h4>
                   <h2 class="transparent" v-text="`$ ${item.price.replace('.00','')}`"></h2>
                 </v-flex>
               </v-layout>
@@ -52,7 +52,8 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: [],
+      bestPrice: bestPrice
     };
   },
   computed: {
@@ -66,7 +67,7 @@ export default {
     },
     selectedCategory() {
       if (!this.selectedCategory) {
-        this.items = []; // this.products;
+        this.items = this.products;
       } else {
         this.items = this.products.filter(
           item => item.category_id === this.selectedCategory.id

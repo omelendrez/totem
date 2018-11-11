@@ -7,7 +7,7 @@
       <Products :products="products" :add="add" :info="info" />
     </div>
     <div class="basket">
-      <Basket :basket="basket" :remove="remove" />
+      <Basket :basket="basket" :remove="remove" :info="info"/>
     </div>
     <Product :add="add" />
   </v-container>

@@ -7,7 +7,7 @@
       <v-flex xs12 v-for="(item, index) in items" :key="index">
         <v-card ripple raised @click.native="selectCategory(item)">
           <v-img :src="item.image" contain>
-            <v-container fill-height fluid pa-5>
+            <v-container fill-height fluid>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
                   <span class="transparent" v-text="item.name"></span>
@@ -76,6 +76,5 @@ export default {
 }
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
-  font-size: 1.2em;
 }
 </style>

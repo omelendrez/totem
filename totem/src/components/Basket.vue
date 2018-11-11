@@ -7,26 +7,29 @@
             <v-btn icon>
               <v-icon>shopping_cart</v-icon>
             </v-btn>
-            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=!checkout">
-              Pagar
-            </v-btn>
             <v-spacer></v-spacer>
             <span class="amount">
               $ {{total}}
             </span>
+            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=!checkout">
+              Pagar
+            </v-btn>
           </v-toolbar>
-          <v-list>
+          <v-list two-line>
             <template v-for="(item, index) in items">
               <v-divider :key="`div${index}`"></v-divider>
               <v-subheader :key="`sub${index}`">
                 <strong>{{ item.name }}</strong>
               </v-subheader>
-              <v-list-tile :key="`tile${index}`">
-                <v-img :src="item.image" contain></v-img>
+              <v-list-tile :key="`tile${index}`"  class="mb-4">
+                <v-img :src="item.image" height="48px" contain></v-img>
                 <v-list-tile-content>
                   <h3 class="ml-3" v-html="`$ ${item.price.replace('.00','')}`"></h3>
-                  <v-btn dark small fab absolute center right color="pink" @click="remove(index)">
-                    <v-icon>clear</v-icon>
+                  <v-btn fab dark small absolute top right color="success" @click="info(item)">
+                    <v-icon>local_offer</v-icon>
+                  </v-btn>
+                  <v-btn dark small fab absolute bottom right color="pink" @click="remove(index)">
+                    <v-icon>remove</v-icon>
                   </v-btn>
                 </v-list-tile-content>
               </v-list-tile>
@@ -58,6 +61,10 @@ export default {
       default: null
     },
     remove: {
+      type: Function,
+      default: undefined
+    },
+    info: {
       type: Function,
       default: undefined
     }
@@ -95,6 +102,7 @@ export default {
   background: rgb(255, 255, 255, 0.6) !important;
 }
 .amount {
-  font-size: 1.2em;
+  font-size: 1.4em;
+  margin-right: 20px;
 }
 </style>
