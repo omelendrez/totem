@@ -1,10 +1,13 @@
 <template>
   <v-container fluid grid-list-lg class="categories">
     <v-layout row wrap>
+      <v-btn v-if="selectedCategory" fab @click="resetCategory">
+        <v-icon dark>keyboard_backspace</v-icon>
+      </v-btn>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
-        <v-card ripple flat>
-          <v-img :src="`http://localhost:3000/${item.image}`" height="80px" contain>
-            <v-container fill-height fluid pa-2>
+        <v-card ripple raised @click.native="selectCategory(item)">
+          <v-img :src="item.image" contain>
+            <v-container fill-height fluid>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox>
                   <span class="transparent" v-text="item.name"></span>
@@ -23,23 +26,43 @@ import store from "@/store";
 export default {
   name: "Categories",
   store,
+  props: {
+    categories: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
       items: []
     };
   },
   computed: {
-    categories() {
-      return store.getters.categories;
+    selectedCategory() {
+      return store.getters.selectedCategory;
     }
   },
   watch: {
     categories() {
       this.items = this.categories;
+    },
+    selectedCategory() {
+      if (!this.selectedCategory) {
+        this.items = this.categories;
+      } else {
+        this.items = this.categories.filter(
+          item => item.id === this.selectedCategory.id
+        );
+      }
     }
   },
-  created() {
-    store.dispatch("loadCategories");
+  methods: {
+    selectCategory(item) {
+      store.dispatch("selectCategory", item);
+    },
+    resetCategory() {
+      store.dispatch("selectCategory", null);
+    }
   }
 };
 </script>

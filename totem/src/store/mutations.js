@@ -27,9 +27,19 @@ const mutations = {
     state.status = "loading";
     state.basket = [];
   },
-  load_basket_success(state, { rows }) {
-    state.status = "success";
-    state.basket = rows;
+  add_item(state, { item }) {
+    state.basket.push(item);
+  },
+  info(state, { item }) {
+    state.product = item;
+  },
+  remove_item(state, { item }) {
+    const basket = state.basket;
+    basket.splice(item, 1);
+    state.basket = basket;
+  },
+  select_category(state, { item }) {
+    state.selectedCategory = item;
   }
 };
 

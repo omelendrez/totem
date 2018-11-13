@@ -1,4 +1,4 @@
-import { getCategories, getProducts, getBasket } from "@/services";
+import { getCategories, getProducts } from "@/services";
 
 const handleError = err => {
   const error = {
@@ -15,7 +15,13 @@ const actions = {
     commit("load_categories_request");
     getCategories()
       .then(resp => {
-        commit("load_categories_success", { rows: getResults(resp) });
+        const categories = getResults(resp);
+        categories.map(item => {
+          const image = item.image ? item.image : "";
+          item.image = image ? `http://localhost:3000/${image}` : "";
+          return item;
+        });
+        commit("load_categories_success", { rows: categories });
       })
       .catch(err => {
         commit("request_error", handleError(err));
@@ -25,21 +31,29 @@ const actions = {
     commit("load_products_request");
     getProducts()
       .then(resp => {
-        commit("load_products_success", { rows: getResults(resp) });
+        const products = getResults(resp);
+        products.map(item => {
+          const image = item.image || item.category.image || "";
+          item.image = image ? `http://localhost:3000/${image}` : "";
+          return item;
+        });
+        commit("load_products_success", { rows: products });
       })
       .catch(err => {
         commit("request_error", handleError(err));
       });
   },
-  async loadBasket({ commit }) {
-    commit("load_basket_request");
-    getBasket()
-      .then(resp => {
-        commit("load_basket_success", { rows: getResults(resp) });
-      })
-      .catch(err => {
-        commit("request_error", handleError(err));
-      });
+  async add({ commit }, item) {
+    commit("add_item", { item });
+  },
+  async info({ commit }, item) {
+    commit("info", { item });
+  },
+  async remove({ commit }, item) {
+    commit("remove_item", { item });
+  },
+  async selectCategory({ commit }, item) {
+    commit("select_category", { item });
   }
 };
 
