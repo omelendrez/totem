@@ -99,8 +99,8 @@ module.exports = {
   login(req, res) {
     return User.findOne({
       where: {
-        user_name: req.query.user_name,
-        password: req.query.password,
+        user_name: req.body.user_name,
+        password: req.body.password,
         status_id: 1
       }
     })

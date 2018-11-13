@@ -65,7 +65,7 @@ export default {
         user_name: this.user.user_name,
         password: this.user.password
       };
-      HTTP.get("login", { params })
+      HTTP.post("login", params)
         .then((res) => {
           this.user = res.data;
           setTimeout(() => {
