@@ -4,12 +4,12 @@
       <Categories :categories="categories"/>
     </div>
     <div class="products">
-      <Products :products="products" :add="add" :info="info" />
+      <Products :products="products" :add="add" :info="info"/>
     </div>
     <div class="basket">
       <Basket :basket="basket" :remove="remove" :info="info"/>
     </div>
-    <Product :add="add" />
+    <Product :add="add"/>
   </v-container>
 </template>
 
@@ -28,32 +28,33 @@ export default {
     Basket,
     Product
   },
-  data() {
+  data () {
     return {};
   },
   computed: {
-    categories() {
+    categories () {
       return store.getters.categories;
     },
-    products() {
+    products () {
       return store.getters.products;
     },
-    basket() {
+    basket () {
       return store.getters.basket;
     }
   },
   methods: {
-    add(item) {
+    add (item) {
       store.dispatch("add", item);
     },
-    info(item) {
+    info (item) {
       store.dispatch("info", item);
     },
-    remove(item) {
+    remove (item) {
       store.dispatch("remove", item);
     }
   },
-  created() {
+  created () {
+    console.log("Home.created() 👍")
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
   }
