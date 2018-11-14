@@ -4,20 +4,20 @@
       <v-flex>
         <v-card>
           <v-img
-            :src="product.image"
+            :src="item.image"
           ></v-img>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline">{{product.name}}</h3>
-              <div>{{product.description}}</div>
-              <h3 class="headline">$ {{product.price}}</h3>
+              <h3 class="headline">{{item.name}}</h3>
+              <div>{{item.description}}</div>
+              <h3 class="headline">$ {{item.price}}</h3>
             </div>
           </v-card-title>
           <v-card-actions class="mb-5">
-            <v-btn fab absolute bottom left color="light" @click="close(product)">
+            <v-btn fab absolute bottom left color="light" @click="close(item)">
               <v-icon>not_interested</v-icon>
             </v-btn>
-            <v-btn dark fab absolute bottom right color="primary" @click="addProduct(product)">
+            <v-btn dark fab absolute bottom right color="primary" @click="addProduct(item)">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-actions>
@@ -40,7 +40,8 @@ export default {
   },
   data() {
     return {
-      dialog: false
+      dialog: false,
+      item: {}
     };
   },
   computed: {
@@ -50,6 +51,7 @@ export default {
   },
   watch: {
     product() {
+      this.item = this.product;
       this.dialog = this.product.name;
     }
   },

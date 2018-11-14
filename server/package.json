@@ -9,8 +9,8 @@
     "express": "^4.16.4",
     "express-fileupload": "^0.3.0",
     "morgan": "^1.9.1",
-    "mysql2": "^1.6.1",
-    "sequelize": "^4.41.0"
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.41.2"
   },
   "scripts": {
     "start": "node server.js"

@@ -15,7 +15,7 @@
               Pagar
             </v-btn>
           </v-toolbar>
-          <v-list two-line>
+          <v-list>
             <template v-for="(item, index) in items">
               <v-divider :key="`div${index}`"></v-divider>
               <v-subheader :key="`sub${index}`">
