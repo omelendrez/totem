@@ -9,13 +9,11 @@ const config = require(path.join(__dirname, "..", "config", "config.json"))[
   env
 ];
 const db = {};
-
+var sequelize;
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(
-    config
-  );
+  sequelize = new Sequelize(config);
 }
 
 fs.readdirSync(__dirname)

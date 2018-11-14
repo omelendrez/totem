@@ -5,7 +5,7 @@ const mutations = {
     state.categories = payload.filter(item => item.status.name === "Activo");
   },
   [types.SET_PRODUCTS]: (state, { payload }) => {
-    const products = payload.map(product => {
+    payload.map(product => {
       return (product.image = product.image
         ? product.image
         : product.category.image);
@@ -15,8 +15,7 @@ const mutations = {
     });
     state.products = state.productsAll.filter(products => {
       return (
-        state.selectedCategory === null
-        ||
+        state.selectedCategory === null ||
         products.category_id === state.selectedCategory.id
       );
     });
@@ -25,22 +24,25 @@ const mutations = {
     state.selectedCategory = payload;
     state.products = state.productsAll.filter(products => {
       return (
-        state.selectedCategory === null
-        ||
+        state.selectedCategory === null ||
         products.category_id === state.selectedCategory.id
       );
     });
   },
   [types.SEND_ITEM_TO_BASKET]: state => {
-    state.basket.push(state.product)
-    state.totalBasket = state.basket.reduce((total, product) => { return total + parseFloat(product.price) }, 0)
+    state.basket.push(state.product);
+    state.totalBasket = state.basket.reduce((total, product) => {
+      return total + parseFloat(product.price);
+    }, 0);
     state.itemSet = false;
     state.product = null;
   },
   [types.REMOVE_ITEM_FROM_BASKET]: state => {
     const index = state.basket.indexOf(state.product);
     state.basket.splice(index, 1);
-    state.totalBasket = state.basket.reduce((total, product) => { return total + parseFloat(product.price) }, 0)
+    state.totalBasket = state.basket.reduce((total, product) => {
+      return total + parseFloat(product.price);
+    }, 0);
     state.itemSet = false;
     state.product = null;
   },

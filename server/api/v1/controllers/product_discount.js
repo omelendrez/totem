@@ -1,6 +1,5 @@
 "use strict";
 const ProductDiscount = require("../models").product_discount;
-var sequelize = require("sequelize");
 
 module.exports = {
   create(req, res) {
@@ -14,17 +13,13 @@ module.exports = {
 
   findByDiscountId(req, res) {
     const filter = req.query.filter;
-
-    if (filter === "active") {
-      var query =
-        "select pd.id,c.name as `category`, s.name as `sub_category`, true as `assigned`, p.code,p.name from product_discount pd inner join product p on p.id = pd.product_id inner join category c on c.id = p.category_id inner join sub_category s on s.id = p.sub_category_id where p.status_id = 1 and pd.discount_id = " +
-        req.params.id;
-    } else {
-      var query =
-        "select p.id,c.name as `category`, s.name as `sub_category`, false as `assigned`, p.code,p.name from product p inner join category c on c.id = p.category_id inner join sub_category s on s.id = p.sub_category_id where p.status_id = 1 and p.id not in (select product_id from product_discount where discount_id = " +
-        req.params.id +
-        ")";
-    }
+    const query =
+      filter === "active"
+        ? "select pd.id,c.name as `category`, s.name as `sub_category`, true as `assigned`, p.code,p.name from product_discount pd inner join product p on p.id = pd.product_id inner join category c on c.id = p.category_id inner join sub_category s on s.id = p.sub_category_id where p.status_id = 1 and pd.discount_id = " +
+          req.params.id
+        : "select p.id,c.name as `category`, s.name as `sub_category`, false as `assigned`, p.code,p.name from product p inner join category c on c.id = p.category_id inner join sub_category s on s.id = p.sub_category_id where p.status_id = 1 and p.id not in (select product_id from product_discount where discount_id = " +
+          req.params.id +
+          ")";
 
     const mysql = require("mysql2");
 
