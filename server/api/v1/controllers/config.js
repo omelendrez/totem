@@ -1,6 +1,5 @@
 "use strict";
 const Config = require("../models").config;
-const sequelize = require("sequelize");
 
 module.exports = {
   update() {

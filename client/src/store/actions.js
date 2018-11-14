@@ -23,7 +23,7 @@ const actions = {
     });
   },
   async [types.SEND_AKNOWLEDGE]({ commit }) {
-    const config = await Config.sendAknowledge();
+    Config.sendAknowledge();
   },
   [types.FILTER_BY_CATEGORY]: ({ commit }, payload) => {
     commit(types.SET_CATEGORY_ID, payload);
