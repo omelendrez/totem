@@ -5,7 +5,7 @@ const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
 const update = val => {
-  Config.update(val);
+  return Config.update(val);
 };
 
 module.exports = {
@@ -131,14 +131,7 @@ module.exports = {
           }
         }
       ],
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "image",
-        "price",
-        "category_id"
-      ]
+      attributes: ["id", "name", "description", "image", "price", "category_id"]
     })
       .then(products => {
         res.status(200).json(products);
@@ -207,11 +200,10 @@ module.exports = {
         ]
       ]
     })
-      .then(
-        product =>
-          product
-            ? res.status(200).json(product)
-            : res.status(404).json({
+      .then(product =>
+        product
+          ? res.status(200).json(product)
+          : res.status(404).json({
               error: "Not found"
             })
       )
@@ -224,11 +216,10 @@ module.exports = {
         category_id: req.params.id
       }
     })
-      .then(
-        product =>
-          product
-            ? res.status(200).json(product)
-            : res.status(404).json({
+      .then(product =>
+        product
+          ? res.status(200).json(product)
+          : res.status(404).json({
               error: "Not found"
             })
       )
