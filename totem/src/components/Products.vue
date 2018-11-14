@@ -52,8 +52,7 @@ export default {
   },
   data() {
     return {
-      items: [],
-      bestPrice: bestPrice
+      items: []
     };
   },
   computed: {
@@ -74,6 +73,9 @@ export default {
         );
       }
     }
+  },
+  created() {
+    this.items = this.products;
   }
 };
 </script>
