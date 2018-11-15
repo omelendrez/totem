@@ -1,5 +1,5 @@
-"use strict";
-module.exports = function(sequelize, DataTypes) {
+"use strict"
+module.exports = (sequelize, DataTypes) => {
   const Basket = sequelize.define("basket", {
     product_id: {
       type: DataTypes.INTEGER
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0
     }
-  });
+  })
 
-  return Basket;
-};
+  return Basket
+}

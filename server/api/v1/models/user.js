@@ -1,6 +1,6 @@
-"use strict";
+"use strict"
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "user",
     {
@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       ]
     }
-  );
+  )
 
-  return User;
-};
+  return User
+}

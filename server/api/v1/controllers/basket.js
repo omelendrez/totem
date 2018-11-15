@@ -1,16 +1,15 @@
-"use strict";
-const Basket = require("../models").basket;
-const ProductDiscount = require("../models").product_discount;
-const Discount = require("../models").discount;
-const Product = require("../models").product;
+"use strict"
+const Basket = require("../models").basket
+const ProductDiscount = require("../models").product_discount
+const Discount = require("../models").discount
+const Product = require("../models").product
 
 module.exports = {
   create(req, res) {
-    let product_id = req.body.product_id;
-    let quantity = req.body.quantity;
-    let unit_price = 0;
-    let discount_id = 0;
-    let percent = 0;
+    let { product_id, quantity } = req.body
+    let unit_price = 0
+    let discount_id = 0
+    let percent = 0
 
     Product.findOne({
       where: {
@@ -20,7 +19,7 @@ module.exports = {
     }).then(result => {
       unit_price = result.get({
         plain: true
-      }).price;
+      }).price
 
       ProductDiscount.findOne({
         where: {
@@ -31,10 +30,10 @@ module.exports = {
         if (result) {
           discount_id = result.get({
             plain: true
-          }).discount_id;
-          discount_id = discount_id ? discount_id : 0;
+          }).discount_id
+          discount_id = discount_id ? discount_id : 0
         } else {
-          discount_id = 0;
+          discount_id = 0
         }
 
         Discount.findOne({
@@ -46,15 +45,15 @@ module.exports = {
           if (result) {
             percent = result.get({
               plain: true
-            }).percent;
-            percent = percent ? percent : 0;
+            }).percent
+            percent = percent ? percent : 0
           } else {
-            percent = 0;
+            percent = 0
           }
 
-          let total_price = unit_price * quantity;
-          let discount = (total_price * percent) / 100;
-          let net_price = total_price - discount;
+          let total_price = unit_price * quantity
+          let discount = (total_price * percent) / 100
+          let net_price = total_price - discount
 
           Basket.create({
             product_id: product_id,
@@ -65,10 +64,10 @@ module.exports = {
             net_price: net_price
           })
             .then(basket => res.status(201).json(basket))
-            .catch(error => res.status(400).json(error));
-        });
-      });
-    });
+            .catch(error => res.status(400).json(error))
+        })
+      })
+    })
   },
 
   findAll(req, res) {
@@ -76,6 +75,6 @@ module.exports = {
       raw: true
     })
       .then(basket => res.json(basket))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   }
-};
+}
