@@ -2,7 +2,7 @@
   <v-app>
     <v-toolbar absolute color="#ee3542" dark>
       <v-img :src="logo" contain height="64px"></v-img>
-     </v-toolbar>
+    </v-toolbar>
     <router-view />
     <Loading />
   </v-app>
@@ -15,7 +15,7 @@ export default {
   components: {
     Loading
   },
-  data() {
+  data () {
     return {
       logo: Logo
     };
