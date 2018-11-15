@@ -1,13 +1,13 @@
 <template>
   <v-container fluid class="home">
     <div class="categories">
-      <Categories :categories="categories"/>
+      <Categories :categories="categories" />
     </div>
     <div class="products">
       <Products :products="products" :add="add" :info="info" />
     </div>
     <div class="basket">
-      <Basket :basket="basket" :remove="remove" :info="info"/>
+      <Basket :basket="basket" :remove="remove" :info="info" />
     </div>
     <Product :add="add" />
   </v-container>

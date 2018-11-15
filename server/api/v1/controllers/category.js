@@ -1,11 +1,11 @@
-"use strict";
-const Category = require("../models").category;
-const Config = require("./config");
-const sequelize = require("sequelize");
+"use strict"
+const Category = require("../models").category
+const Config = require("./config")
+const sequelize = require("sequelize")
 
 const update = val => {
-  Config.update(val);
-};
+  Config.update(val)
+}
 
 module.exports = {
   create(req, res) {
@@ -14,21 +14,21 @@ module.exports = {
       status_id: req.body.status_id
     })
       .then(category => {
-        update();
-        res.status(201).json(category);
+        update()
+        res.status(201).json(category)
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findAll(req, res) {
-    const Status = require("../models").status;
-    Category.belongsTo(Status);
+    const Status = require("../models").status
+    Category.belongsTo(Status)
 
-    const page = parseInt(req.query.page ? req.query.page : 0);
-    const size = parseInt(req.query.size ? req.query.size : 1000);
-    const sort = req.query.sort ? req.query.sort : "name";
-    const type = req.query.type ? req.query.type : "asc";
-    const filter = req.query.filter ? req.query.filter : "";
+    const page = parseInt(req.query.page ? req.query.page : 0)
+    const size = parseInt(req.query.size ? req.query.size : 1000)
+    const sort = req.query.sort ? req.query.sort : "name"
+    const type = req.query.type ? req.query.type : "asc"
+    const filter = req.query.filter ? req.query.filter : ""
 
     return Category.findAndCountAll({
       where: {
@@ -50,14 +50,14 @@ module.exports = {
       attributes: ["id", "name", "image"]
     })
       .then(categories => {
-        update(0);
-        res.json(categories);
+        update(0)
+        res.json(categories)
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   totemFindAll(req, res) {
-    const Product = require("../models").product;
+    const Product = require("../models").product
     Category.hasMany(Product)
     return Category.findAndCountAll({
       where: {
@@ -72,18 +72,18 @@ module.exports = {
             status_id: 1
           }
         }
-      ],
+      ]
     })
       .then(categories => {
-        update(0);
-        res.json(categories);
+        update(0)
+        res.json(categories)
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findById(req, res) {
-    const Status = require("../models").status;
-    Category.belongsTo(Status);
+    const Status = require("../models").status
+    Category.belongsTo(Status)
 
     return Category.findOne({
       where: {
@@ -120,15 +120,14 @@ module.exports = {
         ]
       ]
     })
-      .then(
-        category =>
-          category
-            ? res.json(category)
-            : res.status(404).json({
-              error: "Not found"
-            })
+      .then(category =>
+        category
+          ? res.json(category)
+          : res.status(404).json({
+            error: "Not found"
+          })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   delete(req, res) {
@@ -139,11 +138,11 @@ module.exports = {
     })
       .then(category =>
         category.destroy().then(result => {
-          update();
-          res.status(204).json(result);
+          update()
+          res.status(204).json(result)
         })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   update(req, res) {
@@ -159,10 +158,10 @@ module.exports = {
             status_id: req.body.status_id
           })
           .then(result => {
-            update();
-            res.json(result);
+            update()
+            res.json(result)
           })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   }
-};
+}

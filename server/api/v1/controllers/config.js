@@ -1,5 +1,5 @@
-"use strict";
-const Config = require("../models").config;
+"use strict"
+const Config = require("../models").config
 
 module.exports = {
   update() {
@@ -14,7 +14,7 @@ module.exports = {
         })
         .then(console.log("ok"))
         .catch(err => console.log(err))
-    );
+    )
   },
   aknowledge(req, res) {
     Config.findOne({
@@ -28,7 +28,7 @@ module.exports = {
         })
         .then(result => res.status(200).json(result))
         .catch(err => console.log(err))
-    );
+    )
   },
   getStatus(req, res) {
     return Config.findOne({
@@ -36,6 +36,6 @@ module.exports = {
         id: 1
       },
       attributes: ["updates"]
-    }).then(config => res.status(200).json(config));
+    }).then(config => res.status(200).json(config))
   }
-};
+}
