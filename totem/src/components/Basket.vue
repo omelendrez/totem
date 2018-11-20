@@ -11,7 +11,7 @@
             <span class="amount">
               $ {{total}}
             </span>
-            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=!checkout">
+            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=true">
               Pagar
             </v-btn>
           </v-toolbar>
@@ -40,17 +40,27 @@
     </v-layout>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <Checkout :items="basket" />
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click="checkout = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Checkout</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn color="warning" class="black--text"  @click="checkout = false">Volver a productos</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <Checkout :items="basket" :total="total" />
       </v-dialog>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import store from "@/store";
-import Checkout from "@/components/Checkout";
+import store from '@/store';
+import Checkout from '@/components/Checkout';
 export default {
-  name: "Basket",
+  name: 'Basket',
   store,
   components: {
     Checkout
