@@ -2,16 +2,15 @@
   <v-container fluid class="basket">
     <v-layout row justify-center>
       <v-flex>
-        <v-card>
+        <v-card raised>
           <v-toolbar color="info" dark>
             <v-btn icon>
               <v-icon>shopping_cart</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
             <span class="amount">
               $ {{total}}
             </span>
-            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=true">
+            </v-btn>
+            <v-btn color="warning" small class="black--text" v-if="total>0" @click="checkout=true">
               Pagar
             </v-btn>
           </v-toolbar>
@@ -19,16 +18,16 @@
             <template v-for="(item, index) in items">
               <v-divider :key="`div${index}`"></v-divider>
               <v-subheader :key="`sub${index}`">
-                <strong>{{ item.name }}</strong>
+                <span class="title">{{ item.name }}</span>
               </v-subheader>
               <v-list-tile :key="`tile${index}`"  class="mb-4">
                 <v-img :src="item.image" height="48px" contain></v-img>
-                <v-list-tile-content>
-                  <h3>{{item.quantity}}</h3>
-                  <h3 class="ml-3" v-html="`$ ${item.price.replace('.00','')}`"></h3>
                   <v-btn fab dark small absolute top right color="success" @click="info(item)">
                     <v-icon>local_offer</v-icon>
                   </v-btn>
+                <v-list-tile-content>
+                  <span>{{item.quantity}}</span>
+                  <span class="title" v-html="`$ ${item.price.replace('.00','')}`"></span>
                   <v-btn dark small fab absolute bottom right color="pink" @click="remove(index)">
                     <v-icon>remove</v-icon>
                   </v-btn>
@@ -113,8 +112,10 @@ export default {
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
 }
+.title {
+  font-size: x-small !important;
+}
 .amount {
-  font-size: 1.4em;
-  margin-right: 20px;
+
 }
 </style>

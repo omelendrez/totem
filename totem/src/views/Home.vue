@@ -72,7 +72,7 @@ export default {
   top: 32px;
   left: 9%;
   bottom: 0;
-  width: 65%;
+  width: 63%;
 }
 
 .basket {
