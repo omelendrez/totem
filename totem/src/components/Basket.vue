@@ -2,16 +2,15 @@
   <v-container fluid class="basket">
     <v-layout row justify-center>
       <v-flex>
-        <v-card>
+        <v-card raised>
           <v-toolbar color="info" dark>
             <v-btn icon>
               <v-icon>shopping_cart</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
             <span class="amount">
               $ {{total}}
             </span>
-            <v-btn color="warning" class="black--text" v-if="total>0" @click="checkout=true">
+            </v-btn>
+            <v-btn color="warning" small class="black--text" v-if="total>0" @click="checkout=true">
               Pagar
             </v-btn>
           </v-toolbar>
@@ -19,15 +18,16 @@
             <template v-for="(item, index) in items">
               <v-divider :key="`div${index}`"></v-divider>
               <v-subheader :key="`sub${index}`">
-                <strong>{{ item.name }}</strong>
+                <span class="title">{{ item.name }}</span>
               </v-subheader>
               <v-list-tile :key="`tile${index}`"  class="mb-4">
                 <v-img :src="item.image" height="48px" contain></v-img>
-                <v-list-tile-content>
-                  <h3 class="ml-3" v-html="`$ ${item.price.replace('.00','')}`"></h3>
                   <v-btn fab dark small absolute top right color="success" @click="info(item)">
                     <v-icon>local_offer</v-icon>
                   </v-btn>
+                <v-list-tile-content>
+                  <span>{{item.quantity}}</span>
+                  <span class="title" v-html="`$ ${item.price.replace('.00','')}`"></span>
                   <v-btn dark small fab absolute bottom right color="pink" @click="remove(index)">
                     <v-icon>remove</v-icon>
                   </v-btn>
@@ -40,27 +40,25 @@
     </v-layout>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <v-toolbar dark color="primary">
+        <v-toolbar dark fixed color="primary">
           <v-btn icon dark @click="checkout = false">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Checkout</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn color="warning" class="black--text"  @click="checkout = false">Volver a productos</v-btn>
-          </v-toolbar-items>
+          <v-btn color="warning" class="black--text"  @click="checkout = false">Volver a productos</v-btn>
         </v-toolbar>
-        <Checkout :items="basket" :total="total" />
+        <Checkout :items="basket" :total="total" :remove="remove" />
       </v-dialog>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import store from '@/store';
-import Checkout from '@/components/Checkout';
+import store from "@/store";
+import Checkout from "@/components/Checkout";
 export default {
-  name: 'Basket',
+  name: "Basket",
   store,
   components: {
     Checkout
@@ -96,6 +94,9 @@ export default {
       });
       this.items = basket;
       this.total = total;
+      if (this.checkout) {
+        this.checkout = this.items.length;
+      }
     }
   }
 };
@@ -111,8 +112,10 @@ export default {
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
 }
+.title {
+  font-size: x-small !important;
+}
 .amount {
-  font-size: 1.4em;
-  margin-right: 20px;
+
 }
 </style>

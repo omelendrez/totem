@@ -1,10 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600px">
+  <v-dialog v-model="dialog" width="384px">
     <v-layout class="product">
-      <v-flex>
+      <v-flex mx-4 my-4>
         <v-card>
           <v-img
             :src="item.image"
+            contain
           ></v-img>
           <v-card-title primary-title>
             <div>
@@ -70,7 +71,7 @@ export default {
 </script>
 <style scoped>
 .product {
-  background: #fff !important;
+  background: cadetblue;
 }
 .border-0 {
   border: 0;

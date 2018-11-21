@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar absolute color="#ee3542" dark>
-      <v-img :src="logo" contain height="64px"></v-img>
+      <v-img :src="logo" contain height="56px"></v-img>
     </v-toolbar>
     <router-view />
     <Loading />

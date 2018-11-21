@@ -5,7 +5,7 @@
         <v-icon dark>keyboard_backspace</v-icon>
       </v-btn>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
-        <v-card ripple raised @click.native="selectCategory(item)">
+        <v-card ripple flat @click.native="selectCategory(item)">
           <v-img :src="item.image" contain>
             <v-container fill-height fluid>
               <v-layout fill-height>
