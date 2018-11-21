@@ -21,9 +21,10 @@
       <div class="total">
         <h3 class="amount">
           Total $ {{total}}
-        <v-btn large dark color="primary">Pagar</v-btn>
         </h3>
       </div>
+      <v-btn large dark block color="pink" :loading="CCloading" @click="CCloading=true">Pagar con tarjeta</v-btn>
+      <v-btn large dark block color="primary" :loading="CashLoading" @click="CashLoading=true">Pagar en caja</v-btn>
     </v-list>
   </v-card>
 </template>
@@ -44,6 +45,12 @@ export default {
       type: Function,
       default: undefined
     }
+  },
+  data() {
+    return {
+      CCloading: false,
+      CashLoading: false
+    };
   }
 };
 </script>
@@ -58,6 +65,7 @@ export default {
   width: 30%;
 }
 .amount {
+  text-align: center;
   font-size: 2em;
 }
 </style>
