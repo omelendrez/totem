@@ -1,8 +1,5 @@
 <template>
   <v-container fluid grid-list-lg class="products">
-    <v-alert type="info" :value="true">
-      <strong> {{selectedCategory ? selectedCategory.name : 'TODOS LOS PRODUCTOS'}}</strong>
-    </v-alert>
     <v-layout row wrap>
       <v-flex mb-5 md4 v-for="(item, index) in items" :key="index">
         <v-card ripple raised>
