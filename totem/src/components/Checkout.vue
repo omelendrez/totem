@@ -24,8 +24,8 @@
           Total $ {{total}}
         </h3>
       </div>
-      <v-btn large dark block color="pink" @click="cardPay">Pagar con tarjeta</v-btn>
-      <v-btn large dark block color="primary" @click="cashPay">Pagar en caja</v-btn>
+      <v-btn large dark block round color="pink" @click="cardPay">Pagar con tarjeta</v-btn>
+      <v-btn large dark block round color="primary" @click="cashPay">Pagar en caja</v-btn>
     </v-list>
   </v-card>
 </template>

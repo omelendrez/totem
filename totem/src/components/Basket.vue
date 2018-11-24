@@ -10,7 +10,7 @@
               $ {{total}}
             </span>
             </v-btn>
-            <v-btn color="warning" small class="black--text" v-if="total>0" @click="checkout=true">
+            <v-btn color="warning" round class="black--text" v-if="total>0" @click="checkout=true">
               Pagar
             </v-btn>
           </v-toolbar>
