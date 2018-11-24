@@ -29,6 +29,6 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
 </style>

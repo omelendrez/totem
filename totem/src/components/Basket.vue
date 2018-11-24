@@ -21,14 +21,13 @@
                 <span class="title">{{ item.name }}</span>
               </v-subheader>
               <v-list-tile :key="`tile${index}`"  class="mb-4">
-                <v-img :src="item.image" height="48px" contain></v-img>
-                  <v-btn fab dark small absolute top right color="success" @click="info(item)">
-                    <v-icon>local_offer</v-icon>
+                  <v-btn fab dark small absolute top right color="primary" @click="add(item)">
+                    <v-icon>add</v-icon>
                   </v-btn>
                 <v-list-tile-content>
-                  <span>{{item.quantity}}</span>
-                  <span class="title" v-html="`$ ${item.price.replace('.00','')}`"></span>
-                  <v-btn dark small fab absolute bottom right color="pink" @click="remove(index)">
+                  <span class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</span>
+                  <span class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</span>
+                  <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(index)">
                     <v-icon>remove</v-icon>
                   </v-btn>
                 </v-list-tile-content>
@@ -48,7 +47,7 @@
           <v-spacer></v-spacer>
           <v-btn color="warning" class="black--text"  @click="checkout = false">Volver a productos</v-btn>
         </v-toolbar>
-        <Checkout :items="basket" :total="total" :remove="remove" />
+        <Checkout :items="items" :total="total" :remove="doRemove" />
       </v-dialog>
     </v-layout>
   </v-container>
@@ -72,7 +71,7 @@ export default {
       type: Function,
       default: undefined
     },
-    info: {
+    add: {
       type: Function,
       default: undefined
     }
@@ -89,14 +88,30 @@ export default {
       let total = 0;
       const basket = [];
       this.basket.map(item => {
-        basket.push(item);
-        total += parseFloat(item.price);
+        let itm = basket.find(itm => itm.id === item.id);
+        if (itm) {
+          itm.quantity = itm.quantity + 1;
+          itm.totalPrice = (parseFloat(itm.price) * itm.quantity).toString();
+        } else {
+          itm = item;
+          itm.quantity = 1;
+          itm.totalPrice = parseFloat(itm.price).toString();
+          basket.push(itm);
+        }
+        total += parseFloat(itm.price);
       });
       this.items = basket;
       this.total = total;
       if (this.checkout) {
         this.checkout = this.items.length;
       }
+    }
+  },
+  methods: {
+    doRemove(index) {
+      const id = this.items[index].id;
+      const basketIndex = this.basket.findIndex(item => item.id === id);
+      this.remove(basketIndex)
     }
   }
 };
@@ -107,7 +122,7 @@ export default {
   min-width: 100%;
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
@@ -115,7 +130,14 @@ export default {
 .title {
   font-size: x-small !important;
 }
-.amount {
-
+.quantity {
+  font-size: small !important;
+}
+.price {
+  font-size: small !important;
+}
+.totalPrice {
+  font-weight: bold !important;
+  font-size: small !important;
 }
 </style>

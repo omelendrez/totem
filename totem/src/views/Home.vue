@@ -3,11 +3,11 @@
     <div class="categories">
       <Categories :categories="categories" />
     </div>
-    <div class="products">
+    <div class="products"  v-bind:class="{ productsFull: isBasketEmtpy }">
       <Products :products="products" :add="add" :info="info" />
     </div>
-    <div class="basket">
-      <Basket :basket="basket" :remove="remove" :info="info" />
+    <div class="basket" id="basket" v-bind:class="{ basketEmpty: isBasketEmtpy }">
+      <Basket :basket="basket" :add="add" :remove="remove" />
     </div>
     <Product :add="add" />
   </v-container>
@@ -29,7 +29,9 @@ export default {
     Product
   },
   data() {
-    return {};
+    return {
+      isBasketEmtpy: false
+    };
   },
   computed: {
     categories() {
@@ -40,6 +42,11 @@ export default {
     },
     basket() {
       return store.getters.basket;
+    }
+  },
+  watch: {
+    basket() {
+      this.isBasketEmtpy = !this.basket.length;
     }
   },
   methods: {
@@ -65,14 +72,18 @@ export default {
   top: 32px;
   left: 0;
   bottom: 0;
-  width: 15%;
+  width: 16vw;
 }
 .products {
   position: absolute;
   top: 32px;
   left: 9%;
   bottom: 0;
-  width: 63%;
+  width: 63vw;
+}
+
+.productsFull {
+  width: 84vw;
 }
 
 .basket {
@@ -80,7 +91,11 @@ export default {
   top: 32px;
   right: 0;
   bottom: 0;
-  width: 22%;
+  width: 24vw;
+}
+
+.basketEmpty {
+  display: none;
 }
 
 .home {
