@@ -1,24 +1,16 @@
 <template>
   <v-container fluid grid-list-lg class="products">
     <v-layout wrap>
-      <v-flex mb-5 v-for="(item, index) in items" :key="index">
-        <v-card ripple raised class="product">
-          <v-img :src="item.image" height="138px" contain>
-            <v-container fill-height fluid mt-3>
-              <v-layout fill-height>
-                <v-flex xs12 align-end flexbox class="transparent">
-                  <div v-text="item.category.name"></div>
-                  <span v-text="item.name"></span>
-                  <h2 v-text="`$ ${item.price.replace('.00','')}`"></h2>
-                </v-flex>
-              </v-layout>
-            </v-container>
+      <v-flex xs4 mb-5 mt-4 v-for="(item, index) in items" :key="index">
+        <v-card ripple>
+          <v-img :src="item.image" contain>
           </v-img>
-          <v-card-actions  class="mb-4">
-            <v-btn fab dark small absolute top left color="success" @click="info(item)">
+          <v-card-actions>
+            <span v-text="`$ ${item.price.replace('.00','')}`"></span>
+            <v-btn fab absolute top left color="success" @click="info(item)">
               <v-icon>local_offer</v-icon>
             </v-btn>
-            <v-btn dark fab small absolute bottom right color="primary" @click="add(item)">
+            <v-btn dark fab absolute bottom right color="primary" @click="add(item)">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-actions>
@@ -64,11 +56,11 @@ export default {
     selectedCategory() {
       if (!this.selectedCategory) {
         this.items = this.products;
-      } else {
-        this.items = this.products.filter(
-          item => item.category_id === this.selectedCategory.id
-        );
+        return;
       }
+      this.items = this.products.filter(
+        item => item.category_id === this.selectedCategory.id
+      );
     }
   },
   created() {
@@ -82,13 +74,9 @@ export default {
   min-width: 100%;
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
-.transparent {
-  background: rgb(255, 255, 255, 0.6) !important;
-  font-size:x-small;
-}
-.product {
-  width: 138px;
+.price {
+
 }
 </style>

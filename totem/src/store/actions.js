@@ -49,8 +49,8 @@ const actions = {
   async info({ commit }, item) {
     commit("info", { item });
   },
-  async remove({ commit }, item) {
-    commit("remove_item", { item });
+  async remove({ commit }, index) {
+    commit("remove_item", { index });
   },
   async selectCategory({ commit }, item) {
     commit("select_category", { item });

@@ -9,7 +9,7 @@
           <v-img :src="item.image" contain>
             <v-container fill-height fluid>
               <v-layout fill-height>
-                <v-flex xs12 align-end flexbox>
+                <v-flex xs12 flexbox>
                   <span class="transparent" v-text="item.name"></span>
                 </v-flex>
               </v-layout>
@@ -72,9 +72,10 @@ export default {
   min-width: 100%;
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
+  font-size: xx-small;
 }
 </style>
