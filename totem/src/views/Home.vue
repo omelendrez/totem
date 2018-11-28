@@ -98,7 +98,4 @@ export default {
   display: none;
 }
 
-.home {
-  background: cadetblue;
-}
 </style>

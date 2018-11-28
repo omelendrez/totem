@@ -6,24 +6,27 @@
           <v-toolbar color="info" dark>
             <v-btn icon>
               <v-icon>shopping_cart</v-icon>
-            <span class="amount">
-              $ {{total}}
-            </span>
+              <span class="amount">$ {{total}}</span>
             </v-btn>
-            <v-btn color="warning" round class="black--text" v-if="total>0" @click="checkout=true">
-              Pagar
-            </v-btn>
+            <v-btn
+              color="warning"
+              round
+              class="black--text"
+              v-if="total>0"
+              @click="checkout=true"
+            >Pagar</v-btn>
           </v-toolbar>
-          <v-list>
+          <v-list three-line>
             <template v-for="(item, index) in items">
               <v-divider :key="`div${index}`"></v-divider>
               <v-subheader :key="`sub${index}`">
                 <span class="title">{{ item.name }}</span>
               </v-subheader>
-              <v-list-tile :key="`tile${index}`"  class="mb-4">
-                  <v-btn fab dark small absolute top right color="primary" @click="add(item)">
-                    <v-icon>add</v-icon>
-                  </v-btn>
+              <v-list-tile :key="`tile${index}`" class="mb-4">
+                <v-img :src="item.image" contain></v-img>
+                <v-btn fab dark small absolute top right color="primary" @click="add(item)">
+                  <v-icon>add</v-icon>
+                </v-btn>
                 <v-list-tile-content>
                   <span class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</span>
                   <span class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</span>
@@ -45,9 +48,9 @@
           </v-btn>
           <v-toolbar-title>Checkout</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="warning" class="black--text"  @click="checkout = false">Volver a productos</v-btn>
+          <v-btn color="warning" class="black--text" @click="checkout = false">Volver a productos</v-btn>
         </v-toolbar>
-        <Checkout :items="items" :total="total" :remove="doRemove" />
+        <Checkout :items="items" :total="total" :remove="doRemove"/>
       </v-dialog>
     </v-layout>
   </v-container>
@@ -111,7 +114,7 @@ export default {
     doRemove(index) {
       const id = this.items[index].id;
       const basketIndex = this.basket.findIndex(item => item.id === id);
-      this.remove(basketIndex)
+      this.remove(basketIndex);
     }
   }
 };
@@ -132,11 +135,13 @@ export default {
 }
 .quantity {
   font-size: small !important;
+  margin-left: 20px !important;
 }
 .price {
   font-size: small !important;
 }
 .totalPrice {
+  margin-left: 20px !important;
   font-weight: bold !important;
   font-size: small !important;
 }
