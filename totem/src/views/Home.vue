@@ -17,7 +17,8 @@
 import store from "@/store";
 import Categories from "@/components/Categories";
 import Products from "@/components/Products";
-import Basket from "@/components/Basket";
+import Basket from "@/components/BasketHorizontal";
+// import Basket from "@/components/Basket";
 import Product from "@/components/Product";
 export default {
   name: "Home",
@@ -78,20 +79,16 @@ export default {
   position: absolute;
   top: 32px;
   left: 9%;
-  bottom: 0;
-  width: 63vw;
-}
-
-.productsFull {
+  bottom: 12vh;
   width: 84vw;
 }
 
 .basket {
   position: absolute;
-  top: 32px;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 24vw;
+  height: 20vh;
 }
 
 .basketEmpty {

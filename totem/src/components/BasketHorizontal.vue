@@ -1,43 +1,25 @@
 <template>
   <v-container fluid class="basket">
-    <v-layout row justify-center>
-      <v-flex>
-        <v-card raised>
-          <v-toolbar color="info" dark>
-            <v-btn icon>
-              <v-icon>shopping_cart</v-icon>
-              <span class="amount">$ {{total}}</span>
-            </v-btn>
-            <v-btn
-              color="warning"
-              round
-              class="black--text"
-              v-if="total>0"
-              @click="checkout=true"
-            >Pagar</v-btn>
-          </v-toolbar>
-          <v-list three-line>
-            <template v-for="(item, index) in items">
-              <v-divider :key="`div${index}`"></v-divider>
-              <v-subheader :key="`sub${index}`">
-                <span class="title">{{ item.name }}</span>
-              </v-subheader>
-              <v-list-tile :key="`tile${index}`" class="mb-4">
-                <v-img :src="item.image" contain></v-img>
-                <v-btn fab dark small absolute top right color="primary" @click="add(item)">
-                  <v-icon>add</v-icon>
-                </v-btn>
-                <v-list-tile-content>
-                  <span class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</span>
-                  <span class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</span>
-                  <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(item)">
-                    <v-icon>remove</v-icon>
-                  </v-btn>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
-          </v-list>
-        </v-card>
+    <v-toolbar color="info" dark dense flat>
+      <v-icon>shopping_cart</v-icon>
+      <span class="amount">$ {{total}}</span>
+      <v-divider></v-divider>
+      <v-btn color="success" round v-if="total>0" @click="checkout=true">Pagar orden</v-btn>
+      <v-btn color="error" round v-if="total>0" @click="cancel">Cancelar orden</v-btn>
+    </v-toolbar>
+    <v-layout wrap>
+      <v-flex xs2 pa-3 v-for="(item, index) in items" :key="index">
+        <v-content>
+          <v-img :src="item.image"></v-img>
+          <div class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</div>
+          <div class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</div>
+          <v-btn fab dark small absolute top right color="primary" @click="add(item)">
+            <v-icon>add</v-icon>
+          </v-btn>
+          <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(item)">
+            <v-icon>remove</v-icon>
+          </v-btn>
+        </v-content>
       </v-flex>
     </v-layout>
     <v-layout row justify-center fill-height>
@@ -111,17 +93,20 @@ export default {
     }
   },
   methods: {
-    doRemove(index) {
+    doRemove(product) {
       const id = product.id;
-      const basketIndex = this.basket.findIndex(item => item.id === id)
+      const basketIndex = this.basket.findIndex(item => item.id === id);
       this.remove(basketIndex);
+    },
+    cancel() {
+      this.remove(-1);
     }
   }
 };
 </script>
 <style scoped>
 .basket {
-  overflow-y: scroll;
+  overflow-x: scroll;
   min-width: 100%;
 }
 ::-webkit-scrollbar {
@@ -130,19 +115,17 @@ export default {
 .transparent {
   background: rgb(255, 255, 255, 0.6) !important;
 }
-.title {
-  font-size: x-small !important;
+.amount {
+  font-size: 2em;
 }
-.quantity {
-  font-size: small !important;
-  margin-left: 20px !important;
-}
-.price {
-  font-size: small !important;
-}
+.quantity,
+.price,
 .totalPrice {
-  margin-left: 20px !important;
+  margin-left: 6px;
+}
+
+.totalPrice {
+  text-transform: uppercase;
   font-weight: bold !important;
-  font-size: small !important;
 }
 </style>
