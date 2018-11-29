@@ -3,7 +3,7 @@
     <div class="categories">
       <Categories :categories="categories" />
     </div>
-    <div class="products"  v-bind:class="{ productsFull: isBasketEmtpy }">
+    <div class="products">
       <Products :products="products" :add="add" :info="info" />
     </div>
     <div class="basket" id="basket" v-bind:class="{ basketEmpty: isBasketEmtpy }">
