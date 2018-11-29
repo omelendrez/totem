@@ -1,15 +1,15 @@
 <template>
   <v-container fluid class="home">
     <div class="categories">
-      <Categories :categories="categories" />
+      <Categories :categories="categories"/>
     </div>
     <div class="products">
-      <Products :products="products" :add="add" :info="info" />
+      <Products :products="products" :add="add" :info="info"/>
     </div>
     <div class="basket" id="basket" v-bind:class="{ basketEmpty: isBasketEmtpy }">
-      <Basket :basket="basket" :add="add" :remove="remove" />
+      <Basket :basket="basket" :add="add" :remove="remove"/>
     </div>
-    <Product :add="add" />
+    <Product :add="add"/>
   </v-container>
 </template>
 
@@ -52,13 +52,19 @@ export default {
   },
   methods: {
     add(item) {
-      store.dispatch("add", item);
+      setTimeout(() => {
+        store.dispatch("add", item);
+      }, 200);
     },
     info(item) {
-      store.dispatch("info", item);
+      setTimeout(() => {
+        store.dispatch("info", item);
+      }, 200);
     },
     remove(item) {
-      store.dispatch("remove", item);
+      setTimeout(() => {
+        store.dispatch("remove", item);
+      }, 200);
     }
   },
   created() {
@@ -72,14 +78,14 @@ export default {
   position: absolute;
   top: 32px;
   left: 0;
-  bottom: 0;
+  height: 80vh;
   width: 16vw;
 }
 .products {
   position: absolute;
   top: 32px;
   left: 9%;
-  bottom: 12vh;
+  height: 76vh;
   width: 84vw;
 }
 
@@ -89,10 +95,10 @@ export default {
   right: 0;
   bottom: 0;
   height: 20vh;
+  background-color: #fff;
 }
 
 .basketEmpty {
   display: none;
 }
-
 </style>

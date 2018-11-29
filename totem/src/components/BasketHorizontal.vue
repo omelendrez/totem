@@ -96,24 +96,24 @@ export default {
     doRemove(product) {
       const id = product.id;
       const basketIndex = this.basket.findIndex(item => item.id === id);
-      this.remove(basketIndex);
+      setTimeout(() => {
+        this.remove(basketIndex);
+      }, 200);
     },
     cancel() {
-      this.remove(-1);
+      setTimeout(() => {
+        this.remove(-1);
+      }, 200);
     }
   }
 };
 </script>
 <style scoped>
 .basket {
-  overflow-x: scroll;
-  min-width: 100%;
+  overflow: scroll;
 }
 ::-webkit-scrollbar {
   width: 0;
-}
-.transparent {
-  background: rgb(255, 255, 255, 0.6) !important;
 }
 .amount {
   font-size: 2em;

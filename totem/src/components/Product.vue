@@ -14,9 +14,9 @@
               <h3 class="headline">$ {{item.price}}</h3>
             </div>
           </v-card-title>
-          <v-card-actions class="mb-5">
+          <v-card-actions class="mb-2">
             <v-btn fab absolute bottom left color="light" @click="close(item)">
-              <v-icon>not_interested</v-icon>
+              <v-icon>close</v-icon>
             </v-btn>
             <v-btn dark fab absolute bottom right color="primary" @click="addProduct(item)">
               <v-icon>add</v-icon>
@@ -71,7 +71,7 @@ export default {
 </script>
 <style scoped>
 .product {
-  background: cadetblue;
+  background: brown;
 }
 .border-0 {
   border: 0;

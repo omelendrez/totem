@@ -4,12 +4,9 @@
       <v-flex xs4 pa-5 v-for="(item, index) in items" :key="index">
         <v-content>
           <v-card ripple>
-            <v-img :src="item.image" contain></v-img>
+            <v-img :src="item.image" contain :height="217" @click="info(item)"></v-img>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
-              <v-btn fab absolute top left color="success" @click="info(item)">
-                <v-icon>local_offer</v-icon>
-              </v-btn>
               <v-btn dark fab absolute bottom right color="primary" @click="add(item)">
                 <v-icon>add</v-icon>
               </v-btn>

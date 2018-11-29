@@ -3,8 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 v-for="(item, index) in items" :key="index">
         <v-card ripple @click.native="selectCategory(item)">
-          <v-img :src="item.image" contain>
-          </v-img>
+          <v-img :src="item.image" contain></v-img>
         </v-card>
       </v-flex>
     </v-layout>
@@ -39,10 +38,14 @@ export default {
   },
   methods: {
     selectCategory(item) {
-      store.dispatch("selectCategory", item);
+      setTimeout(() => {
+        store.dispatch("selectCategory", item);
+      }, 200);
     },
     resetCategory() {
-      store.dispatch("selectCategory", null);
+      setTimeout(() => {
+        store.dispatch("selectCategory", null);
+      }, 200);
     }
   }
 };
