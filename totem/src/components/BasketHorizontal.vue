@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="basket">
-    <v-toolbar color="info" dark dense flat>
+    <v-toolbar color="info" dark>
       <v-icon>shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
       <v-divider></v-divider>
-      <v-btn color="success" round v-if="total>0" @click="checkout=true">Pagar orden</v-btn>
-      <v-btn color="error" round v-if="total>0" @click="cancel">Cancelar orden</v-btn>
+      <v-btn large color="success" round v-if="total>0" @click="checkout=true">Revisar la orden</v-btn>
+      <v-btn large color="error" round v-if="total>0" @click="cancel">Cancelar la orden</v-btn>
     </v-toolbar>
     <v-layout wrap>
       <v-flex xs2 pa-3 v-for="(item, index) in items" :key="index">
@@ -115,7 +115,7 @@ export default {
     },
     cancel() {
       this.title = "Cancelar orden";
-      this.message = "Estás seguro que querés cancelar la orden?";
+      this.message = "Estás seguro de que querés cancelar la orden?";
       this.buttonOkMsg = "Si, cancelar";
       this.buttonNoMsg = "No";
     },
