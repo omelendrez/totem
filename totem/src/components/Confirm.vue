@@ -1,0 +1,50 @@
+<template>
+  <v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="600">
+      <v-card>
+        <v-card-title class="headline">{{title}}</v-card-title>
+        <v-card-text>{{message}}</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="success" @click="doConfirm(false)">No, volver</v-btn>
+          <v-btn color="error" @click="doConfirm(true)">Si, cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+</template>
+
+<script>
+export default {
+  name: "Confirm",
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    message: {
+      type: String,
+      default: ""
+    },
+    confirm: {
+      type: Function,
+      default: undefined
+    }
+  },
+  watch: {
+    message() {
+      this.dialog = this.message.length;
+    }
+  },
+  data() {
+    return {
+      dialog: false
+    };
+  },
+  methods: {
+    doConfirm(value) {
+      this.confirm(value);
+    }
+  }
+};
+</script>

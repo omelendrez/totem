@@ -35,17 +35,20 @@
         <Checkout :items="items" :total="total" :remove="doRemove"/>
       </v-dialog>
     </v-layout>
+    <Confirm :title="title" :message="message" :confirm="verifyCancel"/>
   </v-container>
 </template>
 
 <script>
 import store from "@/store";
 import Checkout from "@/components/Checkout";
+import Confirm from "@/components/Confirm";
 export default {
   name: "Basket",
   store,
   components: {
-    Checkout
+    Checkout,
+    Confirm
   },
   props: {
     basket: {
@@ -65,7 +68,9 @@ export default {
     return {
       items: [],
       total: 0,
-      checkout: false
+      checkout: false,
+      title: "Cancelar orden",
+      message: ""
     };
   },
   watch: {
@@ -101,7 +106,12 @@ export default {
       }, 200);
     },
     cancel() {
+      this.message = "Estás seguro que querés cancelar la orden?";
+    },
+    verifyCancel(value) {
       setTimeout(() => {
+        this.message = "";
+        if (!value) return;
         this.remove(-1);
       }, 200);
     }

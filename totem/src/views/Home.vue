@@ -6,7 +6,7 @@
     <div class="products">
       <Products :products="products" :add="add" :info="info"/>
     </div>
-    <div class="basket" id="basket" v-bind:class="{ basketEmpty: isBasketEmtpy }">
+    <div class="basket" id="basket">
       <Basket :basket="basket" :add="add" :remove="remove"/>
     </div>
     <Product :add="add"/>
@@ -88,7 +88,6 @@ export default {
   height: 76vh;
   width: 84vw;
 }
-
 .basket {
   position: absolute;
   left: 0;
@@ -96,9 +95,5 @@ export default {
   bottom: 0;
   height: 20vh;
   background-color: #fff;
-}
-
-.basketEmpty {
-  display: none;
 }
 </style>
