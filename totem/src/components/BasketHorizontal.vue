@@ -35,7 +35,13 @@
         <Checkout :items="items" :total="total" :remove="doRemove"/>
       </v-dialog>
     </v-layout>
-    <Confirm :title="title" :message="message" :confirm="verifyCancel"/>
+    <Confirm
+      :title="title"
+      :message="message"
+      :confirm="verifyCancel"
+      :button-ok-msg="buttonOkMsg"
+      :button-no-msg="buttonNoMsg"
+    />
   </v-container>
 </template>
 
@@ -69,8 +75,10 @@ export default {
       items: [],
       total: 0,
       checkout: false,
-      title: "Cancelar orden",
-      message: ""
+      title: "",
+      message: "",
+      buttonOkMsg: "",
+      buttonNoMsg: ""
     };
   },
   watch: {
@@ -106,7 +114,10 @@ export default {
       }, 200);
     },
     cancel() {
+      this.title = "Cancelar orden";
       this.message = "Estás seguro que querés cancelar la orden?";
+      this.buttonOkMsg = "Si, cancelar";
+      this.buttonNoMsg = "No";
     },
     verifyCancel(value) {
       setTimeout(() => {

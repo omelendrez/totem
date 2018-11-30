@@ -6,8 +6,8 @@
         <v-card-text>{{message}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="success" @click="doConfirm(false)">No, volver</v-btn>
-          <v-btn color="error" @click="doConfirm(true)">Si, cancelar</v-btn>
+          <v-btn color="success" @click="doConfirm(false)">{{buttonNoMsg}}</v-btn>
+          <v-btn color="error" @click="doConfirm(true)">{{buttonOkMsg}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -23,6 +23,14 @@ export default {
       default: ""
     },
     message: {
+      type: String,
+      default: ""
+    },
+    buttonOkMsg: {
+      type: String,
+      default: ""
+    },
+    buttonNoMsg: {
       type: String,
       default: ""
     },
