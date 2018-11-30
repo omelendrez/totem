@@ -22,15 +22,27 @@
       <div class="total">
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
-      <v-btn large dark block round color="pink" @click="cardPay">Pagar con tarjeta</v-btn>
-      <v-btn large dark block round color="primary" @click="cashPay">Pagar en caja</v-btn>
+      <v-btn large round block color="success" @click="cardPay">Pagar con tarjeta</v-btn>
+      <v-btn large round block color="primary" @click="cashPay">Pagar en caja</v-btn>
+      <v-btn large round block color="error" @click="cancel">Cancelar la orden</v-btn>
+      <Confirm
+        :title="title"
+        :message="message"
+        :confirm="verifyCancel"
+        :button-ok-msg="buttonOkMsg"
+        :button-no-msg="buttonNoMsg"
+      />
     </v-list>
   </v-card>
 </template>
 
 <script>
+import Confirm from "@/components/Confirm";
 export default {
   name: "Checkout",
+  components: {
+    Confirm
+  },
   props: {
     items: {
       type: Array,
@@ -45,9 +57,30 @@ export default {
       default: undefined
     }
   },
+  data() {
+    return {
+      title: "",
+      message: "",
+      buttonOkMsg: "",
+      buttonNoMsg: ""
+    };
+  },
   methods: {
     cardPay() {},
-    cashPay() {}
+    cashPay() {},
+    cancel() {
+      this.title = "Cancelar orden";
+      this.message = "Estás seguro de que querés cancelar la orden?";
+      this.buttonOkMsg = "Si, cancelar";
+      this.buttonNoMsg = "No";
+    },
+    verifyCancel(value) {
+      setTimeout(() => {
+        this.message = "";
+        if (!value) return;
+        this.remove(-1);
+      }, 200);
+    }
   }
 };
 </script>
@@ -57,7 +90,7 @@ export default {
   justify-content: center;
 }
 .checkout__list {
-  width: 50vw;
+  width: 70vw;
 }
 .amount {
   text-align: center;

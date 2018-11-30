@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" width="384px">
+  <v-dialog v-model="dialog" max-width="600">
     <v-layout class="product">
       <v-flex mx-4 my-4>
         <v-card>
@@ -71,7 +71,7 @@ export default {
 </script>
 <style scoped>
 .product {
-  background: brown;
+  background: #ee3542;
 }
 .border-0 {
   border: 0;
