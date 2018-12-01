@@ -4,7 +4,8 @@ const getters = {
   categories: state => state.categories,
   basket: state => state.basket,
   product: state => state.product,
-  selectedCategory: state => state.selectedCategory
+  selectedCategory: state => state.selectedCategory,
+  order: state => state.order
 };
 
 export default getters;

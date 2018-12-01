@@ -1,8 +1,8 @@
 import HTTP from "./api";
 
-export const getBasket = () => {
+export const saveOrder = basket => {
   return new Promise((resolve, reject) => {
-    HTTP.get("basket")
+    HTTP.post("orders", { basket })
       .then(resp => {
         resolve(resp);
       })

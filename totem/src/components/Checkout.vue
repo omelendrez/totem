@@ -11,7 +11,7 @@
               <h4>{{ item.name }}</h4>
               <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
               <h3 v-html="`Total: $ ${item.totalPrice.replace('.00','')}`"></h3>
-              <v-btn dark small fab absolute bottom right color="pink" @click="remove(item)">
+              <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
                 <v-icon>remove</v-icon>
               </v-btn>
             </v-list-tile-content>
@@ -22,9 +22,11 @@
       <div class="total">
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
-      <v-btn large round block color="success" @click="cardPay">Pagar con tarjeta</v-btn>
-      <v-btn large round block color="primary" @click="cashPay">Pagar en caja</v-btn>
-      <v-btn large round block color="error" @click="cancel">Cancelar la orden</v-btn>
+      <div class="buttons">
+        <v-btn large round color="success" @click="cardPay">Pagar con tarjeta</v-btn>
+        <v-btn large round color="primary" @click="cashPay">Pagar en caja</v-btn>
+        <v-btn large round color="error" @click="cancel">Cancelar la orden</v-btn>
+      </div>
       <Confirm
         :title="title"
         :message="message"
@@ -55,6 +57,14 @@ export default {
     remove: {
       type: Function,
       default: undefined
+    },
+    payCash: {
+      type: Function,
+      default: undefined
+    },
+    payCc: {
+      type: Function,
+      default: undefined
     }
   },
   data() {
@@ -66,8 +76,12 @@ export default {
     };
   },
   methods: {
-    cardPay() {},
-    cashPay() {},
+    cardPay() {
+      this.payCc();
+    },
+    cashPay() {
+      this.payCash();
+    },
     cancel() {
       this.title = "Cancelar orden";
       this.message = "Estás seguro de que querés cancelar la orden?";
@@ -87,10 +101,14 @@ export default {
 <style scoped>
 .checkout {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .checkout__list {
-  width: 70vw;
+  margin-top: 64px;
+}
+.checkout__list {
+  width: 40vw;
 }
 .amount {
   text-align: center;
@@ -100,7 +118,11 @@ export default {
   margin-left: 20px;
 }
 .image {
-  margin-top: 20px;
   max-width: 100px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 </style>

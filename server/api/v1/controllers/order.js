@@ -1,48 +1,56 @@
-"use strict"
-const Order = require("../models").order
-const Basket = require("../models").basket
+"use strict";
+const Order = require("../models").order;
+const OrderItems = require("../models").order_items;
 
-var new_order_number = 0
 module.exports = {
   create(req, res) {
-    Order.max("order_number").then(max => {
-      new_order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(
-        -5
-      )
-    })
-    let total_order = 0
-    let items = 0
-    Basket.findAll()
-      .then(basket => {
-        basket.forEach(item => {
-          const record = item.get({
-            plain: true
-          })
-          Order.create({
-            order_number: new_order_number,
-            product_id: record.product_id,
-            quantity: record.quantity,
-            unit_price: record.unit_price,
-            total_price: record.total_price,
-            discount: record.discount,
-            net_price: record.net_price
-          })
-          total_order = total_order + parseFloat(record.net_price)
-          items++
-        }) // End forEach
-      })
-      .then(() => {
-        Basket.destroy({
-          where: {},
-          truncate: true
+    var order_number = ("0".repeat(5) + (1).toString()).slice(-5);
+    const items = req.body.basket;
+    const data = [];
+    let total_order = 0;
+
+    Order.max("order_number")
+      .then(max => {
+        order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(-5);
+        Order.create({
+          order_number
         })
-        res.json(201, {
-          order_number: new_order_number,
-          total_order: total_order,
-          items: items
-        })
+          .then(order => {
+            const orderId = order.id;
+            order_number = order.order_number;
+            items.map(item => {
+              data.push({
+                order_id: orderId,
+                product_id: item.id,
+                product_name: item.name,
+                quantity: item.quantity,
+                unit_price: item.price,
+                total_price: item.totalPrice,
+                discount: 0,
+                net_price: item.totalPrice
+              });
+              total_order = total_order + parseFloat(item.totalPrice);
+            });
+            OrderItems.bulkCreate(data).then((items) => {
+              Order.findOne({ where: { id: orderId } }).then(order => {
+                order
+                  .update({
+                    total_price: total_order,
+                    net_price: total_order
+                  })
+                  .then(() => {
+                    res.json(201, {
+                      order_number,
+                      total_order,
+                      items
+                    });
+                  });
+              });
+            });
+          })
+          .catch(err => console.log(err));
       })
-      .catch(error => res.status(400).json(error))
+      .catch(err => console.log("err", err));
   },
 
   findAll(req, res) {
@@ -50,7 +58,7 @@ module.exports = {
       raw: true
     })
       .then(orders => res.json(200, orders))
-      .catch(error => res.status(400).send(error))
+      .catch(error => res.status(400).send(error));
   },
 
   findById(req, res) {
@@ -63,10 +71,10 @@ module.exports = {
         order
           ? res.json(200, order)
           : res.status(404).json({
-            error: "Not found"
-          })
+              error: "Not found"
+            })
       )
-      .catch(error => res.status(400).send(error))
+      .catch(error => res.status(400).send(error));
   },
 
   findByNumber(req, res) {
@@ -79,10 +87,10 @@ module.exports = {
         order
           ? res.json(200, order)
           : res.status(404).json({
-            error: "Not found"
-          })
+              error: "Not found"
+            })
       )
-      .catch(error => res.status(400).send(error))
+      .catch(error => res.status(400).send(error));
   },
 
   delete(req, res) {
@@ -93,9 +101,9 @@ module.exports = {
     })
       .then(order =>
         order.destroy().then(result => {
-          res.json(result)
+          res.json(result);
         })
       )
-      .catch(error => res.status(400).send(error))
+      .catch(error => res.status(400).send(error));
   }
-}
+};

@@ -1,9 +1,8 @@
 <template>
   <v-container fluid class="basket">
-    <v-toolbar color="info" dark>
+    <v-toolbar color="#ffc600">
       <v-icon>shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
-      <v-divider></v-divider>
       <v-btn large color="success" round v-if="total>0" @click="checkout=true">Revisar la orden</v-btn>
       <v-btn large color="error" round v-if="total>0" @click="cancel">Cancelar la orden</v-btn>
     </v-toolbar>
@@ -24,15 +23,21 @@
     </v-layout>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <v-toolbar dark fixed color="primary">
+        <v-toolbar dark fixed color="#ffc600">
           <v-btn icon dark @click="checkout = false">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Checkout</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="warning" class="black--text" @click="checkout = false">Volver a productos</v-btn>
+          <v-btn light @click="checkout = false">Volver</v-btn>
         </v-toolbar>
-        <Checkout :items="items" :total="total" :remove="doRemove"/>
+        <Checkout
+          :items="items"
+          :total="total"
+          :remove="doRemove"
+          :pay-cash="doPayCash"
+          :pay-cc="doPayCC"
+        />
       </v-dialog>
     </v-layout>
     <Confirm
@@ -42,6 +47,7 @@
       :button-ok-msg="buttonOkMsg"
       :button-no-msg="buttonNoMsg"
     />
+    <Processing :message="action"/>
   </v-container>
 </template>
 
@@ -49,12 +55,14 @@
 import store from "@/store";
 import Checkout from "@/components/Checkout";
 import Confirm from "@/components/Confirm";
+import Processing from "@/components/Processing";
 export default {
   name: "Basket",
   store,
   components: {
     Checkout,
-    Confirm
+    Confirm,
+    Processing
   },
   props: {
     basket: {
@@ -78,8 +86,14 @@ export default {
       title: "",
       message: "",
       buttonOkMsg: "",
-      buttonNoMsg: ""
+      buttonNoMsg: "",
+      action: ""
     };
+  },
+  computed: {
+    order() {
+      return store.getters.order;
+    }
   },
   watch: {
     basket() {
@@ -103,6 +117,16 @@ export default {
       if (this.checkout) {
         this.checkout = this.items.length;
       }
+    },
+    order() {
+      setTimeout(() => {
+        this.action = this.order
+          ? `IMPRIMENDO TICKET # ${this.order.order_number}`
+          : "";
+        setTimeout(() => {
+          this.action = "";
+        }, 10000);
+      }, 1000);
     }
   },
   methods: {
@@ -125,6 +149,14 @@ export default {
         if (!value) return;
         this.remove(-1);
       }, 200);
+    },
+    doPayCash() {
+      setTimeout(() => {
+        store.dispatch("saveOrder", this.items);
+      }, 200);
+    },
+    doPayCC() {
+      console.log("cc");
     }
   }
 };
@@ -138,6 +170,8 @@ export default {
 }
 .amount {
   font-size: 2em;
+  font-weight: bold;
+  margin-right: 100px;
 }
 .quantity,
 .price,

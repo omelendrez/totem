@@ -1,10 +1,23 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    "order",
+  const OrderItems = sequelize.define(
+    "order_items",
     {
-      order_number: {
+      order_id: {
+        type: DataTypes.INTEGER
+      },
+      product_id: {
+        type: DataTypes.INTEGER
+      },
+      product_name: {
         type: DataTypes.STRING
+      },
+      quantity: {
+        type: DataTypes.INTEGER
+      },
+      unit_price: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
       },
       total_price: {
         type: DataTypes.DECIMAL(10, 2),
@@ -17,20 +30,16 @@ module.exports = (sequelize, DataTypes) => {
       net_price: {
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
-      },
-      status_id: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
       }
     },
     {
       indexes: [
         {
-          fields: ["order_number"]
+          fields: ["order_id"]
         }
       ]
     }
   );
 
-  return Order;
+  return OrderItems;
 };

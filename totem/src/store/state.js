@@ -5,7 +5,8 @@ const state = {
   categories: [],
   basket: [],
   product: null,
-  selectedCategory: null
+  selectedCategory: null,
+  order: null
 };
 
 export default state;

@@ -43,6 +43,9 @@ export default {
     },
     basket() {
       return store.getters.basket;
+    },
+    order() {
+      return store.getters.order
     }
   },
   watch: {

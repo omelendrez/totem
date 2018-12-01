@@ -44,6 +44,15 @@ const mutations = {
   },
   select_category(state, { item }) {
     state.selectedCategory = item;
+  },
+  save_order_request(state) {
+    state.status = "loading";
+    state.order = null;
+  },
+  save_order_success(state, { order }) {
+    state.status = "success";
+    state.order = order;
+    state.basket = []
   }
 };
 
