@@ -1,17 +1,17 @@
 <template>
   <v-card class="checkout">
-    <v-list class="checkout__list" two-line>
+    <v-list class="checkout__list" three-line>
       <h1>Tu compra</h1>
       <template v-for="(item, index) in items">
         <v-container :key="`c${index}`">
           <v-divider :key="`div${index}`"></v-divider>
-          <h4>{{ item.name }}</h4>
           <v-list-tile :key="`tile${index}`">
-          <v-img :src="item.image" height="60px" contain></v-img>
-            <v-list-tile-content>
-              <h5 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h5>
+            <v-img :src="item.image" class="image" cover></v-img>
+            <v-list-tile-content class="item-content">
+              <h4>{{ item.name }}</h4>
+              <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
               <h3 v-html="`Total: $ ${item.totalPrice.replace('.00','')}`"></h3>
-              <v-btn dark small fab absolute bottom right color="pink" @click="remove(index)">
+              <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
                 <v-icon>remove</v-icon>
               </v-btn>
             </v-list-tile-content>
@@ -22,15 +22,29 @@
       <div class="total">
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
-      <v-btn large dark block round color="pink" @click="cardPay">Pagar con tarjeta</v-btn>
-      <v-btn large dark block round color="primary" @click="cashPay">Pagar en caja</v-btn>
+      <div class="buttons">
+        <v-btn large round color="success" @click="cardPay">Pagar con tarjeta</v-btn>
+        <v-btn large round color="primary" @click="cashPay">Pagar en caja</v-btn>
+        <v-btn large round color="error" @click="cancel">Cancelar la orden</v-btn>
+      </div>
+      <Confirm
+        :title="title"
+        :message="message"
+        :confirm="verifyCancel"
+        :button-ok-msg="buttonOkMsg"
+        :button-no-msg="buttonNoMsg"
+      />
     </v-list>
   </v-card>
 </template>
 
 <script>
+import Confirm from "@/components/Confirm";
 export default {
   name: "Checkout",
+  components: {
+    Confirm
+  },
   props: {
     items: {
       type: Array,
@@ -43,26 +57,72 @@ export default {
     remove: {
       type: Function,
       default: undefined
+    },
+    payCash: {
+      type: Function,
+      default: undefined
+    },
+    payCc: {
+      type: Function,
+      default: undefined
     }
   },
+  data() {
+    return {
+      title: "",
+      message: "",
+      buttonOkMsg: "",
+      buttonNoMsg: ""
+    };
+  },
   methods: {
-    cardPay() {},
-    cashPay() {}
+    cardPay() {
+      this.payCc();
+    },
+    cashPay() {
+      this.payCash();
+    },
+    cancel() {
+      this.title = "Cancelar orden";
+      this.message = "Estás seguro de que querés cancelar la orden?";
+      this.buttonOkMsg = "Si, cancelar";
+      this.buttonNoMsg = "No";
+    },
+    verifyCancel(value) {
+      setTimeout(() => {
+        this.message = "";
+        if (!value) return;
+        this.remove(-1);
+      }, 200);
+    }
   }
 };
 </script>
 <style scoped>
 .checkout {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 .checkout__list {
-  width: 50%;
+  margin-top: 64px;
+}
+.checkout__list {
+  width: 40vw;
 }
 .amount {
   text-align: center;
   font-size: 2em;
+}
+.item-content {
+  margin-left: 20px;
+}
+.image {
+  max-width: 100px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 </style>

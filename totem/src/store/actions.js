@@ -1,4 +1,6 @@
-import { getCategories, getProducts } from "@/services";
+import { getCategories, getProducts, saveOrder } from "@/services";
+const { CONFIG } = require("@/config");
+const host = CONFIG.url;
 
 const handleError = err => {
   const error = {
@@ -18,7 +20,7 @@ const actions = {
         const categories = getResults(resp);
         categories.map(item => {
           const image = item.image ? item.image : "";
-          item.image = image ? `http://localhost:3000/${image}` : "";
+          item.image = image ? `${host}${image}` : "";
           return item;
         });
         commit("load_categories_success", { rows: categories });
@@ -34,7 +36,7 @@ const actions = {
         const products = getResults(resp);
         products.map(item => {
           const image = item.image || item.category.image || "";
-          item.image = image ? `http://localhost:3000/${image}` : "";
+          item.image = image ? `${host}${image}` : "";
           return item;
         });
         commit("load_products_success", { rows: products });
@@ -54,6 +56,16 @@ const actions = {
   },
   async selectCategory({ commit }, item) {
     commit("select_category", { item });
+  },
+  async saveOrder({ commit }, basket) {
+    commit("save_order_request");
+    saveOrder(basket)
+      .then(resp => {
+        commit("save_order_success", { order: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
   }
 };
 

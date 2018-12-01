@@ -1,15 +1,15 @@
 <template>
   <v-container fluid class="home">
     <div class="categories">
-      <Categories :categories="categories" />
+      <Categories :categories="categories"/>
     </div>
-    <div class="products"  v-bind:class="{ productsFull: isBasketEmtpy }">
-      <Products :products="products" :add="add" :info="info" />
+    <div class="products">
+      <Products :products="products" :add="add" :info="info"/>
     </div>
-    <div class="basket" id="basket" v-bind:class="{ basketEmpty: isBasketEmtpy }">
-      <Basket :basket="basket" :add="add" :remove="remove" />
+    <div class="basket" id="basket">
+      <Basket :basket="basket" :add="add" :remove="remove"/>
     </div>
-    <Product :add="add" />
+    <Product :add="add"/>
   </v-container>
 </template>
 
@@ -17,7 +17,8 @@
 import store from "@/store";
 import Categories from "@/components/Categories";
 import Products from "@/components/Products";
-import Basket from "@/components/Basket";
+import Basket from "@/components/BasketHorizontal";
+// import Basket from "@/components/Basket";
 import Product from "@/components/Product";
 export default {
   name: "Home",
@@ -42,6 +43,9 @@ export default {
     },
     basket() {
       return store.getters.basket;
+    },
+    order() {
+      return store.getters.order
     }
   },
   watch: {
@@ -51,13 +55,19 @@ export default {
   },
   methods: {
     add(item) {
-      store.dispatch("add", item);
+      setTimeout(() => {
+        store.dispatch("add", item);
+      }, 200);
     },
     info(item) {
-      store.dispatch("info", item);
+      setTimeout(() => {
+        store.dispatch("info", item);
+      }, 200);
     },
     remove(item) {
-      store.dispatch("remove", item);
+      setTimeout(() => {
+        store.dispatch("remove", item);
+      }, 200);
     }
   },
   created() {
@@ -71,31 +81,22 @@ export default {
   position: absolute;
   top: 32px;
   left: 0;
-  bottom: 0;
+  height: 80vh;
   width: 16vw;
 }
 .products {
   position: absolute;
   top: 32px;
   left: 9%;
-  bottom: 0;
-  width: 63vw;
-}
-
-.productsFull {
+  height: 76vh;
   width: 84vw;
 }
-
 .basket {
   position: absolute;
-  top: 32px;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 24vw;
+  height: 20vh;
+  background-color: #fff;
 }
-
-.basketEmpty {
-  display: none;
-}
-
 </style>

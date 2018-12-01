@@ -30,7 +30,7 @@
                 <v-list-tile-content>
                   <span class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</span>
                   <span class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</span>
-                  <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(index)">
+                  <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(item)">
                     <v-icon>remove</v-icon>
                   </v-btn>
                 </v-list-tile-content>
@@ -112,8 +112,8 @@ export default {
   },
   methods: {
     doRemove(index) {
-      const id = this.items[index].id;
-      const basketIndex = this.basket.findIndex(item => item.id === id);
+      const id = product.id;
+      const basketIndex = this.basket.findIndex(item => item.id === id)
       this.remove(basketIndex);
     }
   }
