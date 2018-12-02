@@ -52,7 +52,27 @@ const mutations = {
   save_order_success(state, { order }) {
     state.status = "success";
     state.order = order;
-    state.basket = []
+    state.basket = [];
+  },
+  load_orders_request(state) {},
+  load_orders_success(state, { orders }) {
+    state.status = "success";
+    state.orders = orders;
+  },
+  load_items_request(state) {},
+  load_items_success(state, { items }) {
+    state.status = "success";
+    state.items = items;
+  },
+  load_order_items_request(state) {},
+  load_order_items_success(state, { orderItems }) {
+    state.status = "success";
+    state.orderItems = orderItems;
+  },
+  load_order_turns_request(state) {},
+  load_order_turns_success(state, { orderTurns }) {
+    state.status = "success";
+    state.orderTurns = orderTurns;
   }
 };
 

@@ -7,10 +7,11 @@ router.use(function(req, res, next) {
   console.log("%s %s %s", req.method, req.url, req.path);
   next();
 });
-router.get("/:id/number", order.findByNumber);
-router.get("/:id", order.findById);
-router.get("/", order.findAll);
 router.post("/", order.create);
-router.delete("/:id", order.delete);
+router.get("/", order.findAll);
+router.get("/orders", order.findOrders);
+router.get("/items", order.findItems);
+router.get("/order_items", order.findOrderItems);
+router.get("/order_turns", order.findOrderTurns);
 
 module.exports = router;
