@@ -1,6 +1,17 @@
 "use strict";
 const Order = require("../models").order;
 const OrderItems = require("../models").order_items;
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
+
+/**
+ * status_id
+ * 0 - Created - Payment pending
+ * 1 - Paid - Kitchen and Counter to prepare
+ * 2 - Food ready - Kitchen finished / Counter to finalize
+ * 3 - Ready for collection
+ * 4 - Collected
+ */
 
 module.exports = {
   create(req, res) {
@@ -31,7 +42,7 @@ module.exports = {
               });
               total_order = total_order + parseFloat(item.totalPrice);
             });
-            OrderItems.bulkCreate(data).then((items) => {
+            OrderItems.bulkCreate(data).then(items => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
                   .update({
@@ -54,8 +65,88 @@ module.exports = {
   },
 
   findAll(req, res) {
-    return Order.findAll({
-      raw: true
+    OrderItems.belongsTo(Order);
+    Order.hasMany(OrderItems);
+    Order.findAll({
+      include: [
+        {
+          model: OrderItems,
+          where: {
+            order_id: sequelize.col("order.id")
+          },
+          attributes: ["product_name", "quantity", "unit_price", "total_price"]
+        }
+      ],
+      attributes: ["order_number", "total_price", "status_id"]
+    })
+      .then(orders => res.json(200, orders))
+      .catch(error => res.status(400).send(error));
+  },
+
+  findOrders(req, res) {
+    Order.findAll({
+      where: {
+        status_id: 0
+      },
+      order: [["id", "asc"]],
+      attributes: ["order_number", "total_price"]
+    })
+      .then(orders => res.json(200, orders))
+      .catch(error => res.status(400).send(error));
+  },
+
+  findOrderTurns(req, res) {
+    Order.findAll({
+      where: {
+        status_id: {
+          [Op.or]: [1, 2, 3]
+        }
+      },
+      order: [["id", "asc"]],
+      attributes: ["order_number", "status_id"]
+    })
+      .then(orders => res.json(200, orders))
+      .catch(error => res.status(400).send(error));
+  },
+
+  findItems(req, res) {
+    OrderItems.belongsTo(Order);
+    Order.hasMany(OrderItems);
+    OrderItems.findAll({
+      order: [["id", "asc"]],
+      include: [
+        {
+          model: Order,
+          where: {
+            id: sequelize.col("order_items.order_id"),
+            status_id: 1
+          },
+          attributes: ["order_number"]
+        }
+      ],
+      attributes: ["id", "product_name", "quantity"]
+    })
+      .then(items => res.json(200, items))
+      .catch(error => res.status(400).send(error));
+  },
+
+  findOrderItems(req, res) {
+    OrderItems.belongsTo(Order);
+    Order.hasMany(OrderItems);
+    Order.findAll({
+      where: {
+        status_id: 1
+      },
+      include: [
+        {
+          model: OrderItems,
+          where: {
+            order_id: sequelize.col("order.id")
+          },
+          attributes: ["product_name", "quantity", "unit_price", "total_price"]
+        }
+      ],
+      attributes: ["order_number", "total_price", "status_id"]
     })
       .then(orders => res.json(200, orders))
       .catch(error => res.status(400).send(error));

@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       net_price: {
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
+      },
+      status_id: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     {

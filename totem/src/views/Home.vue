@@ -45,7 +45,7 @@ export default {
       return store.getters.basket;
     },
     order() {
-      return store.getters.order
+      return store.getters.order;
     }
   },
   watch: {
@@ -70,7 +70,7 @@ export default {
       }, 200);
     }
   },
-  created() {
+  mounted() {
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
   }

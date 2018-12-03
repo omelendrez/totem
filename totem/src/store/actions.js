@@ -1,4 +1,12 @@
-import { getCategories, getProducts, saveOrder } from "@/services";
+import {
+  getCategories,
+  getProducts,
+  saveOrder,
+  loadOrders,
+  loadItems,
+  loadOrderItems,
+  loadOrderTurns
+} from "@/services";
 const { CONFIG } = require("@/config");
 const host = CONFIG.url;
 
@@ -62,6 +70,46 @@ const actions = {
     saveOrder(basket)
       .then(resp => {
         commit("save_order_success", { order: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async loadOrders({ commit }) {
+    commit("load_orders_request");
+    loadOrders()
+      .then(resp => {
+        commit("load_orders_success", { orders: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async loadItems({ commit }) {
+    commit("load_items_request");
+    loadItems()
+      .then(resp => {
+        commit("load_items_success", { items: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async loadOrderItems({ commit }) {
+    commit("load_order_items_request");
+    loadOrderItems()
+      .then(resp => {
+        commit("load_order_items_success", { orderItems: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async loadOrderTurns({ commit }) {
+    commit("load_order_turns_request");
+    loadOrderTurns()
+      .then(resp => {
+        commit("load_order_turns_success", { orderTurns: resp.data });
       })
       .catch(err => {
         commit("request_error", handleError(err));
