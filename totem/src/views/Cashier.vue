@@ -64,6 +64,7 @@ export default {
     sendItem() {
       const data = { orderId: this.value, statusId: 1 };
       store.dispatch("changeOrderStatus", data);
+      this.value = "";
     }
   }
 };

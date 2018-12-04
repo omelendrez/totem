@@ -80,6 +80,7 @@ export default {
     sendItem() {
       const data = { itemId: this.value, statusId: 1 };
       store.dispatch("changeItemStatus", data);
+      this.value = "";
     }
   }
 };

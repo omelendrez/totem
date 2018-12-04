@@ -61,6 +61,7 @@ export default {
     sendItem() {
       const data = { orderId: this.value, statusId: 2 };
       store.dispatch("changeOrderStatus", data);
+      this.value = "";
     },
     getStatus(status_id) {
       return status_id === 1 ? "done" : "";
