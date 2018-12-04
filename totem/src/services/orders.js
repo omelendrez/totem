@@ -59,3 +59,27 @@ export const loadOrderTurns = () => {
       });
   });
 };
+
+export const changeOrderStatus = data => {
+  return new Promise((resolve, reject) => {
+    HTTP.put(`orders/${data.orderId}`, { status_id: data.statusId })
+      .then(resp => {
+        resolve(resp);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+export const changeItemStatus = data => {
+  return new Promise((resolve, reject) => {
+    HTTP.put(`orders/items/${data.itemId}`, { status_id: data.statusId })
+      .then(resp => {
+        resolve(resp);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};

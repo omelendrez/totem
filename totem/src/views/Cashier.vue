@@ -1,6 +1,13 @@
 <template>
   <v-container fluid class="cashier" @click="setFocus">
-    <v-text-field ref="inputField" label="Código"></v-text-field>
+    <h1>Caja</h1>
+    <v-text-field
+      ref="inputField"
+      class="input-field"
+      v-model="value"
+      label="Orden #"
+      @change="sendItem"
+    ></v-text-field>
     <v-data-table hide-actions :headers="headers" :items="orders" class="elevation-1">
       <template slot="items" slot-scope="props">
         <td>
@@ -29,7 +36,7 @@ export default {
     return {
       headers: [
         {
-          text: "Ticket #",
+          text: "Orden #",
           value: "order_number",
           sortable: false
         },
@@ -39,7 +46,8 @@ export default {
           value: "total_price",
           sortable: false
         }
-      ]
+      ],
+      value: ""
     };
   },
   mounted() {
@@ -52,12 +60,19 @@ export default {
   methods: {
     setFocus() {
       this.$refs.inputField.focus();
+    },
+    sendItem() {
+      const data = { orderId: this.value, statusId: 1 };
+      store.dispatch("changeOrderStatus", data);
     }
   }
 };
 </script>
 <style scoped>
 .cashier {
-  margin-top: 50px;
+}
+.input-field {
+  font-size: 2em;
+  font-weight: bold;
 }
 </style>

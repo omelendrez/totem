@@ -73,7 +73,9 @@ const mutations = {
   load_order_turns_success(state, { orderTurns }) {
     state.status = "success";
     state.orderTurns = orderTurns;
-  }
+  },
+  change_order_status_request(state) {},
+  change_order_status_success(state) {}
 };
 
 export default mutations;
