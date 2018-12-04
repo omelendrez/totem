@@ -5,7 +5,9 @@ import {
   loadOrders,
   loadItems,
   loadOrderItems,
-  loadOrderTurns
+  loadOrderTurns,
+  changeOrderStatus,
+  changeItemStatus
 } from "@/services";
 const { CONFIG } = require("@/config");
 const host = CONFIG.url;
@@ -110,6 +112,26 @@ const actions = {
     loadOrderTurns()
       .then(resp => {
         commit("load_order_turns_success", { orderTurns: resp.data });
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async changeOrderStatus({ commit }, data) {
+    commit("change_order_status_request");
+    changeOrderStatus(data)
+      .then(() => {
+        commit("change_order_status_success");
+      })
+      .catch(err => {
+        commit("request_error", handleError(err));
+      });
+  },
+  async changeItemStatus({ commit }, data) {
+    commit("change_item_status_request");
+    changeItemStatus(data)
+      .then(() => {
+        commit("change_item_status_success");
       })
       .catch(err => {
         commit("request_error", handleError(err));

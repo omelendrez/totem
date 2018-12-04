@@ -1,6 +1,13 @@
 <template>
   <v-container fluid class="kitchen" @click="setFocus">
-    <v-text-field ref="inputField" class="input-field" label="ID"></v-text-field>
+    <h1>Cocina</h1>
+    <v-text-field
+      ref="inputField"
+      class="input-field"
+      v-model="value"
+      label="Item #"
+      @change="sendItem"
+    ></v-text-field>
     <v-data-table hide-actions :headers="headers" :items="items" class="elevation-1">
       <template slot="items" slot-scope="props">
         <td>
@@ -22,6 +29,7 @@
 
 <script>
 import store from "@/store";
+import { interval } from "@/utils";
 export default {
   name: "Kitchen",
   store,
@@ -34,12 +42,12 @@ export default {
     return {
       headers: [
         {
-          text: "ID",
+          text: "Item #",
           value: "id",
           sortable: false
         },
         {
-          text: "Orden",
+          text: "Orden #",
           value: "order_number",
           sortable: false
         },
@@ -54,28 +62,34 @@ export default {
           align: "center",
           sortable: false
         }
-      ]
+      ],
+      value: ""
     };
   },
   mounted() {
     store.dispatch("loadItems");
     setInterval(() => {
       store.dispatch("loadItems");
-    }, 20000);
+    }, interval);
     this.$nextTick(() => this.$refs.inputField.focus());
   },
   methods: {
     setFocus() {
       this.$refs.inputField.focus();
+    },
+    sendItem() {
+      const data = { itemId: this.value, statusId: 1 };
+      store.dispatch("changeItemStatus", data);
+      this.value = "";
     }
   }
 };
 </script>
 <style scoped>
 .kitchen {
-  margin-top: 50px;
 }
 .input-field {
   font-size: 2em;
+  font-weight: bold;
 }
 </style>

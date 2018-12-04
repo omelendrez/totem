@@ -9,8 +9,10 @@ router.use(function(req, res, next) {
 });
 router.post("/", order.create);
 router.get("/", order.findAll);
+router.put("/:id", order.updateOrderStatus);
 router.get("/orders", order.findOrders);
 router.get("/items", order.findItems);
+router.put("/items/:id", order.updateItemStatus);
 router.get("/order_items", order.findOrderItems);
 router.get("/order_turns", order.findOrderTurns);
 

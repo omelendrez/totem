@@ -1,1 +1,1 @@
-export const interval = 30000;
+export const interval = 360000;

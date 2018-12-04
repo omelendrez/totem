@@ -114,6 +114,9 @@ module.exports = {
     Order.hasMany(OrderItems);
     OrderItems.findAll({
       order: [["id", "asc"]],
+      where: {
+        status_id: 0
+      },
       include: [
         {
           model: Order,
@@ -143,7 +146,13 @@ module.exports = {
           where: {
             order_id: sequelize.col("order.id")
           },
-          attributes: ["product_name", "quantity", "unit_price", "total_price"]
+          attributes: [
+            "product_name",
+            "quantity",
+            "unit_price",
+            "total_price",
+            "status_id"
+          ]
         }
       ],
       attributes: ["order_number", "total_price", "status_id"]
@@ -180,6 +189,34 @@ module.exports = {
           : res.status(404).json({
               error: "Not found"
             })
+      )
+      .catch(error => res.status(400).send(error));
+  },
+
+  updateOrderStatus(req, res) {
+    return Order.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(order =>
+        order.update({ status_id: req.body.status_id }).then(result => {
+          res.json(result);
+        })
+      )
+      .catch(error => res.status(400).send(error));
+  },
+
+  updateItemStatus(req, res) {
+    return OrderItems.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(item =>
+        item.update({ status_id: req.body.status_id }).then(result => {
+          res.json(result);
+        })
       )
       .catch(error => res.status(400).send(error));
   },
