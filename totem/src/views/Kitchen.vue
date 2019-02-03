@@ -1,25 +1,15 @@
 <template>
-  <v-container fluid class="kitchen" @click="setFocus">
+  <v-container fluid class="kitchen">
     <h1>Cocina</h1>
-    <v-text-field
-      ref="inputField"
-      class="input-field"
-      v-model="value"
-      label="Item #"
-      @change="sendItem"
-    ></v-text-field>
-    <v-data-table hide-actions :headers="headers" :items="items" class="elevation-1">
+    <v-data-table hide-actions :headers="headers" :items="orderItems" class="elevation-1">
       <template slot="items" slot-scope="props">
-        <td>
-          <h1>{{ props.item.id }}</h1>
-        </td>
-        <td>
+        <td v-bind:class="{'selected-item':(props.item.id === selectedId)}">
           <h1>{{ props.item.order.order_number }}</h1>
         </td>
-        <td>
+        <td v-bind:class="{'selected-item':(props.item.id === selectedId)}">
           <h1>{{ props.item.product_name }}</h1>
         </td>
-        <td class="text-xs-center">
+        <td class="text-xs-center" v-bind:class="{'selected-item':(props.item.id === selectedId)}">
           <h1>{{ props.item.quantity }}</h1>
         </td>
       </template>
@@ -38,14 +28,15 @@ export default {
       return store.getters.items;
     }
   },
+  watch: {
+    items() {
+      this.orderItems = this.items;
+      this.selectedId = this.orderItems[this.selectedItem].id;
+    }
+  },
   data() {
     return {
       headers: [
-        {
-          text: "Item #",
-          value: "id",
-          sortable: false
-        },
         {
           text: "Orden #",
           value: "order_number",
@@ -63,33 +54,50 @@ export default {
           sortable: false
         }
       ],
-      value: ""
+      orderItems: [],
+      selectedItem: 0,
+      selectedId: 0
     };
+  },
+  created() {
+    window.addEventListener("keydown", e => {
+      if (e.code === "ArrowDown") {
+        this.selectedItem < this.items.length - 1 && this.selectedItem++;
+      }
+      if (e.code === "ArrowUp") {
+        this.selectedItem > 0 && this.selectedItem--;
+      }
+      if (e.code === "Enter") {
+        this.sendItem();
+      }
+      console.log(this.selectedId, this.selectedItem);
+      this.selectedId = this.items[this.selectedItem].id;
+    });
   },
   mounted() {
     store.dispatch("loadItems");
     setInterval(() => {
       store.dispatch("loadItems");
     }, interval);
-    this.$nextTick(() => this.$refs.inputField.focus());
   },
   methods: {
-    setFocus() {
-      this.$refs.inputField.focus();
-    },
     sendItem() {
-      const data = { itemId: this.value, statusId: 1 };
+      const data = { itemId: this.selectedId, statusId: 1 };
       store.dispatch("changeItemStatus", data);
-      this.value = "";
     }
   }
 };
 </script>
 <style scoped>
 .kitchen {
+  zoom: 1;
 }
 .input-field {
   font-size: 2em;
   font-weight: bold;
+}
+.selected-item {
+  background-color: #ee3542;
+  color: white;
 }
 </style>

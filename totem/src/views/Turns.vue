@@ -4,7 +4,7 @@
       <div class="resultContainer">
         <v-layout justify-space-around fill-height>
           <div class="item elevation-5">
-            <h1>En preparación</h1>
+            <h1 class="header in-preparation">En preparación</h1>
             <div
               class="order-number"
               v-for="(item, index) in inPreparation"
@@ -12,7 +12,7 @@
             >{{item.order_number}}</div>
           </div>
           <div class="item elevation-5">
-            <h1>Para entregar</h1>
+            <h1 class="header to-deliver">Para retirar</h1>
             <div
               class="order-number"
               v-for="(item, index) in toDeliver"
@@ -38,8 +38,8 @@ export default {
   },
   watch: {
     orderTurns() {
-      this.inPreparation = this.orderTurns.filter(item => item.status_id === 1);
-      this.toDeliver = this.orderTurns.filter(item => item.status_id === 2);
+      this.inPreparation = this.orderTurns.filter(item => item.status_id === 1).slice(0, 8);
+      this.toDeliver = this.orderTurns.filter(item => item.status_id === 2).slice(0, 8);
     }
   },
   data() {
@@ -66,7 +66,19 @@ export default {
   height: 80vh;
 }
 .order-number {
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
+}
+
+.header {
+  color: white;
+  text-transform: uppercase;
+}
+.in-preparation {
+  background-color: #ee3542;
+}
+
+.to-deliver {
+  background-color: #ee3542;
 }
 </style>
