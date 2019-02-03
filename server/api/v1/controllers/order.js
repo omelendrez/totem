@@ -102,8 +102,8 @@ module.exports = {
           [Op.or]: [1, 2, 3]
         }
       },
-      order: [["id", "asc"]],
-      attributes: ["order_number", "status_id"]
+      order: [["updated_at", "desc"]],
+      attributes: ["order_number", "status_id", "updated_at"]
     })
       .then(orders => res.json(200, orders))
       .catch(error => res.status(400).send(error));

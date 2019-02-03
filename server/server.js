@@ -5,6 +5,8 @@ const logger = require("morgan");
 const fileUpload = require("express-fileupload");
 const apiPath = "./api/v1";
 const models = require(apiPath + "/models");
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 const app = express();
 
@@ -46,6 +48,13 @@ app.use("/status", require(apiPath + "/routes/status"));
 app.use("/login", require(apiPath + "/routes/login"));
 app.use("/config", require(apiPath + "/routes/config"));
 app.use(express.static("public"));
+app.post('/public', upload.single('product'), function (req, res, next) {
+  console.log(req)
+  console.log(res)
+  next()
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+})
 
 const port = 3000;
 

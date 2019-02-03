@@ -71,7 +71,7 @@ export default {
 </script>
 <style scoped>
 .counter {
-  background-color: #ccc;
+  background-color: #ee3542;
 }
 .input-field {
   font-size: 2em;
