@@ -11,7 +11,7 @@
     <v-data-table hide-actions :headers="headers" :items="orders" class="elevation-1">
       <template slot="items" slot-scope="props">
         <td>
-          <h1>{{ props.item.order_number }}</h1>
+          <h1>{{ props.item.order_number_formatted }}</h1>
         </td>
         <td class="text-xs-center">
           <h1>{{ props.item.total_price }}</h1>
@@ -62,7 +62,7 @@ export default {
       this.$refs.inputField.focus();
     },
     sendItem() {
-      const data = { orderId: this.value, statusId: 1 };
+      const data = { orderId: this.value, statusId: 1, paymentMethod: 2 };
       store.dispatch("changeOrderStatus", data);
       this.value = "";
     }

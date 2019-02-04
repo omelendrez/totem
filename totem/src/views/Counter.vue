@@ -11,9 +11,9 @@
     <v-container fluid grid-list-lg class="counter">
       <v-layout row wrap>
         <v-flex d-flex v-for="(order, index) in orderItems" :key="index" class="order-card">
-          <v-card>
+          <v-card class="elevation-5">
             <v-card-text primary-title>
-              <div class="order">{{order.order_number}}</div>
+              <div class="order">{{order.order_number_formatted}}</div>
               <div v-for="(item, index2) in order.order_items" :key="index2">
                 <div class="item">
                   <span class="product-icon">
@@ -70,15 +70,13 @@ export default {
 };
 </script>
 <style scoped>
-.counter {
-  background-color: #ee3542;
-}
 .input-field {
   font-size: 2em;
   font-weight: bold;
 }
 .order-card {
   max-width: 320px;
+  min-height: 320px;
 }
 .order {
   text-align: center;
@@ -87,8 +85,6 @@ export default {
 }
 .item {
   font-size: 1.1em;
-}
-.quantity {
 }
 .product-icon {
   margin-right: 4px;

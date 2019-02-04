@@ -4,7 +4,7 @@
     <v-data-table hide-actions :headers="headers" :items="orderItems" class="elevation-1">
       <template slot="items" slot-scope="props">
         <td v-bind:class="{'selected-item':(props.item.id === selectedId)}">
-          <h1>{{ props.item.order.order_number }}</h1>
+          <h1>{{ props.item.order_number_formatted }}</h1>
         </td>
         <td v-bind:class="{'selected-item':(props.item.id === selectedId)}">
           <h1>{{ props.item.product_name }}</h1>
@@ -31,7 +31,9 @@ export default {
   watch: {
     items() {
       this.orderItems = this.items;
-      this.selectedId = this.orderItems[this.selectedItem].id;
+      if (this.items.length) {
+        this.selectedId = this.orderItems[this.selectedItem].id;
+      }
     }
   },
   data() {
@@ -61,17 +63,21 @@ export default {
   },
   created() {
     window.addEventListener("keydown", e => {
-      if (e.code === "ArrowDown") {
-        this.selectedItem < this.items.length - 1 && this.selectedItem++;
+      if (this.items.length) {
+        switch (e.code) {
+          case "ArrowDown":
+            this.selectedItem < this.items.length - 1 && this.selectedItem++;
+            break;
+          case "ArrowUp":
+            this.selectedItem > 0 && this.selectedItem--;
+            break;
+          case "Enter":
+          case "NumpadEnter":
+            this.sendItem();
+            break;
+        }
+        this.selectedId = this.items[this.selectedItem].id;
       }
-      if (e.code === "ArrowUp") {
-        this.selectedItem > 0 && this.selectedItem--;
-      }
-      if (e.code === "Enter") {
-        this.sendItem();
-      }
-      console.log(this.selectedId, this.selectedItem);
-      this.selectedId = this.items[this.selectedItem].id;
     });
   },
   mounted() {
@@ -84,6 +90,9 @@ export default {
     sendItem() {
       const data = { itemId: this.selectedId, statusId: 1 };
       store.dispatch("changeItemStatus", data);
+      this.orderItems = this.orderItems.filter(
+        item => item.id !== this.selectedId
+      );
     }
   }
 };
