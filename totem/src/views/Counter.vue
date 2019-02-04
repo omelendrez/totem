@@ -17,7 +17,7 @@
               <div v-for="(item, index2) in order.order_items" :key="index2">
                 <div class="item">
                   <span class="product-icon">
-                    <v-icon color="green">{{getStatus(item.status_id)}}</v-icon>
+                    <v-icon>{{getStatus(item.status_id)}}</v-icon>
                   </span>
                   <span class="quantity">{{item.quantity}}</span>
                   <span class="product-name">{{item.product_name}}</span>
@@ -64,7 +64,7 @@ export default {
       this.value = "";
     },
     getStatus(status_id) {
-      return status_id === 1 ? "done" : "";
+      return status_id === 1 ? "thumb_up" : "remove";
     }
   }
 };
@@ -78,8 +78,7 @@ export default {
   font-weight: bold;
 }
 .order-card {
-  max-width: 254px;
-  min-width: 254px;
+  max-width: 320px;
 }
 .order {
   text-align: center;
@@ -96,7 +95,7 @@ export default {
   width: 24px;
 }
 .product-name {
-  margin-left: 10px;
+  margin-left: 4px;
   overflow: hidden;
 }
 </style>
