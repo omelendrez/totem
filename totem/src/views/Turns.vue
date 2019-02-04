@@ -5,19 +5,17 @@
         <v-layout justify-space-around fill-height>
           <div class="item elevation-5">
             <h1 class="header in-preparation">En preparación</h1>
-            <div
-              class="order-number"
-              v-for="(item, index) in inPreparation"
-              :key="index"
-            >{{item.order_number}}</div>
+            <div class="order-number" v-for="(item, index) in inPreparation" :key="index">
+              {{item.order_number_formatted}}
+              <v-icon class="order-icon" color="blue" x-large>schedule</v-icon>
+            </div>
           </div>
           <div class="item elevation-5">
             <h1 class="header to-deliver">Para retirar</h1>
-            <div
-              class="order-number"
-              v-for="(item, index) in toDeliver"
-              :key="index"
-            >{{item.order_number}}</div>
+            <div class="order-number" v-for="(item, index) in toDeliver" :key="index">
+              {{item.order_number_formatted}}
+              <v-icon class="order-icon" color="green" x-large>thumb_up</v-icon>
+            </div>
           </div>
         </v-layout>
       </div>
@@ -38,8 +36,12 @@ export default {
   },
   watch: {
     orderTurns() {
-      this.inPreparation = this.orderTurns.filter(item => item.status_id === 1).slice(0, 8);
-      this.toDeliver = this.orderTurns.filter(item => item.status_id === 2).slice(0, 8);
+      this.inPreparation = this.orderTurns
+        .filter(item => item.status_id === 1)
+        .slice(0, 6);
+      this.toDeliver = this.orderTurns
+        .filter(item => item.status_id === 2)
+        .slice(0, 6);
     }
   },
   data() {
@@ -57,8 +59,6 @@ export default {
 };
 </script>
 <style scoped>
-.turns {
-}
 .item {
   width: 80vh;
   text-align: center;
@@ -66,7 +66,7 @@ export default {
   height: 80vh;
 }
 .order-number {
-  font-size: 4em;
+  font-size: 5em;
   font-weight: bold;
 }
 
@@ -77,8 +77,11 @@ export default {
 .in-preparation {
   background-color: #ee3542;
 }
-
 .to-deliver {
   background-color: #ee3542;
+}
+.order-icon {
+  position: relative;
+  top: -24px;
 }
 </style>

@@ -1,8 +1,8 @@
-"use strict";
-const Order = require("../models").order;
-const OrderItems = require("../models").order_items;
-const sequelize = require("sequelize");
-const Op = sequelize.Op;
+'use strict'
+const Order = require('../models').order
+const OrderItems = require('../models').order_items
+const sequelize = require('sequelize')
+const Op = sequelize.Op
 
 /**
  * status_id
@@ -15,20 +15,20 @@ const Op = sequelize.Op;
 
 module.exports = {
   create(req, res) {
-    var order_number = ("0".repeat(5) + (1).toString()).slice(-5);
-    const items = req.body.basket;
-    const data = [];
-    let total_order = 0;
+    var order_number = ('0'.repeat(5) + (1).toString()).slice(-5)
+    const items = req.body.basket
+    const data = []
+    let total_order = 0
 
-    Order.max("order_number")
+    Order.max('order_number')
       .then(max => {
-        order_number = ("0".repeat(5) + (Number(max) + 1).toString()).slice(-5);
+        order_number = ('0'.repeat(5) + (Number(max) + 1).toString()).slice(-5)
         Order.create({
           order_number
         })
           .then(order => {
-            const orderId = order.id;
-            order_number = order.order_number;
+            const orderId = order.id
+            order_number = order.order_number
             items.map(item => {
               data.push({
                 order_id: orderId,
@@ -39,9 +39,9 @@ module.exports = {
                 total_price: item.totalPrice,
                 discount: 0,
                 net_price: item.totalPrice
-              });
-              total_order = total_order + parseFloat(item.totalPrice);
-            });
+              })
+              total_order = total_order + parseFloat(item.totalPrice)
+            })
             OrderItems.bulkCreate(data).then(items => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
@@ -54,33 +54,33 @@ module.exports = {
                       order_number,
                       total_order,
                       items
-                    });
-                  });
-              });
-            });
+                    })
+                  })
+              })
+            })
           })
-          .catch(err => console.log(err));
+          .catch(err => console.log(err))
       })
-      .catch(err => console.log("err", err));
+      .catch(err => console.log('err', err))
   },
 
   findAll(req, res) {
-    OrderItems.belongsTo(Order);
-    Order.hasMany(OrderItems);
+    OrderItems.belongsTo(Order)
+    Order.hasMany(OrderItems)
     Order.findAll({
       include: [
         {
           model: OrderItems,
           where: {
-            order_id: sequelize.col("order.id")
+            order_id: sequelize.col('order.id')
           },
-          attributes: ["product_name", "quantity", "unit_price", "total_price"]
+          attributes: ['product_name', 'quantity', 'unit_price', 'total_price']
         }
       ],
-      attributes: ["order_number", "total_price", "status_id"]
+      attributes: ['order_number', 'total_price', 'status_id']
     })
       .then(orders => res.json(200, orders))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findOrders(req, res) {
@@ -88,11 +88,11 @@ module.exports = {
       where: {
         status_id: 0
       },
-      order: [["id", "asc"]],
-      attributes: ["order_number", "total_price"]
+      order: [['id', 'asc']],
+      attributes: ['order_number', 'total_price']
     })
       .then(orders => res.json(200, orders))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findOrderTurns(req, res) {
@@ -102,18 +102,18 @@ module.exports = {
           [Op.or]: [1, 2, 3]
         }
       },
-      order: [["updated_at", "desc"]],
-      attributes: ["order_number", "status_id", "updated_at"]
+      order: [['updated_at', 'desc']],
+      attributes: ['order_number', 'status_id', 'updated_at']
     })
       .then(orders => res.json(200, orders))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findItems(req, res) {
-    OrderItems.belongsTo(Order);
-    Order.hasMany(OrderItems);
+    OrderItems.belongsTo(Order)
+    Order.hasMany(OrderItems)
     OrderItems.findAll({
-      order: [["id", "asc"]],
+      order: [['id', 'asc']],
       where: {
         status_id: 0
       },
@@ -121,21 +121,21 @@ module.exports = {
         {
           model: Order,
           where: {
-            id: sequelize.col("order_items.order_id"),
+            id: sequelize.col('order_items.order_id'),
             status_id: 1
           },
-          attributes: ["order_number"]
+          attributes: ['order_number']
         }
       ],
-      attributes: ["id", "product_name", "quantity"]
+      attributes: ['id', 'product_name', 'quantity']
     })
       .then(items => res.json(200, items))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findOrderItems(req, res) {
-    OrderItems.belongsTo(Order);
-    Order.hasMany(OrderItems);
+    OrderItems.belongsTo(Order)
+    Order.hasMany(OrderItems)
     Order.findAll({
       where: {
         status_id: 1
@@ -144,21 +144,21 @@ module.exports = {
         {
           model: OrderItems,
           where: {
-            order_id: sequelize.col("order.id")
+            order_id: sequelize.col('order.id')
           },
           attributes: [
-            "product_name",
-            "quantity",
-            "unit_price",
-            "total_price",
-            "status_id"
+            'product_name',
+            'quantity',
+            'unit_price',
+            'total_price',
+            'status_id'
           ]
         }
       ],
-      attributes: ["order_number", "total_price", "status_id"]
+      attributes: ['order_number', 'total_price', 'status_id']
     })
       .then(orders => res.json(200, orders))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findById(req, res) {
@@ -171,10 +171,10 @@ module.exports = {
         order
           ? res.json(200, order)
           : res.status(404).json({
-              error: "Not found"
+              error: 'Not found'
             })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findByNumber(req, res) {
@@ -187,10 +187,10 @@ module.exports = {
         order
           ? res.json(200, order)
           : res.status(404).json({
-              error: "Not found"
+              error: 'Not found'
             })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   updateOrderStatus(req, res) {
@@ -199,12 +199,23 @@ module.exports = {
         id: req.params.id
       }
     })
-      .then(order =>
-        order.update({ status_id: req.body.status_id }).then(result => {
-          res.json(result);
-        })
-      )
-      .catch(error => res.status(400).send(error));
+      .then(order => {
+        if (req.body.payment_method) {
+          order
+            .update({
+              status_id: req.body.status_id,
+              payment_method: req.body.payment_method
+            })
+            .then(result => {
+              res.json(result)
+            })
+        } else {
+          order.update({ status_id: req.body.status_id }).then(result => {
+            res.json(result)
+          })
+        }
+      })
+      .catch(error => res.status(400).send(error))
   },
 
   updateItemStatus(req, res) {
@@ -215,10 +226,10 @@ module.exports = {
     })
       .then(item =>
         item.update({ status_id: req.body.status_id }).then(result => {
-          res.json(result);
+          res.json(result)
         })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   delete(req, res) {
@@ -229,9 +240,9 @@ module.exports = {
     })
       .then(order =>
         order.destroy().then(result => {
-          res.json(result);
+          res.json(result)
         })
       )
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   }
-};
+}
