@@ -1,3 +1,4 @@
-const CONFIG = { url: "http://192.168.0.7:3000/" };
+const CONFIG = { url: 'http://localhost:3000/' }
+const updateInterval = 5000
 
-export { CONFIG };
+export { CONFIG, updateInterval }

@@ -25,7 +25,7 @@
 
 <script>
 import store from "@/store";
-import { interval } from "@/utils";
+import { updateInterval } from "@/config";
 export default {
   name: "Turns",
   store,
@@ -54,7 +54,7 @@ export default {
     store.dispatch("loadOrderTurns");
     setInterval(() => {
       store.dispatch("loadOrderTurns");
-    }, interval);
+    }, updateInterval);
   }
 };
 </script>
