@@ -33,7 +33,7 @@
 
 <script>
 import store from "@/store";
-import { interval } from "@/utils";
+import { updateInterval } from "@/config";
 export default {
   name: "Counter",
   store,
@@ -51,7 +51,7 @@ export default {
     store.dispatch("loadOrderItems");
     setInterval(() => {
       store.dispatch("loadOrderItems");
-    }, interval);
+    }, updateInterval);
     this.$nextTick(() => this.$refs.inputField.focus());
   },
   methods: {
