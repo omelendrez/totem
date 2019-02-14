@@ -1,7 +1,7 @@
-"use strict"
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define(
-    "product",
+    'product',
     {
       code: {
         type: DataTypes.STRING,
@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       description: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      kitchen_text: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      ticket_text: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -29,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: ''
       },
       status_id: {
         type: DataTypes.INTEGER,
@@ -40,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       indexes: [
         {
           unique: true,
-          fields: ["code"]
+          fields: ['code']
         }
       ]
     }

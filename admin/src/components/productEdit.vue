@@ -18,7 +18,7 @@
               </md-option>
             </md-select>
           </md-input-container>
-
+          <!--
           <md-input-container>
             <label>Sub-Categoría</label>
             <md-select v-model="product.sub_category_id">
@@ -27,7 +27,7 @@
               </md-option>
             </md-select>
           </md-input-container>
-
+          -->
           <md-input-container md-clearable>
             <label>Código</label>
             <md-input v-model="product.code"></md-input>
@@ -41,6 +41,16 @@
           <md-input-container md-clearable>
             <label>Descripción</label>
             <md-textarea v-model="product.description"></md-textarea>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Texto ticket</label>
+            <md-textarea v-model="product.ticket_text"></md-textarea>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Texto cocina</label>
+            <md-textarea v-model="product.kitchen_text"></md-textarea>
           </md-input-container>
 
           <md-input-container md-clearable>
@@ -143,6 +153,8 @@ export default {
           code: this.product.code,
           name: this.product.name,
           description: this.product.description,
+          kitchen_text: this.product.kitchen_text,
+          ticket_text: this.product.ticket_text,
           price: this.product.price,
           category_id: this.product.category_id,
           sub_category_id: this.product.sub_category_id,
