@@ -55,7 +55,6 @@
 import store from "@/store";
 import Checkout from "@/components/Checkout";
 import Confirm from "@/components/Confirm";
-import CCPayment from '@/components/CCPayment'
 import Processing from "@/components/Processing";
 export default {
   name: "Basket",
@@ -63,7 +62,6 @@ export default {
   components: {
     Checkout,
     Confirm,
-    CCPayment,
     Processing
   },
   props: {
