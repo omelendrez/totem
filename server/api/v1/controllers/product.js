@@ -48,11 +48,9 @@ module.exports = {
 
   findAll(req, res) {
     const Category = require('../models').category
-    const SubCategory = require('../models').sub_category
     const Status = require('../models').status
 
     Product.belongsTo(Category)
-    Product.belongsTo(SubCategory)
     Product.belongsTo(Status)
 
     const page = parseInt(req.query.page ? req.query.page : 0)
@@ -87,15 +85,6 @@ module.exports = {
           }
         },
         {
-          model: SubCategory,
-          where: {
-            id: sequelize.col('product.sub_category_id'),
-            status_id: {
-              [Op.in]: status
-            }
-          }
-        },
-        {
           model: Status,
           where: {
             id: sequelize.col('product.status_id')
@@ -111,8 +100,7 @@ module.exports = {
         'ticket_text',
         'image',
         'price',
-        'category_id',
-        'sub_category_id'
+        'category_id'
       ]
     })
       .then(products => {
@@ -154,12 +142,10 @@ module.exports = {
 
   findById(req, res) {
     const Category = require('../models').category
-    const SubCategory = require('../models').sub_category
     const Status = require('../models').status
 
     Product.belongsTo(Category)
     Product.belongsTo(Status)
-    Product.belongsTo(SubCategory)
 
     return Product.findOne({
       where: {
@@ -170,12 +156,6 @@ module.exports = {
           model: Category,
           where: {
             id: sequelize.col('product.category_id')
-          }
-        },
-        {
-          model: SubCategory,
-          where: {
-            id: sequelize.col('product.sub_category_id')
           }
         },
         {
@@ -195,7 +175,6 @@ module.exports = {
         'price',
         'image',
         'category_id',
-        'sub_category_id',
         'status_id',
         [
           sequelize.fn(
@@ -271,7 +250,6 @@ module.exports = {
             kitchen_text: req.body.kitchen_text,
             ticket_text: req.body.ticket_text,
             category_id: req.body.category_id,
-            sub_category_id: req.body.sub_category_id,
             status_id: req.body.status_id,
             price: req.body.price
           })
