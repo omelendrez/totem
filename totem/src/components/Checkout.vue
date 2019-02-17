@@ -4,7 +4,6 @@
       <h1>Tu compra</h1>
       <template v-for="(item, index) in items">
         <v-container :key="`c${index}`">
-          <v-divider :key="`div${index}`"></v-divider>
           <v-list-tile :key="`tile${index}`">
             <v-img :src="item.image" class="image" cover></v-img>
             <v-list-tile-content class="item-content">
@@ -25,7 +24,7 @@
       <div class="buttons">
         <v-btn large round color="success" @click="cardPay">Pagar con tarjeta</v-btn>
         <v-btn large round color="primary" @click="cashPay">Pagar en caja</v-btn>
-        <v-btn large round color="error" @click="cancel">Cancelar la orden</v-btn>
+        <v-btn large round color="black" dark @click="cancel">Cancelar la orden</v-btn>
       </div>
       <Confirm
         :title="title"
@@ -108,21 +107,25 @@ export default {
   margin-top: 64px;
 }
 .checkout__list {
-  width: 40vw;
+  width: 70vw;
 }
 .amount {
   text-align: center;
-  font-size: 2em;
+  font-size: 3em;
 }
 .item-content {
   margin-left: 20px;
 }
 .image {
-  max-width: 100px;
+  max-width: 180px;
 }
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+button {
+  font-size: 1.6em;
+}
+
 </style>

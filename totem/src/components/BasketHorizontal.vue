@@ -1,26 +1,12 @@
 <template>
   <v-container fluid class="basket">
-    <v-toolbar color="#ffc600">
-      <v-icon>shopping_cart</v-icon>
+    <v-toolbar color="#ccc">
+      <v-icon  class="amount">shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
+      <v-spacer></v-spacer>
       <v-btn large color="success" round v-if="total>0" @click="checkout=true">Revisar la orden</v-btn>
-      <v-btn large color="error" round v-if="total>0" @click="cancel">Cancelar la orden</v-btn>
+      <v-btn large color="black" dark round v-if="total>0" @click="cancel">Cancelar la orden</v-btn>
     </v-toolbar>
-    <v-layout wrap>
-      <v-flex xs2 pa-3 v-for="(item, index) in items" :key="index">
-        <v-content>
-          <v-img :src="item.image"></v-img>
-          <div class="quantity">{{`${item.quantity} X $ ${item.price.replace('.00','')}`}}</div>
-          <div class="totalPrice">{{`Total: $ ${item.totalPrice.replace('.00','')}`}}</div>
-          <v-btn fab dark small absolute top right color="primary" @click="add(item)">
-            <v-icon>add</v-icon>
-          </v-btn>
-          <v-btn dark small fab absolute bottom right color="pink" @click="doRemove(item)">
-            <v-icon>remove</v-icon>
-          </v-btn>
-        </v-content>
-      </v-flex>
-    </v-layout>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-toolbar dark fixed color="#ffc600">
@@ -163,22 +149,16 @@ export default {
 </script>
 <style scoped>
 .basket {
-  overflow: scroll;
-}
-::-webkit-scrollbar {
-  width: 0;
+  padding:0;
+  min-width: 100%;
 }
 .amount {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bold;
-  margin-right: 100px;
 }
-.quantity,
-.price,
-.totalPrice {
-  margin-left: 6px;
+button {
+  font-size: 2em;
 }
-
 .totalPrice {
   text-transform: uppercase;
   font-weight: bold !important;

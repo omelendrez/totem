@@ -52,14 +52,8 @@ export default {
 </script>
 <style scoped>
 .categories {
+  padding:0;
   overflow-y: scroll;
   min-width: 100%;
-}
-::-webkit-scrollbar {
-  width: 0;
-}
-.transparent {
-  background: rgb(255, 255, 255, 0.6) !important;
-  font-size: xx-small;
 }
 </style>
