@@ -17,17 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       kitchen_text: {
         type: DataTypes.STRING,
-        allowNull: false
+        defaultValue: ''
       },
       ticket_text: {
         type: DataTypes.STRING,
         allowNull: false
       },
       category_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      sub_category_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
