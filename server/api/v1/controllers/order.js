@@ -29,6 +29,8 @@ module.exports = {
           .then(order => {
             const orderId = order.id
             order_number = order.order_number
+            let totemId = 0
+
             items.map(item => {
               data.push({
                 order_id: orderId,
@@ -41,13 +43,15 @@ module.exports = {
                 net_price: item.totalPrice
               })
               total_order = total_order + parseFloat(item.totalPrice)
+              totemId = item.totemId
             })
             OrderItems.bulkCreate(data).then(items => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
                   .update({
                     total_price: total_order,
-                    net_price: total_order
+                    net_price: total_order,
+                    totem_id: totemId
                   })
                   .then(() => {
                     res.json(201, {
