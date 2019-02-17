@@ -79,24 +79,29 @@ export default {
 <style scoped>
 .categories {
   position: absolute;
-  top: 32px;
-  left: 0;
-  height: 80vh;
-  width: 16vw;
+  top: 106px;
+  left: 1px;
+  height: auto;
+  width: 210px;
 }
 .products {
   position: absolute;
-  top: 32px;
-  left: 9%;
-  height: 76vh;
-  width: 84vw;
+  top: 106px;
+  left: 108px;
+  height: 1710px;
+  width: 862px;
 }
+
 .basket {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 20vh;
-  background-color: #fff;
+  left: 1px;
+  width: 1075px;
+  top: 71px;
+}
+.home {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
 }
 </style>
