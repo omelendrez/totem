@@ -18,16 +18,7 @@
               </md-option>
             </md-select>
           </md-input-container>
-          <!--
-          <md-input-container>
-            <label>Sub-Categoría</label>
-            <md-select v-model="product.sub_category_id">
-              <md-option v-for="subCategory in subCategories" v-bind:value="subCategory.id" :key="subCategory.id">
-                {{subCategory.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          -->
+
           <md-input-container md-clearable>
             <label>Código</label>
             <md-input v-model="product.code"></md-input>
@@ -99,7 +90,6 @@ export default {
       },
       product: {},
       categories: [],
-      subCategories: [],
       statuses: []
     };
   },
@@ -108,15 +98,6 @@ export default {
       HTTP.get("categories")
         .then((res) => {
           this.categories = res.data.rows;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    fetchSubCategories() {
-      HTTP.get("sub_categories")
-        .then((res) => {
-          this.subCategories = res.data.rows;
         })
         .catch((err) => {
           console.log(err);
@@ -157,7 +138,6 @@ export default {
           ticket_text: this.product.ticket_text,
           price: this.product.price,
           category_id: this.product.category_id,
-          sub_category_id: this.product.sub_category_id,
           status_id: this.product.status_id
         };
 
@@ -192,7 +172,6 @@ export default {
   },
   created() {
     this.fetchCategories();
-    this.fetchSubCategories();
     this.fetchStatus();
     this.fetchProduct(this.$route.params.id);
   }

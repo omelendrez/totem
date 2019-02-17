@@ -20,15 +20,6 @@
           </md-input-container>
 
           <md-input-container>
-            <label>Sub-Categoría</label>
-            <md-select v-model="product.sub_category_id">
-              <md-option v-for="subCategory in subCategories" v-bind:value="subCategory.id" :key="subCategory.id">
-                {{subCategory.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-
-          <md-input-container>
             <label>Nombre</label>
             <md-input required v-model="product.name"></md-input>
           </md-input-container>
@@ -75,8 +66,7 @@ export default {
         content: ""
       },
       product: {},
-      categories: [],
-      subCategories: []
+      categories: []
     };
   },
   methods: {
@@ -84,15 +74,6 @@ export default {
       HTTP.get("categories")
         .then((res) => {
           this.categories = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    fetchSubCategories() {
-      HTTP.get("sub_categories")
-        .then((res) => {
-          this.subCategories = res.data;
         })
         .catch((err) => {
           console.log(err);
@@ -141,7 +122,6 @@ export default {
   },
   created() {
     this.fetchCategories();
-    this.fetchSubCategories();
   }
 };
 </script>
