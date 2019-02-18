@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       totem_id: {
         type: DataTypes.INTEGER,
-        defaultValue: 1
+        defaultValue: 0
       },
       order_number: {
         type: DataTypes.STRING
