@@ -75,6 +75,7 @@ export default {
   overflow-y: scroll;
   min-width: 100%;
   background-color: #dadada;
+  -webkit-overflow-scrolling: touch;
 }
 .products::-webkit-scrollbar {
   width: 18px;
