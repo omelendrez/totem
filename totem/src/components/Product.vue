@@ -6,16 +6,17 @@
           <v-img
             :src="item.image"
             contain
+            class="image"
           ></v-img>
-          <v-card-title primary-title>
+          <v-card-title>
             <div>
-              <h3 class="headline">{{item.name}}</h3>
+              <h2>{{item.name}}</h2>
               <div>{{item.description}}</div>
-              <h3 class="headline">$ {{item.price}}</h3>
+              <h1>$ {{item.price}}</h1>
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">
-            <v-btn fab absolute bottom left color="light" @click="close(item)">
+            <v-btn fab absolute bottom left color="secondary" @click="close(item)">
               <v-icon>close</v-icon>
             </v-btn>
             <v-btn dark fab absolute bottom right color="primary" @click="addProduct(item)">
@@ -52,6 +53,7 @@ export default {
   },
   watch: {
     product() {
+      this.product.price = this.product.price ? this.product.price.replace('.00', '') : this.product.price
       this.item = this.product;
       this.dialog = this.product.name;
     }
@@ -76,4 +78,6 @@ export default {
 .border-0 {
   border: 0;
 }
+.image {
+ }
 </style>

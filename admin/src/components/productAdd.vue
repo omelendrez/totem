@@ -39,6 +39,11 @@
             <md-textarea v-model="product.kitchen_text"></md-textarea>
           </md-input-container>
 
+          <md-input-container md-clearable>
+            <label>Imagen</label>
+            <md-input type="text" v-model="product.image"></md-input>
+          </md-input-container>
+
           <md-input-container>
             <md-icon>attach_money</md-icon>
             <label>Precio</label>
@@ -98,14 +103,7 @@ export default {
         };
         this.showErrorMsg("dialog1");
       } else {
-        const newProduct = {
-          name: this.product.name,
-          description: this.product.description,
-          kitchen_text: this.product.kitchen_text,
-          ticket_text: this.product.ticket_text,
-          price: this.product.price,
-          category_id: this.product.category_id
-        };
+        const newProduct = this.product;
 
         HTTP.post("products", newProduct)
           .then(() => {
