@@ -22,10 +22,7 @@ module.exports = {
       const cat = (
         '0'.repeat(2) + Number(req.body.category_id).toString()
       ).slice(-2)
-      const sub_cat = (
-        '0'.repeat(2) + Number(req.body.sub_category_id).toString()
-      ).slice(-2)
-      const code = cat + '-' + sub_cat + '-' + last_id
+      const code = cat + '-' + last_id
 
       return Product.create({
         code: code,
@@ -34,7 +31,7 @@ module.exports = {
         kitchen_text: req.body.kitchen_text,
         ticket_text: req.body.ticket_text,
         category_id: req.body.category_id,
-        sub_category_id: req.body.sub_category_id,
+        image: req.body.image,
         status_id: req.body.status_id,
         price: req.body.price
       })
@@ -250,6 +247,7 @@ module.exports = {
             kitchen_text: req.body.kitchen_text,
             ticket_text: req.body.ticket_text,
             category_id: req.body.category_id,
+            image: req.body.image,
             status_id: req.body.status_id,
             price: req.body.price
           })

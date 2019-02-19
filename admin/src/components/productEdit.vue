@@ -50,6 +50,11 @@
             <md-input type="number" v-model="product.price"></md-input>
           </md-input-container>
 
+          <md-input-container md-clearable>
+            <label>Imagen</label>
+            <md-input type="text" v-model="product.image"></md-input>
+          </md-input-container>
+
           <md-input-container>
             <label>Status</label>
             <md-select v-model="product.status_id">
@@ -130,16 +135,7 @@ export default {
         };
         this.showErrorMsg("dialog1");
       } else {
-        const editProduct = {
-          code: this.product.code,
-          name: this.product.name,
-          description: this.product.description,
-          kitchen_text: this.product.kitchen_text,
-          ticket_text: this.product.ticket_text,
-          price: this.product.price,
-          category_id: this.product.category_id,
-          status_id: this.product.status_id
-        };
+        const editProduct = this.product;
 
         const id = this.product.id;
         HTTP.put(`products/${id}`, editProduct)
