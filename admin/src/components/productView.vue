@@ -76,7 +76,7 @@ export default {
       HTTP.get(`products/${id}`)
         .then((res) => {
           this.product = res.data;
-          this.product.image = `http://localhost:3000/${this.product.image}`;
+          this.product.image = `http://totem-be:3000/${this.product.image}`;
         })
         .catch((err) => {
           console.log(err);
