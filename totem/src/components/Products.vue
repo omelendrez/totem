@@ -5,6 +5,7 @@
         <v-content>
           <v-card ripple>
             <v-img :src="item.image" contain></v-img>
+            <span class="name">{{item.name}}</span>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
               <v-btn dark fab absolute right color="primary" @click="add(item)">
@@ -85,10 +86,24 @@ export default {
 .products::-webkit-scrollbar-thumb {
   background-color: #999;
 }
+.name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #ffc600;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  color: #000;
+  background-color: #ffc600;
+}
 .price {
+  position: absolute;
+  left: 40%;
   font-size: 2em;
   font-weight: bold;
-  margin-left: 150px;
   border: 1px solid #000;
   padding-left: 10px;
   padding-right: 10px;

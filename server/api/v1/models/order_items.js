@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       quantity: {
         type: DataTypes.INTEGER
       },
+      kitchen_text: {
+        type: DataTypes.STRING
+      },
       unit_price: {
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
