@@ -55,19 +55,16 @@ export default {
   },
   methods: {
     add(item) {
-      setTimeout(() => {
-        store.dispatch("add", item);
-      }, 200);
+      const isCombo = item.ticket_text.includes("{GASEOSA}");
+      store.dispatch("add", item);
+      const reset = {};
+      store.dispatch("info", reset);
     },
     info(item) {
-      setTimeout(() => {
-        store.dispatch("info", item);
-      }, 200);
+      store.dispatch("info", item);
     },
     remove(item) {
-      setTimeout(() => {
-        store.dispatch("remove", item);
-      }, 200);
+      store.dispatch("remove", item);
     }
   },
   mounted() {

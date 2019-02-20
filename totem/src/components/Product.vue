@@ -65,8 +65,6 @@ export default {
     },
     addProduct(item) {
       this.add(item);
-      const reset = {};
-      store.dispatch("info", reset);
     }
   }
 };

@@ -88,11 +88,9 @@ export default {
       this.buttonNoMsg = "No";
     },
     verifyCancel(value) {
-      setTimeout(() => {
-        this.message = "";
-        if (!value) return;
-        this.remove(-1);
-      }, 200);
+      this.message = "";
+      if (!value) return;
+      this.remove(-1);
     }
   }
 };
@@ -127,5 +125,4 @@ export default {
 button {
   font-size: 1.6em;
 }
-
 </style>
