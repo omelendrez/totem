@@ -87,7 +87,6 @@ export default {
       const basket = [];
       this.basket.map(item => {
         let itm = item;
-        itm = item;
         itm.quantity = 1;
         itm.totalPrice = parseFloat(itm.price).toString();
         basket.push(itm);
