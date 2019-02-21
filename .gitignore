@@ -33,3 +33,4 @@ tmp/
 __MACOSX/
 .DS_Store
 Thumbs.db
+/server/public
