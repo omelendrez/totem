@@ -4,7 +4,7 @@
       <h1 class="md-title">Usuarios</h1>
     </md-toolbar>
 
-    <md-layout md-align="center">
+    <md-layout md-align="center" v-if="showTable">
 
       <md-table-card>
         <md-toolbar>
@@ -69,6 +69,7 @@ export default {
   name: "users",
   data() {
     return {
+      showTable: false,
       users: [],
       confirm: {
         title: "",
@@ -100,6 +101,7 @@ export default {
           this.users = res.data.rows;
           this.totalRows = res.data.count;
           this.showPagination();
+          this.showTable = true;
         })
         .catch((err) => {
           console.log(err);

@@ -1,4 +1,4 @@
-import HTTP from "@/components/http-common";
+import { HTTP } from "@/utils";
 
 export default {
   fetchProducts() {

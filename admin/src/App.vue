@@ -2,7 +2,6 @@
   <div id="app">
     <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'Home' }" class="md-raised md-primary">Home</router-link>
     <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'Categories' }" class="md-raised md-accent">Categorías</router-link>
-    <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'SubCategories' }" class="md-raised md-accent">Sub-Categorías</router-link>
     <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'Products' }" class="md-raised md-accent">Productos</router-link>
     <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'Discounts' }" class="md-raised md-accent">Descuentos</router-link>
     <router-link tag="md-button" v-if="this.$root.$data.logged" :to="{ name: 'Reports' }" class="md-raised md-accent btn-reports">Reportes</router-link>

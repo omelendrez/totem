@@ -5,7 +5,7 @@
       <span class="md-title">Productos</span>
     </md-toolbar>
 
-    <md-layout md-align="center">
+    <md-layout md-align="center" v-if="showTable">
 
       <md-table-card>
         <md-toolbar>
@@ -21,13 +21,12 @@
         <md-table @sort="onSort" md-sort="code">
           <md-table-header>
             <md-table-row>
-              <md-table-head md-sort-by="code">Código</md-table-head>
-              <md-table-head md-sort-by="name">Nombre</md-table-head>
+              <md-table-head></md-table-head>
+              <md-table-head md-sort-by="name">Producto</md-table-head>
               <md-table-head md-sort-by="price">
                 <md-icon>attach_money</md-icon>
               </md-table-head>
               <md-table-head>Categoría</md-table-head>
-              <md-table-head>Sub-Categoría</md-table-head>
               <md-table-head md-sort-by="status_id">Status</md-table-head>
               <md-table-head class="button_header">Ver</md-table-head>
               <md-table-head class="button_header">Editar</md-table-head>
@@ -37,11 +36,12 @@
 
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
-              <md-table-cell>{{row.code}}</md-table-cell>
+              <md-table-cell>
+                <md-image height="80px" :md-src="`http://totem-be:3000/${row.image}`"></md-image>
+              </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.price}}</md-table-cell>
               <md-table-cell>{{row.category.name}}</md-table-cell>
-              <md-table-cell>{{row.sub_category.name}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
               <md-table-cell>
                 <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewProduct(row.id)">
@@ -81,6 +81,7 @@ export default {
   name: "products",
   data() {
     return {
+      showTable: false,
       products: [],
       confirm: {
         title: "",
@@ -109,6 +110,7 @@ export default {
         .then((res) => {
           this.products = res.data.rows;
           this.totalRows = res.data.count;
+          this.showTable = true;
         })
         .catch((err) => {
           console.log(err);

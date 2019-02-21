@@ -1,27 +1,21 @@
 {
   "name": "totem-server-api",
   "description": "Server API",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
-    "express": "^4.15.3",
+    "express": "^4.16.4",
     "express-fileupload": "^0.3.0",
-    "morgan": "^1.9.0",
-    "mysql2": "^1.4.2",
-    "sequelize": "^4.8.3"
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.41.2"
   },
   "scripts": {
-    "test": "jasmine",
     "start": "node server.js"
   },
   "main": "server.js",
-  "devDependencies": {},
-  "author": "Omar Melendrez",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/themasterdeveloper/totem"
-  }
+  "devDependencies": {}
 }

@@ -76,7 +76,7 @@ export default {
   top: 32px;
   left: 20%;
   bottom: 0px;
-  width: 50%;
+  width: 60%;
   padding: 20px;
 }
 
@@ -85,7 +85,7 @@ export default {
   top: 32px;
   right: 0;
   bottom: 0px;
-  width: 30%;
+  width: 20%;
 }
 
 .details {
@@ -104,9 +104,13 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: cadetblue;
+  background-color: #455a64;
   z-index: 99999;
   overflow: hidden;
+}
+
+.md-image {
+  height: auto;
 }
 
 .main img {
@@ -132,8 +136,9 @@ export default {
   margin: 0;
   top: 30%;
   position: absolute;
-  font-size: 24px;
+  font-size: 3em;
   padding: 20px;
   width: 100%;
 }
+
 </style>

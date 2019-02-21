@@ -4,7 +4,7 @@
       <h1 class="md-title">Descuentos</h1>
     </md-toolbar>
 
-    <md-layout md-align="center">
+    <md-layout md-align="center" v-if="showTable">
 
       <md-table-card>
         <md-toolbar>
@@ -73,6 +73,7 @@ export default {
   name: "discounts",
   data() {
     return {
+      showTable: false,
       discounts: [],
       confirm: {
         title: "",
@@ -100,6 +101,7 @@ export default {
         .then((res) => {
           this.discounts = res.data.rows;
           this.totalRows = res.data.count;
+          this.showTable = true;
         })
         .catch((err) => {
           console.log(err);

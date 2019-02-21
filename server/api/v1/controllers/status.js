@@ -1,5 +1,5 @@
-"use strict";
-const Status = require("../models").status;
+"use strict"
+const Status = require("../models").status
 
 module.exports = {
   create(req, res) {
@@ -7,7 +7,7 @@ module.exports = {
       name: req.body.name
     })
       .then(status => res.status(201).send(status))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error))
   },
 
   findAll(req, res) {
@@ -15,6 +15,6 @@ module.exports = {
       raw: true
     })
       .then(status => res.json(status))
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(400).json(error))
   }
-};
+}

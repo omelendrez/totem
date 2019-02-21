@@ -1,5 +1,5 @@
-"use strict";
-module.exports = function(sequelize, DataTypes) {
+"use strict"
+module.exports = (sequelize, DataTypes) => {
   const ProductDiscount = sequelize.define("product_discount", {
     product_id: {
       type: DataTypes.INTEGER
@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     discount_id: {
       type: DataTypes.INTEGER
     }
-  });
+  })
 
-  return ProductDiscount;
-};
+  return ProductDiscount
+}

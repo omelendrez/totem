@@ -20,15 +20,6 @@
           </md-input-container>
 
           <md-input-container>
-            <label>Sub-Categoría</label>
-            <md-select v-model="product.sub_category_id">
-              <md-option v-for="subCategory in subCategories" v-bind:value="subCategory.id" :key="subCategory.id">
-                {{subCategory.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-
-          <md-input-container>
             <label>Nombre</label>
             <md-input required v-model="product.name"></md-input>
           </md-input-container>
@@ -36,6 +27,21 @@
           <md-input-container>
             <label>Descripción</label>
             <md-input v-model="product.description"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Texto ticket</label>
+            <md-textarea v-model="product.ticket_text"></md-textarea>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Texto cocina</label>
+            <md-textarea v-model="product.kitchen_text"></md-textarea>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Imagen</label>
+            <md-input type="text" v-model="product.image"></md-input>
           </md-input-container>
 
           <md-input-container>
@@ -75,24 +81,14 @@ export default {
         content: ""
       },
       product: {},
-      categories: [],
-      subCategories: []
+      categories: []
     };
   },
   methods: {
     fetchCategories() {
       HTTP.get("categories")
         .then((res) => {
-          this.categories = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    fetchSubCategories() {
-      HTTP.get("sub_categories")
-        .then((res) => {
-          this.subCategories = res.data;
+          this.categories = res.data.rows;
         })
         .catch((err) => {
           console.log(err);
@@ -107,13 +103,7 @@ export default {
         };
         this.showErrorMsg("dialog1");
       } else {
-        const newProduct = {
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          category_id: this.product.category_id,
-          sub_category_id: this.product.sub_category_id
-        };
+        const newProduct = this.product;
 
         HTTP.post("products", newProduct)
           .then(() => {
@@ -141,7 +131,6 @@ export default {
   },
   created() {
     this.fetchCategories();
-    this.fetchSubCategories();
   }
 };
 </script>

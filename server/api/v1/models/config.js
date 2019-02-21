@@ -1,10 +1,10 @@
-"use strict";
-module.exports = function(sequelize, DataTypes) {
+"use strict"
+module.exports = (sequelize, DataTypes) => {
   const Config = sequelize.define("config", {
     updates: {
       type: DataTypes.TINYINT
     }
-  });
+  })
 
-  return Config;
-};
+  return Config
+}

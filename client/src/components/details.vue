@@ -28,11 +28,10 @@
           </md-card-content>
 
         </md-card-area>
-
         <md-card-actions>
           <md-button v-if="fromBasket" class="md-accent md-raised" v-on:click.native="eliminar(product)">Eliminar</md-button>
+          <md-button class="md-primary md-raised" v-on:click.native="back()">Cerrar</md-button>
           <md-button v-if="fromProducts" class="md-accent md-raised" v-on:click.native="comprar(product)">Comprar</md-button>
-          <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
         </md-card-actions>
 
       </md-card>
@@ -43,6 +42,7 @@
 
 <script>
 import store from "@/store";
+import { types } from "@/store/mutation-types";
 
 export default {
   store,
@@ -62,13 +62,13 @@ export default {
   },
   methods: {
     eliminar(item) {
-      store.dispatch("REMOVE_ITEM", item);
+      store.dispatch(types.REMOVE_ITEM, item);
     },
     comprar(item) {
-      store.dispatch("ADD_ITEM", item);
+      store.dispatch(types.ADD_ITEM, item);
     },
     back() {
-      store.dispatch("UNSET_ITEM");
+      store.dispatch(types.UNSET_ITEM);
     }
   }
 };
@@ -77,7 +77,7 @@ export default {
 <style scoped>
 .product-card {
   padding: 20px;
-  width: 30%;
+  width: 40%;
 }
 
 .active {

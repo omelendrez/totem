@@ -4,7 +4,7 @@ const state = {
   product: {},
   productsAll: [],
   basket: [],
-  selectedCategoryId: null,
+  selectedCategory: null,
   itemSet: false,
   totalBasket: 0,
   config: 0
