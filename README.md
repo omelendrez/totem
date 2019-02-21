@@ -26,7 +26,7 @@ The application is compossed of 3 apps:
 - Vue Material
 - Webpack
 
-### (Deprecated) Front-end for the Kiosk | Client app
+### (Deprecated) Front-end for Kiosk | Client app
 
 - Vue.js
 - Vuex
@@ -34,9 +34,10 @@ The application is compossed of 3 apps:
 - Vue Material
 - Webpack
 
-### Front-end for the Kiosk | Client app
+### Front-end for Kiosk | Client app
 
 - Vue.js
+- Vuex
 - axios
 - Vuetify
 - Webpack
@@ -44,7 +45,7 @@ The application is compossed of 3 apps:
 ## Instructions to run the system
 
 - Clone this repo into your computer
-- You will get the following sub-folders: **server**, **admin** and **client**
+- You will get the following sub-folders: **server**, **admin**, **totem** and **client**
 
   - Inside **server** folder run:
 
@@ -60,9 +61,9 @@ The application is compossed of 3 apps:
 
     `npm install`
 
-    `npm run dev`
+    `npm run serve`
 
-    Admin app will run at port 8080 and your browser will open automatically
+    Admin app will run at port 8070 and your browser will open automatically
 
   - (Deprecated) Inside **client** run:
 
@@ -76,8 +77,8 @@ The application is compossed of 3 apps:
 
     `npm install`
 
-    `npm run dev`
+    `npm run serve`
 
-    Totem app will run at port 8081 and your browser will open automatically
+    Totem app will run at port 8080
 
 [![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)
