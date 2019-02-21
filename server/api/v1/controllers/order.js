@@ -40,6 +40,7 @@ module.exports = {
                 unit_price: item.price,
                 total_price: item.totalPrice,
                 kitchen_text: item.kitchen_text,
+                ticket_text: item.ticket_text,
                 discount: 0,
                 net_price: item.totalPrice
               })
@@ -156,6 +157,7 @@ module.exports = {
             'quantity',
             'unit_price',
             'total_price',
+            'ticket_text',
             'status_id'
           ]
         }

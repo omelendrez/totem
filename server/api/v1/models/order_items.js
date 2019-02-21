@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const OrderItems = sequelize.define(
-    "order_items",
+    'order_items',
     {
       order_id: {
         type: DataTypes.INTEGER
@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER
       },
       kitchen_text: {
+        type: DataTypes.STRING
+      },
+      ticket_text: {
         type: DataTypes.STRING
       },
       unit_price: {
@@ -42,11 +45,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       indexes: [
         {
-          fields: ["order_id"]
+          fields: ['order_id']
         }
       ]
     }
-  );
+  )
 
-  return OrderItems;
-};
+  return OrderItems
+}

@@ -10,9 +10,9 @@
           ></v-img>
           <v-card-title>
             <div>
-              <span class="name">{{item.name}}</span>
+              <div class="name">{{item.name}}</div>
               <div>{{item.description}}</div>
-              <span class="price">$ {{item.price}}</span>
+              <div class="price">$ {{item.price}}</div>
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">

@@ -86,16 +86,11 @@ export default {
       let total = 0;
       const basket = [];
       this.basket.map(item => {
-        let itm = basket.find(itm => itm.id === item.id);
-        if (itm) {
-          itm.quantity = itm.quantity + 1;
-          itm.totalPrice = (parseFloat(itm.price) * itm.quantity).toString();
-        } else {
-          itm = item;
-          itm.quantity = 1;
-          itm.totalPrice = parseFloat(itm.price).toString();
-          basket.push(itm);
-        }
+        let itm = item;
+        itm = item;
+        itm.quantity = 1;
+        itm.totalPrice = parseFloat(itm.price).toString();
+        basket.push(itm);
         total += parseFloat(itm.price);
       });
       this.items = basket;
