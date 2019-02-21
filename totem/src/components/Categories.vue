@@ -38,21 +38,17 @@ export default {
   },
   methods: {
     selectCategory(item) {
-      setTimeout(() => {
-        store.dispatch("selectCategory", item);
-      }, 200);
+      store.dispatch("selectCategory", item);
     },
     resetCategory() {
-      setTimeout(() => {
-        store.dispatch("selectCategory", null);
-      }, 200);
+      store.dispatch("selectCategory", null);
     }
   }
 };
 </script>
 <style scoped>
 .categories {
-  padding:0;
+  padding: 0;
   overflow-y: scroll;
   min-width: 100%;
 }

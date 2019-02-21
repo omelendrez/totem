@@ -10,6 +10,9 @@
       <Basket :basket="basket" :add="add" :remove="remove"/>
     </div>
     <Product :add="add"/>
+    <div class="drinks" id="drinks" v-show="showDrinks">
+      <Drinks :products="products" :addDrink="addDrink"/>
+    </div>
   </v-container>
 </template>
 
@@ -20,6 +23,9 @@ import Products from "@/components/Products";
 import Basket from "@/components/BasketHorizontal";
 // import Basket from "@/components/Basket";
 import Product from "@/components/Product";
+import Drinks from "@/components/Drinks";
+import { drinkFieldName } from "@/config";
+
 export default {
   name: "Home",
   store,
@@ -27,11 +33,14 @@ export default {
     Categories,
     Products,
     Basket,
-    Product
+    Product,
+    Drinks
   },
   data() {
     return {
-      isBasketEmtpy: false
+      isBasketEmtpy: false,
+      showDrinks: false,
+      selectedProduct: {}
     };
   },
   computed: {
@@ -55,19 +64,33 @@ export default {
   },
   methods: {
     add(item) {
-      setTimeout(() => {
-        store.dispatch("add", item);
-      }, 200);
+      const isCombo = item.ticket_text.includes(drinkFieldName);
+      if (isCombo) {
+        this.showDrinks = true;
+        this.selectedProduct = item;
+        return;
+      }
+      store.dispatch("add", item);
+      const reset = {};
+      store.dispatch("info", reset);
+    },
+    addDrink(item) {
+      let product = {};
+      Object.assign(product, this.selectedProduct);
+      product.ticket_text = product.ticket_text.replace(
+        drinkFieldName,
+        item.ticket_text
+      );
+      store.dispatch("add", product);
+      this.showDrinks = false;
+      const reset = {};
+      store.dispatch("info", reset);
     },
     info(item) {
-      setTimeout(() => {
-        store.dispatch("info", item);
-      }, 200);
+      store.dispatch("info", item);
     },
     remove(item) {
-      setTimeout(() => {
-        store.dispatch("remove", item);
-      }, 200);
+      store.dispatch("remove", item);
     }
   },
   mounted() {
@@ -103,5 +126,13 @@ export default {
   height: 100vh;
   position: absolute;
   overflow: hidden;
+}
+.drinks {
+  position: absolute;
+  top: 106px;
+  left: 1px;
+  bottom: 1px;
+  right: 1px;
+  z-index: 4;
 }
 </style>

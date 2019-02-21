@@ -10,9 +10,9 @@
           ></v-img>
           <v-card-title>
             <div>
-              <h2>{{item.name}}</h2>
+              <div class="name">{{item.name}}</div>
               <div>{{item.description}}</div>
-              <h1>$ {{item.price}}</h1>
+              <div class="price">$ {{item.price}}</div>
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">
@@ -65,8 +65,6 @@ export default {
     },
     addProduct(item) {
       this.add(item);
-      const reset = {};
-      store.dispatch("info", reset);
     }
   }
 };
@@ -78,6 +76,28 @@ export default {
 .border-0 {
   border: 0;
 }
-.image {
- }
+.name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: 1px solid #ffc600;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  color: #000;
+  background-color: #ffc600;
+}
+
+.price {
+  font-size: 2em;
+  font-weight: bold;
+  border: 1px solid #000;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  color: #ffc600;
+  background-color: #333;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="basket">
     <v-toolbar color="#ccc">
-      <v-icon  class="amount">shopping_cart</v-icon>
+      <v-icon class="amount">shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
       <v-spacer></v-spacer>
       <v-btn large color="success" round v-if="total>0" @click="checkout=true">Revisar la orden</v-btn>
@@ -86,16 +86,10 @@ export default {
       let total = 0;
       const basket = [];
       this.basket.map(item => {
-        let itm = basket.find(itm => itm.id === item.id);
-        if (itm) {
-          itm.quantity = itm.quantity + 1;
-          itm.totalPrice = (parseFloat(itm.price) * itm.quantity).toString();
-        } else {
-          itm = item;
-          itm.quantity = 1;
-          itm.totalPrice = parseFloat(itm.price).toString();
-          basket.push(itm);
-        }
+        let itm = item;
+        itm.quantity = 1;
+        itm.totalPrice = parseFloat(itm.price).toString();
+        basket.push(itm);
         total += parseFloat(itm.price);
       });
       this.items = basket;
@@ -111,7 +105,7 @@ export default {
           : "";
         setTimeout(() => {
           this.action = "";
-        }, 10000);
+        }, 5000);
       }, 1000);
     }
   },
@@ -119,9 +113,7 @@ export default {
     doRemove(product) {
       const id = product.id;
       const basketIndex = this.basket.findIndex(item => item.id === id);
-      setTimeout(() => {
-        this.remove(basketIndex);
-      }, 200);
+      this.remove(basketIndex);
     },
     cancel() {
       this.title = "Cancelar orden";
@@ -130,16 +122,12 @@ export default {
       this.buttonNoMsg = "No";
     },
     verifyCancel(value) {
-      setTimeout(() => {
-        this.message = "";
-        if (!value) return;
-        this.remove(-1);
-      }, 200);
+      this.message = "";
+      if (!value) return;
+      this.remove(-1);
     },
     doPayCash() {
-      setTimeout(() => {
-        store.dispatch("saveOrder", this.items);
-      }, 200);
+      store.dispatch("saveOrder", this.items);
     },
     doPayCC() {
       console.log("cc");
@@ -149,7 +137,7 @@ export default {
 </script>
 <style scoped>
 .basket {
-  padding:0;
+  padding: 0;
   min-width: 100%;
 }
 .amount {

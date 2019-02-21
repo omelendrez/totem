@@ -39,6 +39,8 @@ module.exports = {
                 quantity: item.quantity,
                 unit_price: item.price,
                 total_price: item.totalPrice,
+                kitchen_text: item.kitchen_text,
+                ticket_text: item.ticket_text,
                 discount: 0,
                 net_price: item.totalPrice
               })
@@ -131,7 +133,7 @@ module.exports = {
           attributes: ['order_number']
         }
       ],
-      attributes: ['id', 'product_name', 'quantity']
+      attributes: ['id', 'product_name', 'kitchen_text', 'quantity']
     })
       .then(items => res.json(200, items))
       .catch(error => res.status(400).send(error))
@@ -155,6 +157,7 @@ module.exports = {
             'quantity',
             'unit_price',
             'total_price',
+            'ticket_text',
             'status_id'
           ]
         }

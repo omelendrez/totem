@@ -30,7 +30,7 @@ export default {
   },
   watch: {
     items() {
-      this.orderItems = this.items;
+      this.orderItems = this.items.filter(item => item.kitchen_text !== "");
       if (this.items.length) {
         this.selectedId = this.orderItems[this.selectedItem].id;
       }

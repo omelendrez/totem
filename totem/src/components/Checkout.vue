@@ -7,7 +7,7 @@
           <v-list-tile :key="`tile${index}`">
             <v-img :src="item.image" class="image" cover></v-img>
             <v-list-tile-content class="item-content">
-              <h4>{{ item.name }}</h4>
+              <h4>{{ item.ticket_text }}</h4>
               <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
               <h3 v-html="`Total: $ ${item.totalPrice.replace('.00','')}`"></h3>
               <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
@@ -88,11 +88,9 @@ export default {
       this.buttonNoMsg = "No";
     },
     verifyCancel(value) {
-      setTimeout(() => {
-        this.message = "";
-        if (!value) return;
-        this.remove(-1);
-      }, 200);
+      this.message = "";
+      if (!value) return;
+      this.remove(-1);
     }
   }
 };
@@ -127,5 +125,4 @@ export default {
 button {
   font-size: 1.6em;
 }
-
 </style>
