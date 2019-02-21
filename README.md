@@ -37,6 +37,7 @@ The application is compossed of 3 apps:
 ### Front-end for Kiosk | Client app
 
 - Vue.js
+- Vuex
 - axios
 - Vuetify
 - Webpack
