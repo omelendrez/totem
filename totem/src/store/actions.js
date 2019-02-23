@@ -6,6 +6,8 @@ import {
   loadItems,
   loadOrderItems,
   loadOrderTurns,
+  loadOrderData,
+  printOrder,
   changeOrderStatus,
   changeItemStatus
 } from '@/services'
@@ -133,6 +135,29 @@ const actions = {
     changeItemStatus(data)
       .then(() => {
         commit('change_item_status_success')
+      })
+      .catch(err => {
+        commit('request_error', handleError(err))
+      })
+  },
+  async resetTotem({ commit }) {
+    commit('reset_totem')
+  },
+  async loadOrderData({ commit }, orderId) {
+    commit('load_order_data_request')
+    loadOrderData(orderId)
+      .then(resp => {
+        commit('load_order_data_success', { orderData: resp.data })
+      })
+      .catch(err => {
+        commit('request_error', handleError(err))
+      })
+  },
+  async printOrder({ commit }, orderData) {
+    commit('print_order_data_request', orderData)
+    printOrder(orderData)
+      .then(() => {
+        commit('print_order_data_success')
       })
       .catch(err => {
         commit('request_error', handleError(err))

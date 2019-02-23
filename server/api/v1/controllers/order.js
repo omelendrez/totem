@@ -47,7 +47,7 @@ module.exports = {
               total_order = total_order + parseFloat(item.totalPrice)
               totemId = item.totemId
             })
-            OrderItems.bulkCreate(data).then(items => {
+            OrderItems.bulkCreate(data).then(() => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
                   .update({
@@ -57,9 +57,7 @@ module.exports = {
                   })
                   .then(() => {
                     res.json(201, {
-                      order_number,
-                      total_order,
-                      items
+                      orderId: order.id
                     })
                   })
               })
@@ -169,18 +167,43 @@ module.exports = {
   },
 
   findById(req, res) {
-    return Order.findOne({
+    OrderItems.belongsTo(Order)
+    Order.hasMany(OrderItems)
+    Order.findAll({
       where: {
         id: req.params.id
-      }
+      },
+      include: [
+        {
+          model: OrderItems,
+          where: {
+            order_id: sequelize.col('order.id')
+          },
+          attributes: ['quantity', 'unit_price', 'total_price', 'ticket_text']
+        }
+      ],
+      attributes: [
+        'order_number',
+        'total_price',
+        [
+          sequelize.fn(
+            'date_format',
+            sequelize.col('order.created_at'),
+            '%d-%b-%Y'
+          ),
+          'date'
+        ],
+        [
+          sequelize.fn(
+            'date_format',
+            sequelize.col('order.created_at'),
+            '%H:%i:%s'
+          ),
+          'time'
+        ]
+      ]
     })
-      .then(order =>
-        order
-          ? res.json(200, order)
-          : res.status(404).json({
-              error: 'Not found'
-            })
-      )
+      .then(orders => res.json(200, orders))
       .catch(error => res.status(400).send(error))
   },
 

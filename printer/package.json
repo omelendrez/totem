@@ -1,0 +1,17 @@
+{
+  "name": "totem-printer",
+  "description": "Printer API",
+  "version": "1.0.0",
+  "private": false,
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "node-thermal-printer": "^4.0.1-alpha"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "devDependencies": {}
+}

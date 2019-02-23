@@ -1,17 +1,17 @@
 <template>
   <v-container fluid grid-list-lg class="products">
     <v-layout wrap>
-      <v-flex xs6 v-for="(item, index) in items" :key="index">
+      <v-flex xs6 mb-5 v-for="(item, index) in items" :key="index" v-show="item.image">
         <v-content>
-          <v-card ripple>
-            <v-img :src="item.image" contain></v-img>
+          <v-card ripple height="300" width="410">
+            <v-img :src="item.image" class="image"></v-img>
             <span class="name">{{item.name}}</span>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
               <v-btn dark fab absolute right color="primary" @click="add(item)">
                 <v-icon>add</v-icon>
               </v-btn>
-              <v-btn fab dark color="pink" absolute left  @click="info(item)">
+              <v-btn fab dark color="pink" absolute left @click="info(item)">
                 <v-icon>live_help</v-icon>
               </v-btn>
             </v-card-actions>
@@ -72,10 +72,9 @@ export default {
 </script>
 <style scoped>
 .products {
-  padding:0;
+  padding: 0;
   overflow-y: scroll;
-  min-width: 100%;
-  background-color: #dadada;
+  background-color: #efefef;
   -webkit-overflow-scrolling: touch;
 }
 .products::-webkit-scrollbar {
@@ -90,9 +89,9 @@ export default {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
-  border: 1px solid #ffc600;
+  border: 2px solid #000;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
@@ -101,14 +100,18 @@ export default {
 }
 .price {
   position: absolute;
-  left: 40%;
+  top: 10px;
+  right: 10px;
   font-size: 2em;
   font-weight: bold;
-  border: 1px solid #000;
+  border: 1px dashed #ffc600;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
   color: #ffc600;
   background-color: #333;
+}
+.image {
+  height: 300px;
 }
 </style>

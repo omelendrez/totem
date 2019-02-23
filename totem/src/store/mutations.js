@@ -53,6 +53,7 @@ const mutations = {
     state.status = 'success'
     state.order = order
     state.basket = []
+    state.selectedCategory = null
   },
   load_orders_request(state) {},
   load_orders_success(state, { orders }) {
@@ -98,10 +99,28 @@ const mutations = {
       return item
     })
   },
+  load_order_data_request(state) {},
+  load_order_data_success(state, { orderData }) {
+    state.status = 'success'
+    state.orderData = orderData
+  },
   change_order_status_request(state) {},
   change_order_status_success(state) {},
   change_item_status_request(state) {},
-  change_item_status_success(state) {}
+  change_item_status_success(state) {},
+  reset_totem(state) {
+    state.selectedCategory = null
+    state.info = {}
+    state.basket = []
+    state.order = {}
+    state.product = {}
+  },
+  print_order_data_request(state, orderData) {
+    state.printingOrder = orderData.order_number
+  },
+  print_order_data_success(state) {
+    state.printingOrder = ''
+  }
 }
 
 export default mutations
