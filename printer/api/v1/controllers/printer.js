@@ -7,15 +7,16 @@ let printer = new ThermalPrinter({
 })
 module.exports = {
   print(req, res) {
+    const order =req.body.orderData
     printer.alignCenter()
-    printer.println(req.body.order_number)
+    printer.println(order.order_number)
     printer.cut()
     try {
       let execute = printer.execute()
-      console.error('Print done!')
+      console.error('Print done!', order.order_number)
     } catch (error) {
       console.log('Print failed:', error)
     }
-    res.status(200).send({ order_number: req.body.order_number })
+    res.status(200).send({ order_number: order.order_number })
   }
 }
