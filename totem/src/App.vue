@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar color="#ee3542" extended extension-height="77">
-      <v-img class="logo" :src="logo"></v-img>
+      <v-img class="logo" :src="logo" contain></v-img>
     </v-toolbar>
     <router-view/>
     <Loading/>
@@ -9,7 +9,7 @@
 </template>
 <script>
 import Loading from "@/components/Loading";
-const Logo = require("@/assets/logo.png");
+const Logo = require("@/assets/logo big fondo rojo.png");
 export default {
   name: "app",
   components: {
@@ -31,7 +31,7 @@ body {
   width: 0;
 }
 .logo {
-  top: 32px;
+  top: 46px;
   max-width: 50%;
   left: 25%;
 }
