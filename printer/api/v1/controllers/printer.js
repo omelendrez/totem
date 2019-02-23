@@ -13,7 +13,7 @@ module.exports = {
     printer.cut()
     try {
       let execute = printer.execute()
-      console.error('Print done!', order.order_number)
+      console.error('Print done!', order.order_number, execute)
     } catch (error) {
       console.log('Print failed:', error)
     }
