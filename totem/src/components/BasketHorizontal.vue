@@ -99,7 +99,7 @@ export default {
       }
     },
     order() {
-      if (this.order.order_number) {
+      if (this.order && this.order.order_number) {
         setTimeout(() => {
           this.action = this.order
             ? `IMPRIMENDO TICKET # ${this.order.order_number}`

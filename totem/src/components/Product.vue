@@ -80,23 +80,26 @@ export default {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: bold;
-  border: 1px solid #ffc600;
+  border: 2px solid #000;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
   color: #000;
   background-color: #ffc600;
+
 }
 .description {
   font-size: 1.2em;
 }
 .price {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 2em;
   font-weight: bold;
-  border: 1px solid #000;
-  padding: 2px;
+  border: 1px dashed #ffc600;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
