@@ -60,6 +60,18 @@ export const loadOrderTurns = () => {
   })
 }
 
+export const loadOrderData = orderId => {
+  return new Promise((resolve, reject) => {
+    HTTP.get(`orders/${orderId}`)
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
 export const changeOrderStatus = data => {
   return new Promise((resolve, reject) => {
     HTTP.put(`orders/${data.orderId}`, {

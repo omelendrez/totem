@@ -1,5 +1,5 @@
 const state = {
-  status: "",
+  status: '',
   apiError: null,
   products: [],
   categories: [],
@@ -10,7 +10,9 @@ const state = {
   orders: [],
   items: [],
   orderItems: [],
-  orderTurns: []
-};
+  orderTurns: [],
+  orderData: {},
+  printingOrder: ''
+}
 
-export default state;
+export default state

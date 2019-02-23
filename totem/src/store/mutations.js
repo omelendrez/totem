@@ -99,6 +99,11 @@ const mutations = {
       return item
     })
   },
+  load_order_data_request(state) {},
+  load_order_data_success(state, { orderData }) {
+    state.status = 'success'
+    state.orderData = orderData
+  },
   change_order_status_request(state) {},
   change_order_status_success(state) {},
   change_item_status_request(state) {},
@@ -109,6 +114,12 @@ const mutations = {
     state.basket = []
     state.order = {}
     state.product = {}
+  },
+  print_order_data_request(state, orderData) {
+    state.printingOrder = orderData.order_number
+  },
+  print_order_data_success(state) {
+    state.printingOrder = ''
   }
 }
 

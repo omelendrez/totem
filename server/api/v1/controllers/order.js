@@ -47,7 +47,7 @@ module.exports = {
               total_order = total_order + parseFloat(item.totalPrice)
               totemId = item.totemId
             })
-            OrderItems.bulkCreate(data).then(items => {
+            OrderItems.bulkCreate(data).then(() => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
                   .update({
@@ -57,9 +57,7 @@ module.exports = {
                   })
                   .then(() => {
                     res.json(201, {
-                      order_number,
-                      total_order,
-                      items
+                      orderId: order.id
                     })
                   })
               })
@@ -187,8 +185,22 @@ module.exports = {
       attributes: [
         'order_number',
         'total_price',
-        [sequelize.fn('date_format', sequelize.col('order.created_at'), '%d-%b-%Y'), 'date'],
-        [sequelize.fn('date_format', sequelize.col('order.created_at'), '%H:%i:%s'), 'time']
+        [
+          sequelize.fn(
+            'date_format',
+            sequelize.col('order.created_at'),
+            '%d-%b-%Y'
+          ),
+          'date'
+        ],
+        [
+          sequelize.fn(
+            'date_format',
+            sequelize.col('order.created_at'),
+            '%H:%i:%s'
+          ),
+          'time'
+        ]
       ]
     })
       .then(orders => res.json(200, orders))

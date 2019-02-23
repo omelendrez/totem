@@ -79,6 +79,12 @@ export default {
   computed: {
     order() {
       return store.getters.order;
+    },
+    orderData() {
+      return store.getters.orderData;
+    },
+    printingOrder() {
+      return store.getters.printingOrder;
     }
   },
   watch: {
@@ -99,16 +105,17 @@ export default {
       }
     },
     order() {
-      if (this.order && this.order.order_number) {
-        setTimeout(() => {
-          this.action = this.order
-            ? `IMPRIMENDO TICKET # ${this.order.order_number}`
-            : "";
-          setTimeout(() => {
-            this.action = "";
-          }, 5000);
-        }, 1000);
+      if (this.order && this.order.orderId) {
+        store.dispatch("loadOrderData", this.order.orderId);
       }
+    },
+    orderData() {
+      this.printOrder(this.orderData[0]);
+    },
+    printingOrder() {
+      this.action = this.printingOrder
+        ? `IMPRIMENDO TICKET # ${this.printingOrder}`
+        : "";
     }
   },
   methods: {
@@ -133,6 +140,9 @@ export default {
     },
     doPayCC() {
       console.log("cc");
+    },
+    printOrder(order) {
+      store.dispatch("printOrder", order);
     }
   }
 };
