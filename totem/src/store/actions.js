@@ -137,6 +137,9 @@ const actions = {
       .catch(err => {
         commit('request_error', handleError(err))
       })
+  },
+  async resetTotem({ commit }) {
+    commit('reset_totem')
   }
 }
 

@@ -1,13 +1,13 @@
 <template>
   <v-container fluid class="home">
+    <div class="basket" id="basket">
+      <Basket :basket="basket" :add="add" :remove="remove"/>
+    </div>
     <div class="categories">
       <Categories :categories="categories"/>
     </div>
     <div class="products">
       <Products :products="products" :add="add" :info="info"/>
-    </div>
-    <div class="basket" id="basket">
-      <Basket :basket="basket" :add="add" :remove="remove"/>
     </div>
     <Product :add="add"/>
     <div class="drinks" id="drinks" v-show="showDrinks">
@@ -25,6 +25,7 @@ import Basket from "@/components/BasketHorizontal";
 import Product from "@/components/Product";
 import Drinks from "@/components/Drinks";
 import { drinkFieldName } from "@/config";
+import setupTimers from "@/utils";
 
 export default {
   name: "Home",
@@ -60,6 +61,7 @@ export default {
   watch: {
     basket() {
       this.isBasketEmtpy = !this.basket.length;
+      this.showDrinks = false;
     }
   },
   methods: {
@@ -96,16 +98,29 @@ export default {
   mounted() {
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
+    setupTimers();
   }
 };
 </script>
 <style scoped>
+.home {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+.basket {
+  position: absolute;
+  left: 1px;
+  width: 1075px;
+  top: 71px;
+  z-index: 2;
+}
 .categories {
   position: absolute;
   top: 106px;
   left: 1px;
   height: auto;
-  width: 210px;
+  width: 200px;
 }
 .products {
   position: absolute;
@@ -114,25 +129,12 @@ export default {
   height: 1710px;
   width: 862px;
 }
-
-.basket {
-  position: absolute;
-  left: 1px;
-  width: 1075px;
-  top: 71px;
-}
-.home {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  overflow: hidden;
-}
 .drinks {
   position: absolute;
   top: 106px;
   left: 1px;
   bottom: 1px;
   right: 1px;
-  z-index: 4;
+  z-index: 202;
 }
 </style>

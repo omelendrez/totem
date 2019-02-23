@@ -53,6 +53,7 @@ const mutations = {
     state.status = 'success'
     state.order = order
     state.basket = []
+    state.selectedCategory = null
   },
   load_orders_request(state) {},
   load_orders_success(state, { orders }) {
@@ -101,7 +102,14 @@ const mutations = {
   change_order_status_request(state) {},
   change_order_status_success(state) {},
   change_item_status_request(state) {},
-  change_item_status_success(state) {}
+  change_item_status_success(state) {},
+  reset_totem(state) {
+    state.selectedCategory = null
+    state.info = {}
+    state.basket = []
+    state.order = {}
+    state.product = {}
+  }
 }
 
 export default mutations

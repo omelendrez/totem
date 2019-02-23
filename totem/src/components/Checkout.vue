@@ -113,6 +113,7 @@ export default {
 }
 .item-content {
   margin-left: 20px;
+  font-size: 1.3em;
 }
 .image {
   max-width: 180px;

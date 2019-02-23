@@ -99,14 +99,16 @@ export default {
       }
     },
     order() {
-      setTimeout(() => {
-        this.action = this.order
-          ? `IMPRIMENDO TICKET # ${this.order.order_number}`
-          : "";
+      if (this.order.order_number) {
         setTimeout(() => {
-          this.action = "";
-        }, 5000);
-      }, 1000);
+          this.action = this.order
+            ? `IMPRIMENDO TICKET # ${this.order.order_number}`
+            : "";
+          setTimeout(() => {
+            this.action = "";
+          }, 5000);
+        }, 1000);
+      }
     }
   },
   methods: {

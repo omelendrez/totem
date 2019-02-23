@@ -30,8 +30,8 @@ body {
 ::-webkit-scrollbar {
   width: 0;
 }
-.logo{
-  top:32px;
+.logo {
+  top: 32px;
   max-width: 50%;
   left: 25%;
 }

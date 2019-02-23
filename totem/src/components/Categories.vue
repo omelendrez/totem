@@ -49,7 +49,5 @@ export default {
 <style scoped>
 .categories {
   padding: 0;
-  overflow-y: scroll;
-  min-width: 100%;
 }
 </style>

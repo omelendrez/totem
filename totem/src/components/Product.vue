@@ -11,8 +11,8 @@
           <v-card-title>
             <div>
               <div class="name">{{item.name}}</div>
-              <div>{{item.description}}</div>
-              <div class="price">$ {{item.price}}</div>
+              <div class="description">{{item.description}}</div>
+              <span class="price">$ {{item.price}}</span>
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">
@@ -89,11 +89,14 @@ export default {
   color: #000;
   background-color: #ffc600;
 }
-
+.description {
+  font-size: 1.2em;
+}
 .price {
   font-size: 2em;
   font-weight: bold;
   border: 1px solid #000;
+  padding: 2px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
