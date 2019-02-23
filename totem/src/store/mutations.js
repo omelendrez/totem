@@ -5,7 +5,8 @@ const mutations = {
   },
   request_error(state, error) {
     state.status = 'error'
-    state.apiError = error
+    state.apiError = error,
+    state.printingOrder = ''
   },
   load_categories_request(state) {
     state.status = 'loading'

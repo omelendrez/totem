@@ -13,6 +13,7 @@
     <div class="drinks" id="drinks" v-show="showDrinks">
       <Drinks :products="products" :addDrink="addDrink"/>
     </div>
+    <Processing :message="errorMessage"/>
   </v-container>
 </template>
 
@@ -24,6 +25,7 @@ import Basket from "@/components/BasketHorizontal";
 // import Basket from "@/components/Basket";
 import Product from "@/components/Product";
 import Drinks from "@/components/Drinks";
+import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
 import setupTimers from "@/utils";
 
@@ -35,13 +37,15 @@ export default {
     Products,
     Basket,
     Product,
-    Drinks
+    Drinks,
+    Processing
   },
   data() {
     return {
       isBasketEmtpy: false,
       showDrinks: false,
-      selectedProduct: {}
+      selectedProduct: {},
+      errorMessage: null
     };
   },
   computed: {
@@ -56,12 +60,25 @@ export default {
     },
     order() {
       return store.getters.order;
+    },
+    status() {
+      return store.getters.status;
+    },
+    apiError() {
+      return store.getters.apiError;
     }
   },
   watch: {
     basket() {
       this.isBasketEmtpy = !this.basket.length;
       this.showDrinks = false;
+    },
+    status() {
+      if (this.status === "error" && this.apiError) {
+        if (this.apiError.error) {
+          this.errorMessage = this.apiError.message;
+        }
+      }
     }
   },
   methods: {
