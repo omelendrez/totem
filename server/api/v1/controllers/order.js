@@ -231,9 +231,20 @@ module.exports = {
     })
       .then(order => {
         if (req.body.payment_method) {
+          let status_id = 0
+          switch (order.status_id) {
+            case 0:
+              status_id = 1
+              break
+            case 1:
+              status_id = 2
+              break
+            default:
+              status_id = 2
+          }
           order
             .update({
-              status_id: req.body.status_id,
+              status_id: status_id,
               payment_method: req.body.payment_method
             })
             .then(result => {
