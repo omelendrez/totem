@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar color="#ee3542" extended extension-height="77">
-      <v-img class="logo" :src="logo" contain></v-img>
+      <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
     <router-view/>
     <Loading/>

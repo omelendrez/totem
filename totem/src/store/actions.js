@@ -16,8 +16,8 @@ const host = CONFIG.url
 
 const handleError = err => {
   const error = {
-    success: false,
-    error: 'There is a problem trying to connect to backend server'
+    error: true,
+    message: 'Problema intentando connectar con el server de backend'
   }
   return err.response && err.response.data ? err.response.data : error
 }
