@@ -37,7 +37,7 @@ module.exports = {
     printer.newLine()
     printer.println(getNow())
     printer.alignLeft()
-    header().map(line => {
+    header().forEach(line => {
       printer.println(line)
     })
     printer.alignLeft()
@@ -76,7 +76,7 @@ module.exports = {
     printer.printBarcode(data, type, settings)
     printer.cut()
     const execute = await printer.execute()
-    res.status(200).send({ error: false, message: '' })
+    res.status(200).send({ error: false, message: '', result: execute })
   }
 }
 const getNow = () => {
