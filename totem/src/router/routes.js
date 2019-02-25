@@ -1,29 +1,24 @@
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: "Home"
+    path: '/',
+    name: 'Home',
+    component: 'Home'
   },
   {
-    path: "/cocina",
-    name: "Kitchen",
-    component: "Kitchen"
+    path: '/cocina',
+    name: 'Kitchen',
+    component: 'Kitchen'
   },
   {
-    path: "/turnos",
-    name: "Turns",
-    component: "Turns"
+    path: '/turnos',
+    name: 'Turns',
+    component: 'Turns'
   },
   {
-    path: "/caja",
-    name: "Cashier",
-    component: "Cashier"
-  },
-  {
-    path: "/mostrador",
-    name: "Counter",
-    component: "Counter"
+    path: '/scanner',
+    name: 'Scanner',
+    component: 'Scanner'
   }
-];
+]
 
-export default routes;
+export default routes

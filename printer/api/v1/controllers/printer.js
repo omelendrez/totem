@@ -5,6 +5,16 @@ let printer = new ThermalPrinter({
   type: PrinterTypes.EPSON,
   interface: 'tcp://192.168.0.5'
 })
+const header = () => {
+  return [
+    'EXTALL S.A.',
+    'CUIT Nro.: 30-70835966-8',
+    'DONADO 28 BAHIA BLANCA',
+    'IVA RESPONSABLE INSCRIPTO',
+    'A CONSUMIDOR FINAL',
+    'P.V. Nro.: 0034'
+  ]
+}
 module.exports = {
   async print(req, res) {
     const order = req.body.orderData
@@ -24,6 +34,13 @@ module.exports = {
     printer.println(order.order_number)
     printer.bold(false)
     printer.setTextNormal()
+    printer.newLine()
+    printer.println(getNow())
+    printer.alignLeft()
+    header().map(line => {
+      printer.println(line)
+    })
+    printer.alignLeft()
     printer.drawLine()
     items.map(item => {
       printer.alignLeft()
@@ -37,17 +54,16 @@ module.exports = {
       ])
     })
     printer.alignLeft()
+    printer.println()
     printer.bold(true)
-    printer.setTextDoubleHeight()
-    printer.setTextDoubleWidth()
     printer.tableCustom([
       { text: 'TOTAL =>', align: 'LEFT' },
       { text: order.total_price, align: 'RIGHT' }
     ])
-    printer.println()
     printer.bold(false)
-    printer.newLine()
     printer.setTextNormal()
+    printer.drawLine()
+    printer.newLine()
     printer.alignCenter()
     const data = order.order_number
     const type = 74
@@ -59,14 +75,22 @@ module.exports = {
     }
     printer.printBarcode(data, type, settings)
     printer.cut()
-    printer.execute(err => {
-      if (err) {
-        res
-          .status(500)
-          .send({ error: true, message: 'Error imprimiento ticket' })
-        return
-      }
-      res.status(200).send({ error: false })
-    })
+    const execute = await printer.execute()
+    res.status(200).send({ error: false, message: '' })
   }
 }
+const getNow = () => {
+  const d = new Date()
+  return (
+    ('0' + d.getDay()).slice(-2) +
+    '/' +
+    ('0' + (d.getMonth() + 1)).slice(-2) +
+    '/' +
+    d.getFullYear() +
+    ' ' +
+    ('0' + d.getHours()).slice(-2) +
+    ':' +
+    ('0' + d.getMinutes()).slice(-2)
+  )
+}
+console.log(getNow())
