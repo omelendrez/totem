@@ -8,11 +8,11 @@
             <span class="name">{{item.name}}</span>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
-              <v-btn dark fab absolute right color="primary" @click="add(item)">
-                <v-icon>add</v-icon>
-              </v-btn>
               <v-btn fab dark color="pink" absolute left @click="info(item)">
                 <v-icon>live_help</v-icon>
+              </v-btn>
+              <v-btn dark fab absolute right color="primary" @click="add(item)">
+                <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
