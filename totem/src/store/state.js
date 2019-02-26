@@ -11,8 +11,10 @@ const state = {
   items: [],
   orderItems: [],
   orderTurns: [],
-  orderData: {},
-  printingOrder: ''
+  orderData: [],
+  printingOrder: '',
+  changedOrder: null,
+  printedOrder: null
 }
 
 export default state

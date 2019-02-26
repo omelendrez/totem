@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       status_id: {
         type: DataTypes.INTEGER,
         defaultValue: 0
+      },
+      order_printed: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     {

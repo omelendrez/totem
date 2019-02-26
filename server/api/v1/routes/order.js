@@ -17,5 +17,6 @@ router.get('/order_turns', order.findOrderTurns)
 
 router.get('/:id', order.findById)
 router.put('/:id', order.updateOrderStatus)
+router.put('/printed/:id', order.setOrderPrinted)
 
 module.exports = router
