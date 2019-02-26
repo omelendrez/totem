@@ -77,6 +77,9 @@ module.exports = {
     printer.printBarcode(data, type, settings)
     printer.cut()
     const execute = await printer.execute()
+    if (!execute) {
+      console.log('execute empty')
+    }
     res.status(200).send({ error: false, message: '', order })
   }
 }
