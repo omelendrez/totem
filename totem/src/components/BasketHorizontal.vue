@@ -142,6 +142,7 @@ export default {
       console.log("cc");
     },
     printOrder(order) {
+      order.printerId = 1;
       store.dispatch("printOrder", order);
     }
   }

@@ -29,12 +29,14 @@ export default {
   watch: {
     changedOrder() {
       const order = this.changedOrder;
-      if (order.status_id === 2 && order.order_printed === 0) {
+      if (order.status_id === 1 && order.order_printed === 0) {
         store.dispatch("loadOrderData", order.id);
       }
     },
     orderData() {
-      this.printOrder(this.orderData[0]);
+      const order = this.orderData[0];
+      order.printerId = 2;
+      this.printOrder(order);
     },
     printedOrder() {
       store.dispatch("setOrderPrinted", this.printedOrder.order.id);

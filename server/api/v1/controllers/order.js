@@ -201,7 +201,8 @@ module.exports = {
             '%H:%i:%s'
           ),
           'time'
-        ]
+        ],
+        'status_id'
       ]
     })
       .then(orders => res.json(200, orders))
