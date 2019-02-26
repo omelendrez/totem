@@ -12,7 +12,9 @@ const getters = {
   orderItems: state => state.orderItems,
   orderTurns: state => state.orderTurns,
   orderData: state => state.orderData,
-  printingOrder: state => state.printingOrder
+  printingOrder: state => state.printingOrder,
+  changedOrder: state => state.changedOrder,
+  printedOrder: state => state.printedOrder
 }
 
 export default getters

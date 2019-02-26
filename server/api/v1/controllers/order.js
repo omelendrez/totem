@@ -183,6 +183,7 @@ module.exports = {
         }
       ],
       attributes: [
+        'id',
         'order_number',
         'total_price',
         [
@@ -267,6 +268,20 @@ module.exports = {
     })
       .then(item =>
         item.update({ status_id: req.body.status_id }).then(result => {
+          res.json(result)
+        })
+      )
+      .catch(error => res.status(400).send(error))
+  },
+
+  setOrderPrinted(req, res) {
+    return Order.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(order =>
+        order.update({ order_printed: 1 }).then(result => {
           res.json(result)
         })
       )

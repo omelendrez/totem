@@ -5,7 +5,7 @@ const mutations = {
   },
   request_error(state, error) {
     state.status = 'error'
-    state.apiError = error,
+    state.apiError = error
     state.printingOrder = ''
   },
   load_categories_request(state) {
@@ -106,7 +106,9 @@ const mutations = {
     state.orderData = orderData
   },
   change_order_status_request(state) {},
-  change_order_status_success(state) {},
+  change_order_status_success(state, order) {
+    state.changedOrder = order
+  },
   change_item_status_request(state) {},
   change_item_status_success(state) {},
   reset_totem(state) {
@@ -119,8 +121,9 @@ const mutations = {
   print_order_data_request(state, orderData) {
     state.printingOrder = orderData.order_number
   },
-  print_order_data_success(state) {
+  print_order_data_success(state, order) {
     state.printingOrder = ''
+    state.printedOrder = order
   }
 }
 

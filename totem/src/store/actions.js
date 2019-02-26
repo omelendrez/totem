@@ -9,7 +9,8 @@ import {
   loadOrderData,
   printOrder,
   changeOrderStatus,
-  changeItemStatus
+  changeItemStatus,
+  setOrderPrinted
 } from '@/services'
 const { CONFIG, totemId } = require('@/config')
 const host = CONFIG.url
@@ -17,7 +18,7 @@ const host = CONFIG.url
 const handleError = err => {
   const error = {
     error: true,
-    message: 'Problema intentando connectar con el server de backend'
+    message: 'Oops! Problema intentando connectar con el server'
   }
   return err.response && err.response.data ? err.response.data : error
 }
@@ -123,8 +124,8 @@ const actions = {
   async changeOrderStatus({ commit }, data) {
     commit('change_order_status_request')
     changeOrderStatus(data)
-      .then(() => {
-        commit('change_order_status_success')
+      .then(resp => {
+        commit('change_order_status_success', resp.data)
       })
       .catch(err => {
         commit('request_error', handleError(err))
@@ -156,12 +157,17 @@ const actions = {
   async printOrder({ commit }, orderData) {
     commit('print_order_data_request', orderData)
     printOrder(orderData)
-      .then(() => {
-        commit('print_order_data_success')
+      .then(resp => {
+        commit('print_order_data_success', resp.data)
       })
       .catch(err => {
         commit('request_error', handleError(err))
       })
+  },
+  async setOrderPrinted({ commit }, orderId) {
+    setOrderPrinted(orderId).catch(err => {
+      commit('request_error', handleError(err))
+    })
   }
 }
 

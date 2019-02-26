@@ -98,3 +98,15 @@ export const changeItemStatus = data => {
       })
   })
 }
+
+export const setOrderPrinted = orderId => {
+  return new Promise((resolve, reject) => {
+    HTTP.put(`orders/printed/${orderId}`)
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
