@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar color="#ee3542" extended extension-height="77">
+    <v-toolbar color="#ee3542" extended>
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
     <router-view/>
@@ -31,8 +31,8 @@ body {
   width: 0;
 }
 .logo {
-  top: 46px;
-  max-width: 50%;
-  left: 25%;
+  top: 32px;
+  max-width: 400px;
+  height: 90px;
 }
 </style>
