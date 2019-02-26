@@ -6,6 +6,6 @@ router.use(function(req, res, next) {
   console.log('%s %s %s', req.method, req.url, req.path)
   next()
 })
-router.post('/', printer.print)
+router.post('/:printerId', printer.print)
 
 module.exports = router

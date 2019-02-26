@@ -1,22 +1,16 @@
 'use strict'
-const ThermalPrinter = require('node-thermal-printer').printer
-const PrinterTypes = require('node-thermal-printer').types
-let printer = new ThermalPrinter({
-  type: PrinterTypes.EPSON,
-  interface: 'tcp://192.168.0.5'
-})
-const header = () => {
-  return [
-    'EXTALL S.A.',
-    'CUIT Nro.: 30-70835966-8',
-    'DONADO 28 BAHIA BLANCA',
-    'IVA RESPONSABLE INSCRIPTO',
-    'A CONSUMIDOR FINAL',
-    'P.V. Nro.: 0034'
-  ]
-}
+const config = require('../config')
+
 module.exports = {
   async print(req, res) {
+    const ThermalPrinter = require('node-thermal-printer').printer
+    const PrinterTypes = require('node-thermal-printer').types
+    const printerId = parseInt(req.params.printerId)
+    let printer = new ThermalPrinter({
+      type: PrinterTypes.EPSON,
+      interface: config.getPrinter(printerId).interface
+    })
+    // console.log(printer.Interface)
     const order = req.body.orderData
     const items = order.order_items
     const isConnected = await printer.isPrinterConnected()
@@ -38,7 +32,8 @@ module.exports = {
     printer.newLine()
     printer.println(order.date + ' ' + order.time)
     printer.alignLeft()
-    header().forEach(line => {
+    const header = await config.header()
+    header.forEach(line => {
       printer.println(line)
     })
     printer.alignLeft()
