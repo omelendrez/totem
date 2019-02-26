@@ -23,7 +23,8 @@ module.exports = {
     if (!isConnected) {
       res.status(404).send({
         error: true,
-        message: 'Atención!!! Impresora de tickets desconectada'
+        message: 'Atención!!! Impresora de tickets desconectada',
+        order
       })
       return
     }
@@ -35,7 +36,7 @@ module.exports = {
     printer.bold(false)
     printer.setTextNormal()
     printer.newLine()
-    printer.println(getNow())
+    printer.println(order.date + ' ' + order.time)
     printer.alignLeft()
     header().forEach(line => {
       printer.println(line)
@@ -76,21 +77,6 @@ module.exports = {
     printer.printBarcode(data, type, settings)
     printer.cut()
     const execute = await printer.execute()
-    res.status(200).send({ error: false, message: '', result: execute })
+    res.status(200).send({ error: false, message: '', order })
   }
 }
-const getNow = () => {
-  const d = new Date()
-  return (
-    ('0' + d.getDay()).slice(-2) +
-    '/' +
-    ('0' + (d.getMonth() + 1)).slice(-2) +
-    '/' +
-    d.getFullYear() +
-    ' ' +
-    ('0' + d.getHours()).slice(-2) +
-    ':' +
-    ('0' + d.getMinutes()).slice(-2)
-  )
-}
-console.log(getNow())
