@@ -11,6 +11,8 @@ The application is compossed of 3 apps:
 - **_Admin_** for front-end general features management
 - **_Client_** (deprecated) for customer purchase of products that will run on the kiosk/totem
 - **_Totem_** for customer products purchase. It will run on the kiosk/totem hardware. It replaces Client front-end app
+- **_Printer_** for tickets printing on different thermal printers
+
 
 ### RestFULL Back-end | Server app
 
@@ -42,10 +44,16 @@ The application is compossed of 3 apps:
 - Vuetify
 - Webpack
 
+### Print server | Printer app
+
+- Node
+- Express
+- node-thermal-printer
+
 ## Instructions to run the system
 
 - Clone this repo into your computer
-- You will get the following sub-folders: **server**, **admin**, **totem** and **client**
+- You will get the following sub-folders: **server**, **admin**, **totem**, **printer** and **client** (deprecated)
 
   - Inside **server** folder run:
 
@@ -80,5 +88,13 @@ The application is compossed of 3 apps:
     `npm run serve`
 
     Totem app will run at port 8080
+
+  - Inside **printer** folder run:
+
+    `npm install`
+
+    `nodemon`
+
+    Print server will run at port 9000
 
 [![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)
