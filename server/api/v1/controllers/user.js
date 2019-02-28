@@ -1,6 +1,7 @@
-"use strict"
-const User = require("../models").user
-const sequelize = require("sequelize")
+'use strict'
+const User = require('../models').user
+const sequelize = require('sequelize')
+const bcrypt = require('bcrypt')
 
 module.exports = {
   create(req, res) {
@@ -14,19 +15,19 @@ module.exports = {
   },
 
   findAll(req, res) {
-    const Status = require("../models").status
+    const Status = require('../models').status
     User.belongsTo(Status)
 
     const page = parseInt(req.query.page ? req.query.page : 0)
     const size = parseInt(req.query.size ? req.query.size : 1000)
-    const sort = req.query.sort ? req.query.sort : "full_name"
-    const type = req.query.type ? req.query.type : "asc"
-    const filter = req.query.filter ? req.query.filter : ""
+    const sort = req.query.sort ? req.query.sort : 'full_name'
+    const type = req.query.type ? req.query.type : 'asc'
+    const filter = req.query.filter ? req.query.filter : ''
 
     return User.findAndCountAll({
       where: {
         full_name: {
-          $like: "%" + filter + "%"
+          $like: '%' + filter + '%'
         }
       },
       order: [[sort, type]],
@@ -36,18 +37,18 @@ module.exports = {
         {
           model: Status,
           where: {
-            id: sequelize.col("user.status_id")
+            id: sequelize.col('user.status_id')
           }
         }
       ],
-      attributes: ["id", "user_name", "full_name"]
+      attributes: ['id', 'user_name', 'full_name']
     })
       .then(users => res.json(users))
       .catch(error => res.status(400).json(error))
   },
 
   findById(req, res) {
-    const Status = require("../models").status
+    const Status = require('../models').status
     User.belongsTo(Status)
 
     return User.findOne({
@@ -58,35 +59,35 @@ module.exports = {
         {
           model: Status,
           where: {
-            id: sequelize.col("user.status_id")
+            id: sequelize.col('user.status_id')
           }
         }
       ],
       attributes: [
-        "id",
-        "user_name",
-        "full_name",
-        "status_id",
+        'id',
+        'user_name',
+        'full_name',
+        'status_id',
         [
           sequelize.fn(
-            "date_format",
-            sequelize.col("user.created_at"),
-            "%d-%b-%y %H:%i"
+            'date_format',
+            sequelize.col('user.created_at'),
+            '%d-%b-%y %H:%i'
           ),
-          "created_at"
+          'created_at'
         ],
         [
           sequelize.fn(
-            "date_format",
-            sequelize.col("user.updated_at"),
-            "%d-%b-%y %H:%i"
+            'date_format',
+            sequelize.col('user.updated_at'),
+            '%d-%b-%y %H:%i'
           ),
-          "updated_at"
+          'updated_at'
         ]
       ]
     })
       .then(user =>
-        user ? res.json(user) : res.status(404).json({ error: "Not found" })
+        user ? res.json(user) : res.status(404).json({ error: 'Not found' })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -95,13 +96,18 @@ module.exports = {
     return User.findOne({
       where: {
         user_name: req.body.user_name,
-        password: req.body.password,
         status_id: 1
       }
     })
-      .then(user =>
-        user ? res.json(user) : res.status(404).json({ error: "Not found" })
-      )
+      .then(user => {
+        bcrypt.compare(req.body.password, user.password).then(ok => {
+          if (ok) {
+            res.json(user)
+          } else {
+            res.status(401).json({ error: 'Unauthorized' })
+          }
+        })
+      })
       .catch(error => res.status(400).send(error))
   },
 
