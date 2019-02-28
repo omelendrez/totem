@@ -1,15 +1,12 @@
 <template>
   <div class="userAdd">
-
     <md-toolbar class="md-primary">
       <h1 class="md-title">Crear Usuario</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
-
       <md-whiteframe class="whiteframe">
         <form novalidate @submit.stop.prevent="submit">
-
           <md-input-container>
             <label>Usuario</label>
             <md-input v-model="user.user_name"></md-input>
@@ -22,10 +19,8 @@
 
           <md-button class="md-raised md-accent" v-on:click.native="saveUser()">Guardar</md-button>
           <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
-
         </form>
       </md-whiteframe>
-
     </md-layout>
 
     <md-dialog ref="dialog1">
@@ -35,7 +30,6 @@
         <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
       </md-dialog-actions>
     </md-dialog>
-
   </div>
 </template>
 
@@ -63,10 +57,11 @@ export default {
         };
         this.showErrorMsg("dialog1");
       } else {
+        const { user_name, full_name } = this.user;
         const newUser = {
-          user_name: this.user.user_name,
-          full_name: this.user.full_name,
-          password: "Big Six",
+          user_name,
+          full_name,
+          password: "bigsix2019",
           status: 1
         };
 
