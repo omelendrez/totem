@@ -117,7 +117,6 @@ export default {
         });
     },
     search() {
-      // this.filter = document.getElementById('search_field').value;
       this.fetchProducts();
     },
     addProduct() {
