@@ -126,6 +126,7 @@ module.exports = {
   },
 
   update(req, res) {
+    const { user_name, full_name, status_id } = req.body
     return User.findOne({
       where: {
         id: req.params.id
@@ -134,9 +135,9 @@ module.exports = {
       .then(user =>
         user
           .update({
-            user_name: req.body.user_name,
-            full_name: req.body.full_name,
-            status_id: req.body.status_id
+            user_name: user_name,
+            full_name: full_name,
+            status_id: status_id
           })
           .then(result => {
             res.json(result)
