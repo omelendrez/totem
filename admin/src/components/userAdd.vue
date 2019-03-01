@@ -36,6 +36,8 @@
 <script>
 import HTTP from "./http-common";
 
+import defaultPassword from "./../utils";
+
 export default {
   name: "userAdd",
   data() {
@@ -61,7 +63,7 @@ export default {
         const newUser = {
           user_name,
           full_name,
-          password: "bigsix2019",
+          password: defaultPassword,
           status: 1
         };
 

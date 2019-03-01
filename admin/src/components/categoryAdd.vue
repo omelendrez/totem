@@ -15,6 +15,11 @@
             <md-input v-model="category.name"></md-input>
           </md-input-container>
 
+          <md-input-container md-clearable>
+            <label>Imagen</label>
+            <md-input type="text" v-model="category.image"></md-input>
+          </md-input-container>
+
           <md-button class="md-raised md-accent" v-on:click.native="saveCategory()">Guardar</md-button>
           <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
 

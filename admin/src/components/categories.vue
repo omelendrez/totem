@@ -14,6 +14,7 @@
         <md-table @sort="onSort" md-sort="name">
           <md-table-header>
             <md-table-row>
+              <md-table-head>Imagen</md-table-head>
               <md-table-head md-sort-by="name">Nombre</md-table-head>
               <md-table-head>Status</md-table-head>
 
@@ -25,6 +26,9 @@
 
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in categories" :key="rowIndex" :md-item="row">
+              <md-table-cell>
+                <md-image height="60px" :md-src="`http://totem-be:3000/${row.image}`"></md-image>
+              </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
 
@@ -96,8 +100,9 @@ export default {
           .name}&type=${this.sort.type}`
       )
         .then((res) => {
-          this.categories = res.data.rows;
-          this.totalRows = res.data.count;
+          const { rows, count } = res.data;
+          this.categories = rows;
+          this.totalRows = count;
           this.showTable = true;
         })
         .catch((err) => {

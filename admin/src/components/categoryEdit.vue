@@ -15,6 +15,11 @@
             <md-input v-model="category.name"></md-input>
           </md-input-container>
 
+          <md-input-container md-clearable>
+            <label>Imagen</label>
+            <md-input type="text" v-model="category.image"></md-input>
+          </md-input-container>
+
           <md-input-container>
             <label>Status</label>
             <md-select v-model="category.status_id">

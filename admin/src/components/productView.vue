@@ -14,11 +14,8 @@
           </md-card-media>
 
           <md-card-header>
-            <div class="md-subhead" v-if="this.product.category">
+            <div class="md-subhead" v-if="product.category">
               {{product.category.name}}
-            </div>
-            <div class="md-subhead" v-if="this.product.category">
-              {{product.sub_category.name}}
             </div>
             <div class="md-title">
               {{product.name}}
@@ -36,7 +33,7 @@
             <div class="md-subhead">
               Info
             </div>
-            <div v-if="this.product.status">
+            <div v-if="product.status">
               Status: {{product.status.name}}
             </div>
             <div>
@@ -67,7 +64,10 @@ export default {
   name: "productView",
   data() {
     return {
-      product: {},
+      product: {
+        name: "",
+        image: ""
+      },
       discounts: {}
     };
   },
@@ -75,8 +75,9 @@ export default {
     fetchProduct(id) {
       HTTP.get(`products/${id}`)
         .then((res) => {
-          this.product = res.data;
-          this.product.image = `http://totem-be:3000/${this.product.image}`;
+          const product = res.data;
+          product.image = `http://totem-be:3000/${product.image}`;
+          this.product = product;
         })
         .catch((err) => {
           console.log(err);
@@ -89,7 +90,7 @@ export default {
       this.$router.push({ name: "Products" });
     }
   },
-  created() {
+  mounted() {
     this.fetchProduct(this.$route.params.id);
     this.$root.$data.last_call = "productView";
   }
