@@ -10,6 +10,10 @@
       <md-card class="category-card">
         <md-card-area md-inset>
 
+          <md-card-media>
+            <md-image :md-src="category.image"></md-image>
+          </md-card-media>
+
           <md-card-header>
             <div class="md-title">
               {{category.name}}
@@ -58,7 +62,9 @@ export default {
     fetchCategory(id) {
       HTTP.get(`categories/${id}`)
         .then((res) => {
-          this.category = res.data;
+          const category = res.data;
+          category.image = `http://totem-be:3000/${category.image}`;
+          this.category = category;
         })
         .catch((err) => {
           console.log(err);
@@ -85,4 +91,9 @@ export default {
   padding: 20px;
   width: 40%;
 }
+
+.md-image {
+  width: 20% !important;
+}
+
 </style>

@@ -77,7 +77,6 @@ export default {
         .then((res) => {
           const product = res.data;
           product.image = `http://totem-be:3000/${product.image}`;
-          console.log(product);
           this.product = product;
         })
         .catch((err) => {
