@@ -21,7 +21,7 @@
         <md-table @sort="onSort" md-sort="code">
           <md-table-header>
             <md-table-row>
-              <md-table-head></md-table-head>
+              <md-table-head>Imagen</md-table-head>
               <md-table-head md-sort-by="name">Producto</md-table-head>
               <md-table-head md-sort-by="price">
                 <md-icon>attach_money</md-icon>
@@ -108,8 +108,9 @@ export default {
           .name}&type=${this.sort.type}&filter=${this.filter}`
       )
         .then((res) => {
-          this.products = res.data.rows;
-          this.totalRows = res.data.count;
+          const { rows, count } = res.data;
+          this.products = rows;
+          this.totalRows = count;
           this.showTable = true;
         })
         .catch((err) => {

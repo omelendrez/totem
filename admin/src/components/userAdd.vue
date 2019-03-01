@@ -35,6 +35,7 @@
 
 <script>
 import HTTP from "./http-common";
+
 import defaultPassword from "./../utils";
 
 export default {
