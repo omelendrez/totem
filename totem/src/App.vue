@@ -41,9 +41,7 @@ export default {
           case 1:
           case 2:
           case 3:
-            const product = item;
-            product.image = item.image;
-            items.push(product);
+            items.push(item);
             break;
         }
       });
