@@ -25,6 +25,8 @@ import UserAdd from "@/components/userAdd";
 import UserEdit from "@/components/userEdit";
 import UserView from "@/components/userView";
 
+import Totem from "@/components/totem";
+
 Vue.use(Router);
 
 export default new Router({
@@ -125,6 +127,11 @@ export default new Router({
       path: "/userView/:id",
       name: "UserView",
       component: UserView
+    },
+    {
+      path: "/totem",
+      name: "Totem",
+      component: Totem
     }
   ]
 });

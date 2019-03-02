@@ -8,6 +8,7 @@ const startTimer = () => {
 }
 const doInactive = () => {
   store.dispatch('resetTotem')
+  store.dispatch('checkTotemStatus')
 }
 const resetTimer = () => {
   window.clearTimeout(timeoutId)

@@ -89,11 +89,11 @@ export default {
 .category-card {
   margin: 20px;
   padding: 20px;
-  width: 40%;
+  width: 20%;
 }
 
 .md-image {
-  width: 20% !important;
+  width: 50% !important;
 }
 
 </style>

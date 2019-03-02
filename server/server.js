@@ -46,6 +46,7 @@ app.use("/product_discount", require(apiPath + "/routes/product_discount"));
 app.use("/status", require(apiPath + "/routes/status"));
 app.use("/login", require(apiPath + "/routes/login"));
 app.use("/config", require(apiPath + "/routes/config"));
+app.use("/totem", require(apiPath + "/routes/totem"));
 app.use(express.static("public"));
 app.post('/public', upload.single('product'), function (req, res, next) {
   console.log(req)
