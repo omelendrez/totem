@@ -10,7 +10,7 @@ module.exports = {
       .then(totem => res.status(201).json(totem))
       .catch(error => res.status(400).send(error))
   },
-  findAll(req, res) {
+  findById(req, res) {
     return Totem.findOne({
       where: {
         id: req.params.id
@@ -21,7 +21,7 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error))
   },
-  findById(req, res) {
+  findAll(req, res) {
     return Totem.findAndCountAll({
       order: [['name', 'asc']],
       attributes: ['id', 'name', 'status_id']
