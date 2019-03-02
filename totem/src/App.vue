@@ -3,8 +3,8 @@
     <v-toolbar color="#ee3542" extended>
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
-    <router-view v-show="totemActive"/>
-    <v-container fluid class="image" v-show="!totemActive">
+    <router-view v-if="totemActive"/>
+    <v-container fluid class="image" v-if="!totemActive">
       <v-carousel hide-delimiters>
         <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image"></v-carousel-item>
       </v-carousel>
@@ -16,6 +16,8 @@
 import store from "@/store";
 import Loading from "@/components/Loading";
 const Logo = require("@/assets/logo big fondo rojo.png");
+import { intervals } from "@/config";
+
 export default {
   name: "app",
   store,
@@ -33,6 +35,9 @@ export default {
   watch: {
     totem() {
       this.totemActive = this.totem.status_id === 1;
+      if (!this.totemActive && !this.products.length) {
+        store.dispatch("loadProducts");
+      }
     },
     products() {
       const items = [];
@@ -57,6 +62,9 @@ export default {
   },
   mounted() {
     store.dispatch("checkTotemStatus");
+    setInterval(() => {
+      store.dispatch("checkTotemStatus");
+    }, intervals.statusChange);
   }
 };
 </script>

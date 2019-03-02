@@ -19,7 +19,7 @@
 
 <script>
 import store from "@/store";
-import { updateInterval } from "@/config";
+import { intervals } from "@/config";
 export default {
   name: "Kitchen",
   store,
@@ -84,7 +84,7 @@ export default {
     store.dispatch("loadItems");
     setInterval(() => {
       store.dispatch("loadItems");
-    }, updateInterval);
+    }, intervals.orderUpdates);
   },
   methods: {
     sendItem() {

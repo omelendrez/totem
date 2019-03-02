@@ -1,6 +1,7 @@
 import store from '@/store'
+import { intervals } from '@/config'
 
-const timeoutInMiliseconds = 300000
+const timeoutInMiliseconds = intervals.totemtIimeout
 let timeoutId = null
 
 const startTimer = () => {
@@ -8,7 +9,6 @@ const startTimer = () => {
 }
 const doInactive = () => {
   store.dispatch('resetTotem')
-  store.dispatch('checkTotemStatus')
 }
 const resetTimer = () => {
   window.clearTimeout(timeoutId)
