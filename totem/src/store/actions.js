@@ -10,7 +10,8 @@ import {
   printOrder,
   changeOrderStatus,
   changeItemStatus,
-  setOrderPrinted
+  setOrderPrinted,
+  checkTotemStatus
 } from '@/services'
 const { CONFIG, totemId } = require('@/config')
 const host = CONFIG.url
@@ -168,6 +169,16 @@ const actions = {
     setOrderPrinted(orderId).catch(err => {
       commit('request_error', handleError(err))
     })
+  },
+  async checkTotemStatus({ commit }) {
+    commit('load_totem_status_request')
+    checkTotemStatus(totemId)
+      .then(resp => {
+        commit('load_totem_status_success', resp.data)
+      })
+      .catch(err => {
+        commit('request_error', handleError(err))
+      })
   }
 }
 

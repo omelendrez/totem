@@ -1,6 +1,7 @@
 const state = {
   status: '',
   apiError: null,
+  totem: null,
   products: [],
   categories: [],
   basket: [],

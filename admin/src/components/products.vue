@@ -37,7 +37,7 @@
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
               <md-table-cell>
-                <md-image height="80px" :md-src="`http://totem-be:3000/${row.image}`"></md-image>
+                <md-image height="60px" :md-src="`http://totem-be:3000/${row.image}`"></md-image>
               </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.price}}</md-table-cell>

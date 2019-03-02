@@ -124,6 +124,10 @@ const mutations = {
   print_order_data_success(state, order) {
     state.printingOrder = ''
     state.printedOrder = order
+  },
+  load_totem_status_request(state) {},
+  load_totem_status_success(state, totem) {
+    state.totem = totem.rows[0]
   }
 }
 

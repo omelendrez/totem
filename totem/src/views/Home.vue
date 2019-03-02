@@ -66,9 +66,15 @@ export default {
     },
     apiError() {
       return store.getters.apiError;
+    },
+    totem() {
+      return store.getters.totem;
     }
   },
   watch: {
+    totem() {
+      this.totemActive = this.totem.status_id === 1;
+    },
     basket() {
       this.isBasketEmtpy = !this.basket.length;
       this.showDrinks = false;

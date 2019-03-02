@@ -25,6 +25,7 @@ module.exports = {
     quotes: ["error", "double"],
     // we need console
     "no-console": 0,
+    "arrow-parens": 0,
     // we work on windows environment
     "linebreak-style": ["off", "windows"],
     // don't require .vue extension when importing

@@ -1,5 +1,6 @@
 const getters = {
   status: state => state.status,
+  totem: state => state.totem,
   apiError: state => state.apiError,
   products: state => state.products,
   categories: state => state.categories,
