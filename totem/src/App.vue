@@ -35,11 +35,15 @@ export default {
       this.totemActive = this.totem.status_id === 1;
     },
     products() {
-      const items = this.products.map(item => {
-        const product = {
-          image: item.image
-        };
-        return product;
+      const items = [];
+      this.products.map(item => {
+        switch (item.category_id) {
+          case 1:
+          case 2:
+          case 3:
+            items.push(item);
+            break;
+        }
       });
       this.items = items;
     }
