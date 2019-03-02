@@ -127,7 +127,7 @@ const mutations = {
   },
   load_totem_status_request(state) {},
   load_totem_status_success(state, totem) {
-    state.totem = totem.rows[0]
+    state.totem = totem
   }
 }
 
