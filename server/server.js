@@ -17,6 +17,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
 //app.use(fileUpload())
 
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 models.sequelize.sync({
   force: false
 })
