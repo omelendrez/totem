@@ -1,7 +1,7 @@
 {
   "name": "totem-server-api",
   "description": "Server API",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": false,
   "dependencies": {
     "bcrypt": "^3.0.4",
@@ -9,7 +9,6 @@
     "body-parser": "^1.15.2",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.3",
-    "helmet": "^3.15.1",
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",

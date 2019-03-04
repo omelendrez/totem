@@ -3,7 +3,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 // const fileUpload = require('express-fileupload')
-const helmet = require('helmet')
 
 const apiPath = './api/v1'
 const models = require(apiPath + '/models')
@@ -11,16 +10,21 @@ const models = require(apiPath + '/models')
 // const upload = multer({ dest: 'uploads/' })
 
 const app = express()
-app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
 //app.use(fileUpload())
 
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  )
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  next()
+})
 
 models.sequelize.sync({
   force: false
