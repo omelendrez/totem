@@ -1,7 +1,15 @@
-"use strict"
-const Category = require("../models").category
-const Config = require("./config")
-const sequelize = require("sequelize")
+'use strict'
+const Category = require('../models').category
+const Config = require('./config')
+const sequelize = require('sequelize')
+const Joi = require('joi')
+
+const schema = {
+  name: Joi.string()
+    .min(3)
+    .required(),
+  status_id: Joi.number().required()
+}
 
 const update = val => {
   Config.update(val)
@@ -9,9 +17,12 @@ const update = val => {
 
 module.exports = {
   create(req, res) {
+    const { error } = Joi.validate(req.body, schema)
+    if (error) return res.status(400).send(error.details)
+    const { name, status_id } = req.body
     return Category.create({
-      name: req.body.name,
-      status_id: req.body.status_id
+      name: name,
+      status_id: status_id
     })
       .then(category => {
         update()
@@ -21,19 +32,19 @@ module.exports = {
   },
 
   findAll(req, res) {
-    const Status = require("../models").status
+    const Status = require('../models').status
     Category.belongsTo(Status)
 
     const page = parseInt(req.query.page ? req.query.page : 0)
     const size = parseInt(req.query.size ? req.query.size : 1000)
-    const sort = req.query.sort ? req.query.sort : "name"
-    const type = req.query.type ? req.query.type : "asc"
-    const filter = req.query.filter ? req.query.filter : ""
+    const sort = req.query.sort ? req.query.sort : 'name'
+    const type = req.query.type ? req.query.type : 'asc'
+    const filter = req.query.filter ? req.query.filter : ''
 
     return Category.findAndCountAll({
       where: {
         name: {
-          $like: "%" + filter + "%"
+          $like: '%' + filter + '%'
         }
       },
       order: [[sort, type]],
@@ -43,11 +54,11 @@ module.exports = {
         {
           model: Status,
           where: {
-            id: sequelize.col("category.status_id")
+            id: sequelize.col('category.status_id')
           }
         }
       ],
-      attributes: ["id", "name", "image"]
+      attributes: ['id', 'name', 'image']
     })
       .then(categories => {
         update(0)
@@ -57,18 +68,18 @@ module.exports = {
   },
 
   totemFindAll(req, res) {
-    const Product = require("../models").product
+    const Product = require('../models').product
     Category.hasMany(Product)
     return Category.findAndCountAll({
       where: {
         status_id: 1
       },
-      attributes: ["id", "name", "image"],
+      attributes: ['id', 'name', 'image'],
       include: [
         {
           model: Product,
           where: {
-            category_id: sequelize.col("category.id"),
+            category_id: sequelize.col('category.id'),
             status_id: 1
           }
         }
@@ -82,7 +93,7 @@ module.exports = {
   },
 
   findById(req, res) {
-    const Status = require("../models").status
+    const Status = require('../models').status
     Category.belongsTo(Status)
 
     return Category.findOne({
@@ -93,30 +104,30 @@ module.exports = {
         {
           model: Status,
           where: {
-            id: sequelize.col("category.status_id")
+            id: sequelize.col('category.status_id')
           }
         }
       ],
       attributes: [
-        "id",
-        "name",
-        "image",
-        "status_id",
+        'id',
+        'name',
+        'image',
+        'status_id',
         [
           sequelize.fn(
-            "date_format",
-            sequelize.col("category.created_at"),
-            "%d-%b-%y %H:%i"
+            'date_format',
+            sequelize.col('category.created_at'),
+            '%d-%b-%y %H:%i'
           ),
-          "created_at"
+          'created_at'
         ],
         [
           sequelize.fn(
-            "date_format",
-            sequelize.col("category.updated_at"),
-            "%d-%b-%y %H:%i"
+            'date_format',
+            sequelize.col('category.updated_at'),
+            '%d-%b-%y %H:%i'
           ),
-          "updated_at"
+          'updated_at'
         ]
       ]
     })
@@ -124,8 +135,8 @@ module.exports = {
         category
           ? res.json(category)
           : res.status(404).json({
-            error: "Not found"
-          })
+              error: 'Not found'
+            })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -146,6 +157,9 @@ module.exports = {
   },
 
   update(req, res) {
+    const { error } = Joi.validate(req.body, schema)
+    if (error) return res.status(400).send(error.details)
+    const { name, status_id } = req.body
     return Category.findOne({
       where: {
         id: req.params.id
@@ -154,8 +168,8 @@ module.exports = {
       .then(category =>
         category
           .update({
-            name: req.body.name,
-            status_id: req.body.status_id
+            name: name,
+            status_id: status_id
           })
           .then(result => {
             update()

@@ -2,7 +2,29 @@
 const Product = require('../models').product
 const Config = require('./config')
 const sequelize = require('sequelize')
+const Joi = require('joi')
 const Op = sequelize.Op
+
+const schema = {
+  id: Joi.number(),
+  code: Joi.string(),
+  name: Joi.string()
+    .min(3)
+    .required(),
+  description: Joi.string()
+    .min(3)
+    .required(),
+  kitchen_text: Joi.string().required(),
+  ticket_text: Joi.string().required(),
+  category_id: Joi.number().required(),
+  image: Joi.string().required(),
+  status_id: Joi.number().required(),
+  price: Joi.number().required(),
+  created_at: Joi.string(),
+  updated_at: Joi.string(),
+  category: Joi.object(),
+  status: Joi.object()
+}
 
 const update = val => {
   return Config.update(val)
@@ -10,6 +32,8 @@ const update = val => {
 
 module.exports = {
   create(req, res) {
+    const { error } = Joi.validate(req.body, schema)
+    if (error) return res.status(400).send(error.details)
     let last_id = 0
     Product.max('id').then(max => {
       last_id = max
@@ -24,16 +48,27 @@ module.exports = {
       ).slice(-2)
       const code = cat + '-' + last_id
 
+      const {
+        name,
+        description,
+        kitchen_text,
+        ticket_text,
+        category_id,
+        image,
+        status_id,
+        price
+      } = req.body
+
       return Product.create({
-        code: code,
-        name: req.body.name,
-        description: req.body.description,
-        kitchen_text: req.body.kitchen_text,
-        ticket_text: req.body.ticket_text,
-        category_id: req.body.category_id,
-        image: req.body.image,
-        status_id: req.body.status_id,
-        price: req.body.price
+        code,
+        name,
+        description,
+        kitchen_text,
+        ticket_text,
+        category_id,
+        image,
+        status_id,
+        price
       })
         .then(product => {
           update().catch(err => console.log(err))
@@ -233,6 +268,19 @@ module.exports = {
   },
 
   update(req, res) {
+    const { error } = Joi.validate(req.body, schema)
+    if (error) return res.status(400).send(error.details)
+    const {
+      code,
+      name,
+      description,
+      kitchen_text,
+      ticket_text,
+      category_id,
+      image,
+      status_id,
+      price
+    } = req.body
     return Product.findOne({
       where: {
         id: req.params.id
@@ -241,15 +289,15 @@ module.exports = {
       .then(product =>
         product
           .update({
-            code: req.body.code,
-            name: req.body.name,
-            description: req.body.description,
-            kitchen_text: req.body.kitchen_text,
-            ticket_text: req.body.ticket_text,
-            category_id: req.body.category_id,
-            image: req.body.image,
-            status_id: req.body.status_id,
-            price: req.body.price
+            code,
+            name,
+            description,
+            kitchen_text,
+            ticket_text,
+            category_id,
+            image,
+            status_id,
+            price
           })
           .then(result => {
             update()
