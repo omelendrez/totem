@@ -11,13 +11,15 @@ const schema = {
   status_id: Joi.number().required()
 }
 
+const validateCategory = category => Joi.validate(category, schema)
+
 const update = val => {
   Config.update(val)
 }
 
 module.exports = {
   create(req, res) {
-    const { error } = Joi.validate(req.body, schema)
+    const { error } = validateCategory(req.body)
     if (error) return res.status(400).send(error.details)
     const { name, status_id } = req.body
     return Category.create({
@@ -157,7 +159,7 @@ module.exports = {
   },
 
   update(req, res) {
-    const { error } = Joi.validate(req.body, schema)
+    const { error } = validateCategory(req.body)
     if (error) return res.status(400).send(error.details)
     const { name, status_id } = req.body
     return Category.findOne({
