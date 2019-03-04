@@ -26,13 +26,15 @@ const schema = {
   status: Joi.object()
 }
 
+const validateProduct = product => Joi.validate(product, schema)
+
 const update = val => {
   return Config.update(val)
 }
 
 module.exports = {
   create(req, res) {
-    const { error } = Joi.validate(req.body, schema)
+    const { error } = validateProduct(req.body)
     if (error) return res.status(400).send(error.details)
     let last_id = 0
     Product.max('id').then(max => {
@@ -268,7 +270,7 @@ module.exports = {
   },
 
   update(req, res) {
-    const { error } = Joi.validate(req.body, schema)
+    const { error } = validateProduct(req.body)
     if (error) return res.status(400).send(error.details)
     const {
       code,
