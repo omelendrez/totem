@@ -38,14 +38,12 @@ module.exports = {
       }
     })
       .then(totem => {
-        const status_id = !totem.status_id
+        const status_id = totem.status_id === 0 ? 1 : 0
         totem
           .update({
             status_id
           })
-          .then(result => {
-            res.json(result)
-          })
+          .then(result => res.json(result))
           .catch(error => res.status(400).send(error))
       })
       .catch(error => res.status(400).send(error))
