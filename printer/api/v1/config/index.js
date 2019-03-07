@@ -13,7 +13,7 @@ const printers = [
   {
     id: 1,
     name: 'Totem thermal printer',
-    interface: 'tcp://192.168.100.200'
+    interface: '\\.\COM1'
   },
   {
     id: 2,
