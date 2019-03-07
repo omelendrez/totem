@@ -114,7 +114,7 @@ export default {
     },
     printingOrder() {
       this.action = this.printingOrder
-        ? `IMPRIMENDO TICKET # ${this.printingOrder}`
+        ? `IMPRIMENDO TICKET # ${this.printingOrder} 💯`
         : "";
     }
   },
@@ -126,7 +126,7 @@ export default {
     },
     cancel() {
       this.title = "Cancelar orden";
-      this.message = "Estás seguro de que querés cancelar la orden?";
+      this.message = "Estás seguro de que querés cancelar la orden? :anguished:";
       this.buttonOkMsg = "Si, cancelar";
       this.buttonNoMsg = "No";
     },

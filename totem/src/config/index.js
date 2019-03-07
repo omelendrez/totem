@@ -1,4 +1,4 @@
-const CONFIG = { url: 'http://totem-be:3000/', url2: 'http://totem-be:9000' }
+const CONFIG = { url: 'http://totem-be:3000/', url2: 'http://totem01:9000' }
 const intervals = {
   totemtIimeout: 300000,  // Time of inactivity for the totem to reset (clean pending basket, reset selected category)
   orderUpdates: 10000,    // Frequency for the Tunrns and Kitchen views to check for database updates
