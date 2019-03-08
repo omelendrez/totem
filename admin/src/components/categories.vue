@@ -5,7 +5,6 @@
     </md-toolbar>
 
     <md-layout md-align="center" v-if="showTable">
-
       <md-table-card>
         <md-toolbar>
           <h1 class="md-title">Lista de Categorías</h1>
@@ -27,48 +26,70 @@
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in categories" :key="rowIndex" :md-item="row">
               <md-table-cell>
-                <md-image height="60px" :md-src="`http://totem-be:3000/${row.image}`"></md-image>
+                <md-image height="60px" :md-src="`${backendURL}${row.image}`"></md-image>
               </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
 
               <md-table-cell>
-                <md-button class="md-icon-button md-default md-raised" v-on:click.native="viewCategory(row.id)">
+                <md-button
+                  class="md-icon-button md-default md-raised"
+                  v-on:click.native="viewCategory(row.id)"
+                >
                   <md-icon>find_in_page</md-icon>
                 </md-button>
               </md-table-cell>
 
               <md-table-cell>
-                <md-button class="md-icon-button md-default md-raised" v-on:click.native="editCategory(row.id)">
+                <md-button
+                  class="md-icon-button md-default md-raised"
+                  v-on:click.native="editCategory(row.id)"
+                >
                   <md-icon>edit</md-icon>
                 </md-button>
               </md-table-cell>
 
               <md-table-cell>
-                <md-button class="md-icon-button md-default md-raised" v-on:click.native="openDialog('confirmDelete', row.id, row.name)">
+                <md-button
+                  class="md-icon-button md-default md-raised"
+                  v-on:click.native="openDialog('confirmDelete', row.id, row.name)"
+                >
                   <md-icon>delete</md-icon>
                 </md-button>
               </md-table-cell>
-
             </md-table-row>
           </md-table-body>
         </md-table>
-        <md-table-pagination md-size="5" v-bind:md-total="totalRows" md-page="1" md-label="Registros" md-separator="de" :md-page-options="[5, 10, 25, 50]" @pagination="onPagination"></md-table-pagination>
+        <md-table-pagination
+          md-size="5"
+          v-bind:md-total="totalRows"
+          md-page="1"
+          md-label="Registros"
+          md-separator="de"
+          :md-page-options="[5, 10, 25, 50]"
+          @pagination="onPagination"
+        ></md-table-pagination>
       </md-table-card>
-
     </md-layout>
 
     <md-button class="md-fab md-primary md-fab-bottom-right" v-on:click.native="addCategory()">
       <md-icon>add</md-icon>
     </md-button>
 
-    <md-dialog-confirm :md-title="confirm.title" :md-content="confirm.content" :md-ok-text="confirm.ok" :md-cancel-text="confirm.cancel" @close="onClose" ref="confirmDelete">
-    </md-dialog-confirm>
+    <md-dialog-confirm
+      :md-title="confirm.title"
+      :md-content="confirm.content"
+      :md-ok-text="confirm.ok"
+      :md-cancel-text="confirm.cancel"
+      @close="onClose"
+      ref="confirmDelete"
+    ></md-dialog-confirm>
   </div>
 </template>
 
 <script>
-import HTTP from "./http-common";
+import HTTP from "@/components/http-common";
+import backendURL from "@/config";
 
 export default {
   name: "categories",
@@ -76,6 +97,7 @@ export default {
     return {
       showTable: false,
       categories: [],
+      backendURL,
       confirm: {
         title: "",
         content: "Realmente desea eliminar la categoría seleccionada?",
@@ -96,16 +118,17 @@ export default {
   methods: {
     fetchCategories() {
       HTTP.get(
-        `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort
-          .name}&type=${this.sort.type}`
+        `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${
+          this.sort.name
+        }&type=${this.sort.type}`
       )
-        .then((res) => {
+        .then(res => {
           const { rows, count } = res.data;
           this.categories = rows;
           this.totalRows = count;
           this.showTable = true;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -123,7 +146,7 @@ export default {
         .then(() => {
           this.fetchCategories();
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
