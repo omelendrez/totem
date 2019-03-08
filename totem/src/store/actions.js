@@ -19,7 +19,7 @@ const host = CONFIG.url
 const handleError = err => {
   const error = {
     error: true,
-    message: 'Oops! Problema intentando connectar con el server'
+    message: `Oops! Ha ocurrido un error al intentar connectar con el servidor de base de datos 😧`
   }
   return err.response && err.response.data ? err.response.data : error
 }
@@ -179,6 +179,9 @@ const actions = {
       .catch(err => {
         commit('request_error', handleError(err))
       })
+  },
+  async resetError({ commit }) {
+    commit('reset_error')
   }
 }
 
