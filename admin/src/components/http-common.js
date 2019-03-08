@@ -1,10 +1,6 @@
 import axios from "axios";
+import backendURL from "@/config";
 
-const HTTP = axios.create({
-  baseURL: "http://totem-be:3000/",
-  headers: {
-    // Authorization: 'Bearer {token}'
-  }
-});
+const HTTP = axios.create({ baseURL: backendURL });
 
 export { HTTP as default };
