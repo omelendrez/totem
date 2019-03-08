@@ -84,6 +84,8 @@ export default {
         if (this.apiError.error) {
           this.errorMessage = this.apiError.message;
         }
+      } else {
+        this.errorMessage = "";
       }
     }
   },

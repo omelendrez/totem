@@ -10,7 +10,7 @@ module.exports = {
       type: PrinterTypes.EPSON,
       interface: config.getPrinter(printerId).interface
     })
-    // console.log(printer.Interface)
+    const printerInterface = printer.Interface
     const order = req.body.orderData
     const items = order.order_items
     const isConnected = await printer.isPrinterConnected()
@@ -18,7 +18,8 @@ module.exports = {
       res.status(404).send({
         error: true,
         message: 'Atención!!! Impresora de tickets desconectada',
-        order
+        order,
+        printerInterface
       })
       return
     }
@@ -52,6 +53,7 @@ module.exports = {
     printer.alignLeft()
     printer.println()
     printer.bold(true)
+
     printer.tableCustom([
       { text: 'TOTAL =>', align: 'LEFT' },
       { text: order.total_price, align: 'RIGHT' }
@@ -75,6 +77,6 @@ module.exports = {
     if (!execute) {
       console.log('execute empty')
     }
-    res.status(200).send({ error: false, message: '', order })
+    res.status(200).send({ error: false, message: '', order, printerInterface })
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="processing" persistent width="300" transition="scale-transition">
+    <v-dialog v-model="processing" persistent width="50%" transition="scale-transition">
       <v-card color="error" dark>
         <v-card-text>
           <h1>{{message}}</h1>
@@ -12,8 +12,10 @@
 </template>
 
 <script>
+import store from "@/store";
 export default {
   name: "Processing",
+  store,
   props: {
     message: {
       type: String,
@@ -27,7 +29,13 @@ export default {
   },
   watch: {
     message() {
-      this.processing = this.message.length;
+      const active = this.message.length > 0;
+      this.processing = active;
+      if (active) {
+        setTimeout(() => {
+          store.dispatch("resetError");
+        }, 3000);
+      }
     }
   }
 };
