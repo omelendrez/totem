@@ -5,7 +5,7 @@
     </v-toolbar>
     <router-view v-if="totemActive"/>
     <v-container fluid class="image" v-if="!totemActive">
-      <v-carousel hide-delimiters>
+      <v-carousel hide-delimiters height="800">
         <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image"></v-carousel-item>
       </v-carousel>
     </v-container>
