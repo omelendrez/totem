@@ -84,7 +84,7 @@ export default {
     },
     cancel() {
       this.title = "Cancelar orden";
-      this.message = "Estás seguro de que querés cancelar su orden? 😢";
+      this.message = "Estás seguro de que querés cancelar tu orden? 😢";
       this.buttonOkMsg = "Si, cancelar";
       this.buttonNoMsg = "No";
     },
