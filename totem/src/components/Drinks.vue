@@ -4,8 +4,8 @@
     <v-layout wrap>
       <v-flex xs2 v-for="(item, index) in items" :key="index">
         <v-content>
-          <v-card ripple>
-            <v-img :src="item.image"></v-img>
+          <v-card ripple height="300">
+            <v-img :src="item.image" class="image"></v-img>
             <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
               <v-btn dark fab absolute bottom right color="primary" @click="addDrink(item)">
@@ -58,10 +58,13 @@ export default {
 .drinks::-webkit-scrollbar-thumb {
   background-color: #999;
 }
+.image {
+  height: 90%;
+}
 .name {
   text-align: center;
   position: absolute;
-  bottom: 2px;
+  bottom: 30px;
   width: 100%;
   font-weight: bold;
   font-size: 1.2em;

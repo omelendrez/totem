@@ -22,9 +22,9 @@
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
       <div class="buttons">
-        <v-btn large round color="success" @click="cardPay">Pagar con tarjeta</v-btn>
-        <v-btn large round color="primary" @click="cashPay">Pagar en caja</v-btn>
-        <v-btn large round color="black" dark @click="cancel">Cancelar la orden</v-btn>
+        <v-btn large round color="primary" v-if="ccAllowed" @click="cardPay">💳 Pagar con tarjeta</v-btn>
+        <v-btn large round color="info" @click="cashPay">💰 Pagar en caja</v-btn>
+        <v-btn large round color="#ffc600" @click="cancel">👎 Cancelar la orden</v-btn>
       </div>
       <Confirm
         :title="title"
@@ -71,7 +71,8 @@ export default {
       title: "",
       message: "",
       buttonOkMsg: "",
-      buttonNoMsg: ""
+      buttonNoMsg: "",
+      ccAllowed: false
     };
   },
   methods: {
@@ -83,7 +84,7 @@ export default {
     },
     cancel() {
       this.title = "Cancelar orden";
-      this.message = "Estás seguro de que querés cancelar la orden?";
+      this.message = "Estás seguro de que querés cancelar tu orden? 😢";
       this.buttonOkMsg = "Si, cancelar";
       this.buttonNoMsg = "No";
     },
