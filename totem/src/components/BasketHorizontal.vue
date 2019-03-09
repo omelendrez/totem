@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="basket">
+  <v-container fluid class="basket" v-show="total>0">
     <v-toolbar color="info" dark>
       <v-icon class="amount">shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
@@ -9,7 +9,7 @@
     </v-toolbar>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <v-toolbar dark fixed color="#ffc600">
+        <v-toolbar dark fixed color="info">
           <v-btn icon dark @click="checkout = false">
             <v-icon>close</v-icon>
           </v-btn>

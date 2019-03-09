@@ -24,7 +24,7 @@
       <div class="buttons">
         <v-btn large round color="primary" v-if="ccAllowed" @click="cardPay">💳 Pagar con tarjeta</v-btn>
         <v-btn large round color="info" @click="cashPay">💰 Pagar en caja</v-btn>
-        <v-btn large round color="secondary" dark @click="cancel">👎 Cancelar la orden</v-btn>
+        <v-btn large round color="#ffc600" @click="cancel">👎 Cancelar la orden</v-btn>
       </div>
       <Confirm
         :title="title"
@@ -72,7 +72,7 @@ export default {
       message: "",
       buttonOkMsg: "",
       buttonNoMsg: "",
-      ccAllowed: true
+      ccAllowed: false
     };
   },
   methods: {
