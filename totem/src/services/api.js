@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios'
 
-const { CONFIG } = require("@/config");
-const HTTP = axios.create({ baseURL: CONFIG.url });
+const { CONFIG } = require('@/config')
+const HTTP = axios.create({ baseURL: CONFIG.backendServerUrl })
 
-export { HTTP as default };
+export { HTTP as default }
