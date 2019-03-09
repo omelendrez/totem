@@ -17,7 +17,7 @@ module.exports = {
     if (!isConnected) {
       res.status(404).send({
         error: true,
-        message: 'Atención!!! Impresora de tickets desconectada',
+        message: `Atención!!! Impresora de tickets desconectada 😧`,
         order,
         printerInterface
       })

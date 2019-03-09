@@ -34,7 +34,7 @@ export default {
       if (active) {
         setTimeout(() => {
           store.dispatch("resetError");
-        }, 3000);
+        }, 5000);
       }
     }
   }

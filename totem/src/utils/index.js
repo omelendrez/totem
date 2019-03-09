@@ -8,6 +8,8 @@ const startTimer = () => {
   timeoutId = window.setTimeout(doInactive, timeoutInMiliseconds)
 }
 const doInactive = () => {
+  store.dispatch('loadCategories')
+  store.dispatch('loadProducts')
   store.dispatch('resetTotem')
 }
 const resetTimer = () => {

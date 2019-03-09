@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="basket">
-    <v-toolbar color="#ccc">
+    <v-toolbar color="info" dark>
       <v-icon class="amount">shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
       <v-spacer></v-spacer>
-      <v-btn large color="success" round v-if="total>0" @click="checkout=true">Revisar la orden</v-btn>
-      <v-btn large color="black" dark round v-if="total>0" @click="cancel">Cancelar la orden</v-btn>
+      <v-btn large light round v-if="total>0" @click="checkout=true">Revisar la orden 🛒</v-btn>
+      <v-btn large light round v-if="total>0" @click="cancel">Cancelar la orden 👎</v-btn>
     </v-toolbar>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
@@ -15,7 +15,7 @@
           </v-btn>
           <v-toolbar-title>Checkout</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn light @click="checkout = false">Volver</v-btn>
+          <v-btn class="back-button" light @click="checkout = false">Volver</v-btn>
         </v-toolbar>
         <Checkout
           :items="items"
@@ -126,7 +126,7 @@ export default {
     },
     cancel() {
       this.title = "Cancelar orden";
-      this.message = "Estás seguro de que querés cancelar la orden? :anguished:";
+      this.message = "Estás seguro de que querés cancelar la orden?";
       this.buttonOkMsg = "Si, cancelar";
       this.buttonNoMsg = "No";
     },
@@ -159,6 +159,9 @@ export default {
 }
 button {
   font-size: 2em;
+}
+.back-button {
+  font-size: 1.5em;
 }
 .totalPrice {
   text-transform: uppercase;
