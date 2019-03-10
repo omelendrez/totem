@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+  font-family: Roboto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.header {
+  background-color: #ee3542;
+}
+
+.logo {
+  display: block;
+  height: 100px;
+}
+
+.view-title {
+  text-transform: uppercase;
+  width: 100%;
+  padding: 10px;
+  background-color: #ee3542;
+  color: #fff;
+}
+
+.order-number {
+  font-size: 5em;
+  font-weight: bold;
+}
