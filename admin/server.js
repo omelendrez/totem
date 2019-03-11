@@ -4,4 +4,4 @@ const app = express()
 app.use(serveStatic(__dirname + '/dist'))
 const port = process.env.PORT || 4000
 app.listen(port)
-console.log('server started ' + port) // eslint-disable-line no-console
+console.log('Listening on port ' + port) // eslint-disable-line no-console
