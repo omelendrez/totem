@@ -48,18 +48,6 @@ export const loadOrderItems = () => {
   })
 }
 
-export const loadOrderTurns = () => {
-  return new Promise((resolve, reject) => {
-    HTTP.get('orders/order_turns')
-      .then(resp => {
-        resolve(resp)
-      })
-      .catch(err => {
-        reject(err)
-      })
-  })
-}
-
 export const loadOrderData = orderId => {
   return new Promise((resolve, reject) => {
     HTTP.get(`orders/${orderId}`)

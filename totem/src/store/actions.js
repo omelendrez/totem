@@ -5,7 +5,6 @@ import {
   loadOrders,
   loadItems,
   loadOrderItems,
-  loadOrderTurns,
   loadOrderData,
   printOrder,
   changeOrderStatus,
@@ -107,16 +106,6 @@ const actions = {
     loadOrderItems()
       .then(resp => {
         commit('load_order_items_success', { orderItems: resp.data })
-      })
-      .catch(err => {
-        commit('request_error', handleError(err))
-      })
-  },
-  async loadOrderTurns({ commit }) {
-    commit('load_order_turns_request')
-    loadOrderTurns()
-      .then(resp => {
-        commit('load_order_turns_success', { orderTurns: resp.data })
       })
       .catch(err => {
         commit('request_error', handleError(err))

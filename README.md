@@ -11,8 +11,8 @@ The application is compossed of 3 apps:
 - **_Admin_** for front-end general features management
 - **_Client_** (deprecated) for customer purchase of products that will run on the kiosk/totem
 - **_Totem_** for customer products purchase. It will run on the kiosk/totem hardware. It replaces Client front-end app
+- **_Turns_** shows the current order under preparation and the done ones
 - **_Printer_** for tickets printing on different thermal printers
-
 
 ### RestFULL Back-end | Server app
 
@@ -27,6 +27,7 @@ The application is compossed of 3 apps:
 - axios
 - Vue Material
 - Webpack
+- Babel
 
 ### (Deprecated) Front-end for Kiosk | Client app
 
@@ -35,6 +36,7 @@ The application is compossed of 3 apps:
 - axios
 - Vue Material
 - Webpack
+- Babel
 
 ### Front-end for Kiosk | Client app
 
@@ -43,6 +45,15 @@ The application is compossed of 3 apps:
 - axios
 - Vuetify
 - Webpack
+- Babel
+
+### Front-end for Turns monitor | Turns app
+
+- React.js
+- axios
+- Bootstrap
+- Webpack
+- Babel
 
 ### Print server | Printer app
 
@@ -88,6 +99,14 @@ The application is compossed of 3 apps:
     `npm run serve`
 
     Totem app will run at port 8080
+
+  - Inside **turns** run:
+
+    `npm install`
+
+    `npm run start:dev`
+
+    Totem app will run at port 3006
 
   - Inside **printer** folder run:
 

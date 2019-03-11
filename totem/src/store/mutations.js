@@ -94,17 +94,6 @@ const mutations = {
       return item
     })
   },
-  load_order_turns_request(state) {},
-  load_order_turns_success(state, { orderTurns }) {
-    state.status = 'success'
-    state.orderTurns = orderTurns.map(item => {
-      item.order_number_formatted = item.order_number.substring(
-        item.order_number.length - 3,
-        item.order_number.length
-      )
-      return item
-    })
-  },
   load_order_data_request(state) {},
   load_order_data_success(state, { orderData }) {
     state.status = 'success'
