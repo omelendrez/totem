@@ -7,8 +7,8 @@ router.use(function(req, res, next) {
   console.log('%s %s %s', req.method, req.url, req.path)
   next()
 })
-router.get('/', totem.findAll)
 router.get('/:id', totem.findById)
+router.get('/', totem.findAll)
 router.post('/', totem.create)
 router.put('/:id', totem.changeStatus)
 
