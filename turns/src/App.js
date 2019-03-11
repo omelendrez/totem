@@ -29,7 +29,7 @@ class App extends Component {
   render() {
     const inProgress = this.state.turns.filter(item => item.status_id === 1)
     const completed = this.state.turns.filter(item => item.status_id === 2)
-    const logo = `${backendServer}/logo big fondo rojo.png`
+    const logo = `${backendServer}/logo.png`
     return (
       <div className="App row">
         <div className="col-sm-12 header">
