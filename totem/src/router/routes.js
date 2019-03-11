@@ -10,11 +10,6 @@ const routes = [
     component: 'Kitchen'
   },
   {
-    path: '/turnos',
-    name: 'Turns',
-    component: 'Turns'
-  },
-  {
     path: '/scanner',
     name: 'Scanner',
     component: 'Scanner'

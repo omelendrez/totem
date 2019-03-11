@@ -11,7 +11,6 @@ const state = {
   orders: [],
   items: [],
   orderItems: [],
-  orderTurns: [],
   orderData: [],
   printingOrder: '',
   changedOrder: null,
