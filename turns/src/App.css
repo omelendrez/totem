@@ -27,4 +27,11 @@
 .order-number {
   font-size: 5em;
   font-weight: bold;
+  display: inline-block;
+}
+
+.icon {
+  font-size: 2em;
+  display: inline-block;
+  vertical-align: text-bottom;
 }

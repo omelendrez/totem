@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Turns from './components/turns'
 import HTTP, { backendServer } from './config'
+import { icons } from './utils'
 import './App.css'
 
 class App extends Component {
@@ -35,11 +36,11 @@ class App extends Component {
           <img src={logo} alt="logo" className="logo" />
         </div>
         <div className="col-sm-6">
-          <Turns title="En Preparación" turns={inProgress} />
+          <Turns title="En Preparación" turns={inProgress} icon={icons.wait} />
         </div>
 
         <div className="col-sm-6">
-          <Turns title="Para retirar" turns={completed} />
+          <Turns title="Para retirar" turns={completed} icon={icons.done} />
         </div>
       </div>
     )
