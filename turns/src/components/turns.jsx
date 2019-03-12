@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Turn from './turn'
-class Turns extends Component {
-  render() {
-    const { title, turns, icon } = this.props
+const  Turns = ({ title, turns, icon }) =>  {
     return (
       <React.Fragment>
         <h1>
@@ -15,7 +13,6 @@ class Turns extends Component {
         </div>
       </React.Fragment>
     )
-  }
 }
 
 export default Turns
