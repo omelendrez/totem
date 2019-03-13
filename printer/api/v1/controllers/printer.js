@@ -77,7 +77,9 @@ module.exports = {
     const isConnected = await printer.isPrinterConnected()
     const resp = {
       error: !isConnected,
-      message: isConnected ? '' :  `Atención!!! Impresora de tickets desconectada 😧`,
+      message: isConnected
+        ? ''
+        : `Atención!!! Impresora de tickets desconectada`,
       order,
       printerInterface,
       printer: selectedPrinter
