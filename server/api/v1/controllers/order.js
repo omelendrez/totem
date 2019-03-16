@@ -56,7 +56,7 @@ module.exports = {
                     totem_id: totemId
                   })
                   .then(() => {
-                    res.json(201, {
+                    res.status(201).json({
                       orderId: order.id
                     })
                   })
@@ -83,7 +83,7 @@ module.exports = {
       ],
       attributes: ['order_number', 'total_price', 'status_id']
     })
-      .then(orders => res.json(200, orders))
+      .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
   },
 
@@ -95,7 +95,7 @@ module.exports = {
       order: [['id', 'asc']],
       attributes: ['order_number', 'total_price']
     })
-      .then(orders => res.json(200, orders))
+      .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
   },
 
@@ -109,7 +109,7 @@ module.exports = {
       order: [['updated_at', 'desc']],
       attributes: ['order_number', 'status_id', 'updated_at']
     })
-      .then(orders => res.json(200, orders))
+      .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
   },
 
@@ -136,7 +136,7 @@ module.exports = {
       ],
       attributes: ['id', 'product_name', 'kitchen_text', 'quantity']
     })
-      .then(items => res.json(200, items))
+      .then(items => res.status(200).json(items))
       .catch(error => res.status(400).send(error))
   },
 
@@ -165,7 +165,7 @@ module.exports = {
       ],
       attributes: ['order_number', 'total_price', 'status_id']
     })
-      .then(orders => res.json(200, orders))
+      .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
   },
 
@@ -208,7 +208,7 @@ module.exports = {
         'status_id'
       ]
     })
-      .then(orders => res.json(200, orders))
+      .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
   },
 
@@ -220,10 +220,10 @@ module.exports = {
     })
       .then(order =>
         order
-          ? res.json(200, order)
+          ? res.status(200).json(order)
           : res.status(404).json({
-              error: 'Not found'
-            })
+            error: 'Not found'
+          })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -253,11 +253,11 @@ module.exports = {
               payment_method: req.body.payment_method
             })
             .then(result => {
-              res.json(result)
+              res.status(200).json(result)
             })
         } else {
           order.update({ status_id: req.body.status_id }).then(result => {
-            res.json(result)
+            res.status(200).json(result)
           })
         }
       })
@@ -272,7 +272,7 @@ module.exports = {
     })
       .then(item =>
         item.update({ status_id: req.body.status_id }).then(result => {
-          res.json(result)
+          res.status(200).json(result)
         })
       )
       .catch(error => res.status(400).send(error))
@@ -286,7 +286,7 @@ module.exports = {
     })
       .then(order =>
         order.update({ order_printed: 1 }).then(result => {
-          res.json(result)
+          res.status(200).json(result)
         })
       )
       .catch(error => res.status(400).send(error))
@@ -300,7 +300,7 @@ module.exports = {
     })
       .then(order =>
         order.destroy().then(result => {
-          res.json(result)
+          res.status(200).json(result)
         })
       )
       .catch(error => res.status(400).send(error))

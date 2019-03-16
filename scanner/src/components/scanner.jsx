@@ -31,13 +31,15 @@ class Scanner extends Component {
     let order = await changeOrderStatus(this.state.orderId)
     let resp = await loadOrderData(order.id)
     order = resp.data[0]
-    order.printerId = 2 // Command printer
-    printOrder(order)
-      .then(resp => {
-        order = resp.data.order
-        setOrderPrinted(order.id).then(order => console.log(order))
-      })
-      .catch(err => printerError(err.response))
+    if (order.status_id === 1) {
+      order.printerId = 2 // Command printer
+      printOrder(order)
+        .then(resp => {
+          order = resp.data.order
+          setOrderPrinted(order.id).then(order => console.log(order))
+        })
+        .catch(err => printerError(err.response))
+    }
   }
 
   render() {

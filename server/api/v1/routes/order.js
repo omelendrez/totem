@@ -4,10 +4,6 @@ const printerError = require('../controllers/printer_error')
 const express = require('express')
 const router = express.Router()
 
-router.use(function(req, res, next) {
-  console.log('%s %s %s', req.method, req.url, req.path)
-  next()
-})
 router.post('/printer-error', printerError.create)
 router.post('/', order.create)
 router.get('/orders', order.findOrders)

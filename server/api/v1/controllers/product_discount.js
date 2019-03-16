@@ -32,7 +32,7 @@ module.exports = {
 
     con.connect(function(err) {
       con.query(query, (err, result, fields) => {
-        res.json(result)
+        res.status(200).json(result)
       })
     })
   },

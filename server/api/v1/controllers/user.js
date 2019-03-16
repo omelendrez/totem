@@ -43,7 +43,7 @@ module.exports = {
       ],
       attributes: ['id', 'user_name', 'full_name']
     })
-      .then(users => res.json(users))
+      .then(users => res.status(200).json(users))
       .catch(error => res.status(400).json(error))
   },
 
@@ -87,7 +87,7 @@ module.exports = {
       ]
     })
       .then(user =>
-        user ? res.json(user) : res.status(404).json({ error: 'Not found' })
+        user ? res.status(200).json(user) : res.status(404).json({ error: 'Not found' })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -102,7 +102,7 @@ module.exports = {
       .then(user => {
         bcrypt.compare(req.body.password, user.password).then(ok => {
           if (ok) {
-            res.json(user)
+            res.status(200).json(user)
           } else {
             res.status(401).json({ error: 'Unauthorized' })
           }
@@ -119,7 +119,7 @@ module.exports = {
     })
       .then(user =>
         user.destroy().then(result => {
-          res.json(result)
+          res.status(200).json(result)
         })
       )
       .catch(error => res.status(400).send(error))
@@ -140,7 +140,7 @@ module.exports = {
             status_id: status_id
           })
           .then(result => {
-            res.json(result)
+            res.status(200).json(result)
           })
       )
       .catch(error => res.status(400).send(error))

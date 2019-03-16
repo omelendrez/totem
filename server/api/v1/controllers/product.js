@@ -303,7 +303,7 @@ module.exports = {
           })
           .then(result => {
             update()
-            res.json(result)
+            res.status(200).json(result)
           })
       )
       .catch(error => res.status(400).send(error))

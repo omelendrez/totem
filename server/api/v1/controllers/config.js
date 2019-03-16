@@ -1,5 +1,5 @@
-"use strict"
-const Config = require("../models").config
+'use strict'
+const Config = require('../models').config
 
 module.exports = {
   update() {
@@ -12,7 +12,6 @@ module.exports = {
         .update({
           updates: 1
         })
-        .then(console.log("ok"))
         .catch(err => console.log(err))
     )
   },
@@ -35,7 +34,7 @@ module.exports = {
       where: {
         id: 1
       },
-      attributes: ["updates"]
+      attributes: ['updates']
     }).then(config => res.status(200).json(config))
   }
 }
