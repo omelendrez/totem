@@ -31,7 +31,7 @@ class Scanner extends Component {
     let order = await changeOrderStatus(this.state.orderId)
     let resp = await loadOrderData(order.id)
     order = resp.data[0]
-    order.printerId = 2
+    order.printerId = 2 // Command printer
     printOrder(order)
       .then(resp => {
         order = resp.data.order

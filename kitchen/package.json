@@ -1,5 +1,5 @@
 {
-  "name": "scanner",
+  "name": "kitchen",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start:dev": "set PORT=5010 && react-scripts start",
+    "start:dev": "set PORT=5020 && react-scripts start",
     "build": "react-scripts build",
     "start": "node server.js"
   },

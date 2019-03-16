@@ -119,7 +119,10 @@ module.exports = {
     OrderItems.findAll({
       order: [['id', 'asc']],
       where: {
-        status_id: 0
+        status_id: 0,
+        kitchen_text: {
+          [Op.ne]: ''
+        }
       },
       include: [
         {

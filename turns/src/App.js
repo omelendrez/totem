@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Turns from './components/turns'
-import HTTP, { backendServer } from './config'
+import { backendServer } from './config'
+import { loadTurns } from './services'
 import { icons } from './utils'
 import './App.css'
 
@@ -14,16 +15,11 @@ class App extends Component {
     this.loadData()
   }
 
-  loadData = () => {
-    HTTP.get('orders/order_turns')
-      .then(turns => {
-        this.setState({
-          turns: turns.data
-        })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  loadData = async () => {
+    let resp = await loadTurns()
+    this.setState({
+      turns: resp.data
+    })
   }
 
   render() {

@@ -1,0 +1,35 @@
+.App {
+  font-family: Roboto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.header {
+  background-color: #ee3542;
+}
+
+.logo {
+  display: block;
+  height: 100px;
+}
+
+.items {
+  margin-top: 10px;
+}
+
+.item {
+  font-size: 5em;
+  font-weight: bold;
+  width: 100%;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.item.active {
+  color: #fff;
+  background-color: #ee3542;
+}
