@@ -14,7 +14,7 @@ module.exports = {
     return Status.findAll({
       raw: true
     })
-      .then(status => res.json(status))
+      .then(status => res.status(200).json(status))
       .catch(error => res.status(400).json(error))
   }
 }
