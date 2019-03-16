@@ -1,3 +1,3 @@
-cd C:\webserver\totem\scanner
+cd C:\webserver\totem\kitchen
 nodemon
 
