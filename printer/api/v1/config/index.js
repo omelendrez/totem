@@ -14,19 +14,19 @@ const printers = [
     id: 1,
     name: 'Totem thermal printer',
     interface: 'tcp://192.168.100.85',
-    fiscal: false
+    isFiscal: false
   },
   {
     id: 2,
     name: 'Command thermal printer',
     interface: 'tcp://192.168.100.39',
-    fiscal: false
+    isFiscal: false
   },
   {
     id: 3,
-    name: 'Command fiscal printer',
+    name: 'Fiscal printer',
     interface: '???',
-    fiscal: true
+    isFiscal: true
   }
 ]
 

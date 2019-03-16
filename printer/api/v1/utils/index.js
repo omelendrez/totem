@@ -14,7 +14,7 @@ export const initPrinter = printerId => {
 
 export const printHeader = async (printer, order) => {
   const selectedPrinter = await config.getPrinter(printerId)
-  const isFiscal = selectedPrinter.fiscal
+  const isFiscal = selectedPrinter.isFiscal
   printer.alignCenter()
   if (!isFiscal) {
     await printer.printImage(`${__dirname}/../assets/logo.png`)
