@@ -122,6 +122,9 @@ const mutations = {
   load_totem_status_request(state) {},
   load_totem_status_success(state, totem) {
     state.totem = totem
+  },
+  set_cc_status(state, status) {
+    state.ccStatus = status
   }
 }
 

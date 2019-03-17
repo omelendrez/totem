@@ -171,6 +171,9 @@ const actions = {
   },
   async resetError({ commit }) {
     commit('reset_error')
+  },
+  async setCCStatus ({ commit }, status) {
+    commit('set_cc_status', status)
   }
 }
 

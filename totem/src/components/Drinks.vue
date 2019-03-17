@@ -81,7 +81,7 @@ export default {
   font-weight: bold;
   border-radius: 6px;
   color: #fff;
-  background-color: deepskyblue;
+  background-color: brown;
   z-index: 1;
 }
 </style>

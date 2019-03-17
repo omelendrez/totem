@@ -65,7 +65,7 @@ export default {
       );
     }
   },
-  created() {
+  mounted() {
     this.items = this.products;
   }
 };

@@ -72,7 +72,7 @@ export default {
       message: "",
       buttonOkMsg: "",
       buttonNoMsg: "",
-      ccAllowed: false
+      ccAllowed: true
     };
   },
   methods: {

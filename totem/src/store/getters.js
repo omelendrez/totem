@@ -14,7 +14,8 @@ const getters = {
   orderData: state => state.orderData,
   printingOrder: state => state.printingOrder,
   changedOrder: state => state.changedOrder,
-  printedOrder: state => state.printedOrder
+  printedOrder: state => state.printedOrder,
+  ccStatus: state => state.ccStatus
 }
 
 export default getters
