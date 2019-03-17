@@ -14,14 +14,22 @@ class Scanner extends Component {
   }
 
   componentDidMount() {
-    this.orderId.focus()
+    document.addEventListener('mousemove', () => this.orderId.focus(), false)
+    document.addEventListener('mousedown', () => this.orderId.focus(), false)
+    document.addEventListener('click', () => this.orderId.focus(), false)
+    document.addEventListener('keypress', () => this.orderId.focus(), false)
+    document.addEventListener('touchmove', () => this.orderId.focus(), false)
   }
+
   handleChange = event => {
-    this.setState({ orderId: event.target.value })
+    const { value } = event.target
+    if (!value.match(/^\d+$/)) return
+    this.setState({ orderId: value })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+    if (!this.state.orderId) return
     this.processOrder()
     this.setState({ orderId: '' })
     this.orderId.focus()
@@ -50,6 +58,7 @@ class Scanner extends Component {
         </h1>
         <form onSubmit={this.handleSubmit} className="scanner-form  col-sm-4">
           <input
+            autoFocus
             type="text"
             className="form-control"
             onChange={this.handleChange}
