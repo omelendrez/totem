@@ -34,6 +34,7 @@
       :button-no-msg="buttonNoMsg"
     />
     <Processing :message="action"/>
+    <CCPayment/>
   </v-container>
 </template>
 
@@ -42,13 +43,15 @@ import store from "@/store";
 import Checkout from "@/components/Checkout";
 import Confirm from "@/components/Confirm";
 import Processing from "@/components/Processing";
+import CCPayment from "@/components/CCPayment";
 export default {
   name: "Basket",
   store,
   components: {
     Checkout,
     Confirm,
-    Processing
+    Processing,
+    CCPayment
   },
   props: {
     basket: {
@@ -73,7 +76,8 @@ export default {
       message: "",
       buttonOkMsg: "",
       buttonNoMsg: "",
-      action: ""
+      action: "",
+      showCCPayment: false
     };
   },
   computed: {
@@ -90,13 +94,11 @@ export default {
   watch: {
     basket() {
       let total = 0;
-      const basket = [];
-      this.basket.map(item => {
-        let itm = item;
-        itm.quantity = 1;
-        itm.totalPrice = parseFloat(itm.price).toString();
-        basket.push(itm);
-        total += parseFloat(itm.price);
+      const basket = this.basket.map(item => {
+        item.quantity = 1;
+        item.totalPrice = parseFloat(item.price).toString();
+        total += parseFloat(item.price);
+        return item;
       });
       this.items = basket;
       this.total = total;
@@ -119,8 +121,7 @@ export default {
     }
   },
   methods: {
-    doRemove(product) {
-      const id = product.id;
+    doRemove({ id }) {
       const basketIndex = this.basket.findIndex(item => item.id === id);
       this.remove(basketIndex);
     },
@@ -139,7 +140,7 @@ export default {
       store.dispatch("saveOrder", this.items);
     },
     doPayCC() {
-      console.log("cc");
+      store.dispatch("setCCStatus", 0);
     },
     printOrder(order) {
       order.printerId = 1;

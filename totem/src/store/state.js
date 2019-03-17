@@ -14,7 +14,8 @@ const state = {
   orderData: [],
   printingOrder: '',
   changedOrder: null,
-  printedOrder: null
+  printedOrder: null,
+  ccStatus: -1
 }
 
 export default state
