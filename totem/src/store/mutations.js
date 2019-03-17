@@ -43,6 +43,7 @@ const mutations = {
     let basket = state.basket
     if (index === -1) {
       basket = []
+      state.ccStatus = 3
     } else {
       basket.splice(index, 1)
     }

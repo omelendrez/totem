@@ -67,8 +67,9 @@ export default {
           break;
         case 4:
           this.showStart = true;
-          this.message =
-            "Lo sentimos!!! Ha ocurrido un error intentando procesar su pago 😧. Presione Comenzar para intentar de nuevo o Cancelar para salir";
+          this.message = `Lo sentimos!!!
+            Ha ocurrido un error intentando procesar su pago 😧.
+            Presione Comenzar para intentar de nuevo o Cancelar para salir`;
           break;
       }
     }
