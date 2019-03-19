@@ -3,10 +3,7 @@ import servers from '../config'
 export const changeOrderStatus = orderId => {
   return new Promise((resolve, reject) => {
     servers.databaseServer
-      .put(`orders/${orderId}`, {
-        status_id: 1,
-        payment_method: 2
-      })
+      .put(`orders/${orderId}`)
       .then(resp => {
         resolve(resp.data)
       })

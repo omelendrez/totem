@@ -1,8 +1,8 @@
 import HTTP2 from './printerAPI'
 
-export const printOrder = orderData => {
+export const printOrder = order => {
   return new Promise((resolve, reject) => {
-    HTTP2.post(`/${orderData.printerId}`, { orderData })
+    HTTP2.post(`/${order.printerId}`, { order })
       .then(resp => {
         resolve(resp)
       })

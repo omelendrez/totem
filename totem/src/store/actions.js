@@ -70,12 +70,12 @@ const actions = {
   async selectCategory({ commit }, item) {
     commit('select_category', { item })
   },
-  async saveOrder({ commit }, basket) {
+  async saveOrder({ commit }, order) {
     commit('save_order_request')
-    basket.map(item => (item.totemId = totemId))
-    saveOrder(basket)
+    order.totemId = totemId
+    saveOrder(order)
       .then(resp => {
-        commit('save_order_success', { order: resp.data })
+        commit('save_order_success', resp.data)
       })
       .catch(err => {
         commit('request_error', handleError(err))
@@ -138,7 +138,7 @@ const actions = {
     commit('load_order_data_request')
     loadOrderData(orderId)
       .then(resp => {
-        commit('load_order_data_success', { orderData: resp.data })
+        commit('load_order_data_success', { order: resp.data })
       })
       .catch(err => {
         commit('request_error', handleError(err))
@@ -172,7 +172,7 @@ const actions = {
   async resetError({ commit }) {
     commit('reset_error')
   },
-  async setCCStatus ({ commit }, status) {
+  async setCCStatus({ commit }, status) {
     commit('set_cc_status', status)
   }
 }
