@@ -8,15 +8,13 @@ const Op = sequelize.Op
  * status_id
  * 0 - Created - Payment pending
  * 1 - Paid - Kitchen and Counter to prepare
- * 2 - Food ready - Kitchen finished / Counter to finalize
- * 3 - Ready for collection
- * 4 - Collected
+ * 2 - Food ready for collection
  */
 
 module.exports = {
   create(req, res) {
     var order_number = ('0'.repeat(5) + (1).toString()).slice(-5)
-    const items = req.body.basket
+    const { items, paymentMethod, statusId, totemId } = req.body.order
     const data = []
     let total_order = 0
 
@@ -24,13 +22,13 @@ module.exports = {
       .then(max => {
         order_number = ('0'.repeat(5) + (Number(max) + 1).toString()).slice(-5)
         Order.create({
-          order_number
+          order_number,
+          payment_method: paymentMethod,
+          status_id: statusId,
+          totem_id: totemId
         })
           .then(order => {
             const orderId = order.id
-            order_number = order.order_number
-            let totemId = 0
-
             items.map(item => {
               data.push({
                 order_id: orderId,
@@ -45,20 +43,16 @@ module.exports = {
                 net_price: item.totalPrice
               })
               total_order = total_order + parseFloat(item.totalPrice)
-              totemId = item.totemId
             })
             OrderItems.bulkCreate(data).then(() => {
               Order.findOne({ where: { id: orderId } }).then(order => {
                 order
                   .update({
                     total_price: total_order,
-                    net_price: total_order,
-                    totem_id: totemId
+                    net_price: total_order
                   })
-                  .then(() => {
-                    res.status(201).json({
-                      orderId: order.id
-                    })
+                  .then(order => {
+                    res.status(201).json(order)
                   })
               })
             })
@@ -172,7 +166,7 @@ module.exports = {
   findById(req, res) {
     OrderItems.belongsTo(Order)
     Order.hasMany(OrderItems)
-    Order.findAll({
+    Order.findOne({
       where: {
         id: req.params.id
       },
@@ -205,10 +199,12 @@ module.exports = {
           ),
           'time'
         ],
-        'status_id'
+        'status_id',
+        'payment_method',
+        'order_printed'
       ]
     })
-      .then(orders => res.status(200).json(orders))
+      .then(order => res.status(200).json(order))
       .catch(error => res.status(400).send(error))
   },
 
@@ -235,31 +231,10 @@ module.exports = {
       }
     })
       .then(order => {
-        if (req.body.payment_method) {
-          let status_id = 0
-          switch (order.status_id) {
-            case 0:
-              status_id = 1
-              break
-            case 1:
-              status_id = 2
-              break
-            default:
-              status_id = 2
-          }
-          order
-            .update({
-              status_id: status_id,
-              payment_method: req.body.payment_method
-            })
-            .then(result => {
-              res.status(200).json(result)
-            })
-        } else {
-          order.update({ status_id: req.body.status_id }).then(result => {
-            res.status(200).json(result)
-          })
-        }
+        const statusId = order.status_id === 0 ? 1 : 2
+        order.update({ status_id: statusId }).then(result => {
+          res.status(200).json(result)
+        })
       })
       .catch(error => res.status(400).send(error))
   },

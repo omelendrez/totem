@@ -4,7 +4,7 @@
       <v-card height="400">
         <v-card-title primary-title class="headline error white--text">💳 Pagando con tarjeta</v-card-title>
         <v-card-text class="headline">
-          <div class="message">{{message}}</div>
+          <pre class="message">{{message}}</pre>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -23,6 +23,11 @@ import { activateCCReader } from "@/external";
 export default {
   name: "CCPayment",
   store,
+  props: {
+    items: {
+      type: Array
+    }
+  },
   data() {
     return {
       showStart: true,
@@ -43,19 +48,29 @@ export default {
         case 0:
           this.showStart = true;
           this.buttonMessage = "Cancelar";
-          this.message =
-            "Pase su tarjeta por el lector de tarjetas ubicado debajo de esta pantalla y presione el botón azul para Comenzar o Cancelar para elegir otro medio de pago";
+          this.message = `Presione el botón Comenzar y luego pase su tarjeta
+por el lector de tarjetas ubicado debajo de esta pantalla
+
+... o presione Cancelar para elegir otro medio de pago`;
           this.dialog = true;
           break;
         case 1:
           this.showStart = false;
           this.message = "Procesando pago...";
           activateCCReader()
-            .then(result => store.dispatch("setCCStatus", 2))
-            .catch(err => store.dispatch("setCCStatus", 4));
+            .then(() => {
+              const order = {
+                statusId: 1,
+                paymentMethod: 1,
+                items: this.items
+              };
+              store.dispatch("saveOrder", order);
+            })
+            .catch(() => {
+              store.dispatch("setCCStatus", 4);
+            });
           break;
         case 2:
-          store.dispatch("remove", -1);
           this.message = "Pago completado con éxito 👍";
           this.buttonMessage = "Cerrar";
           setTimeout(() => {
@@ -67,8 +82,10 @@ export default {
           break;
         case 4:
           this.showStart = true;
-          this.message =
-            "Lo sentimos!!! Ha ocurrido un error intentando procesar su pago 😧. Presione Comenzar para intentar de nuevo o Cancelar para salir";
+          this.message = `Lo sentimos!!!
+Ha ocurrido un error intentando procesar su pago 😧
+Presione Comenzar para intentar de nuevo
+o Cancelar para elegir otro medio de pago`;
           break;
       }
     }
@@ -86,6 +103,12 @@ export default {
 <style scoped>
 .message {
   text-align: center;
+  font-size: 0.8em;
+  font-family: Roboto;
   height: 240px;
+}
+.order-number {
+  font-size: 3em;
+  font-weight: bold;
 }
 </style>

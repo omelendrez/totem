@@ -7,7 +7,7 @@ const state = {
   basket: [],
   product: null,
   selectedCategory: null,
-  order: null,
+  order: {},
   orders: [],
   items: [],
   orderItems: [],

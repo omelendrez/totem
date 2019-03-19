@@ -1,8 +1,8 @@
 import HTTP from './api'
 
-export const saveOrder = basket => {
+export const saveOrder = order => {
   return new Promise((resolve, reject) => {
-    HTTP.post('orders', { basket })
+    HTTP.post('orders', { order })
       .then(resp => {
         resolve(resp)
       })
@@ -62,10 +62,7 @@ export const loadOrderData = orderId => {
 
 export const changeOrderStatus = data => {
   return new Promise((resolve, reject) => {
-    HTTP.put(`orders/${data.orderId}`, {
-      status_id: data.statusId,
-      payment_method: data.paymentMethod ? data.paymentMethod : null
-    })
+    HTTP.put(`orders/${data.orderId}`)
       .then(resp => {
         resolve(resp)
       })

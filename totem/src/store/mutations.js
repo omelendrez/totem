@@ -43,6 +43,7 @@ const mutations = {
     let basket = state.basket
     if (index === -1) {
       basket = []
+      state.ccStatus = 3
     } else {
       basket.splice(index, 1)
     }
@@ -55,7 +56,7 @@ const mutations = {
     state.status = 'loading'
     state.order = null
   },
-  save_order_success(state, { order }) {
+  save_order_success(state, order) {
     state.status = 'success'
     state.order = order
     state.basket = []
@@ -95,9 +96,9 @@ const mutations = {
     })
   },
   load_order_data_request(state) {},
-  load_order_data_success(state, { orderData }) {
+  load_order_data_success(state, { order }) {
     state.status = 'success'
-    state.orderData = orderData
+    state.orderData = order
   },
   change_order_status_request(state) {},
   change_order_status_success(state, order) {
@@ -112,8 +113,8 @@ const mutations = {
     state.order = {}
     state.product = {}
   },
-  print_order_data_request(state, orderData) {
-    state.printingOrder = orderData.order_number
+  print_order_data_request(state, order) {
+    state.printingOrder = order.order_number
   },
   print_order_data_success(state, order) {
     state.printingOrder = ''

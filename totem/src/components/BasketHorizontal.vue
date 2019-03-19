@@ -34,7 +34,7 @@
       :button-no-msg="buttonNoMsg"
     />
     <Processing :message="action"/>
-    <CCPayment/>
+    <CCPayment :items="items"/>
   </v-container>
 </template>
 
@@ -107,12 +107,29 @@ export default {
       }
     },
     order() {
-      if (this.order && this.order.orderId) {
-        store.dispatch("loadOrderData", this.order.orderId);
+      if (this.order && this.order.id) {
+        store.dispatch("loadOrderData", this.order.id);
       }
     },
     orderData() {
-      this.printOrder(this.orderData[0]);
+      const order = this.orderData;
+      if (order.payment_method === 1 && order.status_id === 1) {
+        // CC new order
+        order.printerId = 1; // Totem ticket printer
+        store.dispatch("printOrder", order);
+
+        order.printerId = 2; // Command printer
+        store.dispatch("printOrder", order);
+
+        order.printerId = 3; // Fiscal printer
+        store.dispatch("printOrder", order);
+        store.dispatch("setCCStatus", 2);
+      }
+      if (order.payment_method === 2 && order.status_id === 0) {
+        // CASHIER new order
+        order.printerId = 1; // Totem ticket printer
+        store.dispatch("printOrder", order);
+      }
     },
     printingOrder() {
       this.action = this.printingOrder
@@ -137,14 +154,15 @@ export default {
       this.remove(-1);
     },
     doPayCash() {
-      store.dispatch("saveOrder", this.items);
+      const order = {
+        statusId: 0,
+        paymentMethod: 2,
+        items: this.items
+      };
+      store.dispatch("saveOrder", order);
     },
     doPayCC() {
       store.dispatch("setCCStatus", 0);
-    },
-    printOrder(order) {
-      order.printerId = 1;
-      store.dispatch("printOrder", order);
     }
   }
 };
