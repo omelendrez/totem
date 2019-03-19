@@ -19,7 +19,6 @@
 <script>
 import store from "@/store";
 import { activateCCReader } from "@/external";
-import { saveOrder, changeOrderStatus } from "@/services";
 
 export default {
   name: "CCPayment",
