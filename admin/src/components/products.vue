@@ -34,7 +34,7 @@
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in products" :key="rowIndex" :md-item="row">
               <md-table-cell>
-                <md-image height="60px" :md-src="`${backendURL}${row.image}`"></md-image>
+                <md-image height="60px" :md-src="`${backendURL.images}${row.image}`"></md-image>
               </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.price}}</md-table-cell>
