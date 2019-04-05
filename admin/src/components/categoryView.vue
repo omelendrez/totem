@@ -1,72 +1,67 @@
 <template>
   <div class="categoryView">
-
     <md-toolbar class="md-primary">
       <span class="md-title">{{category.name}}</span>
     </md-toolbar>
 
     <md-layout md-align="center">
-
       <md-card class="category-card">
         <md-card-area md-inset>
-
-          <md-card-media>
+          <md-card-media v-on:click.native="showUpload">
             <md-image :md-src="category.image"></md-image>
           </md-card-media>
-
+          <md-card-content>
+            <Upload :execute="back" v-show="upload"/>
+          </md-card-content>
           <md-card-header>
-            <div class="md-title">
-              {{category.name}}
-            </div>
+            <div class="md-title">{{category.name}}</div>
           </md-card-header>
 
           <md-card-content>
-            <div class="md-subhead">
-              Info
-            </div>
-            <div v-if="this.category.status">
-              Status: {{category.status.name}}
-            </div>
-            <div>
-              Creado: {{category.created_at}}
-            </div>
-            <div>
-              Modificado: {{category.updated_at}}
-            </div>
+            <div class="md-subhead">Info</div>
+            <div v-if="this.category.status">Status: {{category.status.name}}</div>
+            <div>Creado: {{category.created_at}}</div>
+            <div>Modificado: {{category.updated_at}}</div>
           </md-card-content>
-
         </md-card-area>
 
         <md-card-actions>
-          <md-button class="md-accent md-raised" v-on:click.native="editCategory(category.id)">Editar</md-button>
+          <md-button
+            class="md-accent md-raised"
+            v-on:click.native="editCategory(category.id)"
+          >Editar</md-button>
           <md-button class="md-primary md-raised" v-on:click.native="back()">Volver</md-button>
         </md-card-actions>
-
       </md-card>
-
     </md-layout>
   </div>
 </template>
 
 <script>
+import Upload from "./upload";
 import HTTP from "./http-common";
+import backendURL from "./../config";
 
 export default {
   name: "categoryView",
+  components: {
+    Upload
+  },
   data() {
     return {
-      category: {}
+      category: {},
+      upload: false
     };
   },
   methods: {
     fetchCategory(id) {
       HTTP.get(`categories/${id}`)
-        .then((res) => {
+        .then(res => {
           const category = res.data;
-          category.image = `http://totem-be:3000/${category.image}`;
+          category.image = `${backendURL.images}${category.image}`;
           this.category = category;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -75,9 +70,12 @@ export default {
     },
     back() {
       this.$router.push({ name: "Categories" });
+    },
+    showUpload() {
+      this.upload = true;
     }
   },
-  created() {
+  mounted() {
     this.fetchCategory(this.$route.params.id);
     this.$root.$data.last_call = "categoryView";
   }
@@ -89,11 +87,10 @@ export default {
 .category-card {
   margin: 20px;
   padding: 20px;
-  width: 20%;
+  width: 30%;
 }
 
 .md-image {
   width: 50% !important;
 }
-
 </style>

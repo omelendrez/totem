@@ -13,6 +13,8 @@ The application is compossed of 3 apps:
 - **_Totem_** for customer products purchase. It will run on the kiosk/totem hardware. It replaces Client front-end app
 - **_Turns_** shows the current order under preparation and the done ones
 - **_Printer_** for tickets printing on different thermal printers
+- **_Assets_** for management of totem assets
+
 
 ### RestFULL Back-end | Server app
 
@@ -60,6 +62,12 @@ The application is compossed of 3 apps:
 - Node
 - Express
 - node-thermal-printer
+
+### Assets server | Assets app
+
+- Node
+- Express
+- multer
 
 ## Instructions to run the system
 
@@ -115,5 +123,13 @@ The application is compossed of 3 apps:
     `nodemon`
 
     Print server will run at port 9000
+
+  - Inside **assets-server** folder run:
+
+    `npm install`
+
+    `nodemon`
+
+    Assets server will run at port 3010
 
 [![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)
