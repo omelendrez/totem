@@ -11,7 +11,7 @@
             <md-image :md-src="category.image"></md-image>
           </md-card-media>
           <md-card-content>
-            <Upload :fileName="fileName" v-show="upload"/>
+            <Upload :execute="back" v-show="upload"/>
           </md-card-content>
           <md-card-header>
             <div class="md-title">{{category.name}}</div>
@@ -50,8 +50,7 @@ export default {
   data() {
     return {
       category: {},
-      upload: false,
-      fileName: null
+      upload: false
     };
   },
   methods: {
@@ -61,7 +60,6 @@ export default {
           const category = res.data;
           category.image = `${backendURL.images}${category.image}`;
           this.category = category;
-          this.fileName = `c_${category.id.toString(16)}`;
         })
         .catch(err => {
           console.log(err);

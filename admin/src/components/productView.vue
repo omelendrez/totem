@@ -11,7 +11,7 @@
             <md-image :md-src="product.image"></md-image>
           </md-card-media>
           <md-card-content>
-            <Upload :fileName="fileName" v-show="upload"/>
+            <Upload :execute="back" v-show="upload"/>
           </md-card-content>
           <md-card-header>
             <div class="md-subhead" v-if="product.category">{{product.category.name}}</div>
@@ -59,8 +59,7 @@ export default {
         image: ""
       },
       discounts: {},
-      upload: false,
-      fileName: null
+      upload: false
     };
   },
   methods: {
@@ -70,7 +69,6 @@ export default {
           const product = res.data;
           product.image = `${backendURL.images}${product.image}`;
           this.product = product;
-          this.fileName = `c_${product.id.toString(16)}`;
         })
         .catch(err => {
           console.log(err);

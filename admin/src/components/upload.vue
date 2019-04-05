@@ -19,8 +19,8 @@ export default {
     };
   },
   props: {
-    fileName: {
-      type: String
+    execute: {
+      type: Function
     }
   },
   methods: {
@@ -30,14 +30,13 @@ export default {
     submitFile() {
       const formData = new FormData();
       formData.append("file", this.file);
-      formData.append("fileName", this.fileName);
-      HTTP.post(`${backendURL.images}/image`, formData, {
+      HTTP.post(`${backendURL.images}image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       })
         .then(() => {
-          console.log("SUCCESS!!");
+          this.execute();
         })
         .catch(() => {
           console.log("FAILURE!!");
