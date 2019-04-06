@@ -78,11 +78,19 @@ export default {
     showUpload() {
       this.upload = true;
     },
-    refreshUploaded() {
+    refreshUploaded(fileName) {
+      const payload = {
+        fileName
+      };
+      const id = this.category.id;
       this.image = null;
-      setTimeout(() => {
-        this.image = this.category.image;
-      }, 200);
+      HTTP.put(`categories/image/${id}`, payload)
+        .then(() => {
+          this.image = `${backendURL.images}${fileName}`;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   mounted() {

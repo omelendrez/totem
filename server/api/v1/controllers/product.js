@@ -308,17 +308,22 @@ module.exports = {
       )
       .catch(error => res.status(400).send(error))
   },
-
-  upload(req, res) {
-    if (!req.files) {
-      return res.status(400).send('No files were uploaded.')
-    }
-    const imageFile = req.files.imageFile
-    imageFile.mv('/somewhere/on/your/server/filename.jpg', err => {
-      if (err) {
-        return res.status(500).send(err)
+  updateImage(req, res) {
+    const { fileName } = req.body
+    return Product.findOne({
+      where: {
+        id: req.params.id
       }
-      res.status(201)
     })
+      .then(product =>
+        product
+          .update({
+            image: fileName
+          })
+          .then(product => {
+            res.status(200).json(product)
+          })
+      )
+      .catch(error => res.status(400).send(error))
   }
 }

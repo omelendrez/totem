@@ -68,7 +68,7 @@ export default {
           const product = res.data;
           product.image = `${backendURL.images}${product.image}`;
           this.product = product;
-          this.fileName = `c_${product.id.toString(16)}`;
+          this.fileName = `p_${product.id.toString(16)}`;
           this.image = product.image;
         })
         .catch(err => {
@@ -85,11 +85,19 @@ export default {
     showUpload() {
       this.upload = true;
     },
-    refreshUploaded() {
+    refreshUploaded(fileName) {
+      const payload = {
+        fileName
+      };
+      const id = this.product.id;
       this.image = null;
-      setTimeout(() => {
-        this.image = this.product.image;
-      }, 200);
+      HTTP.put(`products/image/${id}`, payload)
+        .then(() => {
+          this.image = `${backendURL.images}${fileName}`;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   mounted() {

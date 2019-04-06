@@ -137,8 +137,8 @@ module.exports = {
         category
           ? res.status(200).json(category)
           : res.status(404).json({
-              error: 'Not found'
-            })
+            error: 'Not found'
+          })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -176,6 +176,24 @@ module.exports = {
           .then(result => {
             update()
             res.status(200).json(result)
+          })
+      )
+      .catch(error => res.status(400).send(error))
+  },
+  updateImage(req, res) {
+    const { fileName } = req.body
+    return Category.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(category =>
+        category
+          .update({
+            image: fileName
+          })
+          .then(category => {
+            res.status(200).json(category)
           })
       )
       .catch(error => res.status(400).send(error))

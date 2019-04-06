@@ -53,17 +53,18 @@ export default {
       this.error = false;
       if (this.fileEmpty) return;
       const formData = new FormData();
-      formData.append("file", this.selectedFile);
       formData.append("fileName", this.fileName);
+      formData.append("file", this.selectedFile);
       HTTP.post(`${backendURL.images}image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       })
-        .then(() => {
+        .then(res => {
+          const fileName = res.data.fileName;
           this.file = null;
           this.selectedFile = null;
-          this.execute();
+          this.execute(fileName);
         })
         .catch(() => {
           this.error = true;

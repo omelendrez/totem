@@ -59,7 +59,7 @@
               <md-table-cell>
                 <md-button
                   class="md-icon-button md-default md-raised"
-                  v-on:click.native="openDialog('confirmDelete', row.id, row.name)"
+                  v-on:click.native="openCofirmDialog('confirmDelete', row.id, row.name)"
                 >
                   <md-icon>delete</md-icon>
                 </md-button>
@@ -87,7 +87,7 @@
       :md-content="confirm.content"
       :md-ok-text="confirm.ok"
       :md-cancel-text="confirm.cancel"
-      @close="onClose"
+      @close="onCofirmClose"
       ref="confirmDelete"
     ></md-dialog-confirm>
   </div>
@@ -124,12 +124,13 @@ export default {
   },
   methods: {
     fetchProducts() {
-      HTTP.get(
-        `products?page=${this.pag.page}&size=${this.pag.size}&sort=${
-          this.sort.name
-        }&type=${this.sort.type}&filter=${this.filter}`
-      )
+      this.getParams();
+      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${
+        this.sort.name
+      }&type=${this.sort.type}&filter=${this.filter}`;
+      HTTP.get(url)
         .then(res => {
+          this.storeParams();
           const { rows, count } = res.data;
           this.products = rows;
           this.totalRows = count;
@@ -160,23 +161,40 @@ export default {
           console.log(err);
         });
     },
-    openDialog(ref, id, name) {
+    openCofirmDialog(ref, id, name) {
       this.confirm.title = name;
       this.$refs[ref].open();
       this.record_id = id;
     },
-    onClose(type) {
+    onCofirmClose(type) {
       if (type === "ok") {
         this.deleteProduct(this.record_id);
       }
     },
     onPagination(pag) {
+      localStorage.removeItem("params");
       this.pag = pag;
       this.fetchProducts();
     },
     onSort(sort) {
+      localStorage.removeItem("params");
       this.sort = sort;
       this.fetchProducts();
+    },
+    storeParams() {
+      const params = {
+        pag: this.pag,
+        sort: this.sort,
+        filter: this.filter
+      };
+      localStorage.setItem("params", JSON.stringify(params));
+    },
+    getParams() {
+      if (!localStorage.getItem("params")) return;
+      const params = JSON.parse(localStorage.getItem("params"));
+      this.pag = params.pag;
+      this.sort = params.sort;
+      this.filter = params.filter;
     }
   },
   created() {

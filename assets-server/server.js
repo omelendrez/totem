@@ -7,8 +7,9 @@ var storage = multer.diskStorage({
     cb(null, 'images')
   },
   filename: function (req, file, cb) {
-    console.log('storage - req.body', req.body)
-    cb(null, file.originalname)
+    const fileNameStructure = file.originalname.split('.')
+    const extension = fileNameStructure[fileNameStructure.length - 1]
+    cb(null, req.body.fileName + '.' + extension)
   }
 })
 const upload = multer({ storage })
@@ -29,9 +30,8 @@ app.use((req, res, next) => {
 })
 
 app.post('/image', upload.single('file'), function (req, res, next) {
-  console.log('post - req.body', req.body)
   const fileName = req.file.filename
-  res.status(200).json(fileName)
+  res.status(200).json({ fileName })
 })
 
 app.use(express.static('images'))
