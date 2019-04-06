@@ -8,10 +8,10 @@
       <md-card class="product-card">
         <md-card-area md-inset>
           <md-card-media v-on:click.native="showUpload">
-            <md-image :md-src="product.image"></md-image>
+            <md-image :md-src="image"></md-image>
           </md-card-media>
           <md-card-content>
-            <Upload :execute="back" v-show="upload"/>
+            <Upload :fileName="fileName" :execute="refreshUploaded" v-show="upload"/>
           </md-card-content>
           <md-card-header>
             <div class="md-subhead" v-if="product.category">{{product.category.name}}</div>
@@ -54,12 +54,11 @@ export default {
   },
   data() {
     return {
-      product: {
-        name: "",
-        image: ""
-      },
+      product: {},
       discounts: {},
-      upload: false
+      upload: false,
+      fileName: null,
+      image: null
     };
   },
   methods: {
@@ -69,6 +68,8 @@ export default {
           const product = res.data;
           product.image = `${backendURL.images}${product.image}`;
           this.product = product;
+          this.fileName = `c_${product.id.toString(16)}`;
+          this.image = product.image;
         })
         .catch(err => {
           console.log(err);
@@ -83,6 +84,12 @@ export default {
     },
     showUpload() {
       this.upload = true;
+    },
+    refreshUploaded() {
+      this.image = null;
+      setTimeout(() => {
+        this.image = this.product.image;
+      }, 200);
     }
   },
   mounted() {

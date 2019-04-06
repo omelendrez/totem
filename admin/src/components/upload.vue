@@ -1,8 +1,19 @@
 <template>
   <md-input-container>
     <form novalidate>
-      <input type="file" ref="file" class="file" v-on:change="handleFileChange">
-      <md-button class="md-primary md-raised" v-on:click.native="submitFile">Upload</md-button>
+      <md-file
+        v-model="file"
+        ref="file"
+        accept="image/*"
+        placeholder="Seleccioná una imagen"
+        v-on:selected="handleFileChange($event)"
+      ></md-file>
+      <md-button
+        class="md-primary md-raised"
+        :disabled="fileEmpty"
+        v-on:click.native="submitFile"
+      >Upload</md-button>
+      <div v-show="error" class="error">Ha ocurrido un error intentando subir la imagen seleccionada</div>
     </form>
   </md-input-container>
 </template>
@@ -15,31 +26,47 @@ export default {
   name: "Upload",
   data() {
     return {
-      file: null
+      file: null,
+      selectedFile: null,
+      fileEmpty: true,
+      error: false
     };
   },
   props: {
     execute: {
       type: Function
+    },
+    fileName: {
+      type: String
+    }
+  },
+  watch: {
+    selectedFile() {
+      this.fileEmpty = !this.selectedFile;
     }
   },
   methods: {
-    handleFileChange() {
-      this.file = this.$refs.file.files[0];
+    handleFileChange(files) {
+      this.selectedFile = files[0];
     },
     submitFile() {
+      this.error = false;
+      if (this.fileEmpty) return;
       const formData = new FormData();
-      formData.append("file", this.file);
+      formData.append("file", this.selectedFile);
+      formData.append("fileName", this.fileName);
       HTTP.post(`${backendURL.images}image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       })
         .then(() => {
+          this.file = null;
+          this.selectedFile = null;
           this.execute();
         })
         .catch(() => {
-          console.log("FAILURE!!");
+          this.error = true;
         });
     }
   }
@@ -48,6 +75,10 @@ export default {
 <style scoped>
 .file {
   font-size: 1em;
+}
+
+.error {
+  color: red;
 }
 </style>
 
