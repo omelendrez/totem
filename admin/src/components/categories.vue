@@ -117,11 +117,10 @@ export default {
   },
   methods: {
     fetchCategories() {
-      HTTP.get(
-        `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${
-          this.sort.name
-        }&type=${this.sort.type}`
-      )
+      const url = `categories?page=${this.pag.page}&size=${
+        this.pag.size
+      }&sort=${this.sort.name}&type=${this.sort.type}`;
+      HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;
           this.categories = rows;
@@ -161,10 +160,12 @@ export default {
       }
     },
     onPagination(pag) {
+      localStorage.removeItem("url");
       this.pag = pag;
       this.fetchCategories();
     },
     onSort(sort) {
+      localStorage.removeItem("url");
       this.sort = sort;
       this.fetchCategories();
     }

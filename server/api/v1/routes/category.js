@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/totem', category.totemFindAll)
+router.put('/image/:id', category.updateImage)
 router.get('/:id', category.findById)
 router.get('/', category.findAll)
 router.post('/', category.create)
