@@ -13,7 +13,6 @@ import {
   checkTotemStatus
 } from '@/services'
 const { CONFIG, totemId } = require('@/config')
-const host = CONFIG.backendServerUrl
 const assetsHost = CONFIG.assetsServerUrl
 
 const handleError = err => {
