@@ -154,7 +154,12 @@ module.exports = {
           where: {
             id: sequelize.col('product.category_id'),
             status_id: 1
-          }
+          },
+          attributes: [
+            'id',
+            'name',
+            'image'
+          ]
         }
       ],
       attributes: [
@@ -232,8 +237,8 @@ module.exports = {
         product
           ? res.status(200).json(product)
           : res.status(404).json({
-              error: 'Not found'
-            })
+            error: 'Not found'
+          })
       )
       .catch(error => res.status(400).send(error))
   },
@@ -248,8 +253,8 @@ module.exports = {
         product
           ? res.status(200).json(product)
           : res.status(404).json({
-              error: 'Not found'
-            })
+            error: 'Not found'
+          })
       )
       .catch(error => res.status(400).send(error))
   },
