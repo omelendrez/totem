@@ -1,7 +1,7 @@
 {
   "name": "totem-server-api",
   "description": "Server API",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": false,
   "dependencies": {
     "bcrypt": "^3.0.4",

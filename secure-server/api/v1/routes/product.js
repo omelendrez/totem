@@ -1,16 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const apiHelper = require('./../helpers')
-const CONFIG = require('./../config')
+const Product = require('./../controllers/product')
 
-router.get('/', (req, res, next) => {
-  apiHelper.get(CONFIG.be_url + '/products')
-    .then(response => {
-      res.status(200).json(response)
-    })
-    .catch(error => {
-      res.status(400).json(error)
-    })
-});
+router.get('/', Product.getAll);
 
 module.exports = router
