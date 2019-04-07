@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const apiHelper = require('./../helpers')
+const CONFIG = require('./../config')
 
 router.get('/', (req, res, next) => {
-  apiHelper.call('http://localhost:3000/products')
+  apiHelper.get(CONFIG.be_url + '/products')
     .then(response => {
       res.status(200).json(response)
     })
