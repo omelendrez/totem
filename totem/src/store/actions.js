@@ -13,7 +13,7 @@ import {
   checkTotemStatus
 } from '@/services'
 const { CONFIG, totemId } = require('@/config')
-const host = CONFIG.backendServerUrl
+const assetsHost = CONFIG.assetsServerUrl
 
 const handleError = err => {
   const error = {
@@ -33,7 +33,7 @@ const actions = {
         const categories = getResults(resp)
         categories.map(item => {
           const image = item.image ? item.image : ''
-          item.image = image ? `${host}${image}` : ''
+          item.image = image ? `${assetsHost}${image}` : ''
           return item
         })
         commit('load_categories_success', { rows: categories })
@@ -49,7 +49,7 @@ const actions = {
         const products = getResults(resp)
         products.map(item => {
           const image = item.image || item.category.image || ''
-          item.image = image ? `${host}${image}` : ''
+          item.image = image ? `${assetsHost}${image}` : ''
           return item
         })
         commit('load_products_success', { rows: products })

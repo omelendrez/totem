@@ -1,5 +1,6 @@
 const CONFIG = {
   backendServerUrl: 'http://totem-be:3000/',
+  assetsServerUrl: 'http://totem-be:3010/',
   printServerURL: 'http://localhost:9000'
 }
 const intervals = {
