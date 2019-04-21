@@ -22,7 +22,7 @@ const printHeader = async (printer, order) => {
   printer.newLine()
   printer.println(order.date + ' ' + order.time)
   printer.alignLeft()
-  const header = await config.header()
+  const header = config.header()
   header.forEach(line => {
     printer.println(line)
   })
