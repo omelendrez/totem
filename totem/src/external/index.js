@@ -1,7 +1,7 @@
 /*
 1 - Activate card reader
 2 - Send payment
-3 - Receive respose
+3 - Receive response
 */
 
 export const activateCCReader = () => {

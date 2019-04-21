@@ -1,5 +1,5 @@
-const CONFIG = require('./../config')
-const apiHelper = require('./../helpers')
+const CONFIG = require('../config')
+const apiHelper = require('../helpers')
 
 module.exports = {
   create(req, res) {
