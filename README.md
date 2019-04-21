@@ -14,7 +14,7 @@ The application is compossed of 3 apps:
 - **_Turns_** shows the current order under preparation and the done ones
 - **_Printer_** for tickets printing on different thermal printers
 - **_Assets_** for management of totem assets
-
+- **_Secure_** backend access from external mobile app will be handled by this middleware
 
 ### RestFULL Back-end | Server app
 
@@ -68,6 +68,13 @@ The application is compossed of 3 apps:
 - Node
 - Express
 - multer
+
+### Secure middleware server | Secure app
+
+- Node
+- Express
+- jsonwebtoken
+- request
 
 ## Instructions to run the system
 
@@ -131,5 +138,13 @@ The application is compossed of 3 apps:
     `nodemon`
 
     Assets server will run at port 3010
+
+  - Inside **secure-server** folder run:
+
+    `npm install`
+
+    `nodemon`
+
+    Secure server will run at port 3010
 
 [![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)
