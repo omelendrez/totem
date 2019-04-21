@@ -1,6 +1,7 @@
 "use strict"
 const Discount = require("../models").discount
 const sequelize = require("sequelize")
+const Op = sequelize.Op
 
 module.exports = {
   create(req, res) {
@@ -27,7 +28,7 @@ module.exports = {
     return Discount.findAndCountAll({
       where: {
         name: {
-          $like: "%" + filter + "%"
+          [Op.like]: "%" + filter + "%"
         }
       },
       order: [[sort, type]],

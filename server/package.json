@@ -1,17 +1,17 @@
 {
   "name": "totem-server-api",
   "description": "Server API",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": false,
   "dependencies": {
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^3.0.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
-    "sequelize": "^4.43.0"
+    "sequelize": "^5.7.1"
   },
   "scripts": {
     "start": "node server.js"

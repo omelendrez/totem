@@ -99,7 +99,7 @@ module.exports = {
     return Product.findAndCountAll({
       where: {
         name: {
-          $like: '%' + filter + '%'
+          [Op.like]: '%' + filter + '%'
         },
         status_id: {
           [Op.in]: status

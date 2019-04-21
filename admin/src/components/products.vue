@@ -124,7 +124,6 @@ export default {
   },
   methods: {
     fetchProducts() {
-      this.getParams();
       const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${
         this.sort.name
       }&type=${this.sort.type}&filter=${this.filter}`;
@@ -201,6 +200,7 @@ export default {
     if (!this.$root.$data.logged) {
       this.$router.push({ name: "Login" });
     }
+    this.getParams();
     this.fetchProducts();
     this.$root.$data.last_call = "products";
   }

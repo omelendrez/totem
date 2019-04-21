@@ -2,6 +2,7 @@
 const Category = require('../models').category
 const Config = require('./config')
 const sequelize = require('sequelize')
+const Op = sequelize.Op
 const Joi = require('joi')
 
 const schema = {
@@ -46,7 +47,7 @@ module.exports = {
     return Category.findAndCountAll({
       where: {
         name: {
-          $like: '%' + filter + '%'
+          [Op.like]: '%' + filter + '%'
         }
       },
       order: [[sort, type]],

@@ -1,6 +1,7 @@
 'use strict'
 const User = require('../models').user
 const sequelize = require('sequelize')
+const Op = sequelize.Op
 const bcrypt = require('bcrypt')
 
 module.exports = {
@@ -27,7 +28,7 @@ module.exports = {
     return User.findAndCountAll({
       where: {
         full_name: {
-          $like: '%' + filter + '%'
+          [Op.like]: '%' + filter + '%'
         }
       },
       order: [[sort, type]],
