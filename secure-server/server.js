@@ -14,13 +14,14 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader(
     'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+    'GET, POST, OPTIONS'
   )
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
   res.setHeader('Access-Control-Allow-Credentials', true)
   next()
 })
 
+app.use('/login', require(apiPath + '/routes/auth'))
 app.use('/products', require(apiPath + '/routes/product'))
 app.use('/orders', require(apiPath + '/routes/order'))
 app.use((req, res) => {
