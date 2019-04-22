@@ -13,21 +13,21 @@ module.exports = {
         if (result.user !== user) {
           result = {
             error: `Authentication error. Invalid token.`,
-            status: 401
+            status: 400
           };
-          res.status(401).send(result);
+          return res.status(400).send(result);
         }
         req.decoded = result
         next();
       } catch (err) {
-        res.status(401).send(err);
+        return res.status(401).send(err);
       }
     } else {
       result = {
         error: `Authentication error. Token required.`,
         status: 401
       };
-      res.status(401).send(result);
+      return res.status(401).send(result);
     }
   }
 };
