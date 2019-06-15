@@ -38,7 +38,7 @@ class Scanner extends Component {
   processOrder = async () => {
     let order = await changeOrderStatus(this.state.orderId)
     let resp = await loadOrderData(order.id)
-    order = resp.data[0]
+    order = resp.data
     if (order.status_id === 1) {
       order.printerId = 2 // Command printer
       printOrder(order)

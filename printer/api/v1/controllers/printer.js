@@ -85,7 +85,7 @@ module.exports = {
       printer: selectedPrinter
     }
     if (!isConnected) {
-      res.status(404).send(resp)
+      res.status(503).send(resp)
       return
     }
     printHeader(printer, order)
