@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Turns from './components/turns'
 import { backendServer } from './config'
 import { loadTurns } from './services'
-import { icons } from './utils'
+import { icons, ordersToShowCount } from './utils'
 import './App.css'
 
 class App extends Component {
@@ -23,8 +23,8 @@ class App extends Component {
   }
 
   render() {
-    const inProgress = this.state.turns.filter(item => item.status_id === 1)
-    const completed = this.state.turns.filter(item => item.status_id === 2)
+    const inProgress = this.state.turns.filter(item => item.status_id === 1).slice(0, ordersToShowCount)
+    const completed = this.state.turns.filter(item => item.status_id === 2).slice(0, ordersToShowCount)
     const logo = `${backendServer}/logo.png`
     return (
       <div className="App row">
