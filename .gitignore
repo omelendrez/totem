@@ -35,3 +35,8 @@ __MACOSX/
 .DS_Store
 Thumbs.db
 /server/public
+
+#---------------------------------
+# Implementation removed
+#---------------------------------
+/client/
