@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Turns from './components/turns'
 import { backendServer } from './config'
 import { loadTurns } from './services'
-import { icons, ordersToShowCount } from './utils'
+import { icons, ordersToShowCount, timeRefresh } from './utils'
 import './App.css'
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.intervalId = setInterval(() => this.loadData(), 5000)
+    this.intervalId = setInterval(() => this.loadData(), timeRefresh)
     this.loadData()
   }
 
@@ -23,8 +23,9 @@ class App extends Component {
   }
 
   render() {
-    const inProgress = this.state.turns.filter(item => item.status_id === 1).slice(0, ordersToShowCount)
-    const completed = this.state.turns.filter(item => item.status_id === 2).slice(0, ordersToShowCount)
+    const { turns } = this.state
+    const inProgress = turns.filter(item => item.status_id === 1).slice(0, ordersToShowCount)
+    const completed = turns.filter(item => item.status_id === 2).slice(0, ordersToShowCount)
     const logo = `${backendServer}/logo.png`
     return (
       <div className="App row">
