@@ -1,7 +1,8 @@
 const CONFIG = {
   backendServerUrl: 'http://totem-be:3000/',
   assetsServerUrl: 'http://totem-be:3010/',
-  printServerURL: 'http://localhost:9000'
+  printServerURL: 'http://localhost:3020',
+  paymentServer: 'http://localhost:3030'
 }
 const intervals = {
   totemtIimeout: 60000, // Time of inactivity for the totem to reset (clean pending basket, reset selected category)

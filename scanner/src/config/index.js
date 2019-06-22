@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 export const backendServer = 'http://totem-be:3000'
-const printServerURL = 'http://localhost:9000'
+const printServerURL = 'http://localhost:3020'
 
 const servers = {
   databaseServer: Axios.create({ baseURL: backendServer }),

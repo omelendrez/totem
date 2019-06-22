@@ -3,7 +3,7 @@ require('dotenv').config()
 const CONFIG = {
   be_url: process.env.BAKCKEND_URL || 'http://totem-be:3000',
   app: process.env.APP || 'dev',
-  port: process.env.PORT || '3020',
+  port: process.env.PORT || '3040',
   jwt_secret: process.env.JWT_SECRET || 'bigsixofficialtotemapiintegration',
   jwt_expiration: process.env.JWT_EXPIRATION || '1d',
   user: process.env.GBL_USER || 'app_user@bigsix.com',
