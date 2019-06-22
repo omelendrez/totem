@@ -4,3 +4,5 @@ export const icons = {
 }
 
 export const ordersToShowCount = 6
+
+export const timeRefresh = 5000

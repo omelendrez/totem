@@ -18,7 +18,11 @@
 
 <script>
 import store from "@/store";
-import { activateCCReader } from "@/external";
+import {
+  activateCCReader,
+  sendBuyRequest,
+  confirmTransaction
+} from "@/external";
 
 export default {
   name: "CCPayment",
@@ -39,9 +43,18 @@ export default {
   computed: {
     ccStatus() {
       return store.getters.ccStatus;
+    },
+    orderData() {
+      return store.getters.orderData;
     }
   },
   watch: {
+    orderData() {
+      const order = this.orderData;
+      if (order.payment_method === 1 && order.status_id === 0) {
+        store.dispatch("setCCStatus", 1);
+      }
+    },
     ccStatus() {
       const ccStatus = this.ccStatus;
       switch (ccStatus) {
@@ -53,25 +66,48 @@ por el lector de tarjetas ubicado debajo de esta pantalla
 
 ... o presione Cancelar para elegir otro medio de pago`;
           this.dialog = true;
+          const order = {
+            statusId: 0,
+            paymentMethod: 1,
+            items: this.items
+          };
+          store.dispatch("saveOrder", order);
           break;
         case 1:
           this.showStart = false;
           this.message = "Procesando pago...";
           activateCCReader()
-            .then(() => {
-              const order = {
-                statusId: 1,
-                paymentMethod: 1,
-                items: this.items
-              };
-              store.dispatch("saveOrder", order);
+            .then(resp => {
+              const { total_price, order_number, date } = this.orderData;
+              sendBuyRequest(
+                total_price,
+                data
+                  .split("-")
+                  .reverse()
+                  .join("/"),
+                order_number
+              )
+                .then(resp => {
+                  confirmTransaction()
+                    .then(() => {
+                      store.dispatch("updateOrderStatus", this.orderData);
+                      store.dispatch("setCCStatus", 2);
+                    })
+                    .catch(err => {
+                      store.dispatch("setCCStatus", 4);
+                    });
+                })
+                .catch(err => {
+                  store.dispatch("setCCStatus", 4);
+                });
             })
-            .catch(() => {
+            .catch(err => {
               store.dispatch("setCCStatus", 4);
             });
           break;
         case 2:
-          this.message = "Pago completado con éxito 👍";
+          this.message = `Pago completado con éxito 👍
+          Retire su ticket`;
           this.buttonMessage = "Cerrar";
           setTimeout(() => {
             store.dispatch("setCCStatus", 3);

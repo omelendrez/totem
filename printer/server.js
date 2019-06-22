@@ -11,7 +11,7 @@ app.use(
   })
 )
 app.use(logger('dev'))
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader(
     'Access-Control-Allow-Methods',
@@ -22,6 +22,6 @@ app.use(function(req, res, next) {
   next()
 })
 app.use("/", require(apiPath + "/routes/printer"));
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 3020
 app.listen(port)
 console.log('Print server started ' + port) // eslint-disable-line no-console
