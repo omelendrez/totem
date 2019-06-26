@@ -73,6 +73,9 @@ class App extends Component {
         <div className="col-sm-12 header">
           <img src={logo} alt="logo" className="logo" />
         </div>
+        <h1 className="col-sm-12">
+          <span className="badge view-title">Cocina</span>
+        </h1>
         <div className="col-sm-12">
           <Items
             items={items}
