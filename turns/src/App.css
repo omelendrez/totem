@@ -24,8 +24,17 @@
   color: #fff;
 }
 
+.sub-title {
+  width: auto;
+  text-transform: uppercase;
+  padding: 20px 60px;
+  background-color: #ee3542;
+  color: #fff;
+  font-size: 2em;
+}
+
 .order-number {
-  font-size: 5em;
+  font-size: 8em;
   font-weight: bold;
   display: inline-block;
 }

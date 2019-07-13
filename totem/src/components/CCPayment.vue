@@ -21,7 +21,8 @@ import store from "@/store";
 import {
   activateCCReader,
   sendBuyRequest,
-  confirmTransaction
+  confirmTransaction,
+  getLastTransaction
 } from "@/external";
 
 export default {
@@ -44,15 +45,20 @@ export default {
     ccStatus() {
       return store.getters.ccStatus;
     },
-    orderData() {
-      return store.getters.orderData;
+    ccOrder() {
+      return store.getters.ccOrder;
+    },
+    ccOrderData() {
+      return store.getters.ccOrderData;
+    },
+    printingOrder() {
+      return store.getters.printingOrder;
     }
   },
   watch: {
-    orderData() {
-      const order = this.orderData;
-      if (order.payment_method === 1 && order.status_id === 0) {
-        store.dispatch("setCCStatus", 1);
+    ccOrder() {
+      if (this.ccOrder && this.ccOrder.id) {
+        store.dispatch("ccLoadOrderData", this.ccOrder.id);
       }
     },
     ccStatus() {
@@ -61,8 +67,7 @@ export default {
         case 0:
           this.showStart = true;
           this.buttonMessage = "Cancelar";
-          this.message = `Presione el botón Comenzar y luego pase su tarjeta
-por el lector de tarjetas ubicado debajo de esta pantalla
+          this.message = `Presione el botón Comenzar
 
 ... o presione Cancelar para elegir otro medio de pago`;
           this.dialog = true;
@@ -71,43 +76,63 @@ por el lector de tarjetas ubicado debajo de esta pantalla
             paymentMethod: 1,
             items: this.items
           };
-          store.dispatch("saveOrder", order);
+          store.dispatch("ccSaveOrder", order);
           break;
         case 1:
           this.showStart = false;
-          this.message = "Procesando pago...";
+          this.message = `Pase su tarjeta por el lector de tarjetas
+ubicado debajo de esta pantalla`;
+          store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              const { total_price, order_number, date } = this.orderData;
+              store.dispatch("ccSaveResponse", resp);
+              const { total_price, order_number, createdAt } = this.ccOrder;
               sendBuyRequest(
                 total_price,
-                data
+                createdAt
+                  .substring(0, 10)
                   .split("-")
-                  .reverse()
                   .join("/"),
                 order_number
               )
                 .then(resp => {
+                  store.dispatch("ccSaveResponse", resp);
                   confirmTransaction()
-                    .then(() => {
-                      store.dispatch("updateOrderStatus", this.orderData);
+                    .then(resp => {
+                      const order = this.ccOrderData;
+
+                      store.dispatch("ccSaveResponse", resp);
+                      store.dispatch("ccChangeOrderStatus", order);
+
+                      order.printerId = 1; // Totem ticket printer
+                      store.dispatch("printOrder", order);
+
+                      order.printerId = 2; // Command printer
+                      store.dispatch("printOrder", order);
+
+                      order.printerId = 3; // Fiscal printer
+                      store.dispatch("printOrder", order);
+
                       store.dispatch("setCCStatus", 2);
                     })
                     .catch(err => {
+                      store.dispatch("setCCError", err);
                       store.dispatch("setCCStatus", 4);
                     });
                 })
                 .catch(err => {
+                  store.dispatch("setCCError", err);
                   store.dispatch("setCCStatus", 4);
                 });
             })
             .catch(err => {
+              store.dispatch("setCCError", err);
               store.dispatch("setCCStatus", 4);
             });
           break;
         case 2:
           this.message = `Pago completado con éxito 👍
-          Retire su ticket`;
+Retire su ticket`;
           this.buttonMessage = "Cerrar";
           setTimeout(() => {
             store.dispatch("setCCStatus", 3);
@@ -124,6 +149,11 @@ Presione Comenzar para intentar de nuevo
 o Cancelar para elegir otro medio de pago`;
           break;
       }
+    },
+    printingOrder() {
+      this.action = this.printingOrder
+        ? `IMPRIMENDO TICKET # ${this.printingOrder} 💯`
+        : "";
     }
   },
   methods: {

@@ -32,6 +32,9 @@ class App extends Component {
         <div className="col-sm-12 header">
           <img src={logo} alt="logo" className="logo" />
         </div>
+        <h1 className="col-sm-12">
+          <span className="badge view-title">Turnos</span>
+        </h1>
         <div className="col-sm-6">
           <Turns title="En Preparación" turns={inProgress} icon={icons.wait} />
         </div>

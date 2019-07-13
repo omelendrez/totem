@@ -15,7 +15,11 @@ const getters = {
   printingOrder: state => state.printingOrder,
   changedOrder: state => state.changedOrder,
   printedOrder: state => state.printedOrder,
-  ccStatus: state => state.ccStatus
+  ccStatus: state => state.ccStatus,
+  ccOrder: state => state.ccOrder,
+  ccOrderData: state => state.ccOrderData,
+  ccError: state => state.ccError,
+  ccResponse: state => state.ccResponse
 }
 
 export default getters

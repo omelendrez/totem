@@ -15,7 +15,12 @@ const state = {
   printingOrder: '',
   changedOrder: null,
   printedOrder: null,
-  ccStatus: -1
+  ccStatus: -1,
+  ccOrder: {},
+  ccOrderData: {},
+  ccChangedOrder: null,
+  ccResponse: {},
+  ccError: {}
 }
 
 export default state

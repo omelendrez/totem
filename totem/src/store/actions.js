@@ -174,7 +174,45 @@ const actions = {
   },
   async setCCStatus({ commit }, status) {
     commit('set_cc_status', status)
-  }
+  },
+  async ccSaveOrder({ commit }, order) {
+    commit('cc_save_order_request')
+    order.totemId = totemId
+    saveOrder(order)
+      .then(resp => {
+        commit('cc_save_order_success', resp.data)
+      })
+      .catch(err => {
+        commit('cc_set_error', err)
+      })
+  },
+  async ccChangeOrderStatus({ commit }, data) {
+    commit('cc_change_order_status_request')
+    changeOrderStatus(data)
+      .then(resp => {
+        commit('cc_change_order_status_success', resp.data)
+      })
+      .catch(err => {
+        commit('cc_set_error', err)
+      })
+  },
+  async ccSaveResponse({ commit }, response) {
+    commit('cc_set_response', response)
+  },
+  async setCCError({ commit }, error) {
+    commit('cc_set_error', error)
+  },
+  async ccLoadOrderData({ commit }, orderId) {
+    commit('cc_load_order_data_request')
+    loadOrderData(orderId)
+      .then(resp => {
+        commit('cc_load_order_data_success', { order: resp.data })
+      })
+      .catch(err => {
+        commit('cc_set_error', error)
+      })
+  },
+
 }
 
 export default actions

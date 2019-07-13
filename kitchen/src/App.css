@@ -33,3 +33,11 @@
   color: #fff;
   background-color: #ee3542;
 }
+
+.view-title {
+  text-transform: uppercase;
+  width: 100%;
+  padding: 10px;
+  background-color: #ee3542;
+  color: #fff;
+}

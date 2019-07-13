@@ -38,15 +38,9 @@ module.exports = {
       .then(resp => res.status(200).json(resp.data))
       .catch(err => res.status(400).json({ err }))
   },
-  getLastTransaction(req, res) {
+  GetLastTransaction(req, res) {
     const payload = models.GetLastTransaction
     api.post('/Query', payload)
-      .then(resp => res.status(200).json(resp.data))
-      .catch(err => res.status(400).json({ err }))
-  },
-  batchClose(req, res) {
-    const payload = models.BatchClose
-    api.post('/Financial', payload)
       .then(resp => res.status(200).json(resp.data))
       .catch(err => res.status(400).json({ err }))
   }
