@@ -1,21 +1,20 @@
 <template>
   <div class="productAdd">
-
     <md-toolbar class="md-primary">
       <h1 class="md-title">Crear Producto</h1>
     </md-toolbar>
 
     <md-layout md-align="center">
-
       <md-whiteframe class="whiteframe">
         <form novalidate @submit.stop.prevent="submit">
-
           <md-input-container>
             <label>Categoría</label>
             <md-select v-model="product.category_id">
-              <md-option v-for="category in categories" v-bind:value="category.id" :key="category.id">
-                {{category.name}}
-              </md-option>
+              <md-option
+                v-for="category in categories"
+                v-bind:value="category.id"
+                :key="category.id"
+              >{{category.name}}</md-option>
             </md-select>
           </md-input-container>
 
@@ -39,11 +38,6 @@
             <md-textarea v-model="product.kitchen_text"></md-textarea>
           </md-input-container>
 
-          <md-input-container md-clearable>
-            <label>Imagen</label>
-            <md-input type="text" v-model="product.image"></md-input>
-          </md-input-container>
-
           <md-input-container>
             <md-icon>attach_money</md-icon>
             <label>Precio</label>
@@ -52,10 +46,8 @@
 
           <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
           <md-button class="md-raised md-primary" v-on:click.native="back()">Volver</md-button>
-
         </form>
       </md-whiteframe>
-
     </md-layout>
 
     <md-dialog ref="dialog1">
@@ -65,7 +57,6 @@
         <md-button class="md-primary md-raised" @click="closeErrorMsg('dialog1')">Ok</md-button>
       </md-dialog-actions>
     </md-dialog>
-
   </div>
 </template>
 
@@ -87,10 +78,10 @@ export default {
   methods: {
     fetchCategories() {
       HTTP.get("categories")
-        .then((res) => {
+        .then(res => {
           this.categories = res.data.rows;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -109,7 +100,7 @@ export default {
           .then(() => {
             this.$router.push({ name: "Products" });
           })
-          .catch((err) => {
+          .catch(err => {
             this.errorMsg = {
               title: "Error al guardar el Producto",
               content: "Ha ocurrido un error al intentar guardar el producto"

@@ -14,11 +14,11 @@ const schema = {
   description: Joi.string()
     .min(3)
     .required(),
-  kitchen_text: Joi.string().required(),
+  kitchen_text: Joi.string(),
   ticket_text: Joi.string().required(),
   category_id: Joi.number().required(),
-  image: Joi.string().required(),
-  status_id: Joi.number().required(),
+  image: Joi.string(),
+  status_id: Joi.number(),
   price: Joi.number().required(),
   created_at: Joi.string(),
   updated_at: Joi.string(),
@@ -56,8 +56,6 @@ module.exports = {
         kitchen_text,
         ticket_text,
         category_id,
-        image,
-        status_id,
         price
       } = req.body
 
@@ -68,8 +66,6 @@ module.exports = {
         kitchen_text,
         ticket_text,
         category_id,
-        image,
-        status_id,
         price
       })
         .then(product => {

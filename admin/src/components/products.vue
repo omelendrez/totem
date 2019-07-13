@@ -9,7 +9,7 @@
         <md-toolbar>
           <h1 class="md-title">Lista de Productos</h1>
 
-          <input class="md-input" v-model="filter" id="search_field" @keyup="search">
+          <input class="md-input" v-model="filter" id="search_field" @keyup="search" />
           <md-button class="md-icon-button">
             <md-icon>search</md-icon>
           </md-button>
@@ -124,9 +124,7 @@ export default {
   },
   methods: {
     fetchProducts() {
-      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${
-        this.sort.name
-      }&type=${this.sort.type}&filter=${this.filter}`;
+      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
       HTTP.get(url)
         .then(res => {
           this.storeParams();
