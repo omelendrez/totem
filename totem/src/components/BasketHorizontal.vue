@@ -33,8 +33,8 @@
       :button-ok-msg="buttonOkMsg"
       :button-no-msg="buttonNoMsg"
     />
-    <Processing :message="action"/>
-    <CCPayment :items="items"/>
+    <Processing :message="action" />
+    <CCPayment :items="items" />
   </v-container>
 </template>
 
@@ -113,18 +113,6 @@ export default {
     },
     orderData() {
       const order = this.orderData;
-      if (order.payment_method === 1 && order.status_id === 1) {
-        // CC new order
-        order.printerId = 1; // Totem ticket printer
-        store.dispatch("printOrder", order);
-
-        order.printerId = 2; // Command printer
-        store.dispatch("printOrder", order);
-
-        order.printerId = 3; // Fiscal printer
-        store.dispatch("printOrder", order);
-        store.dispatch("setCCStatus", 2);
-      }
       if (order.payment_method === 2 && order.status_id === 0) {
         // CASHIER new order
         order.printerId = 1; // Totem ticket printer

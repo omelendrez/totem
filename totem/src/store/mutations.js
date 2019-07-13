@@ -62,7 +62,7 @@ const mutations = {
     state.basket = []
     state.selectedCategory = null
   },
-  load_orders_request(state) {},
+  load_orders_request(state) { },
   load_orders_success(state, { orders }) {
     state.status = 'success'
     state.orders = orders.map(item => {
@@ -73,7 +73,7 @@ const mutations = {
       return item
     })
   },
-  load_items_request(state) {},
+  load_items_request(state) { },
   load_items_success(state, { items }) {
     state.status = 'success'
     state.items = items.map(item => {
@@ -84,7 +84,7 @@ const mutations = {
       return item
     })
   },
-  load_order_items_request(state) {},
+  load_order_items_request(state) { },
   load_order_items_success(state, { orderItems }) {
     state.status = 'success'
     state.orderItems = orderItems.map(item => {
@@ -95,17 +95,17 @@ const mutations = {
       return item
     })
   },
-  load_order_data_request(state) {},
+  load_order_data_request(state) { },
   load_order_data_success(state, { order }) {
     state.status = 'success'
     state.orderData = order
   },
-  change_order_status_request(state) {},
+  change_order_status_request(state) { },
   change_order_status_success(state, order) {
     state.changedOrder = order
   },
-  change_item_status_request(state) {},
-  change_item_status_success(state) {},
+  change_item_status_request(state) { },
+  change_item_status_success(state) { },
   reset_totem(state) {
     state.selectedCategory = null
     state.info = {}
@@ -120,12 +120,37 @@ const mutations = {
     state.printingOrder = ''
     state.printedOrder = order
   },
-  load_totem_status_request(state) {},
+  load_totem_status_request(state) { },
   load_totem_status_success(state, totem) {
     state.totem = totem
   },
   set_cc_status(state, status) {
     state.ccStatus = status
+  },
+  cc_save_order_request(state) {
+    state.status = 'loading'
+    state.order = null
+  },
+  cc_save_order_success(state, order) {
+    state.status = 'success'
+    state.ccOrder = order
+    state.basket = []
+    state.selectedCategory = null
+  },
+  cc_change_order_status_request(state) { },
+  cc_change_order_status_success(state, order) {
+    state.ccChangedOrder = order
+  },
+  cc_set_response(state, response) {
+    state.ccResponse = response
+  },
+  cc_set_error(state, error) {
+    state.ccError = error
+  },
+  cc_load_order_data_request(state) { },
+  cc_load_order_data_success(state, { order }) {
+    state.status = 'success'
+    state.ccOrderData = order
   }
 }
 

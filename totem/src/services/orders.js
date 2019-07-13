@@ -62,7 +62,7 @@ export const loadOrderData = orderId => {
 
 export const changeOrderStatus = data => {
   return new Promise((resolve, reject) => {
-    HTTP.put(`orders/${data.orderId}`)
+    HTTP.put(`orders/${data.id}`)
       .then(resp => {
         resolve(resp)
       })
@@ -87,6 +87,30 @@ export const changeItemStatus = data => {
 export const setOrderPrinted = orderId => {
   return new Promise((resolve, reject) => {
     HTTP.put(`orders/printed/${orderId}`)
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const ccSaveOrder = order => {
+  return new Promise((resolve, reject) => {
+    HTTP.post('orders', { order })
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const ccLoadOrderData = orderId => {
+  return new Promise((resolve, reject) => {
+    HTTP.get(`orders/${orderId}`)
       .then(resp => {
         resolve(resp)
       })
