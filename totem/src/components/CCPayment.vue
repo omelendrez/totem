@@ -81,7 +81,7 @@ por el lector de tarjetas ubicado debajo de esta pantalla
               const { total_price, order_number, date } = this.orderData;
               sendBuyRequest(
                 total_price,
-                data
+                date
                   .split("-")
                   .reverse()
                   .join("/"),

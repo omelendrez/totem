@@ -8,7 +8,7 @@ class App extends Component {
     const logo = `${backendServer}/logo.png`
     return (
       <div className="App">
-        <div className="col-sm-12 header">
+        <div className="row col-sm-12 header">
           <img src={logo} alt="logo" className="logo" />
         </div>
         <div className="row justify-content-md-center">
