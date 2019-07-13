@@ -26,5 +26,8 @@ module.exports = {
   },
   GetLastTransaction: {
     TransactionRequestType: "GetLastTransaction"
+  },
+  BatchClose: {
+    TransactionRequestType: "BatchClose"
   }
 }
