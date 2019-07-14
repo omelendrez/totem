@@ -5,7 +5,7 @@
       <template v-for="(item, index) in items">
         <v-container :key="`c${index}`">
           <v-list-tile :key="`tile${index}`">
-            <v-img :src="item.image" class="image" cover></v-img>
+            <v-img :src="item.image" class="image"></v-img>
             <v-list-tile-content class="item-content">
               <h4>{{ item.ticket_text }}</h4>
               <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
@@ -15,9 +15,9 @@
               </v-btn>
             </v-list-tile-content>
           </v-list-tile>
+          <v-divider></v-divider>
         </v-container>
       </template>
-      <v-divider></v-divider>
       <div class="total">
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
@@ -104,9 +104,10 @@ export default {
 }
 .checkout__list {
   margin-top: 64px;
-}
-.checkout__list {
   width: 70vw;
+}
+h1 {
+  margin-bottom: 64px;
 }
 .amount {
   text-align: center;
@@ -117,7 +118,8 @@ export default {
   font-size: 1.3em;
 }
 .image {
-  max-width: 180px;
+  max-width: 100px;
+  margin-bottom: 40px;
 }
 .buttons {
   display: flex;

@@ -5,7 +5,7 @@ const CONFIG = {
   paymentServer: 'http://localhost:3030'
 }
 const intervals = {
-  totemtIimeout: 60000, // Time of inactivity for the totem to reset (clean pending basket, reset selected category)
+  totemtIimeout: 300000, // Time of inactivity for the totem to reset (clean pending basket, reset selected category)
   statusChange: 30000 // Frequency the main App will check for totem status changes
 }
 const totemId = 1

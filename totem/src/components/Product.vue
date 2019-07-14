@@ -3,14 +3,9 @@
     <v-layout class="product">
       <v-flex mx-4 my-4>
         <v-card>
-          <v-img
-            :src="item.image"
-            contain
-            class="image"
-          ></v-img>
+          <v-img :src="item.image" contain class="image"></v-img>
           <v-card-title>
             <div>
-              <div class="name">{{item.name}}</div>
               <div class="description">{{item.description}}</div>
               <span class="price">$ {{item.price}}</span>
             </div>
@@ -53,7 +48,9 @@ export default {
   },
   watch: {
     product() {
-      this.product.price = this.product.price ? this.product.price.replace('.00', '') : this.product.price
+      this.product.price = this.product.price
+        ? this.product.price.replace(".00", "")
+        : this.product.price;
       this.item = this.product;
       this.dialog = this.product.name;
     }
@@ -76,34 +73,21 @@ export default {
 .border-0 {
   border: 0;
 }
-.name {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 1.4em;
-  font-weight: bold;
-  border: 2px solid #000;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 6px;
-  color: #000;
-  background-color: #ffc600;
-
-}
 .description {
   font-size: 1.2em;
 }
 .price {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
+  min-width: 80px;
   font-size: 2em;
   font-weight: bold;
-  border: 1px dashed #ffc600;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
-  color: #ffc600;
-  background-color: #333;
+  color: #000;
+  background-color: #fff;
+  font-size: 3em;
 }
 </style>
