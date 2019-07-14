@@ -13,6 +13,16 @@
           <md-button class="md-icon-button">
             <md-icon>search</md-icon>
           </md-button>
+          <div class="md-toolbar-section-end">
+            <label for="category">Categoriía</label>
+            <md-select id="category" v-model="categoryId" @change="fetchProducts">
+              <md-option
+                v-for="category in categories"
+                v-bind:value="category.id"
+                :key="category.id"
+              >{{category.name}}</md-option>
+            </md-select>
+          </div>
         </md-toolbar>
 
         <md-table @sort="onSort" md-sort="code">
@@ -103,6 +113,8 @@ export default {
     return {
       showTable: false,
       products: [],
+      categories: [],
+      categoryId: 0,
       backendURL,
       confirm: {
         title: "",
@@ -124,7 +136,7 @@ export default {
   },
   methods: {
     fetchProducts() {
-      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
+      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}&categoryId=${this.categoryId}`;
       HTTP.get(url)
         .then(res => {
           this.storeParams();
@@ -137,7 +149,19 @@ export default {
           console.log(err);
         });
     },
+    fetchCategories() {
+      const url = "categories/totem";
+      HTTP.get(url)
+        .then(res => {
+          const { rows } = res.data;
+          this.categories = rows;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     search() {
+      this.pag.page = 1;
       this.fetchProducts();
     },
     addProduct() {
@@ -182,7 +206,8 @@ export default {
       const params = {
         pag: this.pag,
         sort: this.sort,
-        filter: this.filter
+        filter: this.filter,
+        categoryId: this.categoryId
       };
       localStorage.setItem("params", JSON.stringify(params));
     },
@@ -192,6 +217,7 @@ export default {
       this.pag = params.pag;
       this.sort = params.sort;
       this.filter = params.filter;
+      this.categoryId = params.categoryId;
     }
   },
   created() {
@@ -200,6 +226,7 @@ export default {
     }
     this.getParams();
     this.fetchProducts();
+    this.fetchCategories();
     this.$root.$data.last_call = "products";
   }
 };
@@ -218,7 +245,6 @@ export default {
 .md-table-card .md-toolbar {
   background-color: #e1e0b8;
 }
-
 .md-table-card .md-table-head {
   background-color: #f6f5d7;
 }

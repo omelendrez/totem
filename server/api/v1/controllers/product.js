@@ -8,21 +8,18 @@ const Op = sequelize.Op
 const schema = {
   id: Joi.number(),
   code: Joi.string(),
-  name: Joi.string()
-    .min(3)
-    .required(),
-  description: Joi.string()
-    .min(3)
-    .required(),
-  kitchen_text: Joi.string(),
+  name: Joi.string().min(3).required(),
+  description: Joi.string().min(3).required(),
+  kitchen_text: Joi.any().optional(),
   ticket_text: Joi.string().required(),
   category_id: Joi.number().required(),
-  image: Joi.string(),
+  image: Joi.any().optional(),
   status_id: Joi.number(),
   price: Joi.number().required(),
   created_at: Joi.string(),
   updated_at: Joi.string(),
   category: Joi.object(),
+  status_id: Joi.number().required(),
   status: Joi.object()
 }
 
@@ -89,6 +86,7 @@ module.exports = {
     const type = req.query.type ? req.query.type : 'asc'
     const filter = req.query.filter ? req.query.filter : ''
     const status = req.query.status ? [req.query.status] : [1, 2]
+    const categoryId = req.query.categoryId ? req.query.categoryId : 0
 
     const ord = [[sort, type]]
 
@@ -99,6 +97,9 @@ module.exports = {
         },
         status_id: {
           [Op.in]: status
+        },
+        categoryId: {
+          [Op.eq]: categoryId
         }
       },
       order: ord,
@@ -144,6 +145,7 @@ module.exports = {
     Product.belongsTo(Category)
     return Product.findAndCountAll({
       where: { status_id: 1 },
+      order: [['category_id', 'asc'], ['price', 'asc']],
       include: [
         {
           model: Category,
