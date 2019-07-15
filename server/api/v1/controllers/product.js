@@ -98,7 +98,7 @@ module.exports = {
         status_id: {
           [Op.in]: status
         },
-        categoryId: {
+        category_id: {
           [Op.eq]: categoryId
         }
       },
