@@ -21,6 +21,14 @@ class Scanner extends Component {
     document.addEventListener('touchmove', () => this.orderId.focus(), false)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('mousemove', () => this.orderId.focus(), false)
+    document.removeEventListener('mousedown', () => this.orderId.focus(), false)
+    document.removeEventListener('click', () => this.orderId.focus(), false)
+    document.removeEventListener('keypress', () => this.orderId.focus(), false)
+    document.removeEventListener('touchmove', () => this.orderId.focus(), false)
+  }
+
   handleChange = event => {
     const { value } = event.target
     if (!value.match(/^\d+$/)) return

@@ -23,5 +23,11 @@ const setupTimers = () => {
   document.addEventListener('touchmove', resetTimer, false)
   startTimer()
 }
+const stopTimers = () => {
+  document.removeEventListener('mousemove', resetTimer, false)
+  document.removeEventListener('mousedown', resetTimer, false)
+  document.removeEventListener('keypress', resetTimer, false)
+  document.removeEventListener('touchmove', resetTimer, false)
+}
 
-export default setupTimers
+export { setupTimers, stopTimers }

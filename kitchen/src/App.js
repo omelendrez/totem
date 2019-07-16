@@ -19,6 +19,10 @@ class App extends Component {
     document.addEventListener('keydown', this.handleKeys)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeys)
+  }
+
   loadData = async () => {
     let resp = await loadKitchenItems()
     const items = resp.data

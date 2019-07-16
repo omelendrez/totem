@@ -19,7 +19,6 @@ const schema = {
   created_at: Joi.string(),
   updated_at: Joi.string(),
   category: Joi.object(),
-  status_id: Joi.number().required(),
   status: Joi.object()
 }
 
