@@ -1,19 +1,19 @@
 <template>
   <v-container fluid class="home">
     <div class="basket" id="basket">
-      <Basket :basket="basket" :add="add" :remove="remove"/>
+      <Basket :basket="basket" :add="add" :remove="remove" />
     </div>
     <div class="categories">
-      <Categories :categories="categories"/>
+      <Categories :categories="categories" />
     </div>
     <div class="products">
-      <Products :products="products" :add="add" :info="info"/>
+      <Products :products="products" :add="add" :info="info" />
     </div>
-    <Product :add="add"/>
+    <Product :add="add" />
     <div class="drinks" id="drinks" v-show="showDrinks">
-      <Drinks :products="products" :addDrink="addDrink"/>
+      <Drinks :products="products" :addDrink="addDrink" />
     </div>
-    <Processing :message="errorMessage"/>
+    <Processing :message="errorMessage" />
   </v-container>
 </template>
 
@@ -27,7 +27,7 @@ import Product from "@/components/Product";
 import Drinks from "@/components/Drinks";
 import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
-import setupTimers from "@/utils";
+import { setupTimers, stopTimers } from "@/utils";
 
 export default {
   name: "Home",
@@ -124,6 +124,9 @@ export default {
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
     setupTimers();
+  },
+  beforeDestroy() {
+    stopTimers();
   }
 };
 </script>
