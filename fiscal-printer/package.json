@@ -11,7 +11,7 @@
     "node-thermal-printer": "^4.1.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "EDGE_USE_CORECLR=1 node server.js"
   },
   "main": "server.js",
   "devDependencies": {}
