@@ -1,15 +1,13 @@
 'use strict'
 const edge = require('edge-js')
+const dllCall = edge.func("./dlls/application.cs")
 
 module.exports = {
-  async test(req, res) {
-    const ConsultarVersionDll = edge.func({
-      source: "application.cs",
-      //assemblyFile: "dlls/comEpsonFiscalDriver.ocx",
-      typeName: "comEpsonFiscalDriverLib.EpsonFiscalDriver",
-      methodName: 'ImprimirCierreX' // This must be Func<object,Task<object>>
-    });
-    ConsultarVersionDll("", function (err, result) {
+  RunDLL(req, res) {
+    const action = req.body.action;
+    const data = req.body.data;
+    const payload = { action, ...data }
+    dllCall(payload, function (err, result) {
       if (err) return res.status(500).json(err)
       res.status(200).json(result)
     });
