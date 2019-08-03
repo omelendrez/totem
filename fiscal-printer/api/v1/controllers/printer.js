@@ -21,25 +21,41 @@ const callDll = (payload) => {
   })
 }
 
-
-
 module.exports = {
-  connectFiscal(req, res) {
+  async connectFiscal(req, res) {
     const action = 'Connect';
-    callDll({ action, ...defaultValues })
-      .then(result => res.status(200).json(result))
-      .catch(err => res.status(500).json(err))
+    try {
+      const result = await callDll({ action, ...defaultValues })
+      res.status(200).json(result)
+    } catch (error) {
+      res.status(500).json(error)
+    }
   },
-  partialClose(req, res) {
+  async partialClose(req, res) {
     const action = 'PartialClose';
-    callDll({ action, ...defaultValues })
-      .then(result => res.status(200).json(result))
-      .catch(err => res.status(500).json(err))
+    try {
+      const result = await callDll({ action, ...defaultValues })
+      res.status(200).json(result)
+    } catch (error) {
+      res.status(500).json(error)
+    }
   },
-  dailyClose(req, res) {
+  async dailyClose(req, res) {
     const action = 'DailyClose';
-    callDll({ action, ...defaultValues })
-      .then(result => res.status(200).json(result))
-      .catch(err => res.status(500).json(err))
+    try {
+      const result = await callDll({ action, ...defaultValues })
+      res.status(200).json(result)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  },
+  async printTicket(req, res) {
+    const action = 'DailyClose';
+    try {
+      const result = await callDll({ action, ...defaultValues })
+      res.status(200).json(result)
+    } catch (error) {
+      res.status(500).json(error)
+    }
   }
 }
