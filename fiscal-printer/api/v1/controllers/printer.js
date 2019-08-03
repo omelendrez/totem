@@ -1,7 +1,7 @@
 'use strict'
 const edge = require('edge-js')
 const dllCall = edge.func("./dlls/application.cs")
-const errorCodes = require('../utils/errors')
+const getErrorMessage = require('../utils').getErrorMessage
 
 module.exports = {
   RunDLL(req, res) {
@@ -13,7 +13,7 @@ module.exports = {
       if (result.code > 0) {
         const errorCode = result.code.toString(16)
         result.code = errorCode
-        result.message = errorCodes.find(error => error.code === errorCode)
+        result.message = getErrorMessage(errorCode).description
       }
       res.status(200).json(result)
     });
