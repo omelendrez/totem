@@ -1,2 +1,2 @@
-cd C:\webserver\totem\printer
+cd C:\webserver\totem\fiscal-printer
 nodemon

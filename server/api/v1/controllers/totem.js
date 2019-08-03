@@ -47,5 +47,37 @@ module.exports = {
           .catch(error => res.status(400).send(error))
       })
       .catch(error => res.status(400).send(error))
+  },
+  activate(req, res) {
+    return Totem.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(totem => {
+        totem
+          .update({
+            status_id: 1
+          })
+          .then(result => res.status(200).json(result))
+          .catch(error => res.status(400).send(error))
+      })
+      .catch(error => res.status(400).send(error))
+  },
+  deActivate(req, res) {
+    return Totem.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(totem => {
+        totem
+          .update({
+            status_id: 0
+          })
+          .then(result => res.status(200).json(result))
+          .catch(error => res.status(400).send(error))
+      })
+      .catch(error => res.status(400).send(error))
   }
 }
