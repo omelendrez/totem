@@ -6,7 +6,9 @@ import {
   setOrderPrinted,
   printerError,
   informeX,
-  informeZ
+  informeZ,
+  activateTotem,
+  deActivateTotem
 } from '../services'
 
 class Scanner extends Component {
@@ -45,6 +47,12 @@ class Scanner extends Component {
         break;
       case "INFORME-Z":
         informeZ()
+        break;
+      case "TOTEM-ON":
+        activateTotem(1)
+        break;
+      case "TOTEM-OFF":
+        deActivateTotem(1)
         break;
       default:
         this.processOrder()

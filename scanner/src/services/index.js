@@ -90,3 +90,29 @@ export const informeZ = () => {
       })
   })
 }
+
+export const activateTotem = totemId => {
+  return new Promise((resolve, reject) => {
+    servers.databaseServer
+      .put(`${totemId}/activate`)
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const deActivateTotem = totemId => {
+  return new Promise((resolve, reject) => {
+    servers.databaseServer
+      .put(`${totemId}/e-activate`)
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
