@@ -64,3 +64,29 @@ export const setOrderPrinted = orderId => {
       })
   })
 }
+
+export const informeX = () => {
+  return new Promise((resolve, reject) => {
+    servers.fiscalPrinter
+      .post('partial-close')
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const informeZ = () => {
+  return new Promise((resolve, reject) => {
+    servers.fiscalPrinter
+      .post('daily-close')
+      .then(resp => {
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
