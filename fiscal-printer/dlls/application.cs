@@ -22,6 +22,36 @@ public class Startup
             case "Disconnect":
                 code = EpsonFiscalInterface.Desconectar();
                 break;
+            case "OpenDocument":
+                var docType = (int)userAction["docType"];
+                code = EpsonFiscalInterface.ConfigurarPuerto(port);
+                code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
+                code = EpsonFiscalInterface.Conectar();
+                code = EpsonFiscalInterface.AbrirComprobante(docType);
+                break;
+            case "PrintItem":
+                var id_modificador = (int)userAction["id_modificador"];
+                StringBuilder descripcion = new StringBuilder((string)userAction["ticket_text"]);
+                StringBuilder cantidad = new StringBuilder((string)userAction["quantity"]);
+                StringBuilder precio = new StringBuilder((string)userAction["total_price"]);
+                var id_tasa_iva = (int)userAction["id_tasa_iva"];
+                var ii_id = (int)userAction["ii_id"];
+                StringBuilder ii_valor = new StringBuilder((string)userAction["ii_valor"]);
+                var id_codigo = (int)userAction["id_codigo"];
+                StringBuilder codigo = new StringBuilder((string)userAction["code"]);
+                StringBuilder codigo_unidad_matrix = new StringBuilder((string)userAction["codigo_unidad_matrix"]);
+                var codigo_unidad_medida = (int)userAction["codigo_unidad_medida"];
+                code = EpsonFiscalInterface.ImprimirItem(id_modificador, descripcion, cantidad, precio, id_tasa_iva, ii_id, ii_valor, id_codigo, codigo, codigo_unidad_matrix, codigo_unidad_medida);
+                break;
+            case "PrintSubtotal":
+                code = EpsonFiscalInterface.ImprimirSubtotal();
+                break;
+            case "CloseDocument":
+                code = EpsonFiscalInterface.CerrarComprobante();
+                break;
+            case "Cancel":
+                code = EpsonFiscalInterface.Cancelar();
+                break;
             case "PartialClose":
                 code = EpsonFiscalInterface.ConfigurarPuerto(port);
                 code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
@@ -41,6 +71,12 @@ public class Startup
                 int menor = 0;
                 EpsonFiscalInterface.ConsultarVersionDll(answer, MAX_ANSWER_LEN, ref mayor, ref menor);
                 message = "-Descripción: " + answer.ToString() + "  -Mayor: " + mayor.ToString() + "  -Menor: " + menor.ToString();
+                break;
+            case "GetPrinterStatus":
+                code = EpsonFiscalInterface.ObtenerEstadoImpresora();
+                break;
+            case "GetFiscalStatus":
+                code = EpsonFiscalInterface.ObtenerEstadoFiscal();
                 break;
             default:
                 code = -1;
@@ -104,6 +140,10 @@ public class EpsonFiscalInterface
     [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
     public static extern int CerrarComprobante();
 
+    // Cancelar()
+    [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+    public static extern int Cancelar();
+
     // ImprimirCierreX()
     [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
     public static extern int ImprimirCierreX();
@@ -111,5 +151,13 @@ public class EpsonFiscalInterface
     // ImprimirCierreZ()
     [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
     public static extern int ImprimirCierreZ();
+
+    // ObtenerEstadoFiscal()
+    [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+    public static extern int ObtenerEstadoFiscal();
+
+    // ObtenerEstadoImpresora()
+    [DllImport("EpsonFiscalInterface.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+    public static extern int ObtenerEstadoImpresora();
 
 }
