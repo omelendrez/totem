@@ -85,7 +85,6 @@ module.exports = {
     const type = req.query.type ? req.query.type : 'asc'
     const filter = req.query.filter ? req.query.filter : ''
     const status = req.query.status ? [req.query.status] : [1, 2]
-    const categoryId = req.query.categoryId ? req.query.categoryId : 0
 
     const ord = [[sort, type]]
 
@@ -96,9 +95,6 @@ module.exports = {
         },
         status_id: {
           [Op.in]: status
-        },
-        category_id: {
-          [Op.eq]: categoryId
         }
       },
       order: ord,
