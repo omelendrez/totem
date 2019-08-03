@@ -94,7 +94,7 @@ export const informeZ = () => {
 export const activateTotem = totemId => {
   return new Promise((resolve, reject) => {
     servers.databaseServer
-      .put(`${totemId}/activate`)
+      .put(`totem/activate/${totemId}`)
       .then(resp => {
         resolve(resp.data)
       })
@@ -107,7 +107,7 @@ export const activateTotem = totemId => {
 export const deActivateTotem = totemId => {
   return new Promise((resolve, reject) => {
     servers.databaseServer
-      .put(`${totemId}/e-activate`)
+      .put(`totem/de-activate/${totemId}`)
       .then(resp => {
         resolve(resp.data)
       })
