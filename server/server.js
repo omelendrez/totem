@@ -2,6 +2,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
+const cors = require('cors')
 const apiPath = './api/v1'
 const models = require(apiPath + '/models')
 const app = express()
@@ -9,17 +10,21 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
+app.use(cors())
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  )
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Content-Type, Accept')
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  next()
-})
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 models.sequelize.sync({
   force: false
