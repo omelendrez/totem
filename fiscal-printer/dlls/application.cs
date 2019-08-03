@@ -8,28 +8,30 @@ public class Startup
     {
         var userAction = (IDictionary<string, object>)input;
         string action = (string)userAction["action"];
+        var speed = (int)userAction["speed"];
+        var port = (string)userAction["port"];
         int code = 0;
         string message = "";
         switch (action)
         {
-            case "ConfigurarVelocidad":
-                var speed = (int)userAction["speed"];
-                code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
-                break;
-            case "ConfigurarPuerto":
-                var port = (string)userAction["port"];
+            case "Connect":
                 code = EpsonFiscalInterface.ConfigurarPuerto(port);
-                break;
-            case "Conectar":
+                code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
                 code = EpsonFiscalInterface.Conectar();
                 break;
-            case "Desconectar":
+            case "Disconnect":
                 code = EpsonFiscalInterface.Desconectar();
                 break;
-            case "ImprimirCierreX":
+            case "PartialClose":
+                code = EpsonFiscalInterface.ConfigurarPuerto(port);
+                code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
+                code = EpsonFiscalInterface.Conectar();
                 code = EpsonFiscalInterface.ImprimirCierreX();
                 break;
-            case "ImprimirCierreZ":
+            case "DailyClose":
+                code = EpsonFiscalInterface.ConfigurarPuerto(port);
+                code = EpsonFiscalInterface.ConfigurarVelocidad(speed);
+                code = EpsonFiscalInterface.Conectar();
                 code = EpsonFiscalInterface.ImprimirCierreZ();
                 break;
             case "ConsultarVersionDll":

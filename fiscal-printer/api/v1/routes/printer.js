@@ -2,7 +2,8 @@
 const printer = require('../controllers/printer')
 const express = require('express')
 const router = express.Router()
-
-router.post('/', printer.RunDLL)
+router.post('/connect-fiscal', printer.connectFiscal)
+router.post('/partial-close', printer.partialClose)
+router.post('/daily-close', printer.dailyClose)
 
 module.exports = router
