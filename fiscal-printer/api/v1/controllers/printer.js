@@ -3,7 +3,7 @@ const edge = require('edge-js')
 const dllCall = edge.func("./dlls/application.cs")
 const getErrorMessage = require('../utils').getErrorMessage
 const constants = require('../utils').constants
-const defaultValues = require('../utils').defaultValues
+const defaultValues = require('../config').defaultValues
 
 const callDll = (payload) => {
   return new Promise((resolve, reject) => {

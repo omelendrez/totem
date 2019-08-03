@@ -9,6 +9,13 @@ module.exports.header = () => {
   ]
 }
 
+module.exports.defaultValues = {
+  port: "1",
+  speed: 9600
+}
+
+module.exports.
+
 const printers = [
   {
     id: 1,
