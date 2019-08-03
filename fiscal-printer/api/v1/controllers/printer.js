@@ -4,6 +4,9 @@ const defaultValues = require('../config').defaultValues
 const constants = require('../utils').constants
 
 module.exports = {
+  async default(req, res) {
+    res.status(401).json({ message: 'Invalid endpoint' })
+  },
   async connectFiscal(req, res) {
     const action = 'Connect';
     try {

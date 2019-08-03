@@ -8,5 +8,6 @@ router.post('/daily-close', printer.dailyClose)
 router.post('/printer-status', printer.getPrinterStatus)
 router.post('/fiscal-status', printer.getFiscalStatus)
 router.post('/print-ticket', printer.printTicket)
+router.get('/', printer.default)
 
 module.exports = router

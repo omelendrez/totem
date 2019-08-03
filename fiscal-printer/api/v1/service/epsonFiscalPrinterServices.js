@@ -5,7 +5,6 @@ const getErrorMessage = require('../utils').getErrorMessage
 const callDll = (payload) => {
   return new Promise((resolve, reject) => {
     dllCall(payload, (err, result) => {
-      console.log(payload)
       if (err) {
         reject(err)
       } else {
