@@ -4,7 +4,9 @@ import {
   loadOrderData,
   printOrder,
   setOrderPrinted,
-  printerError
+  printerError,
+  informeX,
+  informeZ
 } from '../services'
 
 class Scanner extends Component {
@@ -31,14 +33,22 @@ class Scanner extends Component {
 
   handleChange = event => {
     const { value } = event.target
-    if (!value.match(/^\d+$/)) return
     this.setState({ orderId: value })
   }
 
   handleSubmit = event => {
     event.preventDefault()
     if (!this.state.orderId) return
-    this.processOrder()
+    switch (this.state.orderId) {
+      case "INFORME-X":
+        informeX()
+        break;
+      case "INFORME-Z":
+        informeZ()
+        break;
+      default:
+        this.processOrder()
+    }
     this.setState({ orderId: '' })
     this.orderId.focus()
   }
