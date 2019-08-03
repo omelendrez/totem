@@ -14,8 +14,6 @@ module.exports.defaultValues = {
   speed: 9600
 }
 
-module.exports.
-
 const printers = [
   {
     id: 1,
