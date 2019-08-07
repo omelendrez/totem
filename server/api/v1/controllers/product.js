@@ -95,6 +95,10 @@ module.exports = {
         },
         status_id: {
           [Op.in]: status
+        },
+        image: {
+          [Op.ne]: '',
+          [Op.ne]: null
         }
       },
       order: ord,
