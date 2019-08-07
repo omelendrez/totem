@@ -13,16 +13,6 @@
           <md-button class="md-icon-button">
             <md-icon>search</md-icon>
           </md-button>
-          <div class="md-toolbar-section-end">
-            <label for="category">Categoriía</label>
-            <md-select id="category" v-model="categoryId" @change="fetchProducts">
-              <md-option
-                v-for="category in categories"
-                v-bind:value="category.id"
-                :key="category.id"
-              >{{category.name}}</md-option>
-            </md-select>
-          </div>
         </md-toolbar>
 
         <md-table @sort="onSort" md-sort="code">
@@ -136,7 +126,7 @@ export default {
   },
   methods: {
     fetchProducts() {
-      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}&categoryId=${this.categoryId}`;
+      const url = `products?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
       HTTP.get(url)
         .then(res => {
           this.storeParams();
