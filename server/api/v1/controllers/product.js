@@ -95,10 +95,6 @@ module.exports = {
         },
         status_id: {
           [Op.in]: status
-        },
-        image: {
-          [Op.ne]: '',
-          [Op.ne]: null
         }
       },
       order: ord,
@@ -143,7 +139,14 @@ module.exports = {
     const Category = require('../models').category
     Product.belongsTo(Category)
     return Product.findAndCountAll({
-      where: { status_id: 1 },
+      where: {
+        status_id: {
+          [Op.eq]: 1
+        },
+        image: {
+          [Op.ne]: ''
+        }
+      },
       order: [['category_id', 'asc'], ['price', 'asc']],
       include: [
         {
