@@ -1,8 +1,8 @@
-import HTTP2 from './printerAPI'
+import FISCAL from './fiscalPrinterAPI'
 
-export const printOrder = order => {
+export const printOrderFiscal = order => {
   return new Promise((resolve, reject) => {
-    HTTP2.post(`/${order.printerId}`, { order })
+    FISCAL.post('/print-ticket', { order })
       .then(resp => {
         resolve(resp)
       })

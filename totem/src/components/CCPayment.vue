@@ -105,13 +105,13 @@ ubicado debajo de esta pantalla`;
                       store.dispatch("ccChangeOrderStatus", order);
 
                       order.printerId = 1; // Totem ticket printer
-                      store.dispatch("printOrder", order);
+                      store.dispatch("printOrderThermal", order);
 
                       order.printerId = 2; // Command printer
-                      store.dispatch("printOrder", order);
+                      store.dispatch("printOrderThermal", order);
 
                       order.printerId = 3; // Fiscal printer
-                      store.dispatch("printOrder", order);
+                      store.dispatch("printOrderFiscal", order);
 
                       store.dispatch("setCCStatus", 2);
                     })

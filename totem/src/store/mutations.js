@@ -120,6 +120,13 @@ const mutations = {
     state.printingOrder = ''
     state.printedOrder = order
   },
+  fiscal_print_order_data_request(state, order) {
+    state.fiscalPrintingOrder = order.order_number
+  },
+  fiscal_print_order_data_success(state, order) {
+    state.fiscalPrintingOrder = ''
+    state.fiscalPrintedOrder = order
+  },
   load_totem_status_request(state) { },
   load_totem_status_success(state, totem) {
     state.totem = totem

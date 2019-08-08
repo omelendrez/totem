@@ -6,10 +6,10 @@ import {
   loadItems,
   loadOrderItems,
   loadOrderData,
-  printOrder,
+  printOrderThermal,
+  printOrderFiscal,
   changeOrderStatus,
   changeItemStatus,
-  setOrderPrinted,
   checkTotemStatus
 } from '@/services'
 const { CONFIG, totemId } = require('@/config')
@@ -144,9 +144,9 @@ const actions = {
         commit('request_error', handleError(err))
       })
   },
-  async printOrder({ commit }, orderData) {
+  async printOrderThermal({ commit }, orderData) {
     commit('print_order_data_request', orderData)
-    printOrder(orderData)
+    printOrderThermal(orderData)
       .then(resp => {
         commit('print_order_data_success', resp.data)
       })
@@ -154,10 +154,15 @@ const actions = {
         commit('request_error', handleError(err))
       })
   },
-  async setOrderPrinted({ commit }, orderId) {
-    setOrderPrinted(orderId).catch(err => {
-      commit('request_error', handleError(err))
-    })
+  async printOrderFiscal({ commit }, orderData) {
+    commit('fiscal_print_order_data_request', orderData)
+    printOrderThermal(orderData)
+      .then(resp => {
+        commit('fiscal_print_order_data_success', resp.data)
+      })
+      .catch(err => {
+        commit('request_error', handleError(err))
+      })
   },
   async checkTotemStatus({ commit }) {
     commit('load_totem_status_request')
