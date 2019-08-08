@@ -116,7 +116,7 @@ export default {
       if (order.payment_method === 2 && order.status_id === 0) {
         // CASHIER new order
         order.printerId = 1; // Totem ticket printer
-        store.dispatch("printOrder", order);
+        store.dispatch("printOrderThermal", order);
       }
     },
     printingOrder() {

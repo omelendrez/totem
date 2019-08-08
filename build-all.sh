@@ -8,4 +8,3 @@ cd ../totem
 npm run build
 cd ../turns
 npm run build
-pause
