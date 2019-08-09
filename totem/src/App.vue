@@ -4,11 +4,11 @@
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
     <router-view v-if="totemActive" />
-    <v-container class="image" v-if="!totemActive">
+    <v-container class="container" v-if="!totemActive">
       <v-carousel
         hide-delimiters
         hide-controls
-        vertical
+        inverse
         touchless
         height="100vw"
         :interval="interval"
@@ -17,6 +17,16 @@
           <div class="carousel-category-name">{{item.category.name}}</div>
         </v-carousel-item>
       </v-carousel>
+      <v-divider></v-divider>
+      <v-sheet class="d-flex" color="#ee3542" height="424">
+        <sheet-footer>
+          <div class="footer-message">
+            <p>😢</p>
+            <p>El totem se encuentra momentáneamente fuera de servicio.</p>
+            <p>Pedimos discuplas por las molestias.</p>
+          </div>
+        </sheet-footer>
+      </v-sheet>
     </v-container>
     <Loading />
   </v-app>
@@ -84,24 +94,28 @@ export default {
 body {
   font-family: Roboto;
 }
-::-webkit-scrollbar {
-  width: 0;
-}
-.image {
-  position: absolute;
-  top: 20vh;
-}
-.carousel-category-name {
-  font-size: 3em;
-  font-weight: 900;
-  color: "#ee3542";
-  text-align: right;
-  margin-top: 620px;
-  margin-right: 100px;
-}
 .logo {
   top: 32px;
   max-width: 400px;
   height: 90px;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+.carousel-category-name {
+  font-size: 6em;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 4px 6px #000;
+  text-align: center;
+}
+.d-flex {
+  margin-top: 60px;
+  box-shadow: 4px 4px 4px #999;
+}
+.footer-message {
+  padding: 60px;
+  font-size: 3em;
+  color: #fff;
 }
 </style>
