@@ -111,6 +111,7 @@ body {
 }
 .d-flex {
   margin-top: 60px;
+  box-shadow: 4px 4px 4px #999;
 }
 .footer-message {
   padding: 60px;
