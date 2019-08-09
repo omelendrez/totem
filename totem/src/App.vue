@@ -3,13 +3,22 @@
     <v-toolbar color="#ee3542" extended>
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
-    <router-view v-if="totemActive"/>
-    <v-container fluid class="image" v-if="!totemActive">
-      <v-carousel hide-delimiters height="800">
-        <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image"></v-carousel-item>
+    <router-view v-if="totemActive" />
+    <v-container class="image" v-if="!totemActive">
+      <v-carousel
+        hide-delimiters
+        hide-controls
+        vertical
+        touchless
+        height="100vw"
+        :interval="interval"
+      >
+        <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image">
+          <div class="carousel-category-name">{{item.category.name}}</div>
+        </v-carousel-item>
       </v-carousel>
     </v-container>
-    <Loading/>
+    <Loading />
   </v-app>
 </template>
 <script>
@@ -35,7 +44,7 @@ export default {
   watch: {
     totem() {
       this.totemActive = this.totem.status_id === 1;
-      if (!this.totemActive && !this.products.length) {
+      if (!this.products.length) {
         store.dispatch("loadProducts");
       }
     },
@@ -43,9 +52,10 @@ export default {
       const items = [];
       this.products.map(item => {
         switch (item.category_id) {
-          case 1:
-          case 2:
-          case 3:
+          case 1: // Carnes
+          case 2: // Hamburguesas
+          case 3: // Ensaladas
+          case 6: // Kids
             items.push(item);
             break;
         }
@@ -57,7 +67,8 @@ export default {
     return {
       logo: Logo,
       totemActive: true,
-      items: []
+      items: [],
+      interval: 10000
     };
   },
   mounted() {
@@ -75,6 +86,18 @@ body {
 }
 ::-webkit-scrollbar {
   width: 0;
+}
+.image {
+  position: absolute;
+  top: 20vh;
+}
+.carousel-category-name {
+  font-size: 3em;
+  font-weight: 900;
+  color: "#ee3542";
+  text-align: right;
+  margin-top: 620px;
+  margin-right: 100px;
 }
 .logo {
   top: 32px;
