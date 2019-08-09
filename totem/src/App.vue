@@ -3,13 +3,32 @@
     <v-toolbar color="#ee3542" extended>
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
-    <router-view v-if="totemActive"/>
-    <v-container fluid class="image" v-if="!totemActive">
-      <v-carousel hide-delimiters height="800">
-        <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image"></v-carousel-item>
+    <router-view v-if="totemActive" />
+    <v-container class="container" v-if="!totemActive">
+      <v-carousel
+        hide-delimiters
+        hide-controls
+        inverse
+        touchless
+        height="100vw"
+        :interval="interval"
+      >
+        <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image">
+          <div class="carousel-category-name">{{item.category.name}}</div>
+        </v-carousel-item>
       </v-carousel>
+      <v-divider></v-divider>
+      <v-sheet class="d-flex" color="#ee3542" height="424">
+        <sheet-footer>
+          <div class="footer-message">
+            <p>😢</p>
+            <p>El totem se encuentra momentáneamente fuera de servicio.</p>
+            <p>Pedimos discuplas por las molestias.</p>
+          </div>
+        </sheet-footer>
+      </v-sheet>
     </v-container>
-    <Loading/>
+    <Loading />
   </v-app>
 </template>
 <script>
@@ -35,7 +54,7 @@ export default {
   watch: {
     totem() {
       this.totemActive = this.totem.status_id === 1;
-      if (!this.totemActive && !this.products.length) {
+      if (!this.products.length) {
         store.dispatch("loadProducts");
       }
     },
@@ -43,9 +62,10 @@ export default {
       const items = [];
       this.products.map(item => {
         switch (item.category_id) {
-          case 1:
-          case 2:
-          case 3:
+          case 1: // Carnes
+          case 2: // Hamburguesas
+          case 3: // Ensaladas
+          case 6: // Kids
             items.push(item);
             break;
         }
@@ -57,7 +77,8 @@ export default {
     return {
       logo: Logo,
       totemActive: true,
-      items: []
+      items: [],
+      interval: 10000
     };
   },
   mounted() {
@@ -73,12 +94,28 @@ export default {
 body {
   font-family: Roboto;
 }
-::-webkit-scrollbar {
-  width: 0;
-}
 .logo {
   top: 32px;
   max-width: 400px;
   height: 90px;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+.carousel-category-name {
+  font-size: 6em;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 4px 6px #000;
+  text-align: center;
+}
+.d-flex {
+  margin-top: 60px;
+  box-shadow: 4px 4px 4px #999;
+}
+.footer-message {
+  padding: 60px;
+  font-size: 3em;
+  color: #fff;
 }
 </style>
