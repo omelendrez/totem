@@ -5,28 +5,28 @@
     </v-toolbar>
     <router-view v-if="totemActive" />
     <v-container class="container" v-if="!totemActive">
+      <v-sheet color="info">
+        <sheet-footer>
+          <div class="footer-message">
+            <p>🤷‍♀</p>
+            <p>Este totem se encuentra momentáneamente fuera de servicio.</p>
+            <p>Pedimos disculpas por las molestias.</p>
+          </div>
+        </sheet-footer>
+      </v-sheet>
       <v-carousel
         hide-delimiters
         hide-controls
         inverse
         touchless
-        height="100vw"
+        height="100vh"
         :interval="interval"
+        class="carousel"
       >
         <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.image">
           <div class="carousel-category-name">{{item.category.name}}</div>
         </v-carousel-item>
       </v-carousel>
-      <v-divider></v-divider>
-      <v-sheet class="d-flex" color="#ee3542" height="424">
-        <sheet-footer>
-          <div class="footer-message">
-            <p>😢</p>
-            <p>El totem se encuentra momentáneamente fuera de servicio.</p>
-            <p>Pedimos discuplas por las molestias.</p>
-          </div>
-        </sheet-footer>
-      </v-sheet>
     </v-container>
     <Loading />
   </v-app>
@@ -109,10 +109,13 @@ body {
   text-shadow: 2px 4px 6px #000;
   text-align: center;
 }
-.d-flex {
-  margin-top: 60px;
-  box-shadow: 4px 4px 4px #999;
+.carousel {
+  margin-top: 30px;
 }
+.d-flex {
+  box-shadow: 0px 2px 2px #999;
+}
+
 .footer-message {
   padding: 60px;
   font-size: 3em;
