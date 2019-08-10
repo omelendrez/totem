@@ -1,8 +1,8 @@
 const CONFIG = {
   backendServerUrl: 'http://totem-be:3000/',
   assetsServerUrl: 'http://totem-be:3010/',
-  paymentServer: 'http://localhost:3030',
-  thermalPrintServerURL: 'http://localhost:3020',
+  paymentServer: 'http://totem01:3030',
+  thermalPrintServerURL: 'http://totem01:3020',
   fiscalPrintServerURL: 'http://totem-be:3060'
 }
 const intervals = {
