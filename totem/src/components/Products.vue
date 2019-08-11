@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg class="products">
     <v-layout wrap>
-      <v-flex xs4 mb-4 v-for="(item, index) in items" :key="index" v-show="item.image">
+      <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index" v-show="item.image">
         <v-content>
           <v-card ripple>
             <v-img contain :src="item.image" class="image"></v-img>
@@ -86,7 +86,7 @@ export default {
 }
 .price {
   position: absolute;
-  top: 20px;
+  top: 4px;
   right: 29px;
   min-width: 80px;
   font-size: 2em;
@@ -96,8 +96,5 @@ export default {
   border-radius: 6px;
   color: #000;
   background-color: #fff;
-}
-.image {
-  height: 300px;
 }
 </style>
