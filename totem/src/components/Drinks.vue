@@ -2,9 +2,9 @@
   <v-container fluid grid-list-lg class="drinks">
     <span class="message">Seleccioná tu bebida</span>
     <v-layout wrap>
-      <v-flex xs2 v-for="(item, index) in items" :key="index">
+      <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index">
         <v-content>
-          <v-card ripple height="300">
+          <v-card ripple>
             <v-img :src="item.image" class="image"></v-img>
             <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
@@ -64,9 +64,8 @@ export default {
 .name {
   text-align: center;
   position: absolute;
-  bottom: 30px;
+  bottom: 56px;
   width: 100%;
-  font-weight: bold;
   font-size: 1.2em;
 }
 .message {

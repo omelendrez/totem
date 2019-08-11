@@ -4,10 +4,10 @@
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
     <router-view v-if="totemActive" />
-    <v-container class="container" v-if="!totemActive">
+    <v-container class="vb-container fluid" v-if="!totemActive">
       <v-sheet color="info">
         <sheet-footer>
-          <div class="footer-message">
+          <div class="wait-message">
             <p>🤷‍♀</p>
             <p>Este totem se encuentra momentáneamente fuera de servicio.</p>
             <p>Pedimos disculpas por las molestias.</p>
@@ -17,9 +17,8 @@
       <v-carousel
         hide-delimiters
         hide-controls
-        inverse
         touchless
-        height="100vh"
+        height="61vh"
         :interval="interval"
         class="carousel"
       >
@@ -102,6 +101,9 @@ body {
 ::-webkit-scrollbar {
   width: 0;
 }
+.d-flex {
+  box-shadow: 0px 2px 2px #999;
+}
 .carousel-category-name {
   font-size: 6em;
   font-weight: 900;
@@ -109,14 +111,9 @@ body {
   text-shadow: 2px 4px 6px #000;
   text-align: center;
 }
-.carousel {
-  margin-top: 30px;
-}
-.d-flex {
-  box-shadow: 0px 2px 2px #999;
-}
 
-.footer-message {
+.wait-message {
+  margin-bottom: 20px;
   padding: 60px;
   font-size: 3em;
   color: #fff;

@@ -138,9 +138,9 @@ export default {
 }
 .basket {
   position: absolute;
-  left: 1px;
-  width: 1075px;
-  top: 71px;
+  left: 0;
+  width: 100vw;
+  top: 69px;
   z-index: 2;
 }
 .categories {
@@ -148,14 +148,14 @@ export default {
   top: 106px;
   left: 1px;
   height: auto;
-  width: 200px;
+  width: 120px;
 }
 .products {
   position: absolute;
   top: 106px;
-  left: 108px;
-  height: 1710px;
-  width: 862px;
+  left: 70px;
+  height: 1384px;
+  width: 1060px;
 }
 .drinks {
   position: absolute;

@@ -43,6 +43,7 @@ const mutations = {
     let basket = state.basket
     if (index === -1) {
       basket = []
+      state.selectedCategory = null
       state.ccStatus = 3
     } else {
       basket.splice(index, 1)
@@ -50,7 +51,11 @@ const mutations = {
     state.basket = basket
   },
   select_category(state, { item }) {
-    state.selectedCategory = item
+    if (state.selectedCategory && state.selectedCategory.id === item.id) {
+      state.selectedCategory = null
+    } else {
+      state.selectedCategory = item
+    }
   },
   save_order_request(state) {
     state.status = 'loading'
