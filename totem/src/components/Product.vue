@@ -11,10 +11,10 @@
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">
-            <v-btn fab absolute bottom left color="secondary" @click="close(item)">
+            <v-btn fab absolute bottom left color="secondary" @click.stop="close(item)">
               <v-icon>close</v-icon>
             </v-btn>
-            <v-btn dark fab absolute bottom right color="primary" @click="addProduct(item)">
+            <v-btn dark fab absolute bottom right color="primary" @click.stop="addProduct(item)">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-actions>

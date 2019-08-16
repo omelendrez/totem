@@ -6,7 +6,7 @@
           ripple
           class="category"
           v-bind:class="{ active: isActive(item)}"
-          @click="selectCategory(item)"
+          @click.stop="selectCategory(item)"
         >
           <v-img :src="item.image">
             <v-icon right>done_all</v-icon>

@@ -8,7 +8,7 @@
             <v-img :src="item.image" class="image"></v-img>
             <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
-              <v-btn dark fab absolute bottom right color="primary" @click="addDrink(item)">
+              <v-btn dark fab absolute bottom right color="primary" @click.stop="addDrink(item)">
                 <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>

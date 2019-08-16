@@ -7,10 +7,10 @@
             <v-img contain :src="item.image" class="image"></v-img>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
-              <v-btn fab dark color="pink" absolute left @click="info(item)">
+              <v-btn fab dark color="pink" absolute left @click.stop="info(item)">
                 <v-icon>live_help</v-icon>
               </v-btn>
-              <v-btn dark fab absolute right color="primary" @click="add(item)">
+              <v-btn dark fab absolute right color="primary" @click.stop="add(item)">
                 <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
