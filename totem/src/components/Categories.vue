@@ -4,11 +4,13 @@
       <v-flex xs12 v-for="(item, index) in items" :key="index">
         <v-card
           ripple
-          class="inactive"
-          @click.native="selectCategory(item)"
+          class="category"
           v-bind:class="{ active: isActive(item)}"
+          @click="selectCategory(item)"
         >
-          <v-img :src="item.image" contain></v-img>
+          <v-img :src="item.image">
+            <v-icon right>done_all</v-icon>
+          </v-img>
         </v-card>
       </v-flex>
     </v-layout>
@@ -58,10 +60,15 @@ export default {
 .categories {
   padding: 0;
 }
-.inactive {
-  background-color: rgba(240, 52, 52, 0.2);
+.category i {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  color: #42a5f5;
 }
-.active {
-  background-color: #fff;
+
+.active i {
+  display: block;
 }
 </style>
