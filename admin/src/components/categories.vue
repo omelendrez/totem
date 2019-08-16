@@ -26,7 +26,10 @@
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in categories" :key="rowIndex" :md-item="row">
               <md-table-cell>
-                <md-image height="60px" :md-src="`${backendURL.images}${row.image}`"></md-image>
+                <md-image
+                  height="60px"
+                  :md-src="row.image.length ? `${backendURL.images}${row.image}`: null"
+                ></md-image>
               </md-table-cell>
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
@@ -117,9 +120,7 @@ export default {
   },
   methods: {
     fetchCategories() {
-      const url = `categories?page=${this.pag.page}&size=${
-        this.pag.size
-      }&sort=${this.sort.name}&type=${this.sort.type}`;
+      const url = `categories?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}`;
       HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;
