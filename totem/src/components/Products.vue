@@ -88,7 +88,7 @@ export default {
   position: absolute;
   top: 4px;
   right: 29px;
-  min-width: 80px;
+  min-width: 84px;
   font-size: 2em;
   font-weight: bold;
   padding-left: 10px;

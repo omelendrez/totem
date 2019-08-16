@@ -80,7 +80,7 @@ export default {
   font-weight: bold;
   border-radius: 6px;
   color: #fff;
-  background-color: brown;
+  background-color: #42a5f5;
   z-index: 1;
 }
 </style>
