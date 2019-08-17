@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-export const backendServer = 'http://totem-be:3000'
+export const backendServer = 'http://TOTEM00:3000'
 
 const servers = {
   databaseServer: Axios.create({ baseURL: backendServer })
