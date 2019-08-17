@@ -147,7 +147,7 @@ module.exports = {
           [Op.ne]: ''
         }
       },
-      order: [['category_id', 'asc'], ['price', 'asc']],
+      order: [['category_id', 'asc'], ['price', 'desc']],
       include: [
         {
           model: Category,
