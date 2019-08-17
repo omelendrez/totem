@@ -9,7 +9,7 @@
         <md-card-area md-inset>
           <md-card-media class="image" v-on:click.native="showUpload">
             <md-image :md-src="image"></md-image>
-            <div class="sin-imagen">Sin imagen</div>
+            <div class="sin-imagen" v-if="!image">Sin imagen</div>
           </md-card-media>
           <md-card-content>
             <Upload :fileName="fileName" :execute="refreshUploaded" v-show="upload" />
