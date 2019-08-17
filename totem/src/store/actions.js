@@ -156,7 +156,7 @@ const actions = {
   },
   async printOrderFiscal({ commit }, orderData) {
     commit('fiscal_print_order_data_request', orderData)
-    printOrderThermal(orderData)
+    printOrderFiscal(orderData)
       .then(resp => {
         commit('fiscal_print_order_data_success', resp.data)
       })
