@@ -1,9 +1,9 @@
 const CONFIG = {
-  backendServerUrl: 'http://totem-be:3000/',
-  assetsServerUrl: 'http://totem-be:3010/',
+  backendServerUrl: 'http://TOTEM00:3000/',
+  assetsServerUrl: 'http://TOTEM00:3010/',
   paymentServer: 'http://totem01:3030',
   thermalPrintServerURL: 'http://totem01:3020',
-  fiscalPrintServerURL: 'http://totem-be:3060'
+  fiscalPrintServerURL: 'http://TOTEM00:3060'
 }
 const intervals = {
   totemtIimeout: 300000, // Time of inactivity for the totem to reset (clean pending basket, reset selected category)
