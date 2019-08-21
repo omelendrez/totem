@@ -44,3 +44,7 @@
   display: inline-block;
   vertical-align: text-bottom;
 }
+
+.scanner-form input {
+  width: 1px;
+}
