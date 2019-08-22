@@ -1,5 +1,5 @@
 const backendURL = {
-  data: "http://TOTEM00:3000/",
-  images: "http://TOTEM00:3010/"
+  data: "http://totem00:3000/",
+  images: "http://totem00:3010/"
 };
 export default backendURL;
