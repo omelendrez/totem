@@ -3,15 +3,15 @@ const PrinterError = require('../models').printer_error
 
 module.exports = {
   create(req, res) {
-    const { data } = req.body
-    const { order, printer, message } = data
-    return PrinterError.create({
-      orderNumber: order.order_number,
-      printerId: printer.id,
-      printerInteface: printer.interface,
-      printerName: printer.name,
-      errorMessage: message
-    })
+    const { order, printer, message } = req.body.printError
+    const payload = {
+      order_number: order.order_number,
+      printer_id: printer.id,
+      printer_inteface: printer.interface,
+      printer_name: printer.name,
+      error_message: message
+    }
+    return PrinterError.create(payload)
       .then(printerError => {
         res.status(201).json(printerError)
       })

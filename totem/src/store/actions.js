@@ -7,6 +7,7 @@ import {
   loadOrderItems,
   loadOrderData,
   printOrderThermal,
+  printOrderThermalError,
   printOrderFiscal,
   changeOrderStatus,
   changeItemStatus,
@@ -151,6 +152,8 @@ const actions = {
         commit('print_order_data_success', resp.data)
       })
       .catch(err => {
+        const data = { ...err.response.data, order: orderData }
+        printOrderThermalError(data)
         commit('request_error', handleError(err))
       })
   },

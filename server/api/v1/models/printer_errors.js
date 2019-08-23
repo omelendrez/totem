@@ -1,22 +1,22 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const PrinterError = sequelize.define('printer_error', {
-    orderNumber: {
+    order_number: {
       type: DataTypes.STRING,
       defaultValue: ''
     },
-    printerId: {
+    printer_id: {
       type: DataTypes.INTEGER
     },
-    printerInteface: {
+    printer_inteface: {
       type: DataTypes.STRING,
       defaultValue: ''
     },
-    printerName: {
+    printer_name: {
       type: DataTypes.STRING,
       defaultValue: ''
     },
-    errorMessage: {
+    error_message: {
       type: DataTypes.STRING,
       defaultValue: ''
     }
