@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     printer_id: {
       type: DataTypes.INTEGER
     },
-    printer_inteface: {
+    printer_interface: {
       type: DataTypes.STRING,
       defaultValue: ''
     },
