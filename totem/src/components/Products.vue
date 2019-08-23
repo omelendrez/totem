@@ -71,18 +71,18 @@ export default {
 </script>
 <style scoped>
 .products {
-  padding: 0;
+  padding: 1px;
   overflow-y: scroll;
-  background-color: #efefef;
+  background-color: #fff;
   -webkit-overflow-scrolling: touch;
 }
 .products::-webkit-scrollbar {
   width: 18px;
   height: 0;
-  background-color: #dadada;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .products::-webkit-scrollbar-thumb {
-  background-color: #aaa;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .price {
   position: absolute;
