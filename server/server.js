@@ -33,6 +33,7 @@ models.sequelize.sync({
 app.use('/categories', require(apiPath + '/routes/category'))
 app.use('/discounts', require(apiPath + '/routes/discount'))
 app.use('/orders', require(apiPath + '/routes/order'))
+app.use('/sales', require(apiPath + '/routes/sales'))
 app.use('/products', require(apiPath + '/routes/product'))
 app.use('/users', require(apiPath + '/routes/user'))
 app.use('/product_discount', require(apiPath + '/routes/product_discount'))
