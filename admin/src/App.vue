@@ -14,6 +14,7 @@
         :to="{ name: 'Categories' }"
         class="md-raised md-accent"
       >Categorías</router-link>
+
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
@@ -27,13 +28,20 @@
         :to="{ name: 'Discounts' }"
         class="md-raised md-accent"
       >Descuentos</router-link>
-
+      <!--
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
         :to="{ name: 'Reports' }"
-        class="md-raised md-accent reports-button"
+        class="md-raised md-accent"
       >Reportes</router-link>
+      -->
+      <router-link
+        tag="md-button"
+        v-if="this.$root.$data.logged"
+        :to="{ name: 'Orders' }"
+        class="md-raised md-accent"
+      >Ventas</router-link>
 
       <router-link
         tag="md-button"
@@ -52,16 +60,16 @@
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
-        :to="{ name: 'Users' }"
-        class="md-raised md-accent float-right"
-      >Usuarios</router-link>
+        :to="{ name: 'Totem' }"
+        class="md-raised md-accent totem"
+      >Activaciones</router-link>
 
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
-        :to="{ name: 'Totem' }"
-        class="md-raised md-accent float-right totem"
-      >Activaciones</router-link>
+        :to="{ name: 'Users' }"
+        class="md-raised md-accent"
+      >Usuarios</router-link>
     </div>
     <router-view></router-view>
   </div>
@@ -86,9 +94,7 @@ body {
 .whiteframe {
   background-color: #fff;
 }
-.reports-button {
-  margin-left: 100px;
-}
+
 .logout-button {
   background-color: #e1e0b8 !important;
 }

@@ -26,6 +26,7 @@ import UserEdit from "@/components/userEdit";
 import UserView from "@/components/userView";
 
 import Totem from "@/components/totem";
+import Orders from "@/components/orders";
 import Errors from "@/components/errors";
 
 Vue.use(Router);
@@ -53,6 +54,11 @@ export default new Router({
       path: "/errors",
       name: "Errors",
       component: Errors
+    },
+    {
+      path: "/orders",
+      name: "Orders",
+      component: Orders
     },
     {
       path: "/categories",

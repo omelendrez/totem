@@ -1,6 +1,7 @@
 'use strict'
 const Order = require('../models').order
 const OrderItems = require('../models').order_items
+const Totem = require('../models').totem
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 
@@ -88,6 +89,46 @@ module.exports = {
       },
       order: [['id', 'asc']],
       attributes: ['order_number', 'total_price']
+    })
+      .then(orders => res.status(200).json(orders))
+      .catch(error => res.status(400).send(error))
+  },
+
+  listAll(req, res) {
+    const page = parseInt(req.query.page ? req.query.page : 0)
+    const size = parseInt(req.query.size ? req.query.size : 1000)
+    const sort = req.query.sort ? req.query.sort : 'order_number'
+    const type = req.query.type ? req.query.type : 'asc'
+    const filter = req.query.filter ? req.query.filter : ''
+    Order.belongsTo(Totem)
+    Totem.hasMany(Order)
+
+    Order.findAndCountAll({
+      where: {
+        order_number: {
+          [Op.like]: '%' + filter + '%'
+        }
+      },
+      order: [[sort, type]],
+      offset: size !== 1000 ? (page - 1) * size : 0,
+      limit: size,
+      include: [
+        {
+          model: Totem,
+          where: {
+            id: sequelize.col('order.totem_id')
+          },
+          attributes: ['name']
+        }
+      ],
+      attributes: ['order_number', 'total_price', 'payment_method', 'status_id', [
+        sequelize.fn(
+          'date_format',
+          sequelize.col('order.created_at'),
+          '%d-%b-%y %H:%i'
+        ),
+        'created_at'
+      ]]
     })
       .then(orders => res.status(200).json(orders))
       .catch(error => res.status(400).send(error))
