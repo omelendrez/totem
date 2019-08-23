@@ -102,6 +102,10 @@ export default {
       store.dispatch("info", reset);
     },
     addDrink(item) {
+      if (!item) {
+        this.showDrinks = false;
+        return;
+      }
       let product = {};
       Object.assign(product, this.selectedProduct);
       product.ticket_text = product.ticket_text.replace(
@@ -154,15 +158,15 @@ export default {
   position: absolute;
   top: 106px;
   left: 70px;
-  height: 1384px;
-  width: 1060px;
+  height: 1700px;
+  width: 939px;
 }
 .drinks {
   position: absolute;
   top: 106px;
   left: 1px;
-  bottom: 1px;
-  right: 1px;
+  height: 1700px;
+  width: 1076px;
   z-index: 202;
 }
 </style>
