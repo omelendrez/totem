@@ -38,6 +38,13 @@
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
+        :to="{ name: 'Errors' }"
+        class="md-raised md-accent"
+      >Errores</router-link>
+
+      <router-link
+        tag="md-button"
+        v-if="this.$root.$data.logged"
         :to="{ name: 'Login' }"
         class="md-raised md-default float-right logout-button"
       >Logout</router-link>
@@ -86,4 +93,3 @@ body {
   background-color: #e1e0b8 !important;
 }
 </style>
-
