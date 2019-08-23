@@ -1,6 +1,6 @@
 const CONFIG = {
-  backendServerUrl: 'http://totem00:3000/',
-  assetsServerUrl: 'http://totem00:3010/',
+  backendServerUrl: `http://${location.hostname}:3000/`,
+  assetsServerUrl: `http://${location.hostname}:3010/`,
   paymentServer: 'http://totem01:3030',
   thermalPrintServerURL: 'http://totem01:3020',
   fiscalPrintServerURL: 'http://totem00:3060'
