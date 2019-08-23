@@ -15,7 +15,7 @@
             <md-table-row>
               <md-table-head>Tótem</md-table-head>
               <md-table-head md-sort-by="order_number">Ticket</md-table-head>
-              <md-table-head md-sort-by="total_price">Total</md-table-head>
+              <md-table-head md-sort-by="total_price" md-numeric>Total</md-table-head>
               <md-table-head>Medio de Pago</md-table-head>
               <md-table-head>Status</md-table-head>
               <md-table-head>Generado</md-table-head>
@@ -25,7 +25,7 @@
             <md-table-row v-for="(row, rowIndex) in orders" :key="rowIndex" :md-item="row">
               <md-table-cell>{{row.totem.name}}</md-table-cell>
               <md-table-cell>{{row.order_number}}</md-table-cell>
-              <md-table-cell>{{row.total_price}}</md-table-cell>
+              <md-table-cell md-numeric>{{row.total_price}}</md-table-cell>
               <md-table-cell>{{row.paymentMethod}}</md-table-cell>
               <md-table-cell>{{row.status}}</md-table-cell>
               <md-table-cell>{{row.created_at}}</md-table-cell>
