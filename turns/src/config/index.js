@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-export const backendServer = 'http://totem00:3000'
+export const backendServer = `http://${window.location.hostname}:3000/`
 const printServerURL = 'http://totem00:3020'
 const fiscalPrinterURL = 'http://totem00:3060'
 

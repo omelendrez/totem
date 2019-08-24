@@ -3,6 +3,6 @@ export const icons = {
   wait: '🕒'
 }
 
-export const ordersToShowCount = 6
+export const ordersToShowCount = 5
 
-export const timeRefresh = 5000
+export const timeRefresh = 10000

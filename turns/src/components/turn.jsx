@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Turn = ({ turn, icon }) => (
-  <div>
-    <div className="order-number">
+  <div className="turn">
+    <span className="order-number">
       {turn.substring(turn.length - 3, turn.length)}
-    </div>
-    <div className="icon">{icon}</div>
+    </span>
+    <span className="icon">{icon}</span>
   </div>
 )
 
