@@ -13,28 +13,29 @@
 
 .logo {
   display: block;
-  height: 100px;
+  height: 60px;
 }
 
 .view-title {
   text-transform: uppercase;
-  width: 100%;
-  padding: 10px;
   background-color: #ee3542;
   color: #fff;
 }
 
 .sub-title {
-  width: auto;
   text-transform: uppercase;
-  padding: 20px 60px;
   background-color: #ee3542;
   color: #fff;
-  font-size: 2em;
+  font-weight: 500;
+  font-size: 3em;
+}
+
+.turn {
+  height: 110px;
 }
 
 .order-number {
-  font-size: 8em;
+  font-size: 5em;
   font-weight: bold;
   display: inline-block;
 }
@@ -45,6 +46,9 @@
   vertical-align: text-bottom;
 }
 
-.scanner-form input {
+.scanner {
+  position: fixed;
+  bottom: 0;
   width: 1px;
+  height: 1px;
 }
