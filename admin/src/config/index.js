@@ -1,5 +1,5 @@
 const backendURL = {
-  data: `http://${location.hostname}:3000/`,
-  images: `http://${location.hostname}:3010/`
+  data: 'http://192.168.20.250:3000/',
+  images: 'http://192.168.20.250:3010/'
 };
 export default backendURL;

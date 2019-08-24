@@ -1,8 +1,8 @@
 import Axios from 'axios'
 
-export const backendServer = 'http://totem00:3000'
-const printServerURL = 'http://totem00:3020'
-const fiscalPrinterURL = 'http://totem00:3060'
+export const backendServer = 'http://192.168.20.250:3000'
+const printServerURL = 'http://192.168.20.250:3020'
+const fiscalPrinterURL = 'http://192.168.20.250:3060'
 
 const servers = {
   databaseServer: Axios.create({ baseURL: backendServer }),
