@@ -3,7 +3,7 @@
     "username": "escng_totem",
     "password": "M1a4$1t4E8r0",
     "database": "escng_totem",
-    "host": "totem00",
+    "host": "192.168.20.250",
     "dialect": "mysql",
     "logging": false,
     "define": {
@@ -18,7 +18,7 @@
     "username": "escng_totem",
     "password": "M1a4$1t4E8r0",
     "database": "escng_totem",
-    "host": "totem00",
+    "host": "192.168.20.250",
     "dialect": "mysql",
     "logging": false,
     "define": {
