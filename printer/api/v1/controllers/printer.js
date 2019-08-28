@@ -42,6 +42,7 @@ const printItems = (printer, order) => {
       },
       { text: item.total_price, align: 'RIGHT', bold: true }
     ])
+    printer.println()
   })
   printer.alignLeft()
   printer.println()
