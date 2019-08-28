@@ -69,7 +69,7 @@ const printBarcode = (printer, order) => {
 
 module.exports = {
   async print(req, res) {
-    const order = req.body.orderData
+    const { order } = req.body
     const printerId = parseInt(req.params.printerId)
     const selectedPrinter = await config.getPrinter(printerId)
     const printer = initPrinter(printerId)
