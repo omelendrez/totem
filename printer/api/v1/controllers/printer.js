@@ -13,7 +13,7 @@ const initPrinter = printerId => {
 
 const printHeader = async (printer, order) => {
   printer.alignCenter()
-  // await printer.printImage(`${__dirname}/../assets/logo.png`)
+  await printer.printImage(`${__dirname}/../assets/logo.png`)
   printer.bold(true)
   printer.setTextQuadArea()
   printer.println(order.order_number)
@@ -42,7 +42,6 @@ const printItems = (printer, order) => {
       },
       { text: item.total_price, align: 'RIGHT', bold: true }
     ])
-    printer.println()
   })
   printer.alignLeft()
   printer.println()
