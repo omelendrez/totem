@@ -40,11 +40,13 @@ class App extends Component {
     let index = this.state.index
     switch (event.key) {
       case 'ArrowDown':
+      case 'ArrowRight':
         if (index < this.state.items.length - 1) {
           index++
         }
         break
       case 'ArrowUp':
+      case 'ArrowLeft':
         if (index > 0) {
           index--
         }
@@ -58,8 +60,6 @@ class App extends Component {
           this.loadData()
         })
         break
-      default:
-        console.log(event.key)
     }
     this.setState({
       selectedItem: this.state.items[index]
@@ -77,8 +77,8 @@ class App extends Component {
         <div className="col-sm-12 header">
           <img src={logo} alt="logo" className="logo" />
         </div>
-        <h1 className="col-sm-12">
-          <span className="badge view-title">Cocina</span>
+        <h1 className="col-sm-12 view-title">
+          TOTEM
         </h1>
         <div className="col-sm-12">
           <Items
