@@ -8,7 +8,8 @@ import {
   informeX,
   informeZ,
   activateTotem,
-  deActivateTotem
+  deActivateTotem,
+  printOrderFiscal
 } from '../services'
 
 class Scanner extends Component {
@@ -73,6 +74,9 @@ class Scanner extends Component {
           setOrderPrinted(order.id).then(order => console.log(order))
         })
         .catch(err => printerError(err.response))
+      printOrderFiscal(order)
+        .catch(err => printerError(err.response))
+
     }
   }
 
