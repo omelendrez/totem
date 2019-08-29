@@ -6,7 +6,8 @@ const PrinterError = require('../models').printer_error
 
 module.exports = {
   create(req, res) {
-    const { order, printer, message } = req.body.printError
+    if (!req.body.data) return
+    const { order, printer, message } = req.body.data
     const payload = {
       order_number: order.order_number,
       printer_id: printer.id,

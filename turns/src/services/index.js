@@ -55,7 +55,7 @@ export const printOrder = order => {
 export const printerError = errorData => {
   return new Promise((resolve, reject) => {
     servers.databaseServer
-      .post(`orders/printer-error`, errorData)
+      .post('printer-error', errorData)
       .then(resp => {
         resolve(resp)
       })
