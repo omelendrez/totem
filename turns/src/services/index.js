@@ -129,3 +129,16 @@ export const deActivateTotem = totemId => {
       })
   })
 }
+
+export const printOrderFiscal = order => {
+  return new Promise((resolve, reject) => {
+    servers.fiscalPrinter
+      .post('/print-ticket', { order })
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
