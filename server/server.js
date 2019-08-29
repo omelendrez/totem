@@ -33,6 +33,7 @@ models.sequelize.sync({
 app.use('/categories', require(apiPath + '/routes/category'))
 app.use('/discounts', require(apiPath + '/routes/discount'))
 app.use('/orders', require(apiPath + '/routes/order'))
+app.use('/sales', require(apiPath + '/routes/sales'))
 app.use('/products', require(apiPath + '/routes/product'))
 app.use('/users', require(apiPath + '/routes/user'))
 app.use('/product_discount', require(apiPath + '/routes/product_discount'))
@@ -40,6 +41,7 @@ app.use('/status', require(apiPath + '/routes/status'))
 app.use('/login', require(apiPath + '/routes/login'))
 app.use('/config', require(apiPath + '/routes/config'))
 app.use('/totem', require(apiPath + '/routes/totem'))
+app.use('/printer_error', require(apiPath + '/routes/printer_error'))
 app.use(express.static('public'))
 
 const port = 3000

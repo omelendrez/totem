@@ -1,6 +1,9 @@
 <template>
   <v-container fluid grid-list-lg class="drinks">
-    <span class="message">Seleccioná tu bebida</span>
+    <span class="message">
+      Seleccioná tu bebida
+      <v-btn color="info" absolute dark left @click.stop="back()">Volver</v-btn>
+    </span>
     <v-layout wrap>
       <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index">
         <v-content>
@@ -8,7 +11,7 @@
             <v-img :src="item.image" class="image"></v-img>
             <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
-              <v-btn dark fab absolute bottom right color="primary" @click="addDrink(item)">
+              <v-btn dark fab absolute bottom right color="primary" @click.stop="addDrink(item)">
                 <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
@@ -37,6 +40,11 @@ export default {
       this.items = this.products.filter(item => item.category_id === 5);
     }
   },
+  methods: {
+    back() {
+      this.addDrink(null);
+    }
+  },
   data() {
     return {
       items: []
@@ -47,7 +55,7 @@ export default {
 <style scoped>
 .drinks {
   overflow-y: scroll;
-  background-color: #dadada;
+  background-color: #fff;
   -webkit-overflow-scrolling: touch;
 }
 .drinks::-webkit-scrollbar {
@@ -66,7 +74,7 @@ export default {
   position: absolute;
   bottom: 56px;
   width: 100%;
-  font-size: 1.2em;
+  font-weight: 900;
 }
 .message {
   text-transform: uppercase;
@@ -79,8 +87,8 @@ export default {
   font-size: 3em;
   font-weight: bold;
   border-radius: 6px;
-  color: #fff;
-  background-color: brown;
+  color: #ee3542;
+  background-color: #fff;
   z-index: 1;
 }
 </style>

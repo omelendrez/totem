@@ -7,6 +7,7 @@ import {
   loadOrderItems,
   loadOrderData,
   printOrderThermal,
+  printOrderThermalError,
   printOrderFiscal,
   changeOrderStatus,
   changeItemStatus,
@@ -151,12 +152,14 @@ const actions = {
         commit('print_order_data_success', resp.data)
       })
       .catch(err => {
+        const data = { ...err.response.data, order: orderData }
+        printOrderThermalError(data)
         commit('request_error', handleError(err))
       })
   },
   async printOrderFiscal({ commit }, orderData) {
     commit('fiscal_print_order_data_request', orderData)
-    printOrderThermal(orderData)
+    printOrderFiscal(orderData)
       .then(resp => {
         commit('fiscal_print_order_data_success', resp.data)
       })

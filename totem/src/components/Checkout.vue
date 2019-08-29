@@ -10,7 +10,7 @@
               <h4>{{ item.ticket_text }}</h4>
               <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
               <h3 v-html="`Total: $ ${item.totalPrice.replace('.00','')}`"></h3>
-              <v-btn dark small fab absolute center right color="pink" @click="remove(item)">
+              <v-btn dark small fab absolute center right color="pink" @click.stop="remove(item)">
                 <v-icon>remove</v-icon>
               </v-btn>
             </v-list-tile-content>
@@ -22,9 +22,9 @@
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
       <div class="buttons">
-        <v-btn large round color="primary" v-if="ccAllowed" @click="cardPay">💳 Pagar con tarjeta</v-btn>
-        <v-btn large round color="info" @click="cashPay">💰 Pagar en caja</v-btn>
-        <v-btn large round color="#ffc600" @click="cancel">👎 Cancelar la orden</v-btn>
+        <v-btn large round color="primary" v-if="ccAllowed" @click.stop="cardPay">💳 Pagar con tarjeta</v-btn>
+        <v-btn large round color="info" @click.stop="cashPay">💰 Pagar en caja</v-btn>
+        <v-btn large round color="#ffc600" @click.stop="cancel">👎 Cancelar la orden</v-btn>
       </div>
       <Confirm
         :title="title"

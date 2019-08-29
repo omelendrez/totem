@@ -4,18 +4,18 @@
       <v-icon class="amount">shopping_cart</v-icon>
       <span class="amount">$ {{total}}</span>
       <v-spacer></v-spacer>
-      <v-btn large light round v-if="total>0" @click="checkout=true">Revisar la orden 🛒</v-btn>
-      <v-btn large light round v-if="total>0" @click="cancel">Cancelar la orden 👎</v-btn>
+      <v-btn large light round v-if="total>0" @click.stop="checkout=true">Revisar la orden 🛒</v-btn>
+      <v-btn large light round v-if="total>0" @click.stop="cancel">Cancelar la orden 👎</v-btn>
     </v-toolbar>
     <v-layout row justify-center fill-height>
       <v-dialog v-model="checkout" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-toolbar dark fixed color="info">
-          <v-btn icon dark @click="checkout = false">
+          <v-btn icon dark @click.stop="checkout = false">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Checkout</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn class="back-button" light @click="checkout = false">Volver</v-btn>
+          <v-btn class="back-button" light @click.stop="checkout = false">Volver</v-btn>
         </v-toolbar>
         <Checkout
           :items="items"

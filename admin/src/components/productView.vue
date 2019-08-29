@@ -7,11 +7,12 @@
     <md-layout md-align="center">
       <md-card class="product-card">
         <md-card-area md-inset>
-          <md-card-media v-on:click.native="showUpload">
+          <md-card-media class="image" v-on:click.native="showUpload">
             <md-image :md-src="image"></md-image>
+            <div class="sin-imagen" v-if="!image">Sin imagen</div>
           </md-card-media>
           <md-card-content>
-            <Upload :fileName="fileName" :execute="refreshUploaded" v-show="upload"/>
+            <Upload :fileName="fileName" :execute="refreshUploaded" v-show="upload" />
           </md-card-content>
           <md-card-header>
             <div class="md-subhead" v-if="product.category">{{product.category.name}}</div>
@@ -66,7 +67,9 @@ export default {
       HTTP.get(`products/${id}`)
         .then(res => {
           const product = res.data;
-          product.image = `${backendURL.images}${product.image}`;
+          product.image = product.image.length
+            ? `${backendURL.images}${product.image}`
+            : null;
           this.product = product;
           this.fileName = `p_${product.id.toString(16)}`;
           this.image = product.image;
@@ -115,7 +118,16 @@ export default {
   width: 30%;
 }
 
-.md-image {
-  width: 50% !important;
+.image {
+  border: 1px solid #ccc;
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.sin-imagen {
+  text-align: center;
+  margin-top: 30%;
+  font-size: 2em;
+  color: #ccc;
 }
 </style>

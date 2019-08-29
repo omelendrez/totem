@@ -6,8 +6,8 @@
         <v-card-text class="headline">{{message}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn large @click="doConfirm(false)">{{buttonNoMsg}}</v-btn>
-          <v-btn large color="error" @click="doConfirm(true)">{{buttonOkMsg}}</v-btn>
+          <v-btn large @click.stop="doConfirm(false)">{{buttonNoMsg}}</v-btn>
+          <v-btn large color="error" @click.stop="doConfirm(true)">{{buttonOkMsg}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

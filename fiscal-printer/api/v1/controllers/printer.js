@@ -63,7 +63,8 @@ module.exports = {
       codigo_unidad_matrix: "",
       codigo_unidad_medida: constants.AFIP_CODIGO_UNIDAD_MEDIDA_UNIDAD
     }
-    const orderItems = req.body.order.order_items
+    const { order } = req.body
+    const { order_items: orderItems } = order
     const items = orderItems.map(item => {
       item.quantity = item.quantity.toString()
       item.total_price = item.total_price.toString()

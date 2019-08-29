@@ -7,10 +7,10 @@
             <v-img contain :src="item.image" class="image"></v-img>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
-              <v-btn fab dark color="pink" absolute left @click="info(item)">
+              <v-btn fab dark color="pink" absolute left @click.stop="info(item)">
                 <v-icon>live_help</v-icon>
               </v-btn>
-              <v-btn dark fab absolute right color="primary" @click="add(item)">
+              <v-btn dark fab absolute right color="primary" @click.stop="add(item)">
                 <v-icon>add</v-icon>
               </v-btn>
             </v-card-actions>
@@ -71,24 +71,24 @@ export default {
 </script>
 <style scoped>
 .products {
-  padding: 0;
+  padding: 1px;
   overflow-y: scroll;
-  background-color: #efefef;
+  background-color: #fff;
   -webkit-overflow-scrolling: touch;
 }
 .products::-webkit-scrollbar {
   width: 18px;
   height: 0;
-  background-color: #dadada;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .products::-webkit-scrollbar-thumb {
-  background-color: #aaa;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .price {
   position: absolute;
   top: 4px;
   right: 29px;
-  min-width: 80px;
+  min-width: 84px;
   font-size: 2em;
   font-weight: bold;
   padding-left: 10px;

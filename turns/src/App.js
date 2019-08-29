@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Turns from './components/turns'
+import Scanner from './components/scanner'
 import { backendServer } from './config'
 import { loadTurns } from './services'
 import { icons, ordersToShowCount, timeRefresh } from './utils'
@@ -32,15 +33,14 @@ class App extends Component {
         <div className="col-sm-12 header">
           <img src={logo} alt="logo" className="logo" />
         </div>
-        <h1 className="col-sm-12">
-          <span className="badge view-title">Turnos</span>
-        </h1>
         <div className="col-sm-6">
           <Turns title="En Preparación" turns={inProgress} icon={icons.wait} />
         </div>
-
         <div className="col-sm-6">
           <Turns title="Para retirar" turns={completed} icon={icons.done} />
+        </div>
+        <div className="scanner">
+          <Scanner title="Scanner" />
         </div>
       </div>
     )

@@ -1,5 +1,7 @@
 .App {
   font-family: Roboto;
+  padding:0;
+  margin: 0;
 }
 
 ::-webkit-scrollbar {
@@ -10,34 +12,47 @@
   background-color: #ee3542;
 }
 
-.logo {
+.header .logo {
   display: block;
   height: 100px;
 }
 
-.items {
-  margin-top: 10px;
-}
-
-.item {
-  font-size: 5em;
-  font-weight: bold;
-  width: 100%;
-}
-
-.icon {
-  display: inline-block;
-}
-
-.item.active {
-  color: #fff;
-  background-color: #ee3542;
-}
-
 .view-title {
+  border-top: 1px solid #fff;
   text-transform: uppercase;
-  width: 100%;
   padding: 10px;
+  font-size: 2em;
+  text-align: center;
   background-color: #ee3542;
   color: #fff;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.items .item {
+  overflow: hidden;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 2em;
+  text-align: center;
+  min-width: 300px;
+  margin: 6px 0;
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+
+.items .item.active {
+  background-color: #ee3542;
+  border: 1px solid #ee3542;
+  color: #fff;
+}
+
+.items .item .order-number {
+  font-weight: normal;
+  font-size: .7em;
 }
