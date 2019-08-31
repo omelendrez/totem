@@ -14,6 +14,17 @@
       <Drinks :products="products" :addDrink="addDrink" />
     </div>
     <Processing :message="errorMessage" />
+    <v-btn
+      small
+      fab
+      absolute
+      center
+      right
+      color="#ee3542"
+      depressed
+      :ripple="false"
+      @dblclick="goTest"
+    ></v-btn>
   </v-container>
 </template>
 
@@ -90,6 +101,9 @@ export default {
     }
   },
   methods: {
+    goTest() {
+      this.$router.push("/test");
+    },
     add(item) {
       const isCombo = item.ticket_text.includes(drinkFieldName);
       if (isCombo) {
