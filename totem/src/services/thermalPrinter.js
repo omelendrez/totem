@@ -15,7 +15,7 @@ export const printOrderThermal = order => {
 
 export const printOrderThermalError = printError => {
   return new Promise((resolve, reject) => {
-    HTTP.post('/printer_error', { printError })
+    HTTP.post('/printer-error', { printError })
       .then(resp => {
         resolve(resp)
       })
