@@ -4,7 +4,7 @@
       <v-img class="logo" :src="logo"></v-img>
     </v-toolbar>
     <router-view v-if="totemActive" />
-    <v-container class="vb-container fluid" v-if="!totemActive">
+    <v-container class="v-container fluid" v-if="!totemActive">
       <v-sheet color="info">
         <sheet-footer>
           <div class="wait-message">
