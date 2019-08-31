@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     fetchErrors() {
-      const url = `printer_error?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
+      const url = `printer-error?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
       HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;
