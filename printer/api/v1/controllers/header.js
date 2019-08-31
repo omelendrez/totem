@@ -1,10 +1,10 @@
 const config = require('../config')
 
-module.exports.printHeader = async (printer, order) => {
+module.exports.printHeader = (printer, order) => {
   const { order_number, date, time } = order
   printer.alignCenter()
-  await printer.printImage(`${__dirname}/../assets/logo.png`)
-  //await printer.printImage('../assets/logo.png')
+  //printer.printImage(`${__dirname}/../assets/logo.png`)
+  //printer.printImage('../assets/logo.png')
   printer.bold(true)
   printer.setTextQuadArea()
   printer.println(order_number)
