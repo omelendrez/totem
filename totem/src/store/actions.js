@@ -145,6 +145,16 @@ const actions = {
         commit('request_error', handleError(err))
       })
   },
+  async loadTestOrderData({ commit }, orderId) {
+    commit('load_test_order_data_request')
+    loadOrderData(orderId)
+      .then(resp => {
+        commit('load_test_order_data_success', { order: resp.data })
+      })
+      .catch(err => {
+        commit('request_error', handleError(err))
+      })
+  },
   async printOrderThermal({ commit }, orderData) {
     commit('print_order_data_request', orderData)
     printOrderThermal(orderData)

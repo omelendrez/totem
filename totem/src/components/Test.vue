@@ -30,8 +30,14 @@
 <script>
 import store from "@/store";
 export default {
-  name: "Home",
+  name: "Test",
   store,
+  props: {
+    hideTest: {
+      type: Function,
+      default: undefined
+    }
+  },
   data() {
     return {
       logged: true,
@@ -45,7 +51,7 @@ export default {
   },
   computed: {
     order() {
-      return store.getters.orderData;
+      return store.getters.testOrderData;
     }
   },
   methods: {
@@ -58,14 +64,14 @@ export default {
       store.dispatch("printOrderThermal", order);
     },
     pintFiscal() {
-      store.dispatch("printOrderFiscal", order);
+      store.dispatch("printOrderFiscal", this.order);
     },
     back() {
-      this.$router.push("/");
+      this.hideTest();
     }
   },
   mounted() {
-    store.dispatch("loadOrderData", 1);
+    store.dispatch("loadTestOrderData", 1);
   }
 };
 </script>
