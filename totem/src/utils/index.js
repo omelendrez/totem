@@ -17,17 +17,17 @@ const resetTimer = () => {
   startTimer()
 }
 const setupTimers = () => {
-  document.addEventListener('mousemove', resetTimer, false)
-  document.addEventListener('mousedown', resetTimer, false)
-  document.addEventListener('keypress', resetTimer, false)
+  document.addEventListener('touchstart', resetTimer, false)
+  document.addEventListener('touchend ', resetTimer, false)
   document.addEventListener('touchmove', resetTimer, false)
+  document.addEventListener('touchcancel ', resetTimer, false)
   startTimer()
 }
 const stopTimers = () => {
-  document.removeEventListener('mousemove', resetTimer, false)
-  document.removeEventListener('mousedown', resetTimer, false)
-  document.removeEventListener('keypress', resetTimer, false)
   document.removeEventListener('touchmove', resetTimer, false)
+  document.removeEventListener('touchend', resetTimer, false)
+  document.removeEventListener('touchmove', resetTimer, false)
+  document.removeEventListener('touchcancel', resetTimer, false)
 }
 
 export { setupTimers, stopTimers }
