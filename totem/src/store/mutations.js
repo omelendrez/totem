@@ -105,6 +105,11 @@ const mutations = {
     state.status = 'success'
     state.orderData = order
   },
+  load_test_order_data_request(state) { },
+  load_test_order_data_success(state, { order }) {
+    state.status = 'success'
+    state.testOrderData = order
+  },
   change_order_status_request(state) { },
   change_order_status_success(state, order) {
     state.changedOrder = order
