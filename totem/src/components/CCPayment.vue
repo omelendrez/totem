@@ -8,7 +8,14 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn absolute left large color="primary" v-show="showStart" @click.stop="doStart()">Comenzar</v-btn>
+          <v-btn
+            absolute
+            left
+            large
+            color="primary"
+            v-show="showStart"
+            @click.stop="doStart()"
+          >Comenzar</v-btn>
           <v-btn absolute right large color="error" @click.stop="doCancel()">{{buttonMessage}}</v-btn>
         </v-card-actions>
       </v-card>
