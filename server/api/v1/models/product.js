@@ -1,3 +1,9 @@
+/*
+ALTER TABLE `escng_totem`.`product`
+ADD COLUMN `is_combo` INT(11) NULL DEFAULT 0 AFTER `image`,
+ADD COLUMN `has_alcohol` INT(11) NULL DEFAULT 0 AFTER `is_combo`;
+*/
+
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define(
@@ -34,6 +40,14 @@ module.exports = (sequelize, DataTypes) => {
       image: {
         type: DataTypes.STRING,
         defaultValue: ''
+      },
+      is_combo: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+      },
+      has_alcohol: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       },
       status_id: {
         type: DataTypes.INTEGER,

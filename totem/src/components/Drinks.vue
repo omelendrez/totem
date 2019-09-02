@@ -33,11 +33,25 @@ export default {
     addDrink: {
       type: Function,
       default: undefined
+    },
+    selectedProduct: {
+      type: Object,
+      default: {}
     }
   },
   watch: {
-    products() {
-      this.items = this.products.filter(item => item.category_id === 5);
+    selectedProduct() {
+      this.items = this.products.filter(item => {
+        if (item.category_id === 5 && item.is_combo) {
+          if (item.has_alcohol) {
+            if (this.selectedProduct.category_id !== 6) {
+              return item;
+            }
+          } else {
+            return item;
+          }
+        }
+      });
     }
   },
   methods: {

@@ -3,16 +3,10 @@
     <v-layout wrap>
       <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index" v-show="item.image">
         <v-content>
-          <v-card ripple>
+          <v-card ripple @click.stop="info(item)">
             <v-img contain :src="item.image" class="image"></v-img>
             <v-card-actions>
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
-              <v-btn fab dark color="pink" absolute left @click.stop="info(item)">
-                <v-icon>live_help</v-icon>
-              </v-btn>
-              <v-btn dark fab absolute right color="primary" @click.stop="add(item)">
-                <v-icon>add</v-icon>
-              </v-btn>
             </v-card-actions>
           </v-card>
         </v-content>
@@ -30,10 +24,6 @@ export default {
     products: {
       type: Array,
       default: null
-    },
-    add: {
-      type: Function,
-      default: undefined
     },
     info: {
       type: Function,
