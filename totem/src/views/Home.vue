@@ -14,7 +14,9 @@
       <Drinks :products="products" :addDrink="addDrink" />
     </div>
     <Processing :message="errorMessage" />
+    <Test v-if="showTest" :hideTest="hideTest" />
     <v-btn
+      v-if="!showTest"
       small
       fab
       absolute
@@ -39,6 +41,7 @@ import Drinks from "@/components/Drinks";
 import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
 import { setupTimers, stopTimers } from "@/utils";
+import Test from "@/components/Test";
 
 export default {
   name: "Home",
@@ -49,14 +52,16 @@ export default {
     Basket,
     Product,
     Drinks,
-    Processing
+    Processing,
+    Test
   },
   data() {
     return {
       isBasketEmtpy: false,
       showDrinks: false,
       selectedProduct: {},
-      errorMessage: null
+      errorMessage: null,
+      showTest: false
     };
   },
   computed: {
@@ -102,7 +107,10 @@ export default {
   },
   methods: {
     goTest() {
-      this.$router.push("/test");
+      this.showTest = true;
+    },
+    hideTest() {
+      this.showTest = false;
     },
     add(item) {
       const isCombo = item.ticket_text.includes(drinkFieldName);
