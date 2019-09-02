@@ -9,7 +9,6 @@
         <v-content>
           <v-card ripple>
             <v-img :src="item.image" class="image"></v-img>
-            <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
               <v-btn dark fab absolute bottom right color="primary" @click.stop="addDrink(item)">
                 <v-icon>add</v-icon>
@@ -82,13 +81,6 @@ export default {
 }
 .image {
   height: 90%;
-}
-.name {
-  text-align: center;
-  position: absolute;
-  bottom: 56px;
-  width: 100%;
-  font-weight: 900;
 }
 .message {
   text-transform: uppercase;

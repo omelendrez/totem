@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600">
+  <v-dialog v-model="dialog" max-width="600" persistent>
     <v-layout class="product">
       <v-flex mx-4 my-4>
         <v-card>
