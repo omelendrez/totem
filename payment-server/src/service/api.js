@@ -6,5 +6,5 @@ module.exports = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  baseURL: 'http://totem01:8280/PosnetDeviceIntegrator/2.2.0'
+  baseURL: 'http://127.0.0.1:8280/PosnetDeviceIntegrator/2.2.0'
 })
