@@ -50,6 +50,28 @@
           </md-input-container>
 
           <md-input-container>
+            <label>En combo</label>
+            <md-select v-model="product.is_combo">
+              <md-option
+                v-for="option in yesno"
+                v-bind:value="option.id"
+                :key="option.id"
+              >{{option.name}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Contiene alcohol</label>
+            <md-select v-model="product.has_alcohol">
+              <md-option
+                v-for="option in yesno"
+                v-bind:value="option.id"
+                :key="option.id"
+              >{{option.name}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container>
             <label>Status</label>
             <md-select v-model="product.status_id">
               <md-option
@@ -89,7 +111,17 @@ export default {
       },
       product: {},
       categories: [],
-      statuses: []
+      statuses: [],
+      yesno: [
+        {
+          id: 1,
+          name: "Si"
+        },
+        {
+          id: 0,
+          name: "No"
+        }
+      ]
     };
   },
   methods: {

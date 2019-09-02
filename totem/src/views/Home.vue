@@ -7,11 +7,11 @@
       <Categories :categories="categories" />
     </div>
     <div class="products">
-      <Products :products="products" :add="add" :info="info" />
+      <Products :products="products" :info="info" />
     </div>
     <Product :add="add" />
     <div class="drinks" id="drinks" v-show="showDrinks">
-      <Drinks :products="products" :addDrink="addDrink" />
+      <Drinks :products="products" :addDrink="addDrink" :selectedProduct="selectedProduct" />
     </div>
     <Processing :message="errorMessage" />
     <Test v-if="showTest" :hideTest="hideTest" />
