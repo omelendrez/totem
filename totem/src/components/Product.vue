@@ -11,11 +11,27 @@
             </div>
           </v-card-title>
           <v-card-actions class="mb-2">
-            <v-btn fab absolute bottom left color="secondary" @click.stop="close(item)">
-              <v-icon>close</v-icon>
+            <v-btn
+              large
+              absolute
+              bottom
+              left
+              color="secondary"
+              class="mb-3"
+              @click.stop="close(item)"
+            >
+              <v-icon>close</v-icon>&nbsp;salir
             </v-btn>
-            <v-btn dark fab absolute bottom right color="primary" @click.stop="addProduct(item)">
-              <v-icon>add</v-icon>
+            <v-btn
+              large
+              absolute
+              bottom
+              right
+              color="primary"
+              class="mb-3"
+              @click.stop="addProduct(item)"
+            >
+              <v-icon>shopping_cart</v-icon>&nbsp;agregar
             </v-btn>
           </v-card-actions>
         </v-card>
