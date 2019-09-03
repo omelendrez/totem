@@ -94,9 +94,7 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              console.log("resp", resp);
-              console.log("resp.ResultCode", resp.ResultCode);
-              if (resp.ResultCode === 2055) {
+              if (resp.data.ResultCode === 2055) {
                 store.dispatch("setCCStatus", 4);
                 return;
               }
@@ -111,9 +109,7 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  console.log("resp", resp);
-                  console.log("resp.ResultCode", resp.ResultCode);
-                  if (resp.ResultCode === 2055) {
+                  if (resp.data.ResultCode === 2055) {
                     store.dispatch("setCCStatus", 4);
                     return;
                   }
