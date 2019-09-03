@@ -94,11 +94,11 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              store.dispatch("ccSaveResponse", resp);
-              if (resp.ResponseActions === "Refuse") {
+              if (resp.ResultCode === 2055) {
                 store.dispatch("setCCStatus", 4);
                 return;
               }
+              store.dispatch("ccSaveResponse", resp);
               const { total_price, order_number, createdAt } = this.ccOrder;
               sendBuyRequest(
                 total_price,
@@ -109,7 +109,7 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  if (resp.ResponseActions === "Refuse") {
+                  if (resp.ResultCode === 2055) {
                     store.dispatch("setCCStatus", 4);
                     return;
                   }
