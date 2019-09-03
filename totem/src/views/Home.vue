@@ -149,6 +149,7 @@ export default {
   mounted() {
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
+    window.addEventListener("contextmenu", e => e.preventDefault());
     setupTimers();
   },
   beforeDestroy() {
