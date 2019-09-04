@@ -25,28 +25,46 @@
 
           <md-input-container md-clearable>
             <label>Nombre</label>
-            <md-input v-model="product.name"></md-input>
+            <md-input v-model="product.name" required></md-input>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Descripción</label>
-            <md-textarea v-model="product.description"></md-textarea>
+            <md-textarea v-model="product.description" required></md-textarea>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Texto ticket</label>
-            <md-textarea v-model="product.ticket_text"></md-textarea>
+            <md-input v-model="product.ticket_text"></md-input>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Texto cocina</label>
-            <md-textarea v-model="product.kitchen_text"></md-textarea>
+            <md-input v-model="product.kitchen_text"></md-input>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Precio</label>
             <md-icon>attach_money</md-icon>
             <md-input type="number" v-model="product.price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio chica</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.small_price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio mediana</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.medium_price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio grande</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.big_price"></md-input>
           </md-input-container>
 
           <md-input-container>
@@ -99,6 +117,7 @@
 </template>
 
 <script>
+import { yesNo } from "@/utils";
 import HTTP from "./http-common";
 
 export default {
@@ -112,16 +131,7 @@ export default {
       product: {},
       categories: [],
       statuses: [],
-      yesno: [
-        {
-          id: 1,
-          name: "Si"
-        },
-        {
-          id: 0,
-          name: "No"
-        }
-      ]
+      yesno: []
     };
   },
   methods: {
@@ -193,6 +203,7 @@ export default {
     }
   },
   created() {
+    this.yesno = yesNo;
     this.fetchCategories();
     this.fetchStatus();
     this.fetchProduct(this.$route.params.id);
