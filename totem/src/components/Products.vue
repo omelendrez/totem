@@ -5,7 +5,7 @@
         <v-content>
           <v-card ripple @click.stop="info(item)">
             <v-img contain :src="item.image" class="image"></v-img>
-            <v-card-actions>
+            <v-card-actions v-if="parseInt(item.price)!==0">
               <span class="price">{{`$ ${item.price.replace('.00','')}`}}</span>
             </v-card-actions>
           </v-card>

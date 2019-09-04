@@ -1,3 +1,10 @@
+/*
+ALTER TABLE `escng_totem`.`product`
+ADD COLUMN `small_price` DECIMAL(10,2) NULL DEFAULT '0.00'  AFTER `price`,
+ADD COLUMN `medium_price` DECIMAL(10,2) NULL DEFAULT '0.00'  AFTER `small_price`,
+ADD COLUMN `big_price` DECIMAL(10,2) NULL DEFAULT '0.00'  AFTER `medium_price`;
+
+*/
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define(
@@ -28,6 +35,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       price: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
+      },
+      small_price: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
+      },
+      medium_price: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
+      },
+      big_price: {
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
       },

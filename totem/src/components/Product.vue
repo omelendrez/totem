@@ -3,13 +3,16 @@
     <v-layout class="product">
       <v-flex mx-4 my-4>
         <v-card>
-          <v-img :src="item.image" contain class="image"></v-img>
+          <v-img :src="item.image" contain></v-img>
           <v-card-title>
-            <div>
-              <div class="description">{{item.description}}</div>
-              <span class="price">$ {{item.price}}</span>
-            </div>
+            <div v-if="item.price!=='0'" class="description">{{item.description}}</div>
+            <span v-if="item.price" class="price">$ {{showPrice}}</span>
           </v-card-title>
+          <v-radio-group v-model="radioGroup" class="prices" v-if="item.price==='0'">
+            <v-radio label="GRANDE" color="primary" :value="0"></v-radio>
+            <v-radio label="MEDIANA" color="primary" :value="1"></v-radio>
+            <v-radio label="CHICA" color="primary" :value="2"></v-radio>
+          </v-radio-group>
           <v-card-actions class="mb-2">
             <v-btn
               large
@@ -29,6 +32,7 @@
               right
               color="primary"
               class="mb-3"
+              :disabled="showPrice===0"
               @click.stop="addProduct(item)"
             >
               <v-icon>shopping_cart</v-icon>&nbsp;agregar
@@ -54,7 +58,9 @@ export default {
   data() {
     return {
       dialog: false,
-      item: {}
+      item: {},
+      radioGroup: 1,
+      showPrice: 0
     };
   },
   computed: {
@@ -63,12 +69,30 @@ export default {
     }
   },
   watch: {
+    radioGroup() {
+      switch (this.radioGroup) {
+        case 1:
+          this.showPrice = this.item.medium_price;
+          break;
+        case 2:
+          this.showPrice = this.item.small_price;
+          break;
+        default:
+          this.showPrice = this.item.big_price;
+      }
+    },
     product() {
       this.product.price = this.product.price
         ? this.product.price.replace(".00", "")
         : this.product.price;
       this.item = this.product;
       this.dialog = this.product.name;
+      if (parseInt(this.item.price) === 0) {
+        this.showPrice = this.item.medium_price;
+        this.radioGroup = 1;
+      } else {
+        this.showPrice = this.item.price;
+      }
     }
   },
   methods: {
@@ -77,7 +101,25 @@ export default {
       store.dispatch("info", item);
     },
     addProduct(item) {
-      this.add(item);
+      const newItem = { ...item };
+      if (parseInt(newItem.price) === 0) {
+        switch (this.radioGroup) {
+          case 0:
+            newItem.price = newItem.big_price;
+            newItem.description += " GRANDE";
+            break;
+          case 1:
+            newItem.price = newItem.medium_price;
+            newItem.description += " MEDIANA";
+            break;
+          case 2:
+            newItem.price = newItem.small_price;
+            newItem.description += " CHICA";
+        }
+        newItem.totalPrice = newItem.price;
+        newItem.ticket_text = newItem.description;
+      }
+      this.add(newItem);
     }
   }
 };
@@ -92,10 +134,20 @@ export default {
 .description {
   font-size: 1.2em;
 }
+.prices {
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 360px;
+  right: 60px;
+  margin-top: 0;
+  padding-bottom: 0;
+}
+
 .price {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 10px;
+  right: 100px;
   min-width: 80px;
   font-size: 2em;
   font-weight: bold;

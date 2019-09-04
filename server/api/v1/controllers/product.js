@@ -18,6 +18,9 @@ const schema = {
   has_alcohol: Joi.number(),
   status_id: Joi.number(),
   price: Joi.number().required(),
+  small_price: Joi.number().required(),
+  medium_price: Joi.number().required(),
+  big_price: Joi.number().required(),
   created_at: Joi.string(),
   updated_at: Joi.string(),
   category: Joi.object(),
@@ -55,6 +58,9 @@ module.exports = {
         ticket_text,
         category_id,
         price,
+        small_price,
+        medium_price,
+        big_price,
         is_combo,
         has_alcohol,
       } = req.body
@@ -67,6 +73,9 @@ module.exports = {
         ticket_text,
         category_id,
         price,
+        small_price,
+        medium_price,
+        big_price,
         is_combo,
         has_alcohol
       })
@@ -132,6 +141,9 @@ module.exports = {
         'ticket_text',
         'image',
         'price',
+        'small_price',
+        'medium_price',
+        'big_price',
         'category_id'
       ]
     })
@@ -176,6 +188,9 @@ module.exports = {
         'ticket_text',
         'image',
         'price',
+        'small_price',
+        'medium_price',
+        'big_price',
         'category_id',
         'is_combo',
         'has_alcohol'
@@ -220,6 +235,9 @@ module.exports = {
         'kitchen_text',
         'ticket_text',
         'price',
+        'small_price',
+        'medium_price',
+        'big_price',
         'image',
         'category_id',
         'status_id',
@@ -297,6 +315,9 @@ module.exports = {
       image,
       status_id,
       price,
+      small_price,
+      medium_price,
+      big_price,
       is_combo,
       has_alcohol
 
@@ -318,6 +339,9 @@ module.exports = {
             image,
             status_id,
             price,
+            small_price,
+            medium_price,
+            big_price,
             is_combo,
             has_alcohol
           })
