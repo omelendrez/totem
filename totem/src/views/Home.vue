@@ -132,7 +132,7 @@ export default {
       Object.assign(product, this.selectedProduct);
       product.ticket_text = product.ticket_text.replace(
         drinkFieldName,
-        item.ticket_text
+        `${item.ticket_text} ${product.category_id === 6 ? "CHICA" : "MEDIANA"}`
       );
       store.dispatch("add", product);
       this.showDrinks = false;
