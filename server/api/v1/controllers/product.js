@@ -144,7 +144,9 @@ module.exports = {
         'small_price',
         'medium_price',
         'big_price',
-        'category_id'
+        'category_id',
+        'is_combo',
+        'has_alcohol'
       ]
     })
       .then(products => {

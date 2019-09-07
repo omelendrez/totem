@@ -193,7 +193,7 @@ The application is compossed of 3 apps:
 
     Secure server will run at port 3040
 
-- Inside **payment-server** folder run:
+  - Inside **payment-server** folder run:
 
     `npm install`
 
