@@ -12,16 +12,22 @@ The application is compossed of 3 apps:
 - **_Client_** (deprecated) for customer purchase of products that will run on the kiosk/totem
 - **_Totem_** for customer products purchase. It will run on the kiosk/totem hardware. It replaces Client front-end app
 - **_Turns_** shows the current order under preparation and the done ones
+- **_Kitchen_** shows list of meals that have to be prepared by the cooks
 - **_Printer_** for tickets printing on different thermal printers
 - **_Assets_** for management of totem assets
 - **_Secure_** backend access from external mobile app will be handled by this middleware
+- **_Payments_** backend service for totem/posnet interface
+
 
 ### RestFULL Back-end | Server app
 
 - Node
-- Express
+- express
+- body-parser
 - Sequelize
 - MySQL
+- bcrypt
+- cors
 
 ### Front-end for app Administration | Admin app
 
@@ -57,29 +63,53 @@ The application is compossed of 3 apps:
 - Webpack
 - Babel
 
+### Front-end for Kitchen monitor | Kitchen app
+
+- React.js
+- axios
+- Bootstrap
+- Webpack
+- Babel
+
 ### Print server | Printer app
 
 - Node
-- Express
+- express
+- body-parser
+- node-thermal-printer
+
+### Fiscal printer server | Fiscal Printer app
+
+- Node
+- express
+- body-parser
+- edge-js
 - node-thermal-printer
 
 ### Assets server | Assets app
 
 - Node
-- Express
+- express
+- body-parser
 - multer
+
+### Payments server | Payments app
+
+- Node
+- express
+- Morgan
 
 ### Secure middleware server | Secure app
 
 - Node
-- Express
+- express
 - jsonwebtoken
 - request
 
 ## Instructions to run the system
 
 - Clone this repo into your computer
-- You will get the following sub-folders: **server**, **admin**, **totem**, **printer** and **client** (deprecated)
+- You will get the following sub-folders: **server**, **assets-server** **admin**, **totem**, **printer**, **fiscal-printer**, **payment-server**, **kitchen** and **client** (deprecated)
 
   - Inside **server** folder run:
 
@@ -97,7 +127,7 @@ The application is compossed of 3 apps:
 
     `npm run serve`
 
-    Admin app will run at port 8070 and your browser will open automatically
+    Admin app will run at port 4000 and your browser will open automatically
 
   - (Deprecated) Inside **client** run:
 
@@ -113,7 +143,7 @@ The application is compossed of 3 apps:
 
     `npm run serve`
 
-    Totem app will run at port 8080
+    Totem app will run at port 5000
 
   - Inside **turns** run:
 
@@ -121,7 +151,15 @@ The application is compossed of 3 apps:
 
     `npm run start:dev`
 
-    Totem app will run at port 3006
+    Turns app will run at port 5030
+
+  - Inside **kitchen** run:
+
+    `npm install`
+
+    `npm run start:dev`
+
+    Kitchen app will run at port 5020
 
   - Inside **printer** folder run:
 
@@ -129,7 +167,15 @@ The application is compossed of 3 apps:
 
     `nodemon`
 
-    Print server will run at port 9000
+    Print server will run at port 3020
+
+  - Inside **fiscal-printer** folder run:
+
+    `npm install`
+
+    `nodemon`
+
+    Fiscal printer server will run at port 3060
 
   - Inside **assets-server** folder run:
 
@@ -145,6 +191,12 @@ The application is compossed of 3 apps:
 
     `nodemon`
 
-    Secure server will run at port 3010
+    Secure server will run at port 3040
 
-[![DeepScan grade](https://deepscan.io/api/teams/2060/projects/3518/branches/31329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=3518&bid=31329)
+  - Inside **payment-server** folder run:
+
+    `npm install`
+
+    `nodemon`
+
+    Secure server will run at port 3030

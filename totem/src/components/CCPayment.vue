@@ -24,6 +24,8 @@
 </template>
 
 <script>
+// {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3876","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+
 import store from "@/store";
 import {
   activateCCReader,
@@ -92,6 +94,10 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
+              if (resp.data.ResultCode === 2055) {
+                store.dispatch("setCCStatus", 4);
+                return;
+              }
               store.dispatch("ccSaveResponse", resp);
               const { total_price, order_number, createdAt } = this.ccOrder;
               sendBuyRequest(
@@ -103,6 +109,10 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
+                  if (resp.data.ResultCode === 2055) {
+                    store.dispatch("setCCStatus", 4);
+                    return;
+                  }
                   store.dispatch("ccSaveResponse", resp);
                   confirmTransaction()
                     .then(resp => {
