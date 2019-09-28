@@ -1,0 +1,729 @@
+[2019-09-07 13:46:43.672] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Se ha configurado al log4js gracias al archivo de configuracion especificado.
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - File: etc/deviceIntegrator_log4js.configure
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Reload Secs: 60
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFilePath:       logs/DeviceIntegrator.log
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logLevel:          TRACE
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logConfig:         etc/deviceIntegrator_log4js.configure,60
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logCategory:       DeviceIntegrator
+[2019-09-07 13:46:43.687] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logModule:         log4js
+[2019-09-07 13:46:43.703] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logHostname:       localhost
+[2019-09-07 13:46:43.703] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logPort:           514
+[2019-09-07 13:46:43.703] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxBackups: 5
+[2019-09-07 13:46:43.703] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxSize:    300000000
+[2019-09-07 13:46:43.718] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License file was found.
+[2019-09-07 13:46:43.718] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License Signature Key file was found.
+[2019-09-07 13:46:43.734] [INFO] DeviceIntegrator - [ LoadLicense ] - The License file was authenticated and loaded.
+[2019-09-07 13:46:43.734] [INFO] DeviceIntegrator - [ LoadSerialProtExtension ] - The Serial protocol extension was loaded
+[2019-09-07 13:46:43.968] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device type is Terminal
+[2019-09-07 13:46:43.968] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device model is FirstDataVx690
+[2019-09-07 13:46:43.968] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceOperationMode ] - The device operation mode is Integrated
+[2019-09-07 13:46:43.968] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 13:46:44.062] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadDeviceModule ] - Device module loaded.
+[2019-09-07 13:46:44.062] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadRespCodesFiles ] - Files loaded
+[2019-09-07 13:46:44.062] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ getListPortToConnect ] - Getting port list available to connect.
+[2019-09-07 13:46:44.062] [TRACE] DeviceIntegrator - [ getListPortToConnect ] - The default ports configured are [{"COM9":["COM9"]}]. We will use them to connect to devices.
+[2019-09-07 13:46:44.343] [INFO] DeviceIntegrator - [ connectToDevicePort ] - You are connected at COM9
+[2019-09-07 13:46:44.343] [TRACE] DeviceIntegrator - [ checkPortConnectionStatus ] - Adding the connection port to the availables to use.
+[2019-09-07 13:46:44.343] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - We tried to connect to the entire list of port.
+[2019-09-07 13:46:44.343] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - Some of them were available.
+[2019-09-07 13:46:44.343] [INFO] DeviceIntegrator - [ initEvenListenner ][ checkSerialConnResult ] - Serial connection with the device is ready.
+[2019-09-07 13:46:44.359] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initClientProtocols ] - Initializating comunitation protocols to listen to requests
+[2019-09-07 13:46:44.390] [INFO] DeviceIntegrator - [ HTTP ] - Http server listenning to incomming requests
+[2019-09-07 13:46:44.406] [INFO] DeviceIntegrator - [ TCP ] - Tcp server listenning to incomming requests
+[2019-09-07 13:46:44.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initRegisterFunction ] - Initializating comunitation protocols to send message to register operations
+[2019-09-07 13:46:44.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initKeepAliveTimers ] - Initializating keep alive timers
+[2019-09-07 13:46:44.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initDebugProcess ] - Initializating connection debug process
+[2019-09-07 13:46:44.406] [INFO] DeviceIntegrator - [ initEvenListenner ][ initializationFineshed ] - Initialization finished. Waiting to process requests
+[2019-09-07 13:47:26.584] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Client connected
+[2019-09-07 13:47:26.584] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Http method: POST
+[2019-09-07 13:47:26.584] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Http url: /
+[2019-09-07 13:47:26.584] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Http pathname: /
+[2019-09-07 13:47:26.599] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 13:47:26.599] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 13:47:26.599] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Body: {    "TransactionRequestType"    : "GetCard",    "TransactionType"           : "Buy",    "ReadExpiration"            : "30"}
+[2019-09-07 13:47:26.599] [TRACE] DeviceIntegrator - [ 127.0.0.1:50166 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ HTTP ] - Headers: {"host":"127.0.0.1:8280","user-agent":"curl/7.55.1","accept":"*/*","content-type":"application/json","content-length":"124"}
+[2019-09-07 13:47:26.615] [INFO] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 13:47:26.615] [DEBUG] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ receivingIncommingRequest ] - Request: {    "TransactionRequestType"    : "GetCard",    "TransactionType"           : "Buy",    "ReadExpiration"            : "30"}
+[2019-09-07 13:47:26.615] [DEBUG] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 13:47:26.615] [TRACE] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 13:47:26.615] [TRACE] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 13:47:26.615] [DEBUG] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 13:47:26.631] [TRACE] DeviceIntegrator - [ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "GetCard",
+    "TransactionType": "Buy",
+    "ReadExpiration": "30"
+}
+[2019-09-07 13:47:26.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 13:47:26.631] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 13:47:26.662] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 13:47:26.662] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ openDevicePort ] - The device conection is already opened.
+[2019-09-07 13:47:26.662] [WARN] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 13:47:26.662] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 13:47:26.678] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 13:47:26.678] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: GetCard
+[2019-09-07 13:47:26.678] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getFunctionsToExec ] - The list of commands we have to execute are @isStartSessionRequired,startSession,@waitTime,sendGetCard,@analizeDeviceStatus,@waitTime,sendKeepAlive,@waitToBeReady,@waitTime,getCardResult
+[2019-09-07 13:47:26.678] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 13:47:26.678] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 13:47:26.678] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 13:47:26.693] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Session value used: 0030
+[2019-09-07 13:47:26.693] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 13:47:26.709] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add session to layer 2. Result: [0030000000000000]
+[2019-09-07 13:47:26.709] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add request code to layer 2. Result: [0030000700000000]
+[2019-09-07 13:47:26.709] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add layer 3 length to layer 2. Result: [0030000702000000]
+[2019-09-07 13:47:26.709] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add layer 3 content to layer 2. Result: [0030000702000000]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Layer 2 result: [0030000702000000]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - CRC 16Bits Hex Num: [5c93]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - CRC 16Bits Dec Num: [23699]
+[2019-09-07 13:47:26.724] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add CRC 16bits to layer 1. Result: [000008005c930000000000000000]
+[2019-09-07 13:47:26.740] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Add layer 2 content to layer 1. Result: [000008005c930030000702000000]
+[2019-09-07 13:47:26.740] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Request result: [000008005c930030000702000000]
+[2019-09-07 13:47:26.740] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ startSession ] - Request: 000008005c930030000702000000
+[2019-09-07 13:47:26.740] [DEBUG] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 13:47:26.740] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ sendToDevice ] - Buffer to send:    \� 0    
+[2019-09-07 13:47:36.767] [ERROR] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 13:47:36.767] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 13:47:36.767] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 13:47:36.767] [ERROR] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 13:47:36.767] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 13:47:36.799] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 13:47:36.799] [INFO] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 13:47:36.799] [TRACE] DeviceIntegrator - [ COM9 ][ 2c557f80-d18f-11e9-b001-5bacf611c51b ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;9348","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 13:57:18.110] [WARN] DeviceIntegrator - SIGINT Received, Process Terminate
+[2019-09-07 13:57:25.206] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Se ha configurado al log4js gracias al archivo de configuracion especificado.
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - File: etc/deviceIntegrator_log4js.configure
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Reload Secs: 60
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFilePath:       logs/DeviceIntegrator.log
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logLevel:          TRACE
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logConfig:         etc/deviceIntegrator_log4js.configure,60
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logCategory:       DeviceIntegrator
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logModule:         log4js
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logHostname:       localhost
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logPort:           514
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxBackups: 5
+[2019-09-07 13:57:25.221] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxSize:    300000000
+[2019-09-07 13:57:25.237] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License file was found.
+[2019-09-07 13:57:25.237] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License Signature Key file was found.
+[2019-09-07 13:57:25.237] [INFO] DeviceIntegrator - [ LoadLicense ] - The License file was authenticated and loaded.
+[2019-09-07 13:57:25.237] [INFO] DeviceIntegrator - [ LoadSerialProtExtension ] - The Serial protocol extension was loaded
+[2019-09-07 13:57:25.315] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device type is Terminal
+[2019-09-07 13:57:25.315] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device model is FirstDataVx690
+[2019-09-07 13:57:25.315] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceOperationMode ] - The device operation mode is Integrated
+[2019-09-07 13:57:25.315] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 13:57:25.346] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadDeviceModule ] - Device module loaded.
+[2019-09-07 13:57:25.346] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadRespCodesFiles ] - Files loaded
+[2019-09-07 13:57:25.346] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ getListPortToConnect ] - Getting port list available to connect.
+[2019-09-07 13:57:25.346] [TRACE] DeviceIntegrator - [ getListPortToConnect ] - The default ports configured are [{"COM9":["COM9"]}]. We will use them to connect to devices.
+[2019-09-07 13:57:25.627] [INFO] DeviceIntegrator - [ connectToDevicePort ] - You are connected at COM9
+[2019-09-07 13:57:25.627] [TRACE] DeviceIntegrator - [ checkPortConnectionStatus ] - Adding the connection port to the availables to use.
+[2019-09-07 13:57:25.627] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - We tried to connect to the entire list of port.
+[2019-09-07 13:57:25.627] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - Some of them were available.
+[2019-09-07 13:57:25.627] [INFO] DeviceIntegrator - [ initEvenListenner ][ checkSerialConnResult ] - Serial connection with the device is ready.
+[2019-09-07 13:57:25.643] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initClientProtocols ] - Initializating comunitation protocols to listen to requests
+[2019-09-07 13:57:25.674] [INFO] DeviceIntegrator - [ HTTP ] - Http server listenning to incomming requests
+[2019-09-07 13:57:25.674] [INFO] DeviceIntegrator - [ TCP ] - Tcp server listenning to incomming requests
+[2019-09-07 13:57:25.674] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initRegisterFunction ] - Initializating comunitation protocols to send message to register operations
+[2019-09-07 13:57:25.690] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initKeepAliveTimers ] - Initializating keep alive timers
+[2019-09-07 13:57:25.690] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initDebugProcess ] - Initializating connection debug process
+[2019-09-07 13:57:25.690] [INFO] DeviceIntegrator - [ initEvenListenner ][ initializationFineshed ] - Initialization finished. Waiting to process requests
+[2019-09-07 13:57:56.048] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Client connected
+[2019-09-07 13:57:56.048] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Http method: POST
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 13:57:56.063] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 13:57:56.079] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Body: {"TransactionRequestType":"Currencies"}
+[2019-09-07 13:57:56.079] [TRACE] DeviceIntegrator - [ 127.0.0.1:50205 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"39","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 13:57:56.079] [INFO] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 13:57:56.079] [DEBUG] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"Currencies"}
+[2019-09-07 13:57:56.079] [DEBUG] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 13:57:56.079] [TRACE] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 13:57:56.079] [TRACE] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 13:57:56.079] [DEBUG] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 13:57:56.095] [TRACE] DeviceIntegrator - [ a3861500-d190-11e9-91ed-31beeb143222 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "Currencies"
+}
+[2019-09-07 13:57:56.095] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 13:57:56.095] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 13:57:56.126] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 13:57:56.126] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ openDevicePort ] - The device conection is already opened.
+[2019-09-07 13:57:56.126] [WARN] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 13:57:56.126] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 13:57:56.126] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 13:57:56.126] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: Currencies
+[2019-09-07 13:57:56.126] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,@isStartSessionRequired,startSession,@waitTime,getCurrenciesAvailables
+[2019-09-07 13:57:56.141] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 13:57:56.141] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 13:57:56.141] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 13:57:56.141] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ generateDeviceRequest ] - Generating next command to exec. Number: 2
+[2019-09-07 13:57:56.173] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Session value used: 0031
+[2019-09-07 13:57:56.173] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 13:57:56.173] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add session to layer 2. Result: [0031000000000000]
+[2019-09-07 13:57:56.188] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add request code to layer 2. Result: [0031000700000000]
+[2019-09-07 13:57:56.188] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add layer 3 length to layer 2. Result: [0031000702000000]
+[2019-09-07 13:57:56.188] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add layer 3 content to layer 2. Result: [0031000702000000]
+[2019-09-07 13:57:56.204] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Layer 2 result: [0031000702000000]
+[2019-09-07 13:57:56.204] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 13:57:56.204] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 13:57:56.219] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - CRC 16Bits Hex Num: [c346]
+[2019-09-07 13:57:56.219] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - CRC 16Bits Dec Num: [49990]
+[2019-09-07 13:57:56.235] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add CRC 16bits to layer 1. Result: [00000800c3460000000000000000]
+[2019-09-07 13:57:56.235] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Add layer 2 content to layer 1. Result: [00000800c3460031000702000000]
+[2019-09-07 13:57:56.235] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Request result: [00000800c3460031000702000000]
+[2019-09-07 13:57:56.235] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ startSession ] - Request: 00000800c3460031000702000000
+[2019-09-07 13:57:56.251] [DEBUG] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 13:57:56.251] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ sendToDevice ] - Buffer to send:    �F 1    
+[2019-09-07 13:58:06.277] [ERROR] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 13:59:40.575] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 13:59:40.575] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 13:59:40.575] [ERROR] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 13:59:40.575] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 13:59:40.606] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 13:59:40.606] [INFO] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 13:59:40.606] [TRACE] DeviceIntegrator - [ COM9 ][ a3861500-d190-11e9-91ed-31beeb143222 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;9864","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 14:00:20.748] [WARN] DeviceIntegrator - SIGINT Received, Process Terminate
+[2019-09-07 14:01:57.171] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Se ha configurado al log4js gracias al archivo de configuracion especificado.
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - File: etc/deviceIntegrator_log4js.configure
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Reload Secs: 60
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFilePath:       logs/DeviceIntegrator.log
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logLevel:          TRACE
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logConfig:         etc/deviceIntegrator_log4js.configure,60
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logCategory:       DeviceIntegrator
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logModule:         log4js
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logHostname:       localhost
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logPort:           514
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxBackups: 5
+[2019-09-07 14:01:57.186] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxSize:    300000000
+[2019-09-07 14:01:57.202] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License file was found.
+[2019-09-07 14:01:57.202] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License Signature Key file was found.
+[2019-09-07 14:01:57.202] [INFO] DeviceIntegrator - [ LoadLicense ] - The License file was authenticated and loaded.
+[2019-09-07 14:01:57.202] [INFO] DeviceIntegrator - [ LoadSerialProtExtension ] - The Serial protocol extension was loaded
+[2019-09-07 14:01:57.264] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device type is Terminal
+[2019-09-07 14:01:57.264] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device model is FirstDataVx690
+[2019-09-07 14:01:57.264] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceOperationMode ] - The device operation mode is Integrated
+[2019-09-07 14:01:57.280] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 14:01:57.295] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadDeviceModule ] - Device module loaded.
+[2019-09-07 14:01:57.295] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadRespCodesFiles ] - Files loaded
+[2019-09-07 14:01:57.295] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ getListPortToConnect ] - Getting port list available to connect.
+[2019-09-07 14:01:57.295] [TRACE] DeviceIntegrator - [ getListPortToConnect ] - The default ports configured are [{"COM9":["COM9"]}]. We will use them to connect to devices.
+[2019-09-07 14:01:57.577] [INFO] DeviceIntegrator - [ connectToDevicePort ] - You are connected at COM9
+[2019-09-07 14:01:57.577] [TRACE] DeviceIntegrator - [ checkPortConnectionStatus ] - Adding the connection port to the availables to use.
+[2019-09-07 14:01:57.577] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - We tried to connect to the entire list of port.
+[2019-09-07 14:01:57.577] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - Some of them were available.
+[2019-09-07 14:01:57.577] [INFO] DeviceIntegrator - [ initEvenListenner ][ checkSerialConnResult ] - Serial connection with the device is ready.
+[2019-09-07 14:01:57.592] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initClientProtocols ] - Initializating comunitation protocols to listen to requests
+[2019-09-07 14:01:57.624] [INFO] DeviceIntegrator - [ HTTP ] - Http server listenning to incomming requests
+[2019-09-07 14:01:57.624] [INFO] DeviceIntegrator - [ TCP ] - Tcp server listenning to incomming requests
+[2019-09-07 14:01:57.624] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initRegisterFunction ] - Initializating comunitation protocols to send message to register operations
+[2019-09-07 14:01:57.624] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initKeepAliveTimers ] - Initializating keep alive timers
+[2019-09-07 14:01:57.639] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initDebugProcess ] - Initializating connection debug process
+[2019-09-07 14:01:57.639] [INFO] DeviceIntegrator - [ initEvenListenner ][ initializationFineshed ] - Initialization finished. Waiting to process requests
+[2019-09-07 14:02:05.780] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Client connected
+[2019-09-07 14:02:05.780] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Http method: POST
+[2019-09-07 14:02:05.795] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:02:05.795] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:02:05.795] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 14:02:05.795] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 14:02:05.811] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:02:05.811] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:02:05.811] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Body: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:02:05.811] [TRACE] DeviceIntegrator - [ 127.0.0.1:50225 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"39","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 14:02:05.826] [INFO] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 14:02:05.826] [DEBUG] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:02:05.826] [DEBUG] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 14:02:05.826] [TRACE] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:02:05.826] [TRACE] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 14:02:05.842] [DEBUG] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 14:02:05.842] [TRACE] DeviceIntegrator - [ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "Currencies"
+}
+[2019-09-07 14:02:05.842] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 14:02:05.842] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 14:02:05.873] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 14:02:05.889] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ openDevicePort ] - The device conection is already opened.
+[2019-09-07 14:02:05.889] [WARN] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 14:02:05.889] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 14:02:05.889] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 14:02:05.889] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: Currencies
+[2019-09-07 14:02:05.904] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,@isStartSessionRequired,startSession,@waitTime,getCurrenciesAvailables
+[2019-09-07 14:02:05.904] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 14:02:05.904] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 14:02:05.904] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 14:02:05.920] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ generateDeviceRequest ] - Generating next command to exec. Number: 2
+[2019-09-07 14:02:05.951] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Session value used: 0032
+[2019-09-07 14:02:05.951] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 14:02:05.951] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add session to layer 2. Result: [0032000000000000]
+[2019-09-07 14:02:05.951] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add request code to layer 2. Result: [0032000700000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add layer 3 length to layer 2. Result: [0032000702000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add layer 3 content to layer 2. Result: [0032000702000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Layer 2 result: [0032000702000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 14:02:05.967] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - CRC 16Bits Hex Num: [6b28]
+[2019-09-07 14:02:05.983] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - CRC 16Bits Dec Num: [27432]
+[2019-09-07 14:02:05.983] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add CRC 16bits to layer 1. Result: [000008006b280000000000000000]
+[2019-09-07 14:02:05.983] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Add layer 2 content to layer 1. Result: [000008006b280032000702000000]
+[2019-09-07 14:02:05.983] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Request result: [000008006b280032000702000000]
+[2019-09-07 14:02:05.983] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ startSession ] - Request: 000008006b280032000702000000
+[2019-09-07 14:02:05.998] [DEBUG] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 14:02:05.998] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ sendToDevice ] - Buffer to send:    k( 2    
+[2019-09-07 14:02:16.015] [ERROR] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 14:03:38.448] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 14:03:38.448] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 14:03:38.464] [ERROR] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 14:03:38.464] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 14:03:38.479] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:03:38.479] [INFO] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 14:03:38.495] [TRACE] DeviceIntegrator - [ COM9 ][ 38602940-d191-11e9-b7b2-4bcbd2e406f0 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;800","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 14:03:52.042] [WARN] DeviceIntegrator - SIGHUP Received, Ignore
+[2019-09-07 14:06:57.891] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Se ha configurado al log4js gracias al archivo de configuracion especificado.
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - File: etc/deviceIntegrator_log4js.configure
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Reload Secs: 60
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFilePath:       logs/DeviceIntegrator.log
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logLevel:          TRACE
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logConfig:         etc/deviceIntegrator_log4js.configure,60
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logCategory:       DeviceIntegrator
+[2019-09-07 14:06:57.906] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logModule:         log4js
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logHostname:       localhost
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logPort:           514
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxBackups: 5
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxSize:    300000000
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License file was found.
+[2019-09-07 14:06:57.922] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License Signature Key file was found.
+[2019-09-07 14:06:57.937] [INFO] DeviceIntegrator - [ LoadLicense ] - The License file was authenticated and loaded.
+[2019-09-07 14:06:57.937] [INFO] DeviceIntegrator - [ LoadSerialProtExtension ] - The Serial protocol extension was loaded
+[2019-09-07 14:06:58.047] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device type is Terminal
+[2019-09-07 14:06:58.047] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device model is FirstDataVx690
+[2019-09-07 14:06:58.047] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceOperationMode ] - The device operation mode is Integrated
+[2019-09-07 14:06:58.047] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 14:06:58.078] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadDeviceModule ] - Device module loaded.
+[2019-09-07 14:06:58.078] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadRespCodesFiles ] - Files loaded
+[2019-09-07 14:06:58.078] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ getListPortToConnect ] - Getting port list available to connect.
+[2019-09-07 14:06:58.078] [TRACE] DeviceIntegrator - [ getListPortToConnect ] - The default ports configured are [{"COM9":["COM9"]}]. We will use them to connect to devices.
+[2019-09-07 14:06:58.359] [INFO] DeviceIntegrator - [ connectToDevicePort ] - You are connected at COM9
+[2019-09-07 14:06:58.359] [TRACE] DeviceIntegrator - [ checkPortConnectionStatus ] - Adding the connection port to the availables to use.
+[2019-09-07 14:06:58.359] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - We tried to connect to the entire list of port.
+[2019-09-07 14:06:58.359] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - Some of them were available.
+[2019-09-07 14:06:58.359] [INFO] DeviceIntegrator - [ initEvenListenner ][ checkSerialConnResult ] - Serial connection with the device is ready.
+[2019-09-07 14:06:58.359] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initClientProtocols ] - Initializating comunitation protocols to listen to requests
+[2019-09-07 14:06:58.390] [INFO] DeviceIntegrator - [ HTTP ] - Http server listenning to incomming requests
+[2019-09-07 14:06:58.406] [INFO] DeviceIntegrator - [ TCP ] - Tcp server listenning to incomming requests
+[2019-09-07 14:06:58.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initRegisterFunction ] - Initializating comunitation protocols to send message to register operations
+[2019-09-07 14:06:58.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initKeepAliveTimers ] - Initializating keep alive timers
+[2019-09-07 14:06:58.406] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initDebugProcess ] - Initializating connection debug process
+[2019-09-07 14:06:58.406] [INFO] DeviceIntegrator - [ initEvenListenner ][ initializationFineshed ] - Initialization finished. Waiting to process requests
+[2019-09-07 14:08:29.846] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Client connected
+[2019-09-07 14:08:29.846] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http method: POST
+[2019-09-07 14:08:29.846] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:08:29.861] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:08:29.877] [TRACE] DeviceIntegrator - [ 127.0.0.1:49718 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"39","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 14:08:29.877] [INFO] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 14:08:29.877] [DEBUG] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:08:29.877] [DEBUG] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 14:08:29.877] [TRACE] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:08:29.877] [TRACE] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 14:08:29.877] [DEBUG] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 14:08:29.877] [TRACE] DeviceIntegrator - [ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "Currencies"
+}
+[2019-09-07 14:08:29.877] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 14:08:29.877] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 14:08:29.955] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 14:08:29.955] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ openDevicePort ] - The device conection is already opened.
+[2019-09-07 14:08:29.955] [WARN] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 14:08:29.955] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 14:08:29.955] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 14:08:29.955] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: Currencies
+[2019-09-07 14:08:29.971] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,@isStartSessionRequired,startSession,@waitTime,getCurrenciesAvailables
+[2019-09-07 14:08:29.971] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 14:08:29.971] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 14:08:29.971] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 14:08:29.971] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 2
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Session value used: 0033
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add session to layer 2. Result: [0033000000000000]
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add request code to layer 2. Result: [0033000700000000]
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 length to layer 2. Result: [0033000702000000]
+[2019-09-07 14:08:29.986] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 content to layer 2. Result: [0033000702000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 2 result: [0033000702000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Hex Num: [f4fd]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Dec Num: [62717]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add CRC 16bits to layer 1. Result: [00000800f4fd0000000000000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 content to layer 1. Result: [00000800f4fd0033000702000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Request result: [00000800f4fd0033000702000000]
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Request: 00000800f4fd0033000702000000
+[2019-09-07 14:08:30.002] [DEBUG] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 14:08:30.002] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ sendToDevice ] - Buffer to send:    �� 3    
+[2019-09-07 14:08:40.032] [ERROR] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 14:08:40.032] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 14:08:40.032] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 14:08:40.032] [ERROR] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 14:08:40.032] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 14:08:40.048] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:08:40.048] [INFO] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 14:08:40.048] [TRACE] DeviceIntegrator - [ COM9 ][ 1d4bfb60-d192-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;4112","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Client connected
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http method: POST
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 14:09:05.465] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 127.0.0.1:49736 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"39","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 14:09:05.481] [INFO] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"Currencies"}
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 14:09:05.481] [TRACE] DeviceIntegrator - [ 32870290-d192-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "Currencies"
+}
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 14:09:05.481] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ openDevicePort ] - Trying to open the device conection as it is closed.
+[2019-09-07 14:09:05.762] [INFO] DeviceIntegrator - [ reConnectToDevice ] - You are connected at COM9
+[2019-09-07 14:09:05.762] [WARN] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 14:09:05.762] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 14:09:05.762] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 14:09:05.762] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: Currencies
+[2019-09-07 14:09:05.762] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,@isStartSessionRequired,startSession,@waitTime,getCurrenciesAvailables
+[2019-09-07 14:09:05.778] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 14:09:05.778] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 14:09:05.778] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 14:09:05.778] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 2
+[2019-09-07 14:09:05.793] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Session value used: 0034
+[2019-09-07 14:09:05.793] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 14:09:05.793] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add session to layer 2. Result: [0034000000000000]
+[2019-09-07 14:09:05.793] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add request code to layer 2. Result: [0034000700000000]
+[2019-09-07 14:09:05.793] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 length to layer 2. Result: [0034000702000000]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 content to layer 2. Result: [0034000702000000]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 2 result: [0034000702000000]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Hex Num: [33e5]
+[2019-09-07 14:09:05.809] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Dec Num: [13285]
+[2019-09-07 14:09:05.856] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add CRC 16bits to layer 1. Result: [0000080033e50000000000000000]
+[2019-09-07 14:09:05.856] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 content to layer 1. Result: [0000080033e50034000702000000]
+[2019-09-07 14:09:05.856] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Request result: [0000080033e50034000702000000]
+[2019-09-07 14:09:05.871] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ startSession ] - Request: 0000080033e50034000702000000
+[2019-09-07 14:09:05.871] [DEBUG] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 14:09:05.871] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ sendToDevice ] - Buffer to send:    3� 4    
+[2019-09-07 14:09:15.884] [ERROR] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 14:09:15.884] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 14:09:15.884] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 14:09:15.884] [ERROR] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 14:09:15.884] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 14:09:15.884] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:09:15.884] [INFO] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 14:09:15.884] [TRACE] DeviceIntegrator - [ COM9 ][ 32870290-d192-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;4112","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Client connected
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http method: POST
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body: {"TransactionRequestType":"GetLastTransaction"}
+[2019-09-07 14:17:35.350] [TRACE] DeviceIntegrator - [ 127.0.0.1:49799 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"47","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 14:17:35.365] [INFO] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"GetLastTransaction"}
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 14:17:35.365] [TRACE] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:17:35.365] [TRACE] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 14:17:35.365] [TRACE] DeviceIntegrator - [ 62714960-d193-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "GetLastTransaction"
+}
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 14:17:35.365] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ openDevicePort ] - Trying to open the device conection as it is closed.
+[2019-09-07 14:17:35.631] [INFO] DeviceIntegrator - [ reConnectToDevice ] - You are connected at COM9
+[2019-09-07 14:17:35.631] [WARN] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 14:17:35.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 14:17:35.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: GetLastTransaction
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,sendKeepAlive,@waitToBeReady,@waitTime,@chooseTransactionToGet
+[2019-09-07 14:17:35.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 14:17:35.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 14:17:35.631] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Session value used: 0034
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Layer 3 result: [00]
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add session to layer 2. Result: [00340000000000]
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add request code to layer 2. Result: [00340002000000]
+[2019-09-07 14:17:35.631] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 3 length to layer 2. Result: [00340002010000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 3 content to layer 2. Result: [00340002010000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Layer 2 result: [00340002010000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add message source to layer 1. Result: [00000000000000000000000000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 2 length to layer 1. Result: [00000700000000000000000000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - CRC 16Bits Hex Num: [38a6]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - CRC 16Bits Dec Num: [14502]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add CRC 16bits to layer 1. Result: [0000070038a600000000000000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 2 content to layer 1. Result: [0000070038a600340002010000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Request result: [0000070038a600340002010000]
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Request: 0000070038a600340002010000
+[2019-09-07 14:17:35.647] [DEBUG] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 14:17:35.647] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendToDevice ] - Buffer to send:    8� 4   
+[2019-09-07 14:17:45.675] [ERROR] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 14:17:45.675] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 14:17:45.675] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 14:17:45.675] [ERROR] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 14:17:45.675] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 14:17:45.690] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 14:17:45.690] [INFO] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 14:17:45.690] [TRACE] DeviceIntegrator - [ COM9 ][ 62714960-d193-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;4112","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 16:19:31.375] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Client connected
+[2019-09-07 16:19:31.375] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http method: POST
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Financial
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Financial
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Financial"}
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body: {"TransactionRequestType":"GetCard","TransactionType":"Buy"}
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 127.0.0.1:50147 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"60","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 16:19:31.391] [INFO] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 16:19:31.391] [DEBUG] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"GetCard","TransactionType":"Buy"}
+[2019-09-07 16:19:31.391] [DEBUG] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:19:31.391] [TRACE] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 16:19:31.406] [DEBUG] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 16:19:31.406] [TRACE] DeviceIntegrator - [ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "GetCard",
+    "TransactionType": "Buy"
+}
+[2019-09-07 16:19:31.406] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 16:19:31.406] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 16:19:31.406] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ openDevicePort ] - Trying to open the device conection as it is closed.
+[2019-09-07 16:19:31.672] [INFO] DeviceIntegrator - [ reConnectToDevice ] - You are connected at COM9
+[2019-09-07 16:19:31.672] [WARN] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 16:19:31.672] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 16:19:31.672] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 16:19:31.672] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: GetCard
+[2019-09-07 16:19:31.672] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - The list of commands we have to execute are @isStartSessionRequired,startSession,@waitTime,sendGetCard,@analizeDeviceStatus,@waitTime,sendKeepAlive,@waitToBeReady,@waitTime,getCardResult
+[2019-09-07 16:19:31.672] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 16:19:31.672] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 16:19:31.672] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Session value used: 0035
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add session to layer 2. Result: [0035000000000000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add request code to layer 2. Result: [0035000700000000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 length to layer 2. Result: [0035000702000000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 3 content to layer 2. Result: [0035000702000000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Layer 2 result: [0035000702000000]
+[2019-09-07 16:19:31.687] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Hex Num: [ac30]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - CRC 16Bits Dec Num: [44080]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add CRC 16bits to layer 1. Result: [00000800ac300000000000000000]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Add layer 2 content to layer 1. Result: [00000800ac300035000702000000]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Request result: [00000800ac300035000702000000]
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ startSession ] - Request: 00000800ac300035000702000000
+[2019-09-07 16:19:31.703] [DEBUG] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 16:19:31.703] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ sendToDevice ] - Buffer to send:    �0 5    
+[2019-09-07 16:19:41.720] [ERROR] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 16:19:41.720] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 16:19:41.720] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 16:19:41.720] [ERROR] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 16:19:41.720] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 16:19:41.720] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:19:41.720] [INFO] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 16:19:41.720] [TRACE] DeviceIntegrator - [ COM9 ][ 6b221bf0-d1a4-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;4112","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Client connected
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http method: POST
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 16:20:01.484] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 16:20:01.500] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:20:01.500] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:20:01.515] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Body: {"TransactionRequestType":"GetLastTransaction"}
+[2019-09-07 16:20:01.515] [TRACE] DeviceIntegrator - [ 127.0.0.1:50149 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"47","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 16:20:01.515] [INFO] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 16:20:01.515] [DEBUG] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"GetLastTransaction"}
+[2019-09-07 16:20:01.515] [DEBUG] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 16:20:01.515] [TRACE] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:20:01.515] [TRACE] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 16:20:01.515] [DEBUG] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 16:20:01.531] [TRACE] DeviceIntegrator - [ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "GetLastTransaction"
+}
+[2019-09-07 16:20:01.531] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 16:20:01.531] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 16:20:01.531] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ openDevicePort ] - Trying to open the device conection as it is closed.
+[2019-09-07 16:20:01.796] [INFO] DeviceIntegrator - [ reConnectToDevice ] - You are connected at COM9
+[2019-09-07 16:20:01.796] [WARN] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 16:20:01.796] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 16:20:01.796] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 16:20:01.796] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: GetLastTransaction
+[2019-09-07 16:20:01.796] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,sendKeepAlive,@waitToBeReady,@waitTime,@chooseTransactionToGet
+[2019-09-07 16:20:01.796] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 16:20:01.796] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 16:20:01.796] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 16:20:01.796] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Session value used: 0035
+[2019-09-07 16:20:01.796] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Layer 3 result: [00]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add session to layer 2. Result: [00350000000000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add request code to layer 2. Result: [00350002000000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 3 length to layer 2. Result: [00350002010000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 3 content to layer 2. Result: [00350002010000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Layer 2 result: [00350002010000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add message source to layer 1. Result: [00000000000000000000000000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 2 length to layer 1. Result: [00000700000000000000000000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - CRC 16Bits Hex Num: [3c8d]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - CRC 16Bits Dec Num: [15501]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add CRC 16bits to layer 1. Result: [000007003c8d00000000000000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Add layer 2 content to layer 1. Result: [000007003c8d00350002010000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Request result: [000007003c8d00350002010000]
+[2019-09-07 16:20:01.812] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendKeepAlive ] - Request: 000007003c8d00350002010000
+[2019-09-07 16:20:01.812] [DEBUG] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 16:20:01.828] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendToDevice ] - Buffer to send:    <� 5   
+[2019-09-07 16:20:11.831] [ERROR] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 16:20:11.834] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 16:20:11.836] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 16:20:11.837] [ERROR] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 16:20:11.838] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 16:20:11.841] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:20:11.841] [INFO] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 16:20:11.841] [TRACE] DeviceIntegrator - [ COM9 ][ 7d1460c0-d1a4-11e9-a2ed-e138c96d6898 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;4112","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+[2019-09-07 16:21:59.592] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Se ha configurado al log4js gracias al archivo de configuracion especificado.
+[2019-09-07 16:21:59.623] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - File: etc/deviceIntegrator_log4js.configure
+[2019-09-07 16:21:59.638] [DEBUG] DeviceIntegrator - [ LoggerExtension ][ Log4Js ] - Reload Secs: 60
+[2019-09-07 16:21:59.638] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFilePath:       logs/DeviceIntegrator.log
+[2019-09-07 16:21:59.638] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logLevel:          TRACE
+[2019-09-07 16:21:59.638] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logConfig:         etc/deviceIntegrator_log4js.configure,60
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logCategory:       DeviceIntegrator
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logModule:         log4js
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logHostname:       localhost
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logPort:           514
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxBackups: 5
+[2019-09-07 16:21:59.654] [DEBUG] DeviceIntegrator - [ LoggerExtension ] - logFileMaxSize:    300000000
+[2019-09-07 16:21:59.701] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License file was found.
+[2019-09-07 16:21:59.701] [DEBUG] DeviceIntegrator - [ LoadLicense ] - The License Signature Key file was found.
+[2019-09-07 16:21:59.732] [INFO] DeviceIntegrator - [ LoadLicense ] - The License file was authenticated and loaded.
+[2019-09-07 16:21:59.748] [INFO] DeviceIntegrator - [ LoadSerialProtExtension ] - The Serial protocol extension was loaded
+[2019-09-07 16:21:59.998] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device type is Terminal
+[2019-09-07 16:22:00.013] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceModel ] - The device model is FirstDataVx690
+[2019-09-07 16:22:00.045] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ defineDeviceOperationMode ] - The device operation mode is Integrated
+[2019-09-07 16:22:00.060] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 16:22:00.107] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadDeviceModule ] - Device module loaded.
+[2019-09-07 16:22:00.123] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ loadRespCodesFiles ] - Files loaded
+[2019-09-07 16:22:00.138] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ getListPortToConnect ] - Getting port list available to connect.
+[2019-09-07 16:22:00.138] [TRACE] DeviceIntegrator - [ getListPortToConnect ] - The default ports configured are [{"COM9":["COM9"]}]. We will use them to connect to devices.
+[2019-09-07 16:22:00.435] [INFO] DeviceIntegrator - [ connectToDevicePort ] - You are connected at COM9
+[2019-09-07 16:22:00.435] [TRACE] DeviceIntegrator - [ checkPortConnectionStatus ] - Adding the connection port to the availables to use.
+[2019-09-07 16:22:00.451] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - We tried to connect to the entire list of port.
+[2019-09-07 16:22:00.451] [DEBUG] DeviceIntegrator - [ InitSerialDevicesListenner ][ choosePortAndConnect ] - Some of them were available.
+[2019-09-07 16:22:00.451] [INFO] DeviceIntegrator - [ initEvenListenner ][ checkSerialConnResult ] - Serial connection with the device is ready.
+[2019-09-07 16:22:00.451] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initClientProtocols ] - Initializating comunitation protocols to listen to requests
+[2019-09-07 16:22:00.498] [INFO] DeviceIntegrator - [ HTTP ] - Http server listenning to incomming requests
+[2019-09-07 16:22:00.498] [INFO] DeviceIntegrator - [ TCP ] - Tcp server listenning to incomming requests
+[2019-09-07 16:22:00.513] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initRegisterFunction ] - Initializating comunitation protocols to send message to register operations
+[2019-09-07 16:22:00.513] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initKeepAliveTimers ] - Initializating keep alive timers
+[2019-09-07 16:22:00.513] [DEBUG] DeviceIntegrator - [ initEvenListenner ][ initDebugProcess ] - Initializating connection debug process
+[2019-09-07 16:22:00.513] [INFO] DeviceIntegrator - [ initEvenListenner ][ initializationFineshed ] - Initialization finished. Waiting to process requests
+[2019-09-07 16:23:08.698] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Client connected
+[2019-09-07 16:23:08.698] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Http method: POST
+[2019-09-07 16:23:08.698] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Http url: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 16:23:08.713] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Http pathname: /PosnetDeviceIntegrator/2.2.0/Query
+[2019-09-07 16:23:08.713] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Path order found: VersionTag
+[2019-09-07 16:23:08.713] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Body generated from URL: {"query":{},"version":"2.2.0","tag":"Query"}
+[2019-09-07 16:23:08.713] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:23:08.713] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ translateFormat ] - Format tpye: JSON
+[2019-09-07 16:23:08.729] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Body: {"TransactionRequestType":"Currencies"}
+[2019-09-07 16:23:08.729] [TRACE] DeviceIntegrator - [ 127.0.0.1:49713 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ HTTP ] - Headers: {"accept":"application/json","content-type":"application/json","user-agent":"axios/0.19.0","content-length":"39","host":"127.0.0.1:8280","connection":"close"}
+[2019-09-07 16:23:08.729] [INFO] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ receivingIncommingRequest ] - Starting to process a new request. 
+[2019-09-07 16:23:08.729] [DEBUG] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ receivingIncommingRequest ] - Request: {"TransactionRequestType":"Currencies"}
+[2019-09-07 16:23:08.729] [DEBUG] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ parseIncommingRequest ] - Parsing request
+[2019-09-07 16:23:08.729] [TRACE] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ parseRequest ] - Checking if we are able to handle the response format, as the Protocol + RequestFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:23:08.729] [TRACE] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ parseRequest ] - Parsing the incomming request as the Protocol + RequestFormat indicate. Protocol+RequestFormat: HTTP+JSON
+[2019-09-07 16:23:08.729] [DEBUG] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ checkParsedRequest ] - Request parsed.
+[2019-09-07 16:23:08.745] [TRACE] DeviceIntegrator - [ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ checkParsedRequest ] - Result: {
+    "TransactionRequestType": "Currencies"
+}
+[2019-09-07 16:23:08.745] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ checkDeviceRequiredToUse ] - The device required to use is COM9
+[2019-09-07 16:23:08.745] [TRACE] DeviceIntegrator - [ loadDeviceModule ] - Loading module Terminal+FirstDataVx690
+[2019-09-07 16:23:08.807] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ checkDeviceRequiredToUse ] - The Device Integrator is NOT processing a trx with this device. Starting to do it now!
+[2019-09-07 16:23:08.807] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ openDevicePort ] - The device conection is already opened.
+[2019-09-07 16:23:08.807] [WARN] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getIncommingReqType ] - The request timeout received is not valid. Using the default one
+[2019-09-07 16:23:08.807] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getIncommingReqType ] - The request timeout is 300 secs
+[2019-09-07 16:23:08.807] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getIncommingReqType ] - Getting list of commands to this request
+[2019-09-07 16:23:08.823] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getFunctionsToExec ] - Getting commands to exec to this request type. RequestType: Currencies
+[2019-09-07 16:23:08.823] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getFunctionsToExec ] - The list of commands we have to execute are @setTransactionType,@isStartSessionRequired,startSession,@waitTime,getCurrenciesAvailables
+[2019-09-07 16:23:08.823] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ getIncommingReqType ] - The list of commands found
+[2019-09-07 16:23:08.823] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ generateDeviceRequest ] - Generating next command to exec. Number: 0
+[2019-09-07 16:23:08.823] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ generateDeviceRequest ] - Generating next command to exec. Number: 1
+[2019-09-07 16:23:08.823] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ generateDeviceRequest ] - Generating next command to exec. Number: 2
+[2019-09-07 16:23:08.838] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Session value used: 0036
+[2019-09-07 16:23:08.838] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Layer 3 result: [0000]
+[2019-09-07 16:23:08.838] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add session to layer 2. Result: [0036000000000000]
+[2019-09-07 16:23:08.838] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add request code to layer 2. Result: [0036000700000000]
+[2019-09-07 16:23:08.838] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add layer 3 length to layer 2. Result: [0036000702000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add layer 3 content to layer 2. Result: [0036000702000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Layer 2 result: [0036000702000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add message source to layer 1. Result: [0000000000000000000000000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add layer 2 length to layer 1. Result: [0000080000000000000000000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - CRC 16Bits Hex Num: [45e]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - CRC 16Bits Dec Num: [1118]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add CRC 16bits to layer 1. Result: [00000800045e0000000000000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Add layer 2 content to layer 1. Result: [00000800045e0036000702000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Request result: [00000800045e0036000702000000]
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ startSession ] - Request: 00000800045e0036000702000000
+[2019-09-07 16:23:08.854] [DEBUG] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ sendRequestToDevice ] - Sending command to device
+[2019-09-07 16:23:08.854] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ sendToDevice ] - Buffer to send:    ^ 6    
+[2019-09-07 16:23:18.885] [ERROR] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ commTimeoutFunc ] - No response from the device.
+[2019-09-07 16:23:18.885] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ deviceModuleActionEvent ][ responseFromDeviceError ] - Generating error response because of a problem found with the communication with de device
+[2019-09-07 16:23:18.885] [DEBUG] DeviceIntegrator - [ SerialDevice ] - Serial connection closed!
+[2019-09-07 16:23:18.885] [ERROR] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ parseDeviceResponse ] - Some kind of error were found while processing the incomming request
+[2019-09-07 16:23:18.885] [ERROR] DeviceIntegrator - { Error: No response from the device.
+    at Timeout.__dirname.constructor.commTimeoutFunc [as _onTimeout] (C:\snapshot\CompileEnv\DITrx2TrxDriver.js:0)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5) internalCode: '2055', source: 'DITrx2TrxDriver' }
+[2019-09-07 16:23:18.900] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ parseResponse ] - Parsing the final response as the Protocol + ResponseFormat indicate. Protocol+ResponseFormat: HTTP+JSON
+[2019-09-07 16:23:18.900] [INFO] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ sendResponse ][ HTTP ] - Sending response to client
+[2019-09-07 16:23:18.900] [TRACE] DeviceIntegrator - [ COM9 ][ ecaaf7a0-d1a4-11e9-9d02-df87dbad1913 ][ sendResponse ][ HTTP ] - Response: {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3996","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
