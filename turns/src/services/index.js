@@ -39,10 +39,10 @@ export const loadOrderData = orderId => {
   })
 }
 
-export const printOrder = orderData => {
+export const printOrder = order => {
   return new Promise((resolve, reject) => {
     servers.printServer
-      .post(`/${orderData.printerId}`, { orderData })
+      .post(`/${order.printerId}`, { order })
       .then(resp => {
         resolve(resp)
       })
@@ -55,7 +55,7 @@ export const printOrder = orderData => {
 export const printerError = errorData => {
   return new Promise((resolve, reject) => {
     servers.databaseServer
-      .post(`orders/printer-error`, errorData)
+      .post('printer-error', errorData)
       .then(resp => {
         resolve(resp)
       })

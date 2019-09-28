@@ -7,13 +7,26 @@
       <Categories :categories="categories" />
     </div>
     <div class="products">
-      <Products :products="products" :add="add" :info="info" />
+      <Products :products="products" :info="info" />
     </div>
     <Product :add="add" />
     <div class="drinks" id="drinks" v-show="showDrinks">
-      <Drinks :products="products" :addDrink="addDrink" />
+      <Drinks :products="products" :addDrink="addDrink" :selectedProduct="selectedProduct" />
     </div>
     <Processing :message="errorMessage" />
+    <Test v-if="showTest" :hideTest="hideTest" />
+    <v-btn
+      v-if="!showTest"
+      small
+      fab
+      absolute
+      center
+      right
+      color="#ee3542"
+      depressed
+      :ripple="false"
+      @dblclick="goTest"
+    ></v-btn>
   </v-container>
 </template>
 
@@ -28,6 +41,7 @@ import Drinks from "@/components/Drinks";
 import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
 import { setupTimers, stopTimers } from "@/utils";
+import Test from "@/components/Test";
 
 export default {
   name: "Home",
@@ -38,14 +52,16 @@ export default {
     Basket,
     Product,
     Drinks,
-    Processing
+    Processing,
+    Test
   },
   data() {
     return {
       isBasketEmtpy: false,
       showDrinks: false,
       selectedProduct: {},
-      errorMessage: null
+      errorMessage: null,
+      showTest: false
     };
   },
   computed: {
@@ -90,6 +106,12 @@ export default {
     }
   },
   methods: {
+    goTest() {
+      this.showTest = true;
+    },
+    hideTest() {
+      this.showTest = false;
+    },
     add(item) {
       const isCombo = item.ticket_text.includes(drinkFieldName);
       if (isCombo) {
@@ -110,7 +132,7 @@ export default {
       Object.assign(product, this.selectedProduct);
       product.ticket_text = product.ticket_text.replace(
         drinkFieldName,
-        item.ticket_text
+        `${item.ticket_text} ${product.category_id === 6 ? "CHICA" : "MEDIANA"}`
       );
       store.dispatch("add", product);
       this.showDrinks = false;
@@ -127,6 +149,7 @@ export default {
   mounted() {
     store.dispatch("loadCategories");
     store.dispatch("loadProducts");
+    window.addEventListener("contextmenu", e => e.preventDefault());
     setupTimers();
   },
   beforeDestroy() {

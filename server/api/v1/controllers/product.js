@@ -14,8 +14,13 @@ const schema = {
   ticket_text: Joi.string().required(),
   category_id: Joi.number().required(),
   image: Joi.any().optional(),
+  is_combo: Joi.number(),
+  has_alcohol: Joi.number(),
   status_id: Joi.number(),
   price: Joi.number().required(),
+  small_price: Joi.number().required(),
+  medium_price: Joi.number().required(),
+  big_price: Joi.number().required(),
   created_at: Joi.string(),
   updated_at: Joi.string(),
   category: Joi.object(),
@@ -52,7 +57,12 @@ module.exports = {
         kitchen_text,
         ticket_text,
         category_id,
-        price
+        price,
+        small_price,
+        medium_price,
+        big_price,
+        is_combo,
+        has_alcohol,
       } = req.body
 
       return Product.create({
@@ -62,7 +72,12 @@ module.exports = {
         kitchen_text,
         ticket_text,
         category_id,
-        price
+        price,
+        small_price,
+        medium_price,
+        big_price,
+        is_combo,
+        has_alcohol
       })
         .then(product => {
           update().catch(err => console.log(err))
@@ -126,7 +141,12 @@ module.exports = {
         'ticket_text',
         'image',
         'price',
-        'category_id'
+        'small_price',
+        'medium_price',
+        'big_price',
+        'category_id',
+        'is_combo',
+        'has_alcohol'
       ]
     })
       .then(products => {
@@ -170,7 +190,12 @@ module.exports = {
         'ticket_text',
         'image',
         'price',
-        'category_id'
+        'small_price',
+        'medium_price',
+        'big_price',
+        'category_id',
+        'is_combo',
+        'has_alcohol'
       ]
     })
       .then(products => {
@@ -212,9 +237,14 @@ module.exports = {
         'kitchen_text',
         'ticket_text',
         'price',
+        'small_price',
+        'medium_price',
+        'big_price',
         'image',
         'category_id',
         'status_id',
+        'is_combo',
+        'has_alcohol',
         [
           sequelize.fn(
             'date_format',
@@ -286,7 +316,13 @@ module.exports = {
       category_id,
       image,
       status_id,
-      price
+      price,
+      small_price,
+      medium_price,
+      big_price,
+      is_combo,
+      has_alcohol
+
     } = req.body
     return Product.findOne({
       where: {
@@ -304,7 +340,12 @@ module.exports = {
             category_id,
             image,
             status_id,
-            price
+            price,
+            small_price,
+            medium_price,
+            big_price,
+            is_combo,
+            has_alcohol
           })
           .then(result => {
             update()

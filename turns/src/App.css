@@ -30,19 +30,24 @@
   font-size: 3em;
 }
 
+.turns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .turn {
-  height: 110px;
+  margin: 0 30px;
 }
 
 .order-number {
-  font-size: 5em;
+  font-size: 4em;
   font-weight: bold;
   display: inline-block;
 }
 
 .icon {
   font-size: 2em;
-  display: inline-block;
   vertical-align: text-bottom;
 }
 

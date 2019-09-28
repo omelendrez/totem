@@ -9,7 +9,6 @@
         <v-content>
           <v-card ripple>
             <v-img :src="item.image" class="image"></v-img>
-            <span class="name">{{item.name}}</span>
             <v-card-actions class="mb-2">
               <v-btn dark fab absolute bottom right color="primary" @click.stop="addDrink(item)">
                 <v-icon>add</v-icon>
@@ -33,11 +32,25 @@ export default {
     addDrink: {
       type: Function,
       default: undefined
+    },
+    selectedProduct: {
+      type: Object,
+      default: {}
     }
   },
   watch: {
-    products() {
-      this.items = this.products.filter(item => item.category_id === 5);
+    selectedProduct() {
+      this.items = this.products.filter(item => {
+        if (item.category_id === 5 && item.is_combo) {
+          if (item.has_alcohol) {
+            if (this.selectedProduct.category_id !== 6) {
+              return item;
+            }
+          } else {
+            return item;
+          }
+        }
+      });
     }
   },
   methods: {
@@ -68,13 +81,6 @@ export default {
 }
 .image {
   height: 90%;
-}
-.name {
-  text-align: center;
-  position: absolute;
-  bottom: 56px;
-  width: 100%;
-  font-weight: 900;
 }
 .message {
   text-transform: uppercase;
