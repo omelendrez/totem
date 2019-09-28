@@ -75,16 +75,13 @@ export default {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .price {
-  position: absolute;
-  top: 4px;
-  right: 29px;
-  min-width: 84px;
-  font-size: 2em;
+  margin-left: 110px;
+  font-size: 1.5em;
   font-weight: bold;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 6px;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: #ee3542;
+  border-radius: 30px;
+  text-align: center;
+  min-width: 80px;
 }
 </style>

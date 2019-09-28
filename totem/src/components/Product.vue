@@ -14,15 +14,7 @@
             <v-radio label="CHICA" color="primary" :value="2"></v-radio>
           </v-radio-group>
           <v-card-actions class="mb-2">
-            <v-btn
-              large
-              absolute
-              bottom
-              left
-              color="secondary"
-              class="mb-3"
-              @click.stop="close(item)"
-            >
+            <v-btn large absolute bottom left color="error" class="mb-3" @click.stop="close(item)">
               <v-icon>close</v-icon>&nbsp;salir
             </v-btn>
             <v-btn
@@ -147,15 +139,13 @@ export default {
 .price {
   position: absolute;
   top: 10px;
-  right: 100px;
-  min-width: 80px;
-  font-size: 2em;
+  right: 20px;
   font-weight: bold;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 6px;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: #ee3542;
+  border-radius: 30px;
+  text-align: center;
+  min-width: 160px;
   font-size: 3em;
 }
 </style>
