@@ -26,6 +26,8 @@
 <script>
 // {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3876","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
 
+//{"ResultCode":1011,"ResultMessage":"The device required to be use is not present. Use another one.","ResponseActions":"Refuse","DeviceIntegratorVersion":"3.0.1","WorkstationInfo":"Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4520"}
+
 import store from "@/store";
 import {
   activateCCReader,
@@ -94,7 +96,10 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              if (resp.data.ResultCode === 2055) {
+              if (
+                resp.data.ResultCode === 2055 ||
+                resp.data.ResultCode === 1011
+              ) {
                 store.dispatch("setCCStatus", 4);
                 return;
               }
@@ -109,7 +114,10 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  if (resp.data.ResultCode === 2055) {
+                  if (
+                    resp.data.ResultCode === 2055 ||
+                    resp.data.ResultCode === 1011
+                  ) {
                     store.dispatch("setCCStatus", 4);
                     return;
                   }
