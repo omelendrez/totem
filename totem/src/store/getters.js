@@ -20,7 +20,8 @@ const getters = {
   ccOrder: state => state.ccOrder,
   ccOrderData: state => state.ccOrderData,
   ccError: state => state.ccError,
-  ccResponse: state => state.ccResponse
+  ccResponse: state => state.ccResponse,
+  showIntro: state => state.showIntro
 }
 
 export default getters
