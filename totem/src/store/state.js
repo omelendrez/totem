@@ -1,5 +1,5 @@
 const state = {
-  status: '',
+  status: "",
   apiError: null,
   totem: null,
   products: [],
@@ -13,17 +13,18 @@ const state = {
   orderItems: [],
   orderData: {},
   testOrderData: {},
-  printingOrder: '',
+  printingOrder: "",
   printedOrder: null,
   changedOrder: null,
-  fiscalPrintingOrder: '',
+  fiscalPrintingOrder: "",
   fiscalPrintedOrder: null,
   ccStatus: -1,
   ccOrder: {},
   ccOrderData: {},
   ccChangedOrder: null,
   ccResponse: {},
-  ccError: {}
+  ccError: {},
+  showIntro: false
 }
 
 export default state

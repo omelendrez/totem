@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg class="products">
     <v-layout wrap>
-      <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index" v-show="item.image">
+      <v-flex xs4 v-for="(item, index) in items" :key="index" v-show="item.image">
         <v-content>
           <v-card ripple @click.stop="info(item)">
             <v-img contain :src="item.image" class="image"></v-img>

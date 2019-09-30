@@ -1,32 +1,35 @@
 <template>
   <v-container fluid class="home">
-    <div class="basket" id="basket">
-      <Basket :basket="basket" :add="add" :remove="remove" />
+    <Intro v-if="showIntro" />
+    <div v-if="!showIntro">
+      <div class="basket" id="basket">
+        <Basket :basket="basket" :add="add" :remove="remove" />
+      </div>
+      <div class="categories">
+        <Categories :categories="categories" />
+      </div>
+      <div class="products">
+        <Products :products="products" :info="info" />
+      </div>
+      <Product :add="add" />
+      <div class="drinks" id="drinks" v-show="showDrinks">
+        <Drinks :products="products" :addDrink="addDrink" :selectedProduct="selectedProduct" />
+      </div>
+      <Processing :message="errorMessage" />
+      <Test v-if="showTest" :hideTest="hideTest" />
+      <v-btn
+        v-if="!showTest"
+        small
+        fab
+        absolute
+        center
+        right
+        color="#ee3542"
+        depressed
+        :ripple="false"
+        @dblclick="goTest"
+      ></v-btn>
     </div>
-    <div class="categories">
-      <Categories :categories="categories" />
-    </div>
-    <div class="products">
-      <Products :products="products" :info="info" />
-    </div>
-    <Product :add="add" />
-    <div class="drinks" id="drinks" v-show="showDrinks">
-      <Drinks :products="products" :addDrink="addDrink" :selectedProduct="selectedProduct" />
-    </div>
-    <Processing :message="errorMessage" />
-    <Test v-if="showTest" :hideTest="hideTest" />
-    <v-btn
-      v-if="!showTest"
-      small
-      fab
-      absolute
-      center
-      right
-      color="#ee3542"
-      depressed
-      :ripple="false"
-      @dblclick="goTest"
-    ></v-btn>
   </v-container>
 </template>
 
@@ -42,6 +45,7 @@ import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
 import { setupTimers, stopTimers } from "@/utils";
 import Test from "@/components/Test";
+import Intro from "@/components/Intro";
 
 export default {
   name: "Home",
@@ -53,7 +57,8 @@ export default {
     Product,
     Drinks,
     Processing,
-    Test
+    Test,
+    Intro
   },
   data() {
     return {
@@ -85,6 +90,9 @@ export default {
     },
     totem() {
       return store.getters.totem;
+    },
+    showIntro() {
+      return store.getters.showIntro;
     }
   },
   watch: {
@@ -162,6 +170,7 @@ export default {
   width: 100vw;
   height: 100vh;
   position: absolute;
+  padding: 0;
 }
 .basket {
   position: absolute;
@@ -175,14 +184,14 @@ export default {
   top: 106px;
   left: 1px;
   height: auto;
-  width: 120px;
+  width: 150px;
 }
 .products {
   position: absolute;
   top: 106px;
-  left: 70px;
+  left: 80px;
   height: 1700px;
-  width: 939px;
+  width: 919px;
 }
 .drinks {
   position: absolute;
