@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="home">
-    <Intro v-if="showIntro" />
-    <div v-if="!showIntro">
+    <Intro v-show="showIntro" />
+    <div v-show="!showIntro">
       <div class="categories">
         <Categories :categories="categories" />
       </div>

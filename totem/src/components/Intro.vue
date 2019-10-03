@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <video width="1080" height="1920" autoplay loop @click.prevent="cerrar()">
+    <video width="1080" height="1920" autoplay loop>
       <source src="../assets/intro.mp4" type="video/mp4" />
     </video>
   </v-container>
@@ -8,15 +8,7 @@
 
 <script>
 export default {
-  name: "Home",
-  data() {
-    return {};
-  },
-  methods: {
-    cerrar() {
-      console.log("si");
-    }
-  }
+  name: "Home"
 };
 </script>
 
