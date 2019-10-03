@@ -97,8 +97,9 @@ ubicado debajo de esta pantalla`;
           activateCCReader()
             .then(resp => {
               if (
-                resp.data.ResultCode === 2055 ||
-                resp.data.ResultCode === 1011
+                resp.data.ResultCode !== "0"
+                // resp.data.ResultCode === 2055 ||
+                // resp.data.ResultCode === 1011
               ) {
                 store.dispatch("setCCStatus", 4);
                 return;
@@ -115,8 +116,9 @@ ubicado debajo de esta pantalla`;
               )
                 .then(resp => {
                   if (
-                    resp.data.ResultCode === 2055 ||
-                    resp.data.ResultCode === 1011
+                    resp.data.ResultCode !== "0"
+                    // resp.data.ResultCode === 2055 ||
+                    // resp.data.ResultCode === 1011
                   ) {
                     store.dispatch("setCCStatus", 4);
                     return;
