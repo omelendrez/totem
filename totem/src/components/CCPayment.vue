@@ -24,9 +24,61 @@
 </template>
 
 <script>
-// {"ResultCode":2055,"ResultMessage":"No response from the device.","ResponseActions":"Refuse","DeviceType":"TerminalFirstDataVx690Integrated","DeviceIntegratorVersion":"2.4.0","WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3876","LastContractVersionAvailable":"2.2.0","ContractVersion":"2.2.0"}
+/*
+{
+   "ResultCode":2055,
+   "ResultMessage":"No response from the device.",
+   "ResponseActions":"Refuse",
+   "DeviceType":"TerminalFirstDataVx690Integrated",
+   "DeviceIntegratorVersion":"2.4.0",
+   "WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3876",
+   "LastContractVersionAvailable":"2.2.0",
+   "ContractVersion":"2.2.0"
+}
 
-//{"ResultCode":1011,"ResultMessage":"The device required to be use is not present. Use another one.","ResponseActions":"Refuse","DeviceIntegratorVersion":"3.0.1","WorkstationInfo":"Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4520"}
+{
+   "ResultCode":1011,
+   "ResultMessage":"The device required to be use is not present. Use another one.",
+   "ResponseActions":"Refuse",
+   "DeviceIntegratorVersion":"3.0.1",
+   "WorkstationInfo":"Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4520"
+}
+
+{
+    "ResultCode": 2104,
+    "ResultMessage": "CANCELADO",
+    "ResponseActions": "Refuse",
+    "Session": 8,
+    "TerminalIdentification": "39412272",
+    "TransactionResponseType": "GetCard",
+    "DeviceType": "TerminalFirstDataVx690Integrated",
+    "LastContractVersionAvailable": "3.0.0",
+    "ContractVersion": "2.2.0",
+    "DeviceIntegratorVersion": "3.0.1",
+    "WorkstationInfo": "Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4588"
+}
+
+{
+    "ResultCode": -1,
+    "ResultMessage": "The request was accepted by the device.",
+    "ResponseActions": "Approve",
+    "Session": 7,
+    "TerminalIdentification": "39412272",
+    "BitMap": "07000000",
+    "CardNumber": "532382******8242",
+    "IssuerEntity": "MASTERCARD",
+    "CardAbbreviation": "MC",
+    "MerchantPaymentMethodID": "111",
+    "MerchantPaymentMethodType": "1",
+    "MerchantPaymentMethodSupportsCashback": 0,
+    "TransactionResponseType": "GetCard",
+    "DeviceType": "TerminalFirstDataVx690Integrated",
+    "LastContractVersionAvailable": "3.0.0",
+    "ContractVersion": "2.2.0",
+    "DeviceIntegratorVersion": "3.0.1",
+    "WorkstationInfo": "Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4588"
+}
+*/
 
 import store from "@/store";
 import {
@@ -35,6 +87,8 @@ import {
   confirmTransaction,
   getLastTransaction
 } from "@/external";
+
+import { savePayment } from "@/services";
 
 export default {
   name: "CCPayment",
@@ -96,11 +150,8 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              if (
-                resp.data.ResultCode !== "0"
-                // resp.data.ResultCode === 2055 ||
-                // resp.data.ResultCode === 1011
-              ) {
+              this.saveResponse(resp);
+              if (resp.data.ResultCode !== -1) {
                 store.dispatch("setCCStatus", 4);
                 return;
               }
@@ -115,17 +166,15 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  if (
-                    resp.data.ResultCode !== "0"
-                    // resp.data.ResultCode === 2055 ||
-                    // resp.data.ResultCode === 1011
-                  ) {
+                  this.saveResponse(resp);
+                  if (resp.data.ResultCode !== -1) {
                     store.dispatch("setCCStatus", 4);
                     return;
                   }
                   store.dispatch("ccSaveResponse", resp);
                   confirmTransaction()
                     .then(resp => {
+                      this.saveResponse(resp);
                       const order = this.ccOrderData;
 
                       store.dispatch("ccSaveResponse", resp);
@@ -189,6 +238,13 @@ o Cancelar para elegir otro medio de pago`;
     },
     doCancel() {
       store.dispatch("setCCStatus", 3);
+    },
+    saveResponse(resp) {
+      const payment = {
+        orderId: this.ccOrder.id,
+        response: JSON.stringify(resp.data)
+      };
+      savePayment(payment);
     }
   }
 };
