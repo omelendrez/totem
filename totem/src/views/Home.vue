@@ -2,9 +2,6 @@
   <v-container fluid class="home">
     <Intro v-if="showIntro" />
     <div v-if="!showIntro">
-      <div class="basket" id="basket">
-        <Basket :basket="basket" :add="add" :remove="remove" />
-      </div>
       <div class="categories">
         <Categories :categories="categories" />
       </div>
@@ -14,6 +11,9 @@
       <Product :add="add" />
       <div class="drinks" id="drinks" v-show="showDrinks">
         <Drinks :products="products" :addDrink="addDrink" :selectedProduct="selectedProduct" />
+      </div>
+      <div class="basket" id="basket">
+        <Basket :basket="basket" :add="add" :remove="remove" />
       </div>
       <Processing :message="errorMessage" />
       <Test v-if="showTest" :hideTest="hideTest" />
