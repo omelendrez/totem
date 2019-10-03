@@ -12,5 +12,12 @@ module.exports = {
         res.status(201).json(cc_payment)
       })
       .catch(error => res.status(400).send(error))
+  },
+  findAll(req, res) {
+    return CCPayment.findAndCountAll({
+      attributes: ["id", "order_id", "response"]
+    })
+      .then(cc_payments => res.status(200).json(cc_payments))
+      .catch(error => res.status(400).send(error))
   }
 }
