@@ -320,5 +320,19 @@ module.exports = {
         })
       )
       .catch(error => res.status(400).send(error))
+  },
+
+  destroyOrders(req, res) {
+    const options = { truncate: true }
+    const result = {}
+    OrderItems.destroy(options)
+      .then(orderItems => {
+        result['OrderItems'] = orderItems
+        Order.destroy(options)
+          .then(orders => {
+            result['Orders'] = orders
+            res.status(200).json(result)
+          })
+      })
   }
 }
