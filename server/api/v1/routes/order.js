@@ -13,5 +13,5 @@ router.get('/:id', order.findById)
 router.get('/', order.findAll)
 router.put('/printed/:id', order.setOrderPrinted)
 router.put('/:id', order.updateOrderStatus)
-
+router.delete('/', order.destroyOrders)
 module.exports = router
