@@ -78,8 +78,8 @@ module.exports = {
         result = callDll({ action: 'PrintItem', ...payload, ...defaultValues })
       })
       result = await callDll({ action: 'PrintSubtotal', ...defaultValues })
-      //result = await callDll({ action: 'CloseDocument', ...defaultValues })
-      result = await callDll({ action: 'Cancel', ...defaultValues })
+      result = await callDll({ action: 'CloseDocument', ...defaultValues })
+      //result = await callDll({ action: 'Cancel', ...defaultValues })
       res.status(200).json(result)
     } catch (error) {
       res.status(500).json(error)
