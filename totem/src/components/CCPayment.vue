@@ -25,59 +25,51 @@
 
 <script>
 /*
-{
-   "ResultCode":2055,
-   "ResultMessage":"No response from the device.",
-   "ResponseActions":"Refuse",
-   "DeviceType":"TerminalFirstDataVx690Integrated",
-   "DeviceIntegratorVersion":"2.4.0",
-   "WorkstationInfo":"Windows_NT;win32;10.0.17763;x64;totem01;v6.11.5;3876",
-   "LastContractVersionAvailable":"2.2.0",
-   "ContractVersion":"2.2.0"
-}
+"ResultCode": -1,
+"ResultMessage": "The request was accepted by the device.",
 
-{
-   "ResultCode":1011,
-   "ResultMessage":"The device required to be use is not present. Use another one.",
-   "ResponseActions":"Refuse",
-   "DeviceIntegratorVersion":"3.0.1",
-   "WorkstationInfo":"Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4520"
-}
+"ResultCode":2055,
+"ResultMessage":"No response from the device.",
 
-{
-    "ResultCode": 2104,
-    "ResultMessage": "CANCELADO",
-    "ResponseActions": "Refuse",
-    "Session": 8,
-    "TerminalIdentification": "39412272",
-    "TransactionResponseType": "GetCard",
-    "DeviceType": "TerminalFirstDataVx690Integrated",
-    "LastContractVersionAvailable": "3.0.0",
-    "ContractVersion": "2.2.0",
-    "DeviceIntegratorVersion": "3.0.1",
-    "WorkstationInfo": "Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4588"
-}
+"ResultCode":1011,
+"ResultMessage":"The device required to be use is not present. Use another one.",
 
-{
-    "ResultCode": -1,
-    "ResultMessage": "The request was accepted by the device.",
-    "ResponseActions": "Approve",
-    "Session": 7,
-    "TerminalIdentification": "39412272",
-    "BitMap": "07000000",
-    "CardNumber": "532382******8242",
-    "IssuerEntity": "MASTERCARD",
-    "CardAbbreviation": "MC",
-    "MerchantPaymentMethodID": "111",
-    "MerchantPaymentMethodType": "1",
-    "MerchantPaymentMethodSupportsCashback": 0,
-    "TransactionResponseType": "GetCard",
-    "DeviceType": "TerminalFirstDataVx690Integrated",
-    "LastContractVersionAvailable": "3.0.0",
-    "ContractVersion": "2.2.0",
-    "DeviceIntegratorVersion": "3.0.1",
-    "WorkstationInfo": "Windows_NT;win32;10.0.17134;x64;TOTEM01;v6.11.5;4588"
-}
+"ResultCode": 2104,
+"ResultMessage": "CANCELADO",
+
+"InternalCode": "2053",
+"Description": "Device response is impossible to be read. We tried to do it many times.",
+
+"InternalCode": "2054",
+"Description": "Device request was not received by device succesfully. We tried to do it many times.",
+
+"InternalCode": "2055",
+"Description": "No response from the device.",
+
+"InternalCode": "1004",
+"Description": "Max time lapse to process the incomming request was reached. Please, try again faster!",
+
+C01;100;TRANSACCION NO PERMITIDA
+C02;100;TARJETA VENCIDA
+C03;100;POR FAVOR UTILIZE TARJETA CON CONTACTO
+C04;100;TARJETA INVALIDA
+C05;100;PRODUCTO NO ENCONTRADO
+C06;100;ERROR AL LEER LA TARJETA
+C07;100;PRODUCTO NO ENCONTRADO
+C08;100;PRODUCTO NO ENCONTRADO
+C09;100;PRODUCTO NO ENCONTRADO
+P01;01;ERROR LECTURA
+P02;02;CANCELADO
+P03;100;OPERACION CANCELADA
+P04;100;TRANSACCION NO EXISTE
+P05;100;MONTO EXCEDIDO
+P06;100;TRANSACCION INVALIDA
+P07;100;NO ES TARJ.SOLICIT
+P08;100;TIPO DE SOLICITUD NO ES IGUAL RECIBIDO EN GETCARD
+P09;100;TARJETA CON CHIP
+P10;100;ERROR DE COMUNICACION
+P11;100;RESULT. INFORMADO
+P12;100;IMPRESORA SIN PAPEL
 */
 
 import store from "@/store";
