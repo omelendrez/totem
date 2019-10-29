@@ -63,7 +63,7 @@ export default {
       const order = { ...this.order, printerId: 2 };
       store.dispatch("printOrderThermal", order);
     },
-    pintFiscal() {
+    printFiscal() {
       store.dispatch("printOrderFiscal", this.order);
     },
     back() {
