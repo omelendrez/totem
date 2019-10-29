@@ -66,6 +66,7 @@ module.exports = {
     const { order } = req.body
     const { order_items: orderItems } = order
     const items = orderItems.map(item => {
+      item.code = item.id
       item.quantity = item.quantity.toString()
       item.total_price = item.total_price.toString()
       return item
