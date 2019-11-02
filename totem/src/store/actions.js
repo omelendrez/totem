@@ -9,6 +9,8 @@ import {
   printOrderThermal,
   printOrderThermalError,
   printOrderFiscal,
+  printReportX,
+  printReportZ,
   changeOrderStatus,
   changeItemStatus,
   checkTotemStatus
@@ -173,6 +175,20 @@ const actions = {
       .then(resp => {
         commit("fiscal_print_order_data_success", resp.data)
       })
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async printReportX({ commit }) {
+    printReportX()
+      .then(resp => console.log(resp.data))
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async printReportZ({ commit }) {
+    printReportZ()
+      .then(resp => console.log(resp.data))
       .catch(err => {
         commit("request_error", handleError(err))
       })
