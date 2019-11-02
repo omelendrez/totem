@@ -11,3 +11,27 @@ export const printOrderFiscal = order => {
       })
   })
 }
+
+export const printReportX = order => {
+  return new Promise((resolve, reject) => {
+    FISCAL.post('/partial-close')
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const printReportZ = order => {
+  return new Promise((resolve, reject) => {
+    FISCAL.post('/daily-close')
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}

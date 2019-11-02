@@ -12,6 +12,8 @@
         <v-btn large color="success" @click.stop="printTotem">Ticket Totem</v-btn>
         <v-btn large color="success" @click.stop="printComanda">Ticket Comanda</v-btn>
         <v-btn large color="success" @click.stop="printFiscal">Ticket Fiscal</v-btn>
+        <v-btn large color="success" @click.stop="closeX">Cierre X</v-btn>
+        <v-btn large color="success" @click.stop="closeZ">Cierre Z</v-btn>
       </v-card-text>
       <v-card-text v-else>
         <v-form ref="form">
@@ -65,6 +67,12 @@ export default {
     },
     printFiscal() {
       store.dispatch("printOrderFiscal", this.order);
+    },
+    closeX() {
+      store.dispatch("printReportX");
+    },
+    closeZ() {
+      store.dispatch("printReportZ");
     },
     back() {
       this.hideTest();
