@@ -248,6 +248,9 @@ const actions = {
   },
   setShowIntro({ commit }, value) {
     commit("set_show_intro", value)
+  },
+  setShowResetAlert({ commit }, value) {
+    commit("set_show_reset_alert", value)
   }
 }
 

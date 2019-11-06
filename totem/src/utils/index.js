@@ -5,9 +5,12 @@ const timeoutInMiliseconds = intervals.totemtIimeout
 let timeoutId = null
 
 const startTimer = () => {
-  timeoutId = window.setTimeout(doInactive, timeoutInMiliseconds)
+  timeoutId = window.setTimeout(launchAlert, timeoutInMiliseconds)
 }
-const doInactive = () => {
+const launchAlert = () => {
+  store.dispatch("setShowResetAlert", true)
+}
+const doInactive = () => {  // Not in use
   store.dispatch("loadCategories")
   store.dispatch("loadProducts")
   store.dispatch("resetTotem")
@@ -21,18 +24,12 @@ const resetTimer = e => {
 }
 const setupTimers = () => {
   document.addEventListener("touchstart", resetTimer, { passive: false })
-  document.addEventListener("touchend", resetTimer, { passive: false })
-  document.addEventListener("touchmove", resetTimer, { passive: false })
-  document.addEventListener("touchcancel", resetTimer, { passive: false })
   document.addEventListener("click", resetTimer, { passive: false })
   startTimer()
 }
 const stopTimers = () => {
   document.removeEventListener("touchstart", resetTimer, { passive: false })
-  document.removeEventListener("touchend", resetTimer, { passive: false })
-  document.removeEventListener("touchmove", resetTimer, { passive: false })
-  document.removeEventListener("touchcancel", resetTimer, { passive: false })
   document.removeEventListener("click", resetTimer, { passive: false })
 }
 
-export { setupTimers, stopTimers }
+export { setupTimers, stopTimers, doInactive }
