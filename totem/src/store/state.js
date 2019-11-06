@@ -24,7 +24,8 @@ const state = {
   ccChangedOrder: null,
   ccResponse: {},
   ccError: {},
-  showIntro: true
+  showIntro: true,
+  showResetAlert: false
 }
 
 export default state

@@ -30,6 +30,13 @@
         @dblclick="goTest"
       ></v-btn>
     </div>
+    <Confirm
+      :title="title"
+      :message="message"
+      :confirm="verifyContinue"
+      :button-ok-msg="buttonOkMsg"
+      :button-no-msg="buttonNoMsg"
+    />
   </v-container>
 </template>
 
@@ -43,9 +50,10 @@ import Product from "@/components/Product";
 import Drinks from "@/components/Drinks";
 import Processing from "@/components/Processing";
 import { drinkFieldName } from "@/config";
-import { setupTimers, stopTimers } from "@/utils";
+import { setupTimers, stopTimers, doInactive } from "@/utils";
 import Test from "@/components/Test";
 import Intro from "@/components/Intro";
+import Confirm from "@/components/Confirm";
 
 export default {
   name: "Home",
@@ -58,7 +66,8 @@ export default {
     Drinks,
     Processing,
     Test,
-    Intro
+    Intro,
+    Confirm
   },
   data() {
     return {
@@ -66,7 +75,11 @@ export default {
       showDrinks: false,
       selectedProduct: {},
       errorMessage: null,
-      showTest: false
+      showTest: false,
+      title: "",
+      message: "",
+      buttonOkMsg: "",
+      buttonNoMsg: ""
     };
   },
   computed: {
@@ -93,6 +106,9 @@ export default {
     },
     showIntro() {
       return store.getters.showIntro;
+    },
+    showResetAlert() {
+      return store.getters.showResetAlert;
     }
   },
   watch: {
@@ -111,9 +127,28 @@ export default {
       } else {
         this.errorMessage = "";
       }
+    },
+    showResetAlert() {
+      if (this.showResetAlert) {
+        store.dispatch("setShowResetAlert", false);
+        if (this.basket.length === 0) {
+          return doInactive();
+        }
+        this.title = "Inactividad detectada";
+        this.message =
+          "Se ha detectado inactividad por más de 5 minutos. Deseas continuar con la orden?";
+        this.buttonOkMsg = "Si, continuar";
+        this.buttonNoMsg = "No, cancelar";
+      }
     }
   },
   methods: {
+    verifyContinue(value) {
+      setupTimers();
+      this.message = "";
+      if (value) return;
+      this.remove(-1);
+    },
     goTest() {
       this.showTest = true;
     },

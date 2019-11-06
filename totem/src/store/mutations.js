@@ -67,7 +67,7 @@ const mutations = {
     state.basket = []
     state.selectedCategory = null
   },
-  load_orders_request(state) {},
+  load_orders_request(state) { },
   load_orders_success(state, { orders }) {
     state.status = "success"
     state.orders = orders.map(item => {
@@ -78,7 +78,7 @@ const mutations = {
       return item
     })
   },
-  load_items_request(state) {},
+  load_items_request(state) { },
   load_items_success(state, { items }) {
     state.status = "success"
     state.items = items.map(item => {
@@ -89,7 +89,7 @@ const mutations = {
       return item
     })
   },
-  load_order_items_request(state) {},
+  load_order_items_request(state) { },
   load_order_items_success(state, { orderItems }) {
     state.status = "success"
     state.orderItems = orderItems.map(item => {
@@ -100,22 +100,22 @@ const mutations = {
       return item
     })
   },
-  load_order_data_request(state) {},
+  load_order_data_request(state) { },
   load_order_data_success(state, { order }) {
     state.status = "success"
     state.orderData = order
   },
-  load_test_order_data_request(state) {},
+  load_test_order_data_request(state) { },
   load_test_order_data_success(state, { order }) {
     state.status = "success"
     state.testOrderData = order
   },
-  change_order_status_request(state) {},
+  change_order_status_request(state) { },
   change_order_status_success(state, order) {
     state.changedOrder = order
   },
-  change_item_status_request(state) {},
-  change_item_status_success(state) {},
+  change_item_status_request(state) { },
+  change_item_status_success(state) { },
   reset_totem(state) {
     state.selectedCategory = null
     state.info = {}
@@ -137,7 +137,7 @@ const mutations = {
     state.fiscalPrintingOrder = ""
     state.fiscalPrintedOrder = order
   },
-  load_totem_status_request(state) {},
+  load_totem_status_request(state) { },
   load_totem_status_success(state, totem) {
     state.totem = totem
   },
@@ -154,7 +154,7 @@ const mutations = {
     state.basket = []
     state.selectedCategory = null
   },
-  cc_change_order_status_request(state) {},
+  cc_change_order_status_request(state) { },
   cc_change_order_status_success(state, order) {
     state.ccChangedOrder = order
   },
@@ -164,13 +164,16 @@ const mutations = {
   cc_set_error(state, error) {
     state.ccError = error
   },
-  cc_load_order_data_request(state) {},
+  cc_load_order_data_request(state) { },
   cc_load_order_data_success(state, { order }) {
     state.status = "success"
     state.ccOrderData = order
   },
   set_show_intro(state, value) {
     state.showIntro = value
+  },
+  set_show_reset_alert(state, value) {
+    state.showResetAlert = value
   }
 }
 
