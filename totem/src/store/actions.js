@@ -53,6 +53,7 @@ const actions = {
         products.map(item => {
           const image = item.image || item.category.image || ""
           item.image = image ? `${assetsHost}${image}` : ""
+          item.additional = "0"
           return item
         })
         commit("load_products_success", { rows: products })

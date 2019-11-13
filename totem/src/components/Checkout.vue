@@ -7,9 +7,9 @@
           <v-list-tile :key="`tile${index}`">
             <v-img :src="item.image" class="image"></v-img>
             <v-list-tile-content class="item-content">
-              <h4>{{ item.ticket_text }}</h4>
-              <h4 v-html="`${item.quantity} X $ ${item.price.replace('.00','')}`"></h4>
-              <h3 v-html="`Total: $ ${item.totalPrice.replace('.00','')}`"></h3>
+              <h5>{{ item.ticket_text }}</h5>
+              <h5>{{getPriceLine(item)}}</h5>
+              <h3>Total: {{getTotalPrice(item)}}</h3>
               <v-btn dark small fab absolute center right color="pink" @click.stop="remove(item)">
                 <v-icon>remove</v-icon>
               </v-btn>
@@ -22,7 +22,13 @@
         <h3 class="amount">Total $ {{total}}</h3>
       </div>
       <div class="buttons">
-        <v-btn large round color="primary" v-if="ccAllowed" @click.stop="cardPay">💳 Pagar con tarjeta</v-btn>
+        <v-btn
+          large
+          round
+          color="primary"
+          v-if="ccAllowed"
+          @click.stop="cardPay"
+        >💳 Pagar con tarjeta</v-btn>
         <v-btn large round color="info" @click.stop="cashPay">💰 Pagar en caja</v-btn>
         <v-btn large round color="#ffc600" @click.stop="cancel">👎 Cancelar la orden</v-btn>
       </div>
@@ -92,6 +98,17 @@ export default {
       this.message = "";
       if (!value) return;
       this.remove(-1);
+    },
+    getPriceLine(item) {
+      let line = `${item.quantity} X $ ${item.price.replace(".00", "")}`;
+      if (parseFloat(item.additional)) {
+        line += ` + ADICIONAL CERVEZA $ ${item.additional.replace(".00", "")}`;
+      }
+      return line;
+    },
+    getTotalPrice(item) {
+      const totalPrice = parseFloat(item.price) + parseFloat(item.additional);
+      return totalPrice.toString().replace(".00", "");
     }
   }
 };
@@ -104,7 +121,7 @@ export default {
 }
 .checkout__list {
   margin-top: 64px;
-  width: 70vw;
+  width: 80vw;
 }
 h1 {
   margin-bottom: 64px;
