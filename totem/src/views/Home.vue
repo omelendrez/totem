@@ -136,7 +136,7 @@ export default {
         }
         this.title = "Inactividad detectada";
         this.message =
-          "Se ha detectado inactividad por más de 5 minutos. Deseas continuar con la orden?";
+          "Se ha detectado inactividad por más de 3 minutos. Deseas continuar con la orden?";
         this.buttonOkMsg = "Si, continuar";
         this.buttonNoMsg = "No, cancelar";
       }
@@ -177,6 +177,7 @@ export default {
         drinkFieldName,
         `${item.ticket_text} ${product.category_id === 6 ? "CHICA" : "MEDIANA"}`
       );
+      product.additional = item.has_alcohol ? "60.00" : "0";
       store.dispatch("add", product);
       this.showDrinks = false;
       const reset = {};

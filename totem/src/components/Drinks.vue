@@ -7,23 +7,31 @@
     <v-layout wrap>
       <v-flex xs3 mb-4 v-for="(item, index) in items" :key="index">
         <v-content>
-          <v-card ripple>
+          <v-card ripple @click.stop="clickDrink(item)">
             <v-img :src="item.image" class="image"></v-img>
-            <v-card-actions class="mb-2">
-              <v-btn dark fab absolute bottom right color="primary" @click.stop="addDrink(item)">
-                <v-icon>add</v-icon>
-              </v-btn>
-            </v-card-actions>
           </v-card>
         </v-content>
       </v-flex>
     </v-layout>
+    <Confirm
+      :title="title"
+      :message="message"
+      :image="image"
+      :confirm="verifyContinue"
+      :button-ok-msg="buttonOkMsg"
+      :button-no-msg="buttonNoMsg"
+    />
   </v-container>
 </template>
 
 <script>
+import Confirm from "@/components/Confirm";
+
 export default {
   name: "Drinks",
+  components: {
+    Confirm
+  },
   props: {
     products: {
       type: Array,
@@ -56,11 +64,31 @@ export default {
   methods: {
     back() {
       this.addDrink(null);
+    },
+    clickDrink(item) {
+      this.item = item;
+      this.title = "Confirmar";
+      this.message = item.name;
+      this.image = item.image;
+      this.buttonOkMsg = "Si, confirmar";
+      this.buttonNoMsg = "No, cambiar";
+    },
+    verifyContinue(value) {
+      if (value) {
+        this.addDrink(this.item);
+      }
+      this.message = "";
     }
   },
   data() {
     return {
-      items: []
+      items: [],
+      item: {},
+      title: "",
+      image: "",
+      message: "",
+      buttonOkMsg: "",
+      buttonNoMsg: ""
     };
   }
 };
