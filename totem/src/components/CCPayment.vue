@@ -205,6 +205,7 @@ ubicado debajo de esta pantalla`;
                 .catch(err => {
                   store.dispatch("setCCError", err);
                   store.dispatch("setCCStatus", 4);
+                  confirmTransaction();
                 });
             })
             .catch(err => {
