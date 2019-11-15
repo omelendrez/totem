@@ -43,16 +43,16 @@ class Scanner extends Component {
     event.preventDefault()
     if (!this.state.orderId) return
     switch (this.state.orderId) {
-      case "INFORME-X":
+      case "INFORMEX":
         informeX()
         break;
-      case "INFORME-Z":
+      case "INFORMEZ":
         informeZ()
         break;
-      case "TOTEM-ON":
+      case "TOTEMON":
         activateTotem(1)
         break;
-      case "TOTEM-OFF":
+      case "TOTEMOFF":
         deActivateTotem(1)
         break;
       default:
