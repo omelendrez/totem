@@ -70,6 +70,20 @@ P09;100;TARJETA CON CHIP
 P10;100;ERROR DE COMUNICACION
 P11;100;RESULT. INFORMADO
 P12;100;IMPRESORA SIN PAPEL
+
+ContractVersion: "2.2.0"
+DeviceIntegratorVersion: "3.0.1"
+DeviceType: "TerminalFirstDataVx690Integrated"
+HostResultCode: 5
+HostResultMessage: "Denegada"
+LastContractVersionAvailable: "3.0.0"
+ResponseActions: "Refuse"
+ResultCode: -1
+ResultMessage: "The request was accepted by the device."
+Session: 17
+TerminalIdentification: "39563011"
+TransactionResponseType: "Buy"
+WorkstationInfo: "Windows_NT;win32;10.0.18362;x64;TOTEM01;v6.11.5;4984"
 */
 
 import store from "@/store";
@@ -143,7 +157,7 @@ ubicado debajo de esta pantalla`;
           activateCCReader()
             .then(resp => {
               this.saveResponse(resp);
-              if (parseInt(resp.data.ResultCode) !== -1) {
+              if (parseInt(resp.data.HostResultMessage) !== "Aprobada") {
                 store.dispatch("setCCStatus", 4);
                 return;
               }
@@ -159,7 +173,7 @@ ubicado debajo de esta pantalla`;
               )
                 .then(resp => {
                   this.saveResponse(resp);
-                  if (parseInt(resp.data.ResultCode) !== -1) {
+                  if (parseInt(resp.data.HostResultMessage) !== "Aprobada") {
                     store.dispatch("setCCStatus", 4);
                     return;
                   }
