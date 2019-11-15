@@ -81,7 +81,7 @@ export const setOrderPrinted = orderId => {
 export const informeX = () => {
   return new Promise((resolve, reject) => {
     servers.fiscalPrinter
-      .post('partial-close')
+      .post('/partial-close')
       .then(resp => {
         resolve(resp.data)
       })
@@ -94,7 +94,7 @@ export const informeX = () => {
 export const informeZ = () => {
   return new Promise((resolve, reject) => {
     servers.fiscalPrinter
-      .post('daily-close')
+      .post('/daily-close')
       .then(resp => {
         resolve(resp.data)
       })
