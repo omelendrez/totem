@@ -18,30 +18,95 @@
             </md-select>
           </md-input-container>
 
-          <md-input-container>
-            <label>Nombre</label>
-            <md-input required v-model="product.name"></md-input>
+          <md-input-container md-clearable>
+            <label>Código</label>
+            <md-input v-model="product.code"></md-input>
           </md-input-container>
 
-          <md-input-container>
+          <md-input-container md-clearable>
+            <label>Nombre</label>
+            <md-input v-model="product.name" required></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
             <label>Descripción</label>
-            <md-input v-model="product.description"></md-input>
+            <md-textarea v-model="product.description" required></md-textarea>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Texto ticket</label>
-            <md-textarea v-model="product.ticket_text"></md-textarea>
+            <md-input v-model="product.ticket_text"></md-input>
           </md-input-container>
 
           <md-input-container md-clearable>
             <label>Texto cocina</label>
-            <md-textarea v-model="product.kitchen_text"></md-textarea>
+            <md-input v-model="product.kitchen_text"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio chica</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.small_price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio mediana</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.medium_price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Precio grande</label>
+            <md-icon>attach_money</md-icon>
+            <md-input type="number" v-model="product.big_price"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 1</label>
+            <md-input type="text" v-model="product.flavor_1"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 2</label>
+            <md-input type="text" v-model="product.flavor_2"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 3</label>
+            <md-input type="text" v-model="product.flavor_3"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 4</label>
+            <md-input type="text" v-model="product.flavor_4"></md-input>
           </md-input-container>
 
           <md-input-container>
-            <md-icon>attach_money</md-icon>
-            <label>Precio</label>
-            <md-input type="number" v-model="product.price"></md-input>
+            <label>En combo</label>
+            <md-select v-model="product.is_combo">
+              <md-option
+                v-for="option in yesno"
+                v-bind:value="option.id"
+                :key="option.id"
+              >{{option.name}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Contiene alcohol</label>
+            <md-select v-model="product.has_alcohol">
+              <md-option
+                v-for="option in yesno"
+                v-bind:value="option.id"
+                :key="option.id"
+              >{{option.name}}</md-option>
+            </md-select>
           </md-input-container>
 
           <md-button class="md-raised md-accent" v-on:click.native="saveProduct()">Guardar</md-button>
@@ -61,6 +126,7 @@
 </template>
 
 <script>
+import { yesNo } from "@/utils";
 import HTTP from "./http-common";
 
 export default {
@@ -72,7 +138,8 @@ export default {
         content: ""
       },
       product: {},
-      categories: []
+      categories: [],
+      yesno: []
     };
   },
   methods: {
@@ -121,6 +188,7 @@ export default {
     }
   },
   created() {
+    this.yesno = yesNo;
     this.fetchCategories();
   }
 };
