@@ -50,6 +50,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
       },
+      flavor_1: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
+      flavor_2: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
+      flavor_3: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
+      flavor_4: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
       image: {
         type: DataTypes.STRING,
         defaultValue: ''

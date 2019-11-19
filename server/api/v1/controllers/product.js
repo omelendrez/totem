@@ -21,6 +21,10 @@ const schema = {
   small_price: Joi.number(),
   medium_price: Joi.number(),
   big_price: Joi.number(),
+  flavor_1: Joi.any().optional(),
+  flavor_2: Joi.any().optional(),
+  flavor_3: Joi.any().optional(),
+  flavor_4: Joi.any().optional(),
   created_at: Joi.string(),
   updated_at: Joi.string(),
   category: Joi.object(),
@@ -61,6 +65,10 @@ module.exports = {
         small_price,
         medium_price,
         big_price,
+        flavor_1,
+        flavor_2,
+        flavor_3,
+        flavor_4,
         is_combo,
         has_alcohol,
       } = req.body
@@ -76,6 +84,10 @@ module.exports = {
         small_price,
         medium_price,
         big_price,
+        flavor_1,
+        flavor_2,
+        flavor_3,
+        flavor_4,
         is_combo,
         has_alcohol
       })
@@ -144,6 +156,10 @@ module.exports = {
         'small_price',
         'medium_price',
         'big_price',
+        'flavor_1',
+        'flavor_2',
+        'flavor_3',
+        'flavor_4',
         'category_id',
         'is_combo',
         'has_alcohol'
@@ -193,6 +209,10 @@ module.exports = {
         'small_price',
         'medium_price',
         'big_price',
+        'flavor_1',
+        'flavor_2',
+        'flavor_3',
+        'flavor_4',
         'category_id',
         'is_combo',
         'has_alcohol'
@@ -240,6 +260,10 @@ module.exports = {
         'small_price',
         'medium_price',
         'big_price',
+        'flavor_1',
+        'flavor_2',
+        'flavor_3',
+        'flavor_4',
         'image',
         'category_id',
         'status_id',
@@ -320,6 +344,10 @@ module.exports = {
       small_price,
       medium_price,
       big_price,
+      flavor_1,
+      flavor_2,
+      flavor_3,
+      flavor_4,
       is_combo,
       has_alcohol
 
@@ -344,6 +372,10 @@ module.exports = {
             small_price,
             medium_price,
             big_price,
+            flavor_1,
+            flavor_2,
+            flavor_3,
+            flavor_4,
             is_combo,
             has_alcohol
           })
