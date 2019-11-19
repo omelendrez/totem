@@ -173,11 +173,11 @@ export default {
       }
       let product = {};
       Object.assign(product, this.selectedProduct);
+      product.additional = item.additional;
       product.ticket_text = product.ticket_text.replace(
         drinkFieldName,
         `${item.ticket_text} ${product.category_id === 6 ? "CHICA" : "MEDIANA"}`
       );
-      product.additional = item.has_alcohol ? "60.00" : "0";
       store.dispatch("add", product);
       this.showDrinks = false;
       const reset = {};

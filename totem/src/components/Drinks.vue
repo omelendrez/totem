@@ -20,6 +20,7 @@
       :confirm="verifyContinue"
       :button-ok-msg="buttonOkMsg"
       :button-no-msg="buttonNoMsg"
+      :additional="item.additional"
     />
   </v-container>
 </template>

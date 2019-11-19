@@ -6,6 +6,10 @@
           <v-img v-if="image" :src="image" contain></v-img>
           <v-card-title v-if="!image" primary-title class="headline error white--text">{{title}}</v-card-title>
           <v-card-text v-if="!image" class="headline">{{message}}</v-card-text>
+          <v-card-text
+            v-if="image && parseFloat(additional)"
+            class="additional"
+          >La cerveza tiene un adicional de ${{additional}}</v-card-text>
           <v-card-actions v-if="image">
             <v-btn
               large
@@ -68,6 +72,10 @@ export default {
     image: {
       type: String,
       default: ""
+    },
+    additional: {
+      type: String,
+      default: ""
     }
   },
   watch: {
@@ -93,5 +101,11 @@ export default {
 }
 .padding {
   margin: 2rem;
+}
+.additional {
+  position: absolute;
+  bottom: 80px;
+  font-size: 1.6em;
+  text-align: center;
 }
 </style>
