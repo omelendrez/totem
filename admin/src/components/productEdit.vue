@@ -67,6 +67,26 @@
             <md-input type="number" v-model="product.big_price"></md-input>
           </md-input-container>
 
+          <md-input-container md-clearable>
+            <label>Sabor 1</label>
+            <md-input type="text" v-model="product.flavor_1"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 2</label>
+            <md-input type="text" v-model="product.flavor_2"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 3</label>
+            <md-input type="text" v-model="product.flavor_3"></md-input>
+          </md-input-container>
+
+          <md-input-container md-clearable>
+            <label>Sabor 4</label>
+            <md-input type="text" v-model="product.flavor_4"></md-input>
+          </md-input-container>
+
           <md-input-container>
             <label>En combo</label>
             <md-select v-model="product.is_combo">

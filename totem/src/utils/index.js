@@ -32,4 +32,6 @@ const stopTimers = () => {
   document.removeEventListener("click", resetTimer, { passive: false })
 }
 
-export { setupTimers, stopTimers, doInactive }
+const additional = "60"
+
+export { setupTimers, stopTimers, doInactive, additional }

@@ -17,6 +17,7 @@ import {
 } from "@/services"
 const { CONFIG, totemId } = require("@/config")
 const assetsHost = CONFIG.assetsServerUrl
+import { additional } from "@/utils"
 
 const handleError = err => {
   const error = {
@@ -53,7 +54,7 @@ const actions = {
         products.map(item => {
           const image = item.image || item.category.image || ""
           item.image = image ? `${assetsHost}${image}` : ""
-          item.additional = "0"
+          item.additional = item.has_alcohol ? additional : "0";
           return item
         })
         commit("load_products_success", { rows: products })

@@ -20,6 +20,8 @@
       :confirm="verifyContinue"
       :button-ok-msg="buttonOkMsg"
       :button-no-msg="buttonNoMsg"
+      :additional="item.additional"
+      :item="item"
     />
   </v-container>
 </template>
@@ -73,9 +75,14 @@ export default {
       this.buttonOkMsg = "Si, confirmar";
       this.buttonNoMsg = "No, cambiar";
     },
-    verifyContinue(value) {
+    verifyContinue(value, flavor) {
       if (value) {
-        this.addDrink(this.item);
+        const newItem = { ...this.item };
+        if (flavor) {
+          newItem.description += " " + flavor.toUpperCase();
+          newItem.ticket_text = newItem.description;
+        }
+        this.addDrink(newItem);
       }
       this.message = "";
     }

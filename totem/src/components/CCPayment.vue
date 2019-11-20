@@ -159,6 +159,7 @@ ubicado debajo de esta pantalla`;
               this.saveResponse(resp);
               if (parseInt(resp.data.ResultCode) !== -1) {
                 store.dispatch("setCCStatus", 4);
+                confirmTransaction();
                 return;
               }
               store.dispatch("ccSaveResponse", resp);
@@ -175,6 +176,7 @@ ubicado debajo de esta pantalla`;
                   this.saveResponse(resp);
                   if (parseInt(resp.data.HostResultMessage) !== "Aprobado") {
                     store.dispatch("setCCStatus", 4);
+                    confirmTransaction();
                     return;
                   }
                   store.dispatch("ccSaveResponse", resp);
@@ -200,6 +202,7 @@ ubicado debajo de esta pantalla`;
                     .catch(err => {
                       store.dispatch("setCCError", err);
                       store.dispatch("setCCStatus", 4);
+                      confirmTransaction();
                     });
                 })
                 .catch(err => {
@@ -211,6 +214,7 @@ ubicado debajo de esta pantalla`;
             .catch(err => {
               store.dispatch("setCCError", err);
               store.dispatch("setCCStatus", 4);
+              confirmTransaction();
             });
           break;
         case 2:
