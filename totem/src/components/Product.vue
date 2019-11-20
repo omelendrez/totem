@@ -13,6 +13,12 @@
             <v-radio label="MEDIANA" color="primary" :value="1"></v-radio>
             <v-radio label="CHICA" color="primary" :value="2"></v-radio>
           </v-radio-group>
+          <v-radio-group v-if="item.flavor_1!==''" v-model="radioGroup2" class="flavors">
+            <v-radio v-if="item.flavor_1!==''" :label="item.flavor_1" color="primary" :value="1"></v-radio>
+            <v-radio v-if="item.flavor_2!==''" :label="item.flavor_2" color="primary" :value="2"></v-radio>
+            <v-radio v-if="item.flavor_3!==''" :label="item.flavor_3" color="primary" :value="3"></v-radio>
+            <v-radio v-if="item.flavor_4!==''" :label="item.flavor_4" color="primary" :value="4"></v-radio>
+          </v-radio-group>
           <v-card-actions class="mb-2">
             <v-btn large absolute bottom left color="error" class="mb-3" @click.stop="close(item)">
               <v-icon>close</v-icon>&nbsp;salir
@@ -52,7 +58,9 @@ export default {
       dialog: false,
       item: {},
       radioGroup: 1,
-      showPrice: 0
+      radioGroup2: 0,
+      showPrice: 0,
+      flavor: ""
     };
   },
   computed: {
@@ -71,6 +79,21 @@ export default {
           break;
         default:
           this.showPrice = this.item.big_price;
+      }
+    },
+    radioGroup2() {
+      switch (this.radioGroup2) {
+        case 2:
+          this.flavor = this.item.flavor_2;
+          break;
+        case 3:
+          this.flavor = this.item.flavor_3;
+          break;
+        case 4:
+          this.flavor = this.item.flavor_4;
+          break;
+        default:
+          this.flavor = this.item.flavor_1;
       }
     },
     product() {
@@ -111,6 +134,10 @@ export default {
         newItem.totalPrice = newItem.price;
         newItem.ticket_text = newItem.description;
       }
+      if (this.flavor) {
+        newItem.description += " " + this.flavor.toUpperCase();
+        newItem.ticket_text = newItem.description;
+      }
       this.add(newItem);
     }
   }
@@ -147,5 +174,14 @@ export default {
   text-align: center;
   min-width: 160px;
   font-size: 3em;
+}
+
+.flavors {
+  position: absolute;
+  top: 380px;
+  right: 60px;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding: 10px;
 }
 </style>
