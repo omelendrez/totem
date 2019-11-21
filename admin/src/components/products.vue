@@ -24,6 +24,7 @@
                 <md-icon>attach_money</md-icon>
               </md-table-head>
               <md-table-head>Categoría</md-table-head>
+              <md-table-head>Es Combo</md-table-head>
               <md-table-head md-sort-by="status_id">Status</md-table-head>
               <md-table-head class="button_header">Ver</md-table-head>
               <md-table-head class="button_header">Editar</md-table-head>
@@ -42,6 +43,7 @@
               <md-table-cell>{{row.name}}</md-table-cell>
               <md-table-cell>{{row.price}}</md-table-cell>
               <md-table-cell>{{row.category.name}}</md-table-cell>
+              <md-table-cell>{{getYesNo(row.is_combo)}}</md-table-cell>
               <md-table-cell>{{row.status.name}}</md-table-cell>
               <md-table-cell>
                 <md-button
@@ -106,8 +108,6 @@ export default {
     return {
       showTable: false,
       products: [],
-      categories: [],
-      categoryId: 0,
       backendURL,
       confirm: {
         title: "",
@@ -137,17 +137,6 @@ export default {
           this.products = rows;
           this.totalRows = count;
           this.showTable = true;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    fetchCategories() {
-      const url = "categories/totem";
-      HTTP.get(url)
-        .then(res => {
-          const { rows } = res.data;
-          this.categories = rows;
         })
         .catch(err => {
           console.log(err);
@@ -199,8 +188,7 @@ export default {
       const params = {
         pag: this.pag,
         sort: this.sort,
-        filter: this.filter,
-        categoryId: this.categoryId
+        filter: this.filter
       };
       localStorage.setItem("params", JSON.stringify(params));
     },
@@ -210,7 +198,9 @@ export default {
       this.pag = params.pag;
       this.sort = params.sort;
       this.filter = params.filter;
-      this.categoryId = params.categoryId;
+    },
+    getYesNo(id) {
+      return id === 1 ? "Si" : "No";
     }
   },
   created() {
@@ -219,7 +209,6 @@ export default {
     }
     this.getParams();
     this.fetchProducts();
-    this.fetchCategories();
     this.$root.$data.last_call = "products";
   }
 };
