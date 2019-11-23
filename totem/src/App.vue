@@ -5,7 +5,7 @@
     </v-toolbar>
     <router-view v-if="totemActive" />
     <v-container class="v-container fluid" v-if="!totemActive">
-      <v-sheet color="info">
+      <v-sheet color="#ee3542">
         <sheet-footer>
           <div class="wait-message">
             <p>🤷‍♀</p>
