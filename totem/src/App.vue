@@ -18,7 +18,7 @@
         hide-delimiters
         hide-controls
         touchless
-        height="61vh"
+        height="50vh"
         :interval="interval"
         class="carousel"
       >
@@ -105,11 +105,10 @@ body {
   box-shadow: 0px 2px 2px #999;
 }
 .carousel-category-name {
-  font-size: 6em;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 2px 4px 6px #000;
-  text-align: center;
+  position: absolute;
+  font-size: 4em;
+  right: 20px;
+  bottom: 20px;
 }
 
 .wait-message {
