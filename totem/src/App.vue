@@ -93,6 +93,9 @@ export default {
 body {
   font-family: Roboto;
 }
+.container {
+  padding: 0 !important;
+}
 .logo {
   top: 32px;
   max-width: 400px;
