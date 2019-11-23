@@ -79,8 +79,7 @@ export default {
       if (value) {
         const newItem = { ...this.item };
         if (flavor) {
-          newItem.description += " " + flavor.toUpperCase();
-          newItem.ticket_text = newItem.description;
+          newItem.ticket_text += " " + flavor.toUpperCase();
         }
         this.addDrink(newItem);
       }
