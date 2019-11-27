@@ -86,6 +86,8 @@ TransactionResponseType: "Buy"
 WorkstationInfo: "Windows_NT;win32;10.0.18362;x64;TOTEM01;v6.11.5;4984"
 */
 
+/*TODO Anulacion y cierre de lote deste totem */
+
 import store from "@/store";
 import {
   activateCCReader,
@@ -156,7 +158,7 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              this.saveResponse(resp);
+              this.saveResponse(resp, "getCard");
               if (parseInt(resp.data.ResponseActions) !== "Approve") {
                 store.dispatch("setCCStatus", 4);
                 confirmTransaction();
@@ -173,7 +175,7 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  this.saveResponse(resp);
+                  this.saveResponse(resp, "doBuy");
                   if (parseInt(resp.data.ResponseActions) !== "Approve") {
                     store.dispatch("setCCStatus", 4);
                     confirmTransaction();
@@ -182,7 +184,7 @@ ubicado debajo de esta pantalla`;
                   store.dispatch("ccSaveResponse", resp);
                   confirmTransaction()
                     .then(resp => {
-                      this.saveResponse(resp);
+                      this.saveResponse(resp, "confirmTransaction");
                       const order = this.ccOrderData;
 
                       store.dispatch("ccSaveResponse", resp);
@@ -250,12 +252,12 @@ o Cancelar para elegir otro medio de pago`;
     doCancel() {
       store.dispatch("setCCStatus", 3);
     },
-    saveResponse(resp) {
-      const payment = {
+    saveResponse(resp, action) {
+      const data = {
         orderId: this.ccOrder.id,
-        response: JSON.stringify(resp.data)
+        response: JSON.stringify({ ...resp.data, action })
       };
-      savePayment(payment);
+      savePayment(data);
     }
   }
 };
