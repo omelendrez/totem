@@ -157,7 +157,7 @@ ubicado debajo de esta pantalla`;
           activateCCReader()
             .then(resp => {
               this.saveResponse(resp);
-              if (parseInt(resp.data.ResultCode) !== -1) {
+              if (parseInt(resp.data.ResponseActions) !== "Approve") {
                 store.dispatch("setCCStatus", 4);
                 confirmTransaction();
                 return;
@@ -174,7 +174,7 @@ ubicado debajo de esta pantalla`;
               )
                 .then(resp => {
                   this.saveResponse(resp);
-                  if (parseInt(resp.data.HostResultMessage) !== "Aprobado") {
+                  if (parseInt(resp.data.ResponseActions) !== "Approve") {
                     store.dispatch("setCCStatus", 4);
                     confirmTransaction();
                     return;
