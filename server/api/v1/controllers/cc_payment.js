@@ -22,7 +22,7 @@ module.exports = {
         const parsedResponse = cc_payments.rows.map(row => {
           return {
             id: row.id,
-            orderId: row.orderId,
+            orderId: row.order_id,
             response: JSON.parse(row.response)
           }
         })
