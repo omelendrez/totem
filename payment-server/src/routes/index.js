@@ -12,5 +12,6 @@ router.post('/confirm', controller.confirmPurchase)
 router.post('/get-last-transaction', controller.getLastTransaction)
 
 router.post('/batch-close', controller.batchClose)
+router.post('/void-purchase', controller.voidPurchase)
 
 module.exports = router

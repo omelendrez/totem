@@ -158,7 +158,7 @@ ubicado debajo de esta pantalla`;
           store.dispatch("setCCError", {});
           activateCCReader()
             .then(resp => {
-              this.saveResponse(resp, "getCard");
+              this.saveResponse(resp, "GetCard");
               if (parseInt(resp.data.ResponseActions) !== "Approve") {
                 store.dispatch("setCCStatus", 4);
                 confirmTransaction();
@@ -175,7 +175,7 @@ ubicado debajo de esta pantalla`;
                 order_number
               )
                 .then(resp => {
-                  this.saveResponse(resp, "doBuy");
+                  this.saveResponse(resp, "Buy");
                   if (parseInt(resp.data.ResponseActions) !== "Approve") {
                     store.dispatch("setCCStatus", 4);
                     confirmTransaction();
@@ -184,7 +184,7 @@ ubicado debajo de esta pantalla`;
                   store.dispatch("ccSaveResponse", resp);
                   confirmTransaction()
                     .then(resp => {
-                      this.saveResponse(resp, "confirmTransaction");
+                      this.saveResponse(resp, "ConfirmTransaction");
                       const order = this.ccOrderData;
 
                       store.dispatch("ccSaveResponse", resp);

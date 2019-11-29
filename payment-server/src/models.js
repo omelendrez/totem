@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 module.exports = {
   Currencies: {
@@ -9,7 +9,8 @@ module.exports = {
   },
   GetCard: {
     TransactionRequestType: "GetCard",
-    TransactionType: "Buy"
+    TransactionType: "Buy",
+    ReadExpiration: 30
   },
   Buy: {
     TransactionRequestType: "Buy",
@@ -18,8 +19,8 @@ module.exports = {
     TransactionAmount: 0,
     TransactionInstallments: 1,
     OriginalDate: null,
-    ReceiptNumber: '',
-    TicketsToPrint: ['Customer']
+    ReceiptNumber: "",
+    TicketsToPrint: ["Customer"]
   },
   ConfirmTransaction: {
     TransactionRequestType: "ConfirmTransaction"
@@ -29,5 +30,15 @@ module.exports = {
   },
   BatchClose: {
     TransactionRequestType: "BatchClose"
+  },
+  Void: {
+    TransactionRequestType: "Void",
+    TransactionResolutionMode: "Online",
+    TransactionCurrencyCode: "032",
+    TransactionAmount: 0,
+    TransactionInstallments: 1,
+    OriginalTicketNumber: "",
+    OriginalDate: "",
+    ReceiptNumber: ""
   }
 }

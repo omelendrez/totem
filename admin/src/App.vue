@@ -46,6 +46,13 @@
       <router-link
         tag="md-button"
         v-if="this.$root.$data.logged"
+        :to="{ name: 'CCPayments' }"
+        class="md-raised md-accent"
+      >Tarjetas</router-link>
+
+      <router-link
+        tag="md-button"
+        v-if="this.$root.$data.logged"
         :to="{ name: 'Errors' }"
         class="md-raised md-accent"
       >Errores</router-link>

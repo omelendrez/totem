@@ -13,8 +13,13 @@ import {
   printReportZ,
   changeOrderStatus,
   changeItemStatus,
-  checkTotemStatus
+  checkTotemStatus,
+  activateTotem,
+  deactivateTotem,
+  cancelPayment
 } from "@/services"
+
+import { batchClose } from '@/external'
 const { CONFIG, totemId } = require("@/config")
 const assetsHost = CONFIG.assetsServerUrl
 import { additional } from "@/utils"
@@ -190,6 +195,34 @@ const actions = {
   },
   async printReportZ({ commit }) {
     printReportZ()
+      .then(resp => console.log(resp.data))
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async activateTotem({ commit }) {
+    activateTotem(totemId)
+      .then(resp => console.log(resp.data))
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async deactivateTotem({ commit }) {
+    deactivateTotem(totemId)
+      .then(resp => console.log(resp.data))
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async batchClose({ commit }) {
+    batchClose()
+      .then(resp => console.log(resp.data))
+      .catch(err => {
+        commit("request_error", handleError(err))
+      })
+  },
+  async cancelPayment({ commit }) {
+    cancelPayment()
       .then(resp => console.log(resp.data))
       .catch(err => {
         commit("request_error", handleError(err))
