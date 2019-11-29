@@ -51,3 +51,29 @@ export const getLastTransaction = () => {
       .catch(err => reject(err))
   })
 }
+
+export const batchClose = () => {
+  return new Promise((resolve, reject) => {
+    HTTP.post('/batch-close')
+      .then(resp => HTTP.post('/confirm')
+        .then(resp => resolve(resp))
+        .catch(err => reject(err)))
+      .catch(err => reject(err))
+  })
+}
+
+export const cancelPayment = (amount, ticket, date, receipt) => {
+  const payload = {
+    amount,
+    ticket,
+    date,
+    receipt
+  }
+  return new Promise((resolve, reject) => {
+    HTTP.post("void-purchase", payload)
+      .then(resp => HTTP.post('/confirm')
+        .then(resp => resolve(resp))
+        .catch(err => reject(err)))
+      .catch(err => reject(err))
+  })
+}

@@ -28,6 +28,7 @@ import UserView from "@/components/userView";
 import Totem from "@/components/totem";
 import Orders from "@/components/orders";
 import Errors from "@/components/errors";
+import CCPayments from "@/components/cc-payments";
 
 Vue.use(Router);
 
@@ -59,6 +60,11 @@ export default new Router({
       path: "/orders",
       name: "Orders",
       component: Orders
+    },
+    {
+      path: "/cc-payments",
+      name: "CCPayments",
+      component: CCPayments
     },
     {
       path: "/categories",
