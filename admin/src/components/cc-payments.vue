@@ -33,7 +33,7 @@
               <md-table-cell>{{row.response.TransactionAmount}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionDate}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionTime}}</md-table-cell>
-              <md-table-cell>{{row.response.TransactionResponseType}}</md-table-cell>
+              <md-table-cell>{{row.response.TransactionResponseType || row.response.action}}</md-table-cell>
               <md-table-cell>{{row.response.ResponseActions}}</md-table-cell>
               <md-table-cell>{{row.response.ResultCode}}</md-table-cell>
               <md-table-cell>
