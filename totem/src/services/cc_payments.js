@@ -7,3 +7,11 @@ export const savePayment = payment => {
       .catch(err => reject(err))
   })
 }
+
+export const getPayments = () => {
+  return new Promise((resolve, reject) => {
+    HTTP.get("cc-payment")
+      .then(resp => resolve(resp))
+      .catch(err => reject(err))
+  })
+}

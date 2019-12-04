@@ -27,10 +27,10 @@
           </md-table-header>
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in payments" :key="rowIndex" :md-item="row">
-              <md-table-cell>{{row.orderId}}</md-table-cell>
+              <md-table-cell>{{row.order_number}}</md-table-cell>
               <md-table-cell>{{row.response.IssuerEntity ||row.response.PaymentMethodDescription}}</md-table-cell>
               <md-table-cell>{{row.response.CardNumber}}</md-table-cell>
-              <md-table-cell>{{row.response.TransactionAmount}}</md-table-cell>
+              <md-table-cell>{{row.amount}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionDate}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionTime}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionResponseType || row.response.action}}</md-table-cell>
@@ -99,18 +99,27 @@ export default {
       errorMsg: {
         title: "",
         content: ""
-      }
+      },
+      interval: 0
     };
   },
   methods: {
     fetchCCPayments() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
       const url = `cc-payment?page=${this.pag.page}&size=${this.pag.size}`;
+      this.interval = setInterval(() => {
+        this.fetchCCPayments();
+      }, 10000);
       HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;
           this.payments = rows.map(row => ({
             id: row.id,
             orderId: row.order_id,
+            order_number: row.order.order_number,
+            amount: row.order.total_price,
             response: JSON.parse(row.response)
           }));
           this.totalRows = count;

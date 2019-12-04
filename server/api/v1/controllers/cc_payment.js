@@ -1,7 +1,7 @@
 "use strict"
 const sequelize = require('sequelize')
-const Op = sequelize.Op
 const CCPayment = require("../models").cc_payment
+const Order = require('../models').order
 
 module.exports = {
   create(req, res) {
@@ -17,13 +17,23 @@ module.exports = {
   },
 
   findAll(req, res) {
+    CCPayment.belongsTo(Order)
+    Order.hasMany(CCPayment)
     const page = parseInt(req.query.page ? req.query.page : 0)
     const size = parseInt(req.query.size ? req.query.size : 1000)
     return CCPayment.findAndCountAll({
       order: [['order_id', 'desc'], ['id', 'desc']],
       offset: size !== 1000 ? (page - 1) * size : 0,
       limit: size,
-      attributes: ["id", "order_id", "response"]
+      attributes: ["id", "order_id", "response"],
+      include: [
+        {
+          model: Order,
+          where: {
+            id: sequelize.col('cc_payment.order_id')
+          },
+          attributes: ['order_number', 'total_price', 'status_id']
+        }]
     })
       .then(cc_payments => res.status(200).json(cc_payments))
       .catch(error => res.status(400).send(error))

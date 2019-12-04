@@ -24,6 +24,7 @@ const state = {
   ccChangedOrder: null,
   ccResponse: {},
   ccError: {},
+  ccPayments: [],
   showIntro: true,
   showResetAlert: false
 }

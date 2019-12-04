@@ -16,7 +16,8 @@ import {
   checkTotemStatus,
   activateTotem,
   deactivateTotem,
-  cancelPayment
+  cancelPayment,
+  getPayments
 } from "@/services"
 
 import { batchClose } from '@/external'
@@ -221,8 +222,8 @@ const actions = {
         commit("request_error", handleError(err))
       })
   },
-  async cancelPayment({ commit }) {
-    cancelPayment()
+  async cancelPayment({ commit }, payload) {
+    cancelPayment(payload)
       .then(resp => console.log(resp.data))
       .catch(err => {
         commit("request_error", handleError(err))
@@ -286,6 +287,15 @@ const actions = {
   },
   setShowResetAlert({ commit }, value) {
     commit("set_show_reset_alert", value)
+  },
+  async getPayments({ commit }) {
+    getPayments()
+      .then(resp => {
+        commit("set_cc_payments", resp.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

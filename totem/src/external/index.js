@@ -62,13 +62,7 @@ export const batchClose = () => {
   })
 }
 
-export const cancelPayment = (amount, ticket, date, receipt) => {
-  const payload = {
-    amount,
-    ticket,
-    date,
-    receipt
-  }
+export const cancelPayment = payload => {
   return new Promise((resolve, reject) => {
     HTTP.post("void-purchase", payload)
       .then(resp => HTTP.post('/confirm')
