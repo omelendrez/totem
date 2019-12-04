@@ -154,6 +154,9 @@ const mutations = {
     state.basket = []
     state.selectedCategory = null
   },
+  set_cc_payments(state, data) {
+    state.ccPayments = data
+  },
   cc_change_order_status_request(state) { },
   cc_change_order_status_success(state, order) {
     state.ccChangedOrder = order

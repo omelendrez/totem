@@ -111,7 +111,7 @@ export default {
       const url = `cc-payment?page=${this.pag.page}&size=${this.pag.size}`;
       this.interval = setInterval(() => {
         this.fetchCCPayments();
-      }, 3000);
+      }, 10000);
       HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;

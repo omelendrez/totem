@@ -4,15 +4,22 @@
       <v-card-title primary-title class="headline primary white--text">
         <v-btn fab @click.stop="back">
           <v-icon>close</v-icon>
-        </v-btn>Tareas Especials
+        </v-btn>Tareas Especiales
       </v-card-title>
-      <v-alert v-show="showProcess" type="success">Comando ejecutado.</v-alert>
+      <v-alert
+        v-show="showProcess"
+        v-model="showProcess"
+        dismissible
+        otuline
+        type="success"
+      >Comando ejecutado.</v-alert>
       <div v-if="!showGetPass">
         <v-card-text>
           <p class="headline">Totem</p>
           <!--
           <v-btn large color="success" @click.stop="activateTotem">Activar</v-btn>
           -->
+          <v-btn large color="primary" @click.stop="closeStock">Cerrar Stock</v-btn>
           <v-btn large color="error" @click.stop="deactivateTotem">Desactivar</v-btn>
           <p></p>
           <p>Si lo desactivás en esta pantalla no se podrá volver a activar desde aquí.</p>
@@ -23,6 +30,27 @@
           <p class="headline">posnet</p>
           <v-btn large color="primary" @click.stop="batchClose">Cerrar Lote</v-btn>
           <v-btn large color="error" @click.stop="cancelPay">Cancelar Pago</v-btn>
+          <v-data-table
+            v-show="showPayments"
+            :headers="headers"
+            :items="payments"
+            :items-per-page="5"
+            class="elevation-1"
+          >
+            <template v-slot:items="props">
+              <td>{{ props.item.order_number }}</td>
+              <td>{{ props.item.TransactionAmount }}</td>
+              <td>{{ props.item.PaymentMethodDescription }}</td>
+              <td>{{ props.item.CardNumber }}</td>
+              <td>{{ props.item.ResponseActions }}</td>
+              <v-btn
+                v-if="props.item.ResponseActions=== 'Approve'"
+                @click.stop="cancelPayment(props.item.id)"
+                small
+                color="error"
+              >Cancelar</v-btn>
+            </template>
+          </v-data-table>
         </v-card-text>
         <hr />
         <v-card-text>
@@ -35,7 +63,7 @@
           <p class="headline">Pruebas impresoras</p>
           <v-btn large @click.stop="printTotem">Ticket Totem</v-btn>
           <v-btn large @click.stop="printComanda">Ticket Comanda</v-btn>
-          <v-btn large @click.stop="printFiscal">Ticket Fiscal</v-btn>
+          <v-btn large color="warning" @click.stop="printFiscal">Ticket Fiscal</v-btn>
         </v-card-text>
       </div>
       <div v-if="showGetPass">
@@ -43,6 +71,7 @@
           <v-form ref="form">
             <v-text-field type="password" autocomplete="off" v-model="pass" label="Ingrese clave"></v-text-field>
             <v-btn small color="error" @click.stop="checkPass">Confirmar</v-btn>
+            <v-btn small color="default" @click.stop="closeForm">Volver</v-btn>
             <v-alert :value="passError" type="error">La clave es incorrecta, vuelva a intentar.</v-alert>
           </v-form>
         </v-card-text>
@@ -67,12 +96,53 @@ export default {
       showGetPass: false,
       pass: "",
       passError: false,
-      showProcess: false
+      showProcess: false,
+      headers: [
+        { text: "Ticket", sortable: false, value: "order_number" },
+        { text: "Monto", sortable: false, value: "TransactionAmount" },
+        { text: "Tarjeta", sortable: false, value: "PaymentMethodDescription" },
+        { text: "Número", sortable: false, value: "CardNumber" },
+        { text: "Resultado", sortable: false, value: "ResponseActions" },
+        { text: "", sortable: false, value: "" }
+      ],
+      payments: [],
+      showPayments: false
     };
   },
   computed: {
     order() {
       return store.getters.testOrderData;
+    },
+    ccPayments() {
+      return store.getters.ccPayments;
+    }
+  },
+  watch: {
+    ccPayments() {
+      const payments = this.ccPayments.rows.map(row => {
+        const response = JSON.parse(row.response);
+        const id = row.id;
+        const {
+          TransactionResponseType,
+          CardNumber,
+          PaymentMethodDescription,
+          TransactionAmount,
+          ResponseActions
+        } = response;
+        return {
+          id,
+          order_number: row.order.order_number,
+          total_price: row.order.total_price,
+          TransactionResponseType,
+          CardNumber,
+          PaymentMethodDescription,
+          TransactionAmount,
+          ResponseActions
+        };
+      });
+      this.payments = payments.filter(
+        item => item.TransactionResponseType === "Buy"
+      );
     }
   },
   methods: {
@@ -105,6 +175,26 @@ export default {
       this.curAction = "cancelPay";
       this.showGetPass = true;
     },
+    cancelPayment(id) {
+      if (!confirm("Está seguro que desea cancelar este pago?")) {
+        return;
+      }
+      const item = this.ccPayments.rows.find(item => item.id === id);
+      const response = JSON.parse(item.response);
+      const {
+        TransactionAmount,
+        HostTicketNumber,
+        TransactionDate,
+        ReceiptNumber
+      } = response;
+      const payload = {
+        amount: TransactionAmount,
+        ticket: HostTicketNumber,
+        date: TransactionDate,
+        receipt: ReceiptNumber
+      };
+      store.dispatch("cancelPayment", payload);
+    },
     activateTotem() {
       this.curAction = "activateTotem";
       this.showGetPass = true;
@@ -113,11 +203,18 @@ export default {
       this.curAction = "deactivateTotem";
       this.showGetPass = true;
     },
+    closeStock() {
+      this.curAction = "closeStock";
+      this.showGetPass = true;
+    },
     batchClose() {
       this.curAction = "batchClose";
       this.showGetPass = true;
     },
     back() {
+      this.showGetPass = false;
+      this.pass = "";
+      this.showPayments = false;
       this.hideTest();
     },
     getSecurityCode() {
@@ -125,6 +222,9 @@ export default {
       const code =
         (date.getFullYear() * (date.getMonth() + 1)) / date.getDate();
       return parseInt(code);
+    },
+    closeForm() {
+      this.showGetPass = false;
     },
     checkPass() {
       if (parseInt(this.pass) !== this.getSecurityCode()) {
@@ -145,7 +245,7 @@ export default {
           store.dispatch("batchClose");
           break;
         case "cancelPay":
-          store.dispatch("cancelPayment");
+          this.showPayments = true;
           break;
         case "activateTotem":
           store.dispatch("activateTotem");
@@ -153,19 +253,19 @@ export default {
         case "deactivateTotem":
           store.dispatch("deactivateTotem");
           break;
+        case "closeStock":
+          //store.dispatch("closeStock");
+          break;
       }
       this.notifyAlert();
     },
     notifyAlert() {
       this.showProcess = true;
-      setTimeout(() => {
-        this.showProcess = false;
-        this.pass = "";
-      }, 2000);
     }
   },
   mounted() {
     store.dispatch("loadTestOrderData", 1);
+    store.dispatch("getPayments");
   }
 };
 </script>
