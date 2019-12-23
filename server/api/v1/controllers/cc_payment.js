@@ -25,7 +25,14 @@ module.exports = {
       order: [['order_id', 'desc'], ['id', 'desc']],
       offset: size !== 1000 ? (page - 1) * size : 0,
       limit: size,
-      attributes: ["id", "order_id", "response"],
+      attributes: ["id", "order_id", "response", [
+        sequelize.fn(
+          'date_format',
+          sequelize.col('cc_payment.created_at'),
+          '%d-%b-%y %H:%i'
+        ),
+        'created_at'
+      ]],
       include: [
         {
           model: Order,
