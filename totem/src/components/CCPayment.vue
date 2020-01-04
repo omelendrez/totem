@@ -7,16 +7,14 @@
           <pre class="message">{{message}}</pre>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
           <v-btn
-            absolute
-            left
             large
             color="primary"
             v-show="showStart"
             @click.stop="doStart()"
-          >Comenzar</v-btn>
-          <v-btn absolute right large color="error" @click.stop="doCancel()">{{buttonMessage}}</v-btn>
+          >{{processButtonMessage}}</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn large color="error" @click.stop="doCancel()">{{cancelcancelButtonMessage}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -110,7 +108,8 @@ export default {
     return {
       showStart: true,
       message: "",
-      buttonMessage: "",
+      processButtonMessage: "",
+      cancelcancelButtonMessage: "",
       dialog: false
     };
   },
@@ -126,6 +125,9 @@ export default {
     },
     printingOrder() {
       return store.getters.printingOrder;
+    },
+    ccError() {
+      return store.getters.ccError;
     }
   },
   watch: {
@@ -139,7 +141,8 @@ export default {
       switch (ccStatus) {
         case 0:
           this.showStart = true;
-          this.buttonMessage = "Cancelar";
+          this.processButtonMessage = "Comenzar";
+          this.cancelcancelButtonMessage = "Cancelar";
           this.message = `Presione el botón Comenzar
 
 ... o presione Cancelar para elegir otro medio de pago`;
@@ -160,9 +163,8 @@ ubicado debajo de esta pantalla`;
             .then(resp => {
               this.saveResponse(resp, "GetCard");
               if (parseInt(resp.data.ResponseActions) !== "Approve") {
-                store.dispatch("setCCStatus", 4);
-                confirmTransaction();
-                return;
+                store.dispatch("setCCError", resp.data);
+                return store.dispatch("setCCStatus", 4);
               }
               store.dispatch("ccSaveResponse", resp);
               const { total_price, order_number, createdAt } = this.ccOrder;
@@ -174,55 +176,30 @@ ubicado debajo de esta pantalla`;
                   .join("/"),
                 order_number
               )
-                .then(resp => {
-                  this.saveResponse(resp, "Buy");
-                  if (parseInt(resp.data.ResponseActions) !== "Approve") {
-                    store.dispatch("setCCStatus", 4);
-                    confirmTransaction();
-                    return;
-                  }
-                  store.dispatch("ccSaveResponse", resp);
-                  confirmTransaction()
+                .then(resp => this.paymentAccepted(resp))
+                .catch(err => {
+                  getLastTransaction()
                     .then(resp => {
-                      this.saveResponse(resp, "ConfirmTransaction");
-                      const order = this.ccOrderData;
-
-                      store.dispatch("ccSaveResponse", resp);
-                      store.dispatch("ccChangeOrderStatus", order);
-
-                      order.printerId = 1; // Totem ticket printer
-                      store.dispatch("printOrderThermal", order);
-
-                      order.printerId = 2; // Command printer
-                      store.dispatch("printOrderThermal", order);
-
-                      order.printerId = 3; // Fiscal printer
-                      store.dispatch("printOrderFiscal", order);
-
-                      store.dispatch("setCCStatus", 2);
+                      this.saveResponse(resp, "getLastTransaction");
+                      this.paymentAccepted(resp);
                     })
                     .catch(err => {
                       store.dispatch("setCCError", err);
                       store.dispatch("setCCStatus", 4);
-                      confirmTransaction();
                     });
-                })
-                .catch(err => {
                   store.dispatch("setCCError", err);
                   store.dispatch("setCCStatus", 4);
-                  confirmTransaction();
                 });
             })
             .catch(err => {
               store.dispatch("setCCError", err);
               store.dispatch("setCCStatus", 4);
-              confirmTransaction();
             });
           break;
         case 2:
           this.message = `Pago completado con éxito 👍
 Retire su ticket`;
-          this.buttonMessage = "Cerrar";
+          this.cancelButtonMessage = "Cerrar";
           setTimeout(() => {
             store.dispatch("setCCStatus", 3);
           }, 10000);
@@ -232,10 +209,15 @@ Retire su ticket`;
           break;
         case 4:
           this.showStart = true;
+          this.processButtonMessage = "Reintentar";
+          const errorCode = this.ccError.ResultCode
+            ? `Error # ${this.ccError.ResultCode}`
+            : null;
           this.message = `Lo sentimos!!!
+
 Ha ocurrido un error intentando procesar su pago 😧
-Presione Comenzar para intentar de nuevo
-o Cancelar para elegir otro medio de pago`;
+
+${errorCode}`;
           break;
       }
     },
@@ -258,19 +240,46 @@ o Cancelar para elegir otro medio de pago`;
         response: JSON.stringify({ ...resp.data, action })
       };
       savePayment(data);
+    },
+    paymentAccepted(resp) {
+      this.saveResponse(resp, "Buy");
+      if (parseInt(resp.data.ResponseActions) !== "Approve") {
+        store.dispatch("setCCStatus", 4);
+        return confirmTransaction();
+      }
+      store.dispatch("ccSaveResponse", resp);
+      confirmTransaction()
+        .then(resp => {
+          this.saveResponse(resp, "ConfirmTransaction");
+          const order = this.ccOrderData;
+
+          store.dispatch("ccSaveResponse", resp);
+          store.dispatch("ccChangeOrderStatus", order);
+
+          order.printerId = 1; // Totem ticket printer
+          store.dispatch("printOrderThermal", order);
+
+          order.printerId = 2; // Command printer
+          store.dispatch("printOrderThermal", order);
+
+          order.printerId = 3; // Fiscal printer
+          store.dispatch("printOrderFiscal", order);
+
+          store.dispatch("setCCStatus", 2);
+        })
+        .catch(err => {
+          store.dispatch("setCCError", err);
+          store.dispatch("setCCStatus", 4);
+        });
     }
   }
 };
 </script>
 <style scoped>
 .message {
+  height: 240px;
   text-align: center;
   font-size: 0.8em;
   font-family: Roboto;
-  height: 240px;
-}
-.order-number {
-  font-size: 3em;
-  font-weight: bold;
 }
 </style>
