@@ -29,7 +29,7 @@ module.exports = {
         sequelize.fn(
           'date_format',
           sequelize.col('cc_payment.created_at'),
-          '%d-%b-%y %H:%i'
+          '%d-%b-%y %H:%i:%s'
         ),
         'created_at'
       ]],
