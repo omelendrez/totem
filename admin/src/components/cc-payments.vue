@@ -14,26 +14,30 @@
           <md-table-header>
             <md-table-row>
               <md-table-head>Ticket #</md-table-head>
-              <md-table-head>Tarjeta</md-table-head>
-              <md-table-head>Número</md-table-head>
               <md-table-head>Importe</md-table-head>
+              <md-table-head>Acción</md-table-head>
+              <md-table-head>Ejectutado</md-table-head>
+              <md-table-head>Tarjeta</md-table-head>
               <md-table-head>Fecha</md-table-head>
-              <md-table-head>Hora</md-table-head>
-              <md-table-head>Transacción</md-table-head>
               <md-table-head>Respuesta</md-table-head>
-              <md-table-head>Mensaje</md-table-head>
-              <md-table-head>Acciones</md-table-head>
+              <md-table-head>Error</md-table-head>
+              <md-table-head></md-table-head>
             </md-table-row>
           </md-table-header>
           <md-table-body>
             <md-table-row v-for="(row, rowIndex) in payments" :key="rowIndex" :md-item="row">
               <md-table-cell>{{row.order_number}}</md-table-cell>
-              <md-table-cell>{{row.response.IssuerEntity ||row.response.PaymentMethodDescription}}</md-table-cell>
-              <md-table-cell>{{row.response.CardNumber}}</md-table-cell>
               <md-table-cell>{{row.amount}}</md-table-cell>
-              <md-table-cell>{{row.response.TransactionDate}}</md-table-cell>
-              <md-table-cell>{{row.response.TransactionTime}}</md-table-cell>
               <md-table-cell>{{row.response.TransactionResponseType || row.response.action}}</md-table-cell>
+              <md-table-cell>{{row.createdAt}}</md-table-cell>
+              <md-table-cell>
+                {{row.response.IssuerEntity ||row.response.PaymentMethodDescription}}
+                {{row.response.CardNumber}}
+              </md-table-cell>
+              <md-table-cell>
+                {{row.response.TransactionDate}}
+                {{row.response.TransactionTime}}
+              </md-table-cell>
               <md-table-cell>{{row.response.ResponseActions}}</md-table-cell>
               <md-table-cell>{{row.response.ResultCode}}</md-table-cell>
               <md-table-cell>
@@ -120,7 +124,8 @@ export default {
             orderId: row.order_id,
             order_number: row.order.order_number,
             amount: row.order.total_price,
-            response: JSON.parse(row.response)
+            response: JSON.parse(row.response),
+            createdAt: row.created_at
           }));
           this.totalRows = count;
         })
