@@ -210,7 +210,7 @@ Retire su ticket`;
         case 4:
           this.showStart = true;
           this.processButtonMessage = "Reintentar";
-          const errorCode = this.ccError.ResultCode
+          const errorCode = this.ccError.ResultCode && this.ccError.ResultCode !== -1
             ? `Error # ${this.ccError.ResultCode}`
             : null;
           this.message = `Lo sentimos!!!
