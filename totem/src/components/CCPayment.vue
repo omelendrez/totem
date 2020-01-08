@@ -162,13 +162,11 @@ ubicado debajo de esta pantalla`;
           activateCCReader()
             .then(resp => {
               this.saveResponse(resp, "GetCard");
-              console.log('resp', resp);
               if (resp.data.ResponseActions !== "Approve") {
                 store.dispatch("setCCError", resp.data);
                 return store.dispatch("setCCStatus", 4);
               }
               store.dispatch("ccSaveResponse", resp);
-              console.log('this.ccOrder', this.ccOrder);
               const { total_price, order_number, createdAt } = this.ccOrder;
               sendBuyRequest(
                 total_price,
