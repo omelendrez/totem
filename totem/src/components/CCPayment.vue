@@ -162,7 +162,7 @@ ubicado debajo de esta pantalla`;
           activateCCReader()
             .then(resp => {
               this.saveResponse(resp, "GetCard");
-              if (parseInt(resp.data.ResponseActions) !== "Approve") {
+              if (resp.data.ResponseActions !== "Approve") {
                 store.dispatch("setCCError", resp.data);
                 return store.dispatch("setCCStatus", 4);
               }
@@ -210,9 +210,10 @@ Retire su ticket`;
         case 4:
           this.showStart = true;
           this.processButtonMessage = "Reintentar";
-          const errorCode = this.ccError.ResultCode && this.ccError.ResultCode !== -1
-            ? `Error # ${this.ccError.ResultCode}`
-            : null;
+          const errorCode =
+            this.ccError.ResultCode && this.ccError.ResultCode !== -1
+              ? `Error # ${this.ccError.ResultCode}`
+              : null;
           this.message = `Lo sentimos!!!
 
 Ha ocurrido un error intentando procesar su pago 😧
@@ -243,7 +244,7 @@ ${errorCode}`;
     },
     paymentAccepted(resp) {
       this.saveResponse(resp, "Buy");
-      if (parseInt(resp.data.ResponseActions) !== "Approve") {
+      if (resp.data.ResponseActions !== "Approve") {
         store.dispatch("setCCStatus", 4);
         return confirmTransaction();
       }
