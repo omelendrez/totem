@@ -21,6 +21,7 @@
               <md-table-head>Fecha</md-table-head>
               <md-table-head>Respuesta</md-table-head>
               <md-table-head>Error</md-table-head>
+              <md-table-head>Respuesta Host</md-table-head>
               <md-table-head></md-table-head>
             </md-table-row>
           </md-table-header>
@@ -39,7 +40,8 @@
                 {{row.response.TransactionTime}}
               </md-table-cell>
               <md-table-cell>{{row.response.ResponseActions}}</md-table-cell>
-              <md-table-cell>{{row.response.ResultCode}}</md-table-cell>
+              <md-table-cell>{{row.response.ResultCode}} {{row.response.ResultMessage}}</md-table-cell>
+              <md-table-cell>{{row.response.HostResultMessage}}</md-table-cell>
               <md-table-cell>
                 <md-button
                   v-if="row.response.TransactionAmount"
