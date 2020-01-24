@@ -2,6 +2,7 @@
 const Order = require('../models').order
 const OrderItems = require('../models').order_items
 const Totem = require('../models').totem
+const CCPayment = require("../models").cc_payment
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 
@@ -331,7 +332,8 @@ module.exports = {
         Order.destroy(options)
           .then(orders => {
             result['Orders'] = orders
-            res.status(200).json(result)
+            CCPayment.destroy(options)
+              .then(() => res.status(200).json(result))
           })
       })
   }
