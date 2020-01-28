@@ -139,6 +139,11 @@ export default {
         newItem.ticket_text = newItem.description;
       }
       this.add(newItem);
+      this.item = {};
+      this.radioGroup = 1;
+      this.radioGroup2 = 0;
+      this.showPrice = 0;
+      this.flavor = "";
     }
   }
 };
