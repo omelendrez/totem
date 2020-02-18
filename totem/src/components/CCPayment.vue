@@ -44,6 +44,9 @@
 "InternalCode": "2055",
 "Description": "No response from the device.",
 
+"InternalCode": "2080",
+"Description": "The last transaction was not confirmed.",
+
 "InternalCode": "1004",
 "Description": "Max time lapse to process the incomming request was reached. Please, try again faster!",
 
@@ -212,13 +215,34 @@ Retire su ticket`;
           this.processButtonMessage = "Reintentar";
           const errorCode =
             this.ccError.ResultCode && this.ccError.ResultCode !== -1
-              ? `Error # ${this.ccError.ResultCode}`
-              : null;
+              ? this.ccError.ResultCode
+              : 0;
+          let errorMessage = "";
+          switch (errorCode) {
+            case 1004:
+              errorMessage =
+                "El tiempo de espera ha expirado. Vuelva a intentar más rápido";
+              break;
+            case 1011:
+              errorMessage =
+                "La comunicación con la terminal de POSNET ha fallado";
+              break;
+            case 2053:
+              errorMessage =
+                "No se ha podido leer la respuesta la terminal de POSNET después de varios intentos";
+              break;
+            case 2055:
+              errorMessage = "La terminal de POSNET no está respondiendo";
+              break;
+            case 2080:
+              errorMessage = "La última transacción no pudo ser confirmada";
+              break;
+          }
           this.message = `Lo sentimos!!!
 
 Ha ocurrido un error intentando procesar su pago 😧
 
-${errorCode}`;
+${errorMessage}`;
           break;
       }
     },

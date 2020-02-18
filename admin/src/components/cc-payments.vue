@@ -194,6 +194,9 @@ export default {
     }
     this.$root.$data.last_call = "ccpayments";
     this.fetchCCPayments();
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   }
 };
 </script>

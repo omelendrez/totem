@@ -63,12 +63,20 @@ export default {
         size: 5,
         page: 1
       },
-      totalRows: 0
+      totalRows: 0,
+      interval: 0
     };
   },
   methods: {
     fetchOrders() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+
       const url = `sales?page=${this.pag.page}&size=${this.pag.size}&sort=${this.sort.name}&type=${this.sort.type}&filter=${this.filter}`;
+      this.interval = setInterval(() => {
+        this.fetchOrders();
+      }, 10000);
       HTTP.get(url)
         .then(res => {
           const { rows, count } = res.data;
@@ -109,6 +117,9 @@ export default {
     }
     this.$root.$data.last_call = "orders";
     this.fetchOrders();
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   }
 };
 </script>
