@@ -174,9 +174,23 @@ export default {
       let product = {};
       Object.assign(product, this.selectedProduct);
       product.additional = item.additional;
+      /**
+       * categories:
+       * 6 - Minibox
+       *
+       * products:
+       * 31 - Combo Bahiense
+       * 32 - Combo Bahiense Pollo
+       *
+       */
+
       product.ticket_text = product.ticket_text.replace(
         drinkFieldName,
-        `${item.ticket_text} ${product.category_id === 6 ? "CHICA" : ""}`
+        `${item.ticket_text} ${
+          product.category_id === 6 || product.id === 31 || product.id === 32
+            ? "CHICA"
+            : "MEDIANA"
+        }`
       );
       store.dispatch("add", product);
       this.showDrinks = false;

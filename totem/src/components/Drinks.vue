@@ -51,6 +51,16 @@ export default {
   watch: {
     selectedProduct() {
       this.items = this.products.filter(item => {
+        /**
+         * categories:
+         * 5 - Bebidas
+         * 6 - Minibox
+         *
+         * products:
+         * 31 - Combo Bahiense
+         * 32 - Combo Bahiense Pollo
+         *
+         */
         if (item.category_id === 5 && item.is_combo) {
           if (item.has_alcohol) {
             if (this.selectedProduct.category_id !== 6) {
