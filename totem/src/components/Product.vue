@@ -57,7 +57,7 @@ export default {
     return {
       dialog: false,
       item: {},
-      radioGroup: 1,
+      radioGroup: null,
       radioGroup2: 0,
       showPrice: 0,
       flavor: ""
@@ -103,8 +103,10 @@ export default {
       this.item = this.product;
       this.dialog = this.product.name;
       if (parseInt(this.item.price) === 0) {
-        this.showPrice = this.item.medium_price;
-        this.radioGroup = 1;
+        // this.showPrice = this.item.big_price;
+        setTimeout(() => {
+          this.radioGroup = 0;
+        }, 0);
       } else {
         this.showPrice = this.item.price;
       }
@@ -140,7 +142,7 @@ export default {
       }
       this.add(newItem);
       this.item = {};
-      this.radioGroup = 1;
+      this.radioGroup = null;
       this.radioGroup2 = 0;
       this.showPrice = 0;
       this.flavor = "";
