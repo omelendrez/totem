@@ -9,7 +9,7 @@ const Op = sequelize.Op
 /**
  * status_id
  * 0 - Created - Payment pending
- * 1 - Paid - Kitchen and Counter to prepare
+ * 1 - Paid - Kitchen and Counter to prepare (if kitchen_text)
  * 2 - Food ready for collection
  */
 
@@ -336,5 +336,14 @@ module.exports = {
               .then(() => res.status(200).json(result))
           })
       })
+  },
+
+  setStockPrinted(req, res) {
+    Order.update({ stock_printed: 1 }, {
+      where: {
+        stock_printed: 0
+      }
+    })
+      .then(updated => res.status(200).json(updated))
   }
 }

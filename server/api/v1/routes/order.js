@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 router.post('/', order.create)
+router.put('/stock-printed', order.setStockPrinted)
 router.get('/orders', order.findOrders)
 router.get('/items', order.findItems)
 router.put('/items/:id', order.updateItemStatus)
