@@ -5443,8 +5443,10 @@ to {
       padding: 6px 32px 6px 24px;
 }
 .md-table .md-table-cell .md-button {
+      /*
       width: 36px;
       min-width: 36px;
+      */
       height: 36px;
       min-height: 36px;
 }

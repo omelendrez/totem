@@ -21,6 +21,7 @@ const getters = {
   ccOrderData: state => state.ccOrderData,
   ccError: state => state.ccError,
   ccResponse: state => state.ccResponse,
+  ccPayments: state => state.ccPayments,
   showIntro: state => state.showIntro,
   showResetAlert: state => state.showResetAlert
 }

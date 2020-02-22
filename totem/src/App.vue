@@ -5,7 +5,7 @@
     </v-toolbar>
     <router-view v-if="totemActive" />
     <v-container class="v-container fluid" v-if="!totemActive">
-      <v-sheet color="info">
+      <v-sheet color="#ee3542">
         <sheet-footer>
           <div class="wait-message">
             <p>🤷‍♀</p>
@@ -18,7 +18,7 @@
         hide-delimiters
         hide-controls
         touchless
-        height="61vh"
+        height="50vh"
         :interval="interval"
         class="carousel"
       >
@@ -93,6 +93,9 @@ export default {
 body {
   font-family: Roboto;
 }
+.container {
+  padding: 0 !important;
+}
 .logo {
   top: 32px;
   max-width: 400px;
@@ -105,11 +108,10 @@ body {
   box-shadow: 0px 2px 2px #999;
 }
 .carousel-category-name {
-  font-size: 6em;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 2px 4px 6px #000;
-  text-align: center;
+  position: absolute;
+  font-size: 4em;
+  right: 20px;
+  bottom: 20px;
 }
 
 .wait-message {
