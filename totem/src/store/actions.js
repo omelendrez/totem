@@ -17,7 +17,10 @@ import {
   activateTotem,
   deactivateTotem,
   cancelPayment,
-  getPayments
+  getPayments,
+  getStock,
+  printStockThermal,
+  closeStock
 } from "@/services"
 
 import { batchClose } from '@/external'
@@ -296,7 +299,31 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
-  }
+  },
+  async getStock({ commit }) {
+    getStock()
+      .then(resp => {
+        commit("set_stock", resp.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  async printStockThermal({ commit }, orderData) {
+    printStockThermal(orderData)
+      .catch(err => {
+        const data = { ...err.response.data, order: orderData }
+        printOrderThermalError(data)
+        commit("request_error", handleError(err))
+      })
+  },
+  async closeStock({ commit }) {
+    closeStock()
+      .catch(err => {
+        console.log(err)
+      })
+  },
+
 }
 
 export default actions

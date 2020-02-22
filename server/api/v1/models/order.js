@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       order_printed: {
         type: DataTypes.INTEGER,
         defaultValue: 0
+      },
+      stock_printed: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     {

@@ -23,7 +23,8 @@ const getters = {
   ccResponse: state => state.ccResponse,
   ccPayments: state => state.ccPayments,
   showIntro: state => state.showIntro,
-  showResetAlert: state => state.showResetAlert
+  showResetAlert: state => state.showResetAlert,
+  stock: state => state.stock
 }
 
 export default getters
