@@ -235,7 +235,12 @@ Retire su ticket`;
               errorMessage = "La terminal de POSNET no está respondiendo";
               break;
             case 2080:
-              errorMessage = "La última transacción no pudo ser confirmada";
+              confirmTransaction();
+              errorMessage =
+                "La última transacción no pudo ser confirmada. Intente de nuevo.";
+              break;
+            case 2105:
+              errorMessage = "La tarjeta no pudo ser leída correctamente";
               break;
           }
           this.message = `Lo sentimos!!!
