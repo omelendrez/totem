@@ -177,6 +177,9 @@ const mutations = {
   },
   set_show_reset_alert(state, value) {
     state.showResetAlert = value
+  },
+  set_stock(state, stock) {
+    state.stock = stock
   }
 }
 

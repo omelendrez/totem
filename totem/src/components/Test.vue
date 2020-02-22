@@ -19,11 +19,19 @@
           <!--
           <v-btn large color="success" @click.stop="activateTotem">Activar</v-btn>
           -->
-          <v-btn large color="primary" @click.stop="closeStock">Cerrar Stock</v-btn>
           <v-btn large color="error" @click.stop="deactivateTotem">Desactivar</v-btn>
           <p></p>
           <p>Si lo desactivás en esta pantalla no se podrá volver a activar desde aquí.</p>
           <p>Para reactivarlo deberás usar la lectora de código de barras con la tarjeta correspondiente.</p>
+        </v-card-text>
+        <hr />
+        <v-card-text>
+          <p class="headline">Stock</p>
+          <!--
+          <v-btn large color="success" @click.stop="activateTotem">Activar</v-btn>
+          -->
+          <v-btn large color="success" @click.stop="printStock">Imprimir Consumo</v-btn>
+          <v-btn large color="primary" @click.stop="closeStock">Cerrar Período</v-btn>
         </v-card-text>
         <hr />
         <v-card-text>
@@ -147,9 +155,22 @@ export default {
     },
     ccPayments() {
       return store.getters.ccPayments;
+    },
+    stock() {
+      return store.getters.stock;
     }
   },
   watch: {
+    stock() {
+      this.showProcess = false;
+      const order = {
+        order_number: "Stock",
+        order_items: this.stock,
+        printerId: 1
+      };
+      store.dispatch("printStockThermal", order);
+      this.notifyAlert();
+    },
     order() {
       if (!this.order) {
         this.ticketError = true;
@@ -244,6 +265,10 @@ export default {
       this.curAction = "deactivateTotem";
       this.showGetPass = true;
     },
+    printStock() {
+      this.curAction = "printStock";
+      this.showGetPass = true;
+    },
     closeStock() {
       this.curAction = "closeStock";
       this.showGetPass = true;
@@ -294,8 +319,11 @@ export default {
         case "deactivateTotem":
           store.dispatch("deactivateTotem");
           break;
+        case "printStock":
+          store.dispatch("getStock");
+          break;
         case "closeStock":
-          //store.dispatch("closeStock");
+          store.dispatch("closeStock");
           break;
       }
       this.notifyAlert();

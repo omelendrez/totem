@@ -26,7 +26,8 @@ const state = {
   ccError: {},
   ccPayments: [],
   showIntro: true,
-  showResetAlert: false
+  showResetAlert: false,
+  stock: []
 }
 
 export default state

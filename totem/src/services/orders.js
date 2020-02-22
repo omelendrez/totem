@@ -107,3 +107,27 @@ export const ccLoadOrderData = orderId => {
       })
   })
 }
+
+export const getStock = () => {
+  return new Promise((resolve, reject) => {
+    HTTP.get('orders/stock')
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+export const closeStock = () => {
+  return new Promise((resolve, reject) => {
+    HTTP.put('orders/stock')
+      .then(resp => {
+        resolve(resp)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
