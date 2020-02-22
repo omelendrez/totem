@@ -29,7 +29,9 @@
         <v-card-text>
           <p class="headline">posnet</p>
           <v-btn large color="primary" @click.stop="batchClose">Cerrar Lote</v-btn>
+          <!--
           <v-btn large color="error" @click.stop="cancelPay">Cancelar Pago</v-btn>
+          -->
           <v-data-table
             v-show="showPayments"
             :headers="headers"
@@ -60,10 +62,37 @@
         </v-card-text>
         <hr />
         <v-card-text>
-          <p class="headline">Pruebas impresoras</p>
-          <v-btn large @click.stop="printTotem">Ticket Totem</v-btn>
-          <v-btn large @click.stop="printComanda">Ticket Comanda</v-btn>
-          <v-btn large color="warning" @click.stop="printFiscal">Ticket Fiscal</v-btn>
+          <p class="headline">Reimpresión de tickets</p>
+          <v-text-field type="text" autocomplete="off" v-model="orderNumber" label="Ticket #"></v-text-field>
+          <v-btn small color="success" @click.stop="activateButtons">Buscar ticket</v-btn>
+          <v-alert :value="ticketError" type="error">Ticket no encontrado</v-alert>
+          <div v-if="this.order">
+            <div>
+              Ticket #
+              <b>{{this.order.order_number}}</b>
+            </div>
+            <div>
+              Fecha
+              <b>{{this.order.date}}</b>
+            </div>
+            <div>
+              Hora
+              <b>{{this.order.time}}</b>
+            </div>
+            <div>
+              Total
+              <b>$ {{this.order.total_price}}</b>
+            </div>
+          </div>
+          <br />
+          <v-btn large @click.stop="printTotem" :disabled="!printButtons">Ticket Totem</v-btn>
+          <v-btn large @click.stop="printComanda" :disabled="!printButtons">Ticket Comanda</v-btn>
+          <v-btn
+            large
+            color="warning"
+            @click.stop="printFiscal"
+            :disabled="!printButtons"
+          >Ticket Fiscal</v-btn>
         </v-card-text>
       </div>
       <div v-if="showGetPass">
@@ -106,7 +135,10 @@ export default {
         { text: "", sortable: false, value: "" }
       ],
       payments: [],
-      showPayments: false
+      showPayments: false,
+      orderNumber: null,
+      printButtons: false,
+      ticketError: false
     };
   },
   computed: {
@@ -118,6 +150,15 @@ export default {
     }
   },
   watch: {
+    order() {
+      if (!this.order) {
+        this.ticketError = true;
+        this.printButtons = false;
+        return;
+      }
+      this.printButtons = true;
+      this.ticketError = false;
+    },
     ccPayments() {
       const payments = this.ccPayments.rows.map(row => {
         const response = JSON.parse(row.response);
@@ -261,10 +302,16 @@ export default {
     },
     notifyAlert() {
       this.showProcess = true;
+    },
+    activateButtons() {
+      if (!this.orderNumber) {
+        store.dispatch("loadTestOrderData", 0);
+        return;
+      }
+      store.dispatch("loadTestOrderData", this.orderNumber);
     }
   },
   mounted() {
-    store.dispatch("loadTestOrderData", 1);
     store.dispatch("getPayments");
   }
 };
