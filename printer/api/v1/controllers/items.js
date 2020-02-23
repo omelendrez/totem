@@ -37,7 +37,12 @@ module.exports.printStockItems = (printer, order) => {
         align: 'LEFT',
         width: 0.9
       },
-      { text: qty, align: 'RIGHT', bold: true }
+      {
+        text: qty,
+        align: 'RIGHT',
+        bold: true,
+        width: 0.1
+      }
     ])
   })
   if (!items.length) {
