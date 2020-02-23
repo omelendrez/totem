@@ -34,7 +34,8 @@ module.exports.printStockItems = (printer, order) => {
     printer.tableCustom([
       {
         text: product,
-        align: 'LEFT'
+        align: 'LEFT',
+        width: 0.9
       },
       { text: qty, align: 'RIGHT', bold: true }
     ])
