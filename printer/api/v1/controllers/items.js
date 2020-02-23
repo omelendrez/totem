@@ -35,13 +35,13 @@ module.exports.printStockItems = (printer, order) => {
       {
         text: product,
         align: 'LEFT',
-        width: 0.9
+        width: 0.8
       },
       {
         text: qty,
         align: 'RIGHT',
         bold: true,
-        width: 0.1
+        width: 0.2
       }
     ])
   })
