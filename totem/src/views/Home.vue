@@ -174,6 +174,7 @@ export default {
       let product = {};
       Object.assign(product, this.selectedProduct);
       product.additional = item.additional;
+
       /**
        * categories:
        * 6 - Minibox
@@ -183,7 +184,6 @@ export default {
        * 32 - Combo Bahiense Pollo
        *
        */
-
       product.ticket_text = product.ticket_text.replace(
         drinkFieldName,
         `${item.ticket_text} ${
